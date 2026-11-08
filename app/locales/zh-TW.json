@@ -505,5 +505,18 @@
     "abt": {
       "text": "將一隻手臂伸直向上，然後使用另一隻手臂輕輕地推動第一隻手臂的肘部朝你的頭部方向。保持10至15秒。然後換另一隻手臂重複相同的動作。"
     }
+  },
+  "quietRest": {
+    "miniTitle": "休息一下",
+    "longTitle": "舒展一下",
+    "footer": "好好休息，才能更好地專注",
+    "scheduleTitle": "休息計劃",
+    "scheduleSubtitle": "設定短休息和長休息的時間安排",
+    "interval": "休息間隔",
+    "duration": "休息時長",
+    "strictTitle": "嚴格模式",
+    "longIntervalHelp": "長休息在設定次數的短休息後開始，上方顯示對應的總間隔。",
+    "miniSection": "短休息",
+    "longSection": "長休息"
   }
 }

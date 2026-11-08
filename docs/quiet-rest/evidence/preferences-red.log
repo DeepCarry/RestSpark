@@ -1,0 +1,30 @@
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+
+ ❯ test/quietRestPreferences.js (5 tests | 1 failed) 157ms
+     × preserves an existing duration outside the master example and converts units on save 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > preserves an existing duration outside the master example and converts units on save
+AssertionError: expected 'INPUT' to be 'SELECT' // Object.is equality
+
+Expected: "SELECT"
+Received: "INPUT"
+
+ ❯ test/quietRestPreferences.js:53:30
+     51|   it('preserves an existing duration outside the master example and co…
+     52|     const duration = document.querySelector('#miniBreakFor')
+     53|     expect(duration.tagName).toBe('SELECT')
+       |                              ^
+     54|     expect(duration.value).toBe('80')
+     55|     duration.value = '90'
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  02:15:56
+   Duration  572ms (transform 27ms, setup 0ms, import 314ms, tests 157ms, environment 0ms)
+

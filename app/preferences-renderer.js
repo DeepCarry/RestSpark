@@ -5,10 +5,10 @@ import HtmlTranslate from './utils/htmlTranslate.js'
 import './platform.js'
 
 const versionChecker = new VersionChecker()
-let eventsAttached = false
 
 window.onload = async (e) => {
   const bounds = await window.stretchly.getWindowBounds()
+  let initialSizeApplied = false
   const settings = await window.settings.currentSettings()
   if (settings.disableAppUpdateFeatures) {
     document.querySelector('#checkNewVersion').closest('div').classList.add('hidden')
@@ -27,9 +27,9 @@ window.onload = async (e) => {
     })
   }
 
+  document.documentElement.lang = settings.language
   new HtmlTranslate(document).translate()
   setWindowHeight()
-  setTimeout(() => { eventsAttached = true }, 500)
 
   if (settings.customPreferencesMessage) {
     const customMessageDiv = document.createElement('div')
@@ -99,17 +99,20 @@ window.onload = async (e) => {
   }
 
   window.stretchly.onTranslate(async () => {
+    document.documentElement.lang = await window.settings.get('language')
     new HtmlTranslate(document).translate()
-    document.querySelectorAll('input[type="range"]').forEach(async range => {
-      const settings = await window.settings.currentSettings()
+    const translatedSettings = await window.settings.currentSettings()
+    await Promise.all(Array.from(document.querySelectorAll('[data-divisor]')).map(async range => {
+      const settings = translatedSettings
       const divisor = range.dataset.divisor
       const output = range.closest('div').querySelector('output')
-      range.value = settings[range.name] / divisor
+      setScheduleValue(range, settings[range.name] / divisor)
       const unit = output.dataset.unit
       output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
       document.querySelector('#longBreakEvery').closest('div').querySelector('output')
         .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
-    })
+    }))
+    await updateScheduleChoices()
     setWindowHeight()
   })
 
@@ -160,9 +163,11 @@ window.onload = async (e) => {
       event.target.closest('.navigation').childNodes.forEach(link => {
         if (link.classList) {
           link.classList.remove('active')
+          link.removeAttribute('aria-current')
         }
       })
       event.target.closest('a').classList.add('active')
+      event.target.closest('a').setAttribute('aria-current', 'page')
 
       const toBeDisplayed = document.querySelector(`.${event.target.closest('[data-section]').getAttribute('data-section')}`)
       document.querySelectorAll('body > div:not(.custom-message)').forEach(section => {
@@ -173,6 +178,7 @@ window.onload = async (e) => {
         }
       })
 
+      window.scrollTo(0, 0)
       setSameWidths()
       setWindowHeight()
     }
@@ -181,11 +187,9 @@ window.onload = async (e) => {
   document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
     const isNegative = checkbox.classList.contains('negative')
     checkbox.checked = isNegative ? !settings[checkbox.value] : settings[checkbox.value]
-    if (!eventsAttached) {
-      checkbox.onchange = (event) =>
-        window.settings.saveSettings(checkbox.value,
-          isNegative ? !checkbox.checked : checkbox.checked)
-    }
+    checkbox.onchange = (event) =>
+      window.settings.saveSettings(checkbox.value,
+        isNegative ? !checkbox.checked : checkbox.checked)
   })
 
   document.querySelectorAll('input[type="radio"]').forEach(radio => {
@@ -201,55 +205,49 @@ window.onload = async (e) => {
         value = radio.value
     }
     radio.checked = settings[radio.name] === value
-    if (!eventsAttached) {
-      radio.onchange = (event) => {
-        window.settings.saveSettings(radio.name, value)
-      }
+    radio.onchange = (event) => {
+      window.settings.saveSettings(radio.name, value)
     }
   })
 
   document.querySelector('#language').value = settings.language
-  if (!eventsAttached) {
-    document.querySelector('#language').onchange = (event) => {
-      window.settings.saveSettings('language', event.target.value)
-    }
+  document.querySelector('#language').onchange = (event) => {
+    window.settings.saveSettings('language', event.target.value)
   }
 
   document.querySelector('#trayIconStyle').value = settings.trayIconStyle
-  if (!eventsAttached) {
-    document.querySelector('#trayIconStyle').onchange = (event) => {
-      window.settings.saveSettings('trayIconStyle', event.target.value)
-    }
+  document.querySelector('#trayIconStyle').onchange = (event) => {
+    window.settings.saveSettings('trayIconStyle', event.target.value)
   }
 
-  document.querySelectorAll('input[type="range"]').forEach(async range => {
+  document.querySelectorAll('[data-divisor]').forEach(async range => {
     const divisor = range.dataset.divisor
     const output = range.closest('div').querySelector('output')
-    range.value = settings[range.name] / divisor
+    setScheduleValue(range, settings[range.name] / divisor)
     const unit = output.dataset.unit
     output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
     document.querySelector('#longBreakEvery').closest('div').querySelector('output')
       .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
-    if (!eventsAttached) {
-      range.onchange = async event => {
-        output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
-        document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-          .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
-        window.settings.saveSettings(range.name, range.value * divisor)
-      }
-      range.oninput = async event => {
-        output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
-        document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-          .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
-      }
+    range.onchange = async event => {
+      output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
+      document.querySelector('#longBreakEvery').closest('div').querySelector('output')
+        .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
+      window.settings.saveSettings(range.name, range.value * divisor)
+      await updateScheduleChoices()
+    }
+    range.oninput = async event => {
+      await updateScheduleChoices()
+      output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
+      document.querySelector('#longBreakEvery').closest('div').querySelector('output')
+        .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
     }
   })
 
+  await updateScheduleChoices()
+
   document.querySelectorAll('.sounds img').forEach(preview => {
-    if (!eventsAttached) {
-      preview.onclick = (event) =>
-        window.stretchly.playSound(preview.closest('div').querySelector('input').value)
-    }
+    preview.onclick = (event) =>
+      window.stretchly.playSound(preview.closest('div').querySelector('input').value)
   })
 
   setWindowHeight()
@@ -314,26 +312,35 @@ window.onload = async (e) => {
   }
 
   function setWindowHeight () {
-    const classes = document.querySelector('body').classList
-    const scrollHeight = document.querySelector('body').scrollHeight
-    const availHeight = window.screen.availHeight
-    let height = null
-    if (classes.contains('win32')) {
-      if (scrollHeight + 40 > availHeight) {
-        height = availHeight
-      } else {
-        height = scrollHeight + 40
-      }
-    } else {
-      if (scrollHeight + 32 > availHeight) {
-        height = availHeight
-      } else {
-        height = scrollHeight + 32
-      }
+    if (initialSizeApplied) return
+    initialSizeApplied = true
+    const width = Math.min(Math.max(bounds.width, 760), window.screen.availWidth)
+    const height = Math.min(Math.max(bounds.height, 700), window.screen.availHeight * 0.9)
+    window.stretchly.setWindowSize(Math.round(width), Math.round(height))
+  }
+
+  function setScheduleValue (control, value) {
+    const saved = String(value)
+    // Advanced preferences may contain a duration between the standard steps.
+    if (!Array.from(control.options).some(option => option.value === saved)) {
+      const option = document.createElement('option')
+      option.value = saved
+      control.appendChild(option)
     }
-    if (height) {
-      window.stretchly.setWindowSize(bounds.width, height)
-    }
+    control.value = saved
+  }
+
+  async function updateScheduleChoices () {
+    await Promise.all(Array.from(document.querySelectorAll('select[data-divisor]')).map(async select => {
+      const unit = select.closest('div').querySelector('output').dataset.unit
+      await Promise.all(Array.from(select.options).map(async option => {
+        option.textContent = select.id === 'longBreakEvery'
+          ? await window.i18next.t('utils.minutes', {
+            count: document.querySelector('#miniBreakEvery').value * (Number(option.value) + 1)
+          })
+          : await window.utils.formatUnitAndValue(unit, option.value)
+      }))
+    }))
   }
 
   function realBreakInterval () {

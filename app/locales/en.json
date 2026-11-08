@@ -516,5 +516,18 @@
       "title": "Overwhelmed?",
       "text": "Try the 5-4-3-2-1 Grounding Technique: Identify 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, and 1 thing you can taste."
     }
+  },
+  "quietRest": {
+    "miniTitle": "Take a little break",
+    "longTitle": "Time to unwind",
+    "footer": "Rest well. Come back refreshed.",
+    "scheduleTitle": "Break schedule",
+    "scheduleSubtitle": "Make a little room for rest in your day.",
+    "interval": "Break interval",
+    "duration": "Break duration",
+    "strictTitle": "Strict mode",
+    "longIntervalHelp": "Long breaks follow the configured number of mini breaks. The interval above is the resulting total time.",
+    "miniSection": "Mini breaks",
+    "longSection": "Long breaks"
   }
 }

@@ -119,7 +119,13 @@
     "nsisWeb": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
-    }
+    },
+    "files": [
+      "**/*",
+      "!docs/quiet-rest/**",
+      "!scripts/quiet-rest-*.mjs",
+      "!test/quietRest*.js"
+    ]
   },
   "standard": {
     "globals": [

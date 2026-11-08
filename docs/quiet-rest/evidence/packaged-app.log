@@ -1,0 +1,25 @@
+
+DevTools listening on ws://127.0.0.1:58760/devtools/browser/750ec728-7c54-478b-b5f5-217cea8987fc
+02:25:51.215 › Stretchly: initializing...
+02:25:51.226 › Stretchly: migrating preferences from Stretchly v0.0.0 to v1.13.0
+02:25:51.227 › Stretchly: not migrating pauseBreaksShortcut
+02:25:51.232 › Stretchly: migrating preferences from Stretchly v1.13.0 to v1.17.0
+02:25:51.232 › Stretchly: not migrating showBreakActionsInStrictMode
+02:25:51.237 › Stretchly: migrating preferences from Stretchly v1.17.0 to v1.18.2
+02:25:51.242 › Stretchly: migrating preferences from Stretchly v1.18.2 to v1.19.0
+02:25:51.243 › Stretchly: not migrating audio to longBreakAudio
+02:25:51.243 › Stretchly: not migrating microbreakStartSoundPlaying
+02:25:51.243 › Stretchly: not migrating breakStartSoundPlaying
+02:25:51.246 › Stretchly: migrating preferences from Stretchly v1.19.0 to v1.20.0
+02:25:51.252 › Stretchly: loading preferences
+02:25:51.275 › Stretchly: setting '_migratedOpenAtLogin' to 'true' (was 'false')
+02:25:51.275 › Stretchly: Migrated to openAtLogin
+02:25:51.280 › Stretchly: attempting to set autostart to false
+🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+(node:60595) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Stretchly --trace-deprecation ...` to show where the warning was created)
+02:25:51.450 › Stretchly: loading default break ideas
+02:25:51.450 › null
+02:25:52.652 › Stretchly: arguments received from second instance: --user-data-dir=/var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/stretchly-quiet-rest-packaged-1794162350687,preferences
+02:25:52.652 › Stretchly: open Preferences window (requested by second instance)
+02:25:52.666 › Stretchly 2: forwarding command 'preferences' to the main instance

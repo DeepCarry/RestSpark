@@ -512,5 +512,18 @@
       "title": "压力太大了？",
       "text": "试试 5-4-3-2-1 着陆法：找出你能看到的 5 样东西，你能摸到的 4 样东西，你能听到的 3 样东西，你能闻到的 2 样东西，和 1 样你可以尝到的东西。"
     }
+  },
+  "quietRest": {
+    "miniTitle": "休息一下",
+    "longTitle": "舒展一下",
+    "footer": "好好休息，才能更好地专注",
+    "scheduleTitle": "休息计划",
+    "scheduleSubtitle": "设置短休息和长休息的时间安排",
+    "interval": "休息间隔",
+    "duration": "休息时长",
+    "strictTitle": "严格模式",
+    "longIntervalHelp": "长休息在设定次数的短休息后开始，上方显示对应的总间隔。",
+    "miniSection": "短休息",
+    "longSection": "长休息"
   }
 }

@@ -1,0 +1,70 @@
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+
+ ❯ test/quietRestRenderer.js (8 tests | 6 failed) 150ms
+     × shows the configured duration immediately and updates clock and ring 57ms
+     × never exposes skip in strict mode and allows manual finish only on completion 21ms
+     × keeps long durations and safe customized ideas 4ms
+     × shows the configured duration immediately and updates clock and ring 10ms
+     × never exposes skip in strict mode and allows manual finish only on completion 18ms
+     × keeps long durations and safe customized ideas 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/quietRestRenderer.js > Quiet Rest microbreak renderer > shows the configured duration immediately and updates clock and ring
+ FAIL  test/quietRestRenderer.js > Quiet Rest break renderer > shows the configured duration immediately and updates clock and ring
+AssertionError: expected '' to be '00:20' // Object.is equality
+
+- Expected
++ Received
+
+- 00:20
+
+ ❯ test/quietRestRenderer.js:45:68
+     43|     it('shows the configured duration immediately and updates clock an…
+     44|       await load()
+     45|       expect(document.querySelector('#progress-time').textContent).toB…
+       |                                                                    ^
+     46|       expect(document.querySelector('#progress').value).toBe(10000)
+     47|       await vi.advanceTimersByTimeAsync(10000)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  test/quietRestRenderer.js > Quiet Rest microbreak renderer > never exposes skip in strict mode and allows manual finish only on completion
+ FAIL  test/quietRestRenderer.js > Quiet Rest break renderer > never exposes skip in strict mode and allows manual finish only on completion
+TypeError: Cannot read properties of null (reading 'getAttribute')
+ ❯ test/quietRestRenderer.js:73:56
+     71|       expect(document.querySelector('#finish').classList.contains('hid…
+     72|       expect(document.querySelector('#postpone').classList.contains('h…
+     73|       expect(document.querySelector('.timer-remaining').getAttribute('…
+       |                                                        ^
+     74|       document.querySelector('#finish').click()
+     75|       expect(finish).toHaveBeenCalledWith(true)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  test/quietRestRenderer.js > Quiet Rest microbreak renderer > keeps long durations and safe customized ideas
+ FAIL  test/quietRestRenderer.js > Quiet Rest break renderer > keeps long durations and safe customized ideas
+AssertionError: expected '' to be '60:00' // Object.is equality
+
+- Expected
++ Received
+
+- 60:00
+
+ ❯ test/quietRestRenderer.js:81:68
+     79|     it('keeps long durations and safe customized ideas', async () => {
+     80|       await load(false, true, 3600000)
+     81|       expect(document.querySelector('#progress-time').textContent).toB…
+       |                                                                    ^
+     82|       expect(document.querySelector(file === 'break' ? '.break-idea' :…
+     83|     })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 2 passed (8)
+   Start at  02:08:29
+   Duration  614ms (transform 25ms, setup 0ms, import 353ms, tests 150ms, environment 0ms)
+

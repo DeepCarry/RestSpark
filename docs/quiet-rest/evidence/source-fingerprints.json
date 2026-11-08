@@ -1,0 +1,32 @@
+{
+  "base": "e11920f",
+  "branch": "feature/quiet-rest-ui",
+  "sha256": {
+    "app/break-renderer.js": "dfa8172403f364b02d864cf546cd108a25cb712a548bb662e27df4823da4c6c0",
+    "app/break.html": "f3d7fdf04a6fbcd7efe56ae6d6642387f9c6864dd73fc5f81b78e11cbb545a22",
+    "app/css/break.css": "a62503e6c74a51c11c8f83a82ff0b6ca800f1a7c32ad9dd1a6a0dd1c32cb8783",
+    "app/css/quiet-rest-preferences.css": "ba9200b7c7128cb30ccf752326d4044d22440e45c535ecf04f078318caa33562",
+    "app/css/quiet-rest.css": "a99c2b13af5583893e1e01089f176f1c06b0fcba86e6af90fb3b6fbb1121edcf",
+    "app/images/quiet-rest/leaf.svg": "307deceea20bff34f9fbb24b9c98615f3f2e8b21b26e9a3c93a65511d31f0687",
+    "app/images/quiet-rest/nav-about.svg": "ed211523d5c1926dc22e27e27f1f1bd4f015498ef2d4d75918002754d3490c61",
+    "app/images/quiet-rest/nav-heart.svg": "7118d2ac2c0da0d942f6b6df4711c687f7f213548f43e450b29a58c476739ba3",
+    "app/images/quiet-rest/nav-schedule.svg": "29866c8e602124db0d574de66d3c2daad144e95ad3cce13b59ca4928fdac816e",
+    "app/images/quiet-rest/nav-settings.svg": "bb1055c4ccd18982684097a059c47291ca4945f705e3cac6379d2736e8e66a5f",
+    "app/images/quiet-rest/nav-theme.svg": "0c87b05eb22219a020c40f95c51137e6bc4ef9ad9a6dc7357560dadd80bf18fd",
+    "app/images/quiet-rest/stretch.png": "99df08f86edd30d7f69d3ac513b3c2a6ff2c41ccc390578f40220038d63a21de",
+    "app/locales/en.json": "cfa4b9068cabc1723da568ade36af8c3e75156a6158f787397e423025b44f64e",
+    "app/locales/zh-CN.json": "b6c6cdf5d18873d4f7a4a9c2b2779f4fb4410a75258ecb3173b7563601c90421",
+    "app/locales/zh-TW.json": "55be2101177505dbe3e21941b6eb440d730e34fadaa126686ab46835570c5f45",
+    "app/main.js": "908495e9eba6dd86836dfbcd1bc4c97ab949b765e36e44d7e55877624c3b49ed",
+    "app/microbreak-renderer.js": "66b18d4beb45f6353a1f04fe69e5fb11fa6b234e95e3a4a57000b6e9dbd62365",
+    "app/microbreak.html": "15467f5a161c40e6dd96d07563bd324059f49f5d0cf0ff4070d3845631bad492",
+    "app/preferences-renderer.js": "7eb378d347396a1fc276bab6ebc3bed28a436cb31999803b36a9e528a1986fea",
+    "app/preferences.html": "cf92bf3c00c18b65fe1d676f2e8d8d2f97f2a8f2c6b19c974da0ef6dcda4c136",
+    "app/utils/quietRestProgress.js": "ba2429fa40ba1a149e6aaf1b33801b5494891b770792e9f7b29ba8a5bf503776",
+    "package.json": "f008636bda69809f00968c9139f34f08ca139bd2d028dcc19d36d5f5cad43d35",
+    "scripts/quiet-rest-packaged-smoke.mjs": "209eba4b9663722ebcf17cb287a2cbf711d62dc0bb68388096faaaf641ea7986",
+    "scripts/quiet-rest-qa.mjs": "c923ffe9c052840e07823bdd2e1fe31cc4de806e2e4bbd7020fbe9968a6dd848",
+    "test/quietRestPreferences.js": "9f26393effc4d9dda487916b4b47f3ba4a4cc404765c9c081baa8bb3b937167b",
+    "test/quietRestRenderer.js": "2f2c7cd90184919d913b57287611fb9fa087701d5377a08c0b66f38d73329690"
+  }
+}

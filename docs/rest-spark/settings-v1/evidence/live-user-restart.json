@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-09T14:34:25.024Z",
+  "oldPid": 75060,
+  "newPid": 37627,
+  "application": "/Users/carry/Documents/DeepCarry/Git/dc-restspark/dist/mac-arm64/Rest Spark.app/Contents/MacOS/Rest Spark",
+  "profile": "/Users/carry/Library/Application Support/Rest Spark",
+  "pages": [
+    {
+      "section": "settings",
+      "lang": "zh-CN",
+      "title": "通用设置",
+      "unresolved": [],
+      "version": "0.1.1"
+    },
+    {
+      "section": "schedule",
+      "lang": "zh-CN",
+      "title": "休息计划",
+      "unresolved": [],
+      "version": "0.1.1"
+    },
+    {
+      "section": "theme",
+      "lang": "zh-CN",
+      "title": "外观与声音",
+      "unresolved": [],
+      "version": "0.1.1"
+    },
+    {
+      "section": "about",
+      "lang": "zh-CN",
+      "title": "关于元气",
+      "unresolved": [],
+      "version": "0.1.1"
+    }
+  ],
+  "changedKeys": []
+}

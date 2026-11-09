@@ -71,6 +71,11 @@ try {
   for (const section of ['settings', 'schedule', 'theme', 'about']) {
     await send('Runtime.evaluate', { expression: `document.querySelector('[data-section=${section}]').click()` })
     await delay(400)
+    const translated = await send('Runtime.evaluate', {
+      expression: `Array.from(document.querySelector('.${section}').querySelectorAll('[data-i18next]')).filter(element => element.textContent.trim() === element.dataset.i18next).map(element => element.dataset.i18next)`,
+      returnByValue: true
+    })
+    assert.deepEqual(translated.result.result.value, [], `${section}: all translation keys resolve in the running application`)
     const screenshot = await send('Page.captureScreenshot', { format: 'png' })
     writeFileSync(join(evidence, `packaged-${section}.png`), Buffer.from(screenshot.result.data, 'base64'))
     if (section === 'about') {

@@ -49,12 +49,12 @@
       "loveStretchly": "Suka dengan Stretchly kamu?"
     },
     "about": {
-      "designedBy": "Ikon dan desain UI oleh Colin Shanley",
+      "designedBy": "Stretchly — Ikon dan desain UI oleh Colin Shanley",
       "janH": "Jan Hovancik",
-      "developedBy": "Dikembangkan oleh",
+      "developedBy": "Stretchly — Dikembangkan oleh",
       "dot": ".",
       "ourWebsite": "kunjungi situs web kami",
-      "learnMore": "Untuk mempelajari lebih lanjut tentang fitur Stretchly, lihat tutorial, unduh versi terbaru atau hubungi kami untuk dukungan, ",
+      "learnMore": "Untuk mempelajari lebih lanjut tentang fitur Rest Spark, lihat tutorial, unduh versi terbaru atau hubungi kami untuk dukungan, ",
       "notifyNewVersion": "Beri tahu secara otomatis tentang pembaruan aplikasi",
       "latestVersion": "Versi terbaru ",
       "version": "Versi ",
@@ -71,16 +71,16 @@
       "fullscreen": "Layar penuh",
       "window": "Jendela",
       "showBreaksIn": "Munculkan istirahat di:",
-      "openAtLogin": "Mulai Stretchly otomatis saat log in"
+      "openAtLogin": "Mulai Rest Spark otomatis saat log in"
     },
     "nav": {
-      "heart": "Suka Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "Tentang",
       "theme": "Tema",
       "schedule": "Jadwal",
       "settings": "Pengaturan"
     },
-    "title": "Preferensi Stretchly"
+    "title": "Preferensi Rest Spark"
   },
   "statusMessages": {
     "resuming": "Melanjutkan",
@@ -98,7 +98,7 @@
     "openPreferences": "Buka Preferensi",
     "viewTutorial": "Tampilkan Tutorial",
     "breakTimeReminderApp": "Aplikasi pengingat waktu istirahat",
-    "title": "Selamat Datang di Stretchly"
+    "title": "Selamat Datang di Rest Spark"
   },
   "process": {
     "newVersionAvailable": "Versi terbaru tersedia!"
@@ -186,7 +186,7 @@
     "continue": "Lanjut",
     "warning": "Ini akan mengembalikan aplikasi ke pengaturan bawaan dan semua pengaturan Anda akan hilang.",
     "restoreDefaults": "Kembali ke pengaturan bawaan",
-    "quitStretchly": "Keluar Stretchly",
+    "quitStretchly": "Keluar Rest Spark",
     "resetBreaks": "Setel Ulang Istirahat",
     "indefinitely": "Tanpa batas",
     "untilMorning": "Hingga pagi",
@@ -202,7 +202,7 @@
     "resumingBreaks": "Melanjutkan istirahat",
     "breakIn": "Istirahat Lama dalam $t(utils.seconds, {'count': {{seconds}} })",
     "microbreakIn": "Istirahat singkat dalam $t(utils.seconds, {'count': {{seconds}} })",
-    "toolTipHeader": "Stretchly - Aplikasi pengingat waktu istirahat"
+    "toolTipHeader": "Rest Spark - Aplikasi pengingat waktu istirahat"
   },
   "break": {
     "title": "Saatnya istirahat!",
@@ -462,5 +462,11 @@
       "title": "Menutup Mata",
       "text": "Saat duduk, letakkan siku di atas meja dan dekatkan ke tepi meja. Biarkan berat badan Anda turun ke depan dan tutupi mata dengan telapak tangan. Tutup mata Anda dan tarik napas dalam secara perlahan melalui hidung, tahan selama beberapa detik dan hembuskan secara perlahan. Lanjutkan pernapasan dalam."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

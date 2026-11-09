@@ -1,0 +1,9 @@
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+
+
+ Test Files  6 passed (6)
+      Tests  33 passed (33)
+   Start at  11:03:29
+   Duration  769ms (transform 160ms, setup 0ms, import 866ms, tests 512ms, environment 0ms)
+

@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - L'app de recordatori de pauses",
+    "toolTipHeader": "Rest Spark - L'app de recordatori de pauses",
     "breakIn": "Pausa Llarga en $t(utils.seconds, {'count': {{seconds}} })",
     "skipToTheNext": "Saltar al següent",
     "untilMorning": "Fins el matí",
@@ -16,7 +16,7 @@
     "toMicrobreak": "Mini Pausa",
     "resume": "Reprendre Pauses",
     "for2Hours": "2 hores",
-    "quitStretchly": "Sortir de Stretchly",
+    "quitStretchly": "Sortir de Rest Spark",
     "warning": "Això restaurarà els valors per defecte de l'aplicació i es perdran les teves preferències.",
     "continue": "Continua",
     "cancel": "Cancel·la",
@@ -27,7 +27,7 @@
   },
   "preferences": {
     "settings": {
-      "openAtLogin": "Iniciar Stretchly automàticament en iniciar sessió",
+      "openAtLogin": "Iniciar Rest Spark automàticament en iniciar sessió",
       "monitorIdleTime": "Controlar el temps inactiu del sistema (pauses són aturades si el sistema està inactiu).",
       "monitorDnd": "Mostrar pauses fins i tot en el mode No Molestar",
       "allScreens": "Mostrar pauses a tots els monitors",
@@ -82,12 +82,12 @@
       "checkNewVersion": "Comprovar si hi ha actualitzacions disponibles automàticament",
       "ourWebsite": "visiti la nostra pàgina web",
       "dot": ".",
-      "developedBy": "Desenvolupat per",
+      "developedBy": "Stretchly — Desenvolupat per",
       "janH": "Jan Hovancik",
-      "designedBy": "Icona i disseny UI per Colin Shanley",
+      "designedBy": "Stretchly — Icona i disseny UI per Colin Shanley",
       "tagline": "L'Aplicació que et recorda fer pauses",
       "latestVersion": "Darrera versió ",
-      "learnMore": "Per saber més de les funcions de Stretchly, mireu un tutorial, descarregueu l'última versió o contacteu-nos per obtenir assistència, "
+      "learnMore": "Per saber més de les funcions de Rest Spark, mireu un tutorial, descarregueu l'última versió o contacteu-nos per obtenir assistència, "
     },
     "heart": {
       "becomeContributor": "Fes-te Patron",
@@ -101,12 +101,12 @@
     },
     "nav": {
       "about": "Sobre",
-      "heart": "M'encanta Stretchly",
+      "heart": "Support Stretchly upstream",
       "settings": "Configuració",
       "schedule": "Horari",
       "theme": "Tema"
     },
-    "title": "Preferències de Stretchly"
+    "title": "Preferències de Rest Spark"
   },
   "contributorPreferences": {
     "0": "Primer monitor",
@@ -140,7 +140,7 @@
     "primary": "Monitor primari",
     "cursor": "Seguir cursor",
     "showTrayIcon": "Mostrar icona a la barra del menú",
-    "toShowTrayIcon": "Mostra la icona de Stretchly a la barra de menú",
+    "toShowTrayIcon": "Mostra la icona de Rest Spark a la barra de menú",
     "opacity": "Opacitat:",
     "volume": "Volum:",
     "sounds": "Sons:",
@@ -192,7 +192,7 @@
     "hours_other": "{{count}} hores"
   },
   "welcome": {
-    "title": "Benvolgut/da a Stretchly",
+    "title": "Benvolgut/da a Rest Spark",
     "viewTutorial": "Veure el Tutorial",
     "openPreferences": "Obrir Preferències",
     "breakTimeReminderApp": "L'Aplicació que et recorda fer pauses",
@@ -518,5 +518,11 @@
     "postpone": "Ajornar aquesta pausa",
     "skip": "Saltar aquesta pausa",
     "title": "És temps d'una pausa!"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

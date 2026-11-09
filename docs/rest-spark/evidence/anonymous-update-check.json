@@ -1,0 +1,7 @@
+{
+  "url": "https://api.github.com/repos/DeepCarry/RestSpark/releases/latest",
+  "authenticated": false,
+  "httpStatus": 403,
+  "message": "API rate limit exceeded for 188.253.120.76. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
+  "upstreamFallback": false
+}

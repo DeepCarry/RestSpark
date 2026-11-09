@@ -1,0 +1,42 @@
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+
+ ❯ test/restSparkProfile.js (9 tests | 9 failed) 13ms
+     × copies settings, unknown fields and images without changing the original 5ms
+     × never overwrites an existing new config, even when the old one later changes 2ms
+     × does not silently replace corrupt legacy configuration with defaults 1ms
+     × is safe for a fresh install and never copies browser caches or locks 1ms
+     × can retry after an assets conflict without publishing partial settings 1ms
+     × rejects a non-object settings file 1ms
+     × routes legacy default without touching an explicit profile 1ms
+     × routes renamed default without touching an explicit profile 1ms
+     × routes explicit QA directory without touching an explicit profile 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > copies settings, unknown fields and images without changing the original
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > never overwrites an existing new config, even when the old one later changes
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > does not silently replace corrupt legacy configuration with defaults
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > is safe for a fresh install and never copies browser caches or locks
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > can retry after an assets conflict without publishing partial settings
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > rejects a non-object settings file
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > routes legacy default without touching an explicit profile
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > routes renamed default without touching an explicit profile
+ FAIL  test/restSparkProfile.js > Rest Spark profile compatibility > routes explicit QA directory without touching an explicit profile
+Error: Cannot find module '/app/utils/brandProfile.js' imported from /Users/carry/Documents/DeepCarry/Git/genki/stretchly/test/restSparkProfile.js
+ ❯ test/restSparkProfile.js:13:20
+     11|     target = join(root, 'Rest Spark')
+     12|     mkdirSync(source)
+     13|     const module = await import('../app/utils/brandProfile.js')
+       |                    ^
+     14|     migrateLegacyProfile = module.migrateLegacyProfile
+     15|     configureBrandIdentity = module.configureBrandIdentity
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed (9)
+   Start at  10:57:20
+   Duration  153ms (transform 13ms, setup 0ms, import 18ms, tests 13ms, environment 0ms)
+

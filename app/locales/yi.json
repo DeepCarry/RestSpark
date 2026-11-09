@@ -3,7 +3,7 @@
     "nav": {
       "schedule": "זמנים",
       "about": "וועגן",
-      "heart": "האב ליב סטרעטשלי",
+      "heart": "Support Stretchly upstream",
       "settings": "אָפּציעס",
       "theme": "אויסזען"
     },
@@ -105,5 +105,11 @@
   },
   "welcome": {
     "title": "ברוכים־הבאים צו סטרעטשלי"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

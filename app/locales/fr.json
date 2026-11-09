@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly – Application de rappel de pauses",
+    "toolTipHeader": "Rest Spark – Application de rappel de pauses",
     "microbreakIn": "Petite pause dans $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Grande pause dans $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Reprise des pauses",
@@ -16,7 +16,7 @@
     "untilMorning": "Jusqu'au matin",
     "indefinitely": "Indéfiniment",
     "resetBreaks": "Réinitiliser les pauses",
-    "quitStretchly": "Quitter Stretchly",
+    "quitStretchly": "Quitter Rest Spark",
     "restoreDefaults": "Réinitialiser",
     "warning": "Ceci va réinitialiser l'application, toutes vos préférences seront perdues.",
     "continue": "Continuer",
@@ -32,16 +32,16 @@
     "finish": "Terminer cette pause"
   },
   "preferences": {
-    "title": "Paramètres de Stretchly",
+    "title": "Paramètres de Rest Spark",
     "nav": {
       "settings": "Préférences",
       "schedule": "Planification",
       "theme": "Thème",
       "about": "À propos",
-      "heart": "J'aime Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Démarrer Stretchly automatiquement à l'ouverture de session",
+      "openAtLogin": "Démarrer Rest Spark automatiquement à l'ouverture de session",
       "showBreaksIn": "Afficher les pauses en :",
       "window": "Fenêtre",
       "fullscreen": "Plein écran",
@@ -96,12 +96,12 @@
       "version": "Version ",
       "latestVersion": "Dernière version ",
       "notifyNewVersion": "Notifier automatiquement des dernières mises à jour",
-      "learnMore": "Pour en apprendre plus sur les fonctionnalités de Stretchly, regarder un tutoriel, télécharger la dernière version ou pour toute demande d'assistance, ",
+      "learnMore": "Pour en apprendre plus sur les fonctionnalités de Rest Spark, regarder un tutoriel, télécharger la dernière version ou pour toute demande d'assistance, ",
       "ourWebsite": "visitez notre site Web",
       "dot": ".",
-      "developedBy": "Développé par",
+      "developedBy": "Stretchly — Développé par",
       "janH": "Jan Hovancik",
-      "designedBy": "Icône et IU conçues par Colin Shanley",
+      "designedBy": "Stretchly — Icône et IU conçues par Colin Shanley",
       "checkNewVersion": "Vérifier automatiquement la présence de mise à jour"
     },
     "heart": {
@@ -173,7 +173,7 @@
     "showTimeToBreakInTray": "Afficher l'heure jusqu'à la prochaine pause dans l'icône de la barre de menus",
     "showCurrentTimeInBreaks": "Afficher l'heure locale actuelle dans la fenêtre de pause",
     "currentTimeInBreaks": "Heure actuelle",
-    "toShowTrayIcon": "Afficher l'icône de Stretchly dans la barre de menus",
+    "toShowTrayIcon": "Afficher l'icône de Rest Spark dans la barre de menus",
     "showTrayIcon": "Afficher l'icône de la barre de menus"
   },
   "utils": {
@@ -202,7 +202,7 @@
     "newVersionAvailable": "Une nouvelle version est disponible !"
   },
   "welcome": {
-    "title": "Bienvenue sur Stretchly",
+    "title": "Bienvenue sur Rest Spark",
     "breakTimeReminderApp": "Application de rappel de pauses",
     "viewTutorial": "Voir le tutoriel",
     "openPreferences": "Ouvrir les préférences",
@@ -515,5 +515,11 @@
       "title": "Mobilité",
       "text": "Toutes les trente minutes de position statique doivent être suivies d'au moins une minute de mouvement."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

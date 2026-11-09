@@ -1,0 +1,81 @@
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+
+ ❯ test/restSparkTray.js (2 tests | 2 failed) 6ms
+     × uses the immutable approved template in every appearance 4ms
+     × retains time/progress/paused status without modifying approved logo geometry 1ms
+ ❯ test/restSparkUpdates.js (5 tests | 4 failed) 14ms
+     × checks only the Fork and returns its published version 12ms
+     × does not advertise an update for HTTP 404 0ms
+     × does not advertise an update for HTTP 403 0ms
+     × does not advertise an update for HTTP 500 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/restSparkTray.js > Rest Spark native macOS tray status > uses the immutable approved template in every appearance
+Error: Cannot find module '/app/utils/restSparkTray.js' imported from /Users/carry/Documents/DeepCarry/Git/genki/stretchly/test/restSparkTray.js
+ ❯ test/restSparkTray.js:5:30
+      3| describe('Rest Spark native macOS tray status', () => {
+      4|   it('uses the immutable approved template in every appearance', async…
+      5|     const { macTrayAsset } = await import('../app/utils/restSparkTray.…
+       |                              ^
+      6|     expect(macTrayAsset).toBe('restsparkTemplate.png')
+      7|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  test/restSparkTray.js > Rest Spark native macOS tray status > retains time/progress/paused status without modifying approved logo geometry
+Error: Cannot find module '/app/utils/restSparkTray.js' imported from /Users/carry/Documents/DeepCarry/Git/genki/stretchly/test/restSparkTray.js
+ ❯ test/restSparkTray.js:9:33
+      7|   })
+      8|   it('retains time/progress/paused status without modifying approved l…
+      9|     const { trayStatusTitle } = await import('../app/utils/restSparkTr…
+       |                                 ^
+     10|     expect(trayStatusTitle({ paused: false, trayIconStyle: 'default' }…
+     11|     expect(trayStatusTitle({ paused: true, trayIconStyle: 'time', time…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  test/restSparkUpdates.js > Rest Spark update source > checks only the Fork and returns its published version
+AssertionError: expected 'https://api.github.com/repos/hovancik…' to be 'https://api.github.com/repos/DeepCarr…' // Object.is equality
+
+Expected: "https://api.github.com/repos/DeepCarry/stretchly/releases/latest"
+Received: "https://api.github.com/repos/hovancik/stretchly/releases/latest"
+
+ ❯ test/restSparkUpdates.js:11:38
+      9|     vi.stubGlobal('fetch', request)
+     10|     expect(await new VersionChecker().latest()).toBe('v1.21.0')
+     11|     expect(request.mock.calls[0][0]).toBe('https://api.github.com/repo…
+       |                                      ^
+     12|     expect(request).toHaveBeenCalledTimes(1)
+     13|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  test/restSparkUpdates.js > Rest Spark update source > does not advertise an update for HTTP 404
+ FAIL  test/restSparkUpdates.js > Rest Spark update source > does not advertise an update for HTTP 403
+ FAIL  test/restSparkUpdates.js > Rest Spark update source > does not advertise an update for HTTP 500
+AssertionError: expected 'v99.0.0' to be undefined
+
+- Expected:
+undefined
+
++ Received:
+"v99.0.0"
+
+ ❯ test/restSparkUpdates.js:17:51
+     15|     it(`does not advertise an update for HTTP ${status}`, async () => {
+     16|       vi.stubGlobal('fetch', async () => new Response('{"tag_name":"v9…
+     17|       expect(await new VersionChecker().latest()).toBeUndefined()
+       |                                                   ^
+     18|     })
+     19|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  6 failed | 1 passed (7)
+   Start at  10:59:34
+   Duration  158ms (transform 29ms, setup 0ms, import 41ms, tests 19ms, environment 0ms)
+

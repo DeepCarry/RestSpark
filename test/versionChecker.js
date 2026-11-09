@@ -1,34 +1,18 @@
-import { vi } from 'vitest'
-import { expect } from 'chai'
-import VersionChecker from '../app/utils/versionChecker'
+import { describe, it, expect, vi, afterEach } from 'vitest'
+import VersionChecker from '../app/utils/versionChecker.js'
+
+afterEach(() => vi.unstubAllGlobals())
 
 describe('VersionChecker', () => {
-  describe('latest', () => {
-    it('fetches tag name', async () => {
-      const tagName = 'tag name'
-      const body = 'body'
-      JSON.parse = vi.fn().mockReturnValue({ tag_name: tagName })
-      const response = {
-        text: vi.fn().mockReturnValue(Promise.resolve(body))
-      }
-      globalThis.fetch = vi.fn().mockReturnValue(Promise.resolve(response))
-
-      const checker = new VersionChecker()
-      const result = await checker.latest()
-
-      expect(result).to.equal(tagName)
-      expect(fetch.mock.calls[0]).toEqual([
-        'https://api.github.com/repos/hovancik/stretchly/releases/latest',
-        {
-          method: 'GET',
-          headers: { 'User-Agent': 'hovancik/stretchly' },
-          mode: 'cors',
-          cache: 'default'
-        }
-      ])
-
-      expect(response.text).toHaveBeenCalled()
-      expect(JSON.parse.mock.calls[0]).toEqual([body])
+  it('fetches the release tag name from the independent Rest Spark repository', async () => {
+    const request = vi.fn(async () => new Response(JSON.stringify({ tag_name: 'v1.21.0' }), { status: 200 }))
+    vi.stubGlobal('fetch', request)
+    expect(await new VersionChecker().latest()).toBe('v1.21.0')
+    expect(request).toHaveBeenCalledWith('https://api.github.com/repos/DeepCarry/RestSpark/releases/latest', {
+      method: 'GET',
+      headers: { 'User-Agent': 'Rest-Spark/DeepCarry' },
+      mode: 'cors',
+      cache: 'default'
     })
   })
 })

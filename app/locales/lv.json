@@ -68,7 +68,7 @@
     "continue": "Turpināt",
     "warning": "Šī rīcība atgriezīs aplikācijas noklusējuma iestatījumus un visi jūsu iestatījumi tiks zaudēti.",
     "restoreDefaults": "Atgriezt noklusējuma iestādījumus",
-    "quitStretchly": "Aizvērt Stretchly",
+    "quitStretchly": "Aizvērt Rest Spark",
     "untilMorning": "Līdz rītam",
     "for5Hours": "5 stundas",
     "for2Hours": "2 stundas",
@@ -82,7 +82,7 @@
     "resumingBreaks": "Pārtraukumi tiek atsākti",
     "breakIn": "Garais pārtraukums pēc $t(utils.seconds, {'count': {{seconds}} })",
     "microbreakIn": "Mazais pārtraukums pēc $t(utils.seconds, {'count': {{seconds}} })",
-    "toolTipHeader": "Stretchly - Pārtraukumu atgādinātājs"
+    "toolTipHeader": "Rest Spark - Pārtraukumu atgādinātājs"
   },
   "statusMessages": {
     "resuming": "Atsāk Pārtraukumus",
@@ -123,7 +123,7 @@
     "openPreferences": "Atvērt Iestatījumus",
     "viewTutorial": "Skatīt pamācību",
     "breakTimeReminderApp": "Pārtraukumu atgādinātājs",
-    "title": "Laipni lūgts Stretchly"
+    "title": "Laipni lūgts Rest Spark"
   },
   "process": {
     "newVersionAvailable": "Pieejama jauna versija!"
@@ -150,7 +150,7 @@
     },
     "nav": {
       "theme": "Izskats",
-      "heart": "Mīlu Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "Par",
       "schedule": "Grafiks",
       "settings": "Iestatījumi"
@@ -166,12 +166,12 @@
       "syncPreferences": "Iestatījumu Sinhronizācija"
     },
     "about": {
-      "designedBy": "Logotipu un lietotāju saskarnes dizainu veidojis Colin Shanley",
+      "designedBy": "Stretchly — Logotipu un lietotāju saskarnes dizainu veidojis Colin Shanley",
       "janH": "Jan Hovancik",
-      "developedBy": "Izstrādājis",
+      "developedBy": "Stretchly — Izstrādājis",
       "dot": ".",
       "ourWebsite": "apmeklē mūsu mājaslapu",
-      "learnMore": "Lai uzzinātu vairāk par Stretchly, skatītos pamācības, lejupielādētu jaunāko versiju vai sazinātos ar mums, ",
+      "learnMore": "Lai uzzinātu vairāk par Rest Spark, skatītos pamācības, lejupielādētu jaunāko versiju vai sazinātos ar mums, ",
       "notifyNewVersion": "Automātiski ziņot par aplikācijas atjauninājumiem",
       "latestVersion": "Jaunākā versija ",
       "version": "Versija ",
@@ -207,9 +207,9 @@
       "fullscreen": "Pa visu ekrānu",
       "window": "Logā",
       "showBreaksIn": "Parādīt pātraukumus:",
-      "openAtLogin": "Ieslēgt Stretchly automātiski"
+      "openAtLogin": "Ieslēgt Rest Spark automātiski"
     },
-    "title": "Stretchly Iestatījumi"
+    "title": "Rest Spark Iestatījumi"
   },
   "break": {
     "title": "Laiks pārtraukumam!",
@@ -325,5 +325,11 @@
     "abh": {
       "title": "Lēna Elpošana"
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

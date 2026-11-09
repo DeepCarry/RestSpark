@@ -1,1 +1,13 @@
-{}
+{
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
+  },
+  "preferences": {
+    "nav": {
+      "heart": "Support Stretchly upstream"
+    }
+  }
+}

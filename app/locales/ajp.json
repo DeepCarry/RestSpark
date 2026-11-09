@@ -12,7 +12,7 @@
     "cancel": "إلغاء",
     "syncPreferences": "مزامنة التفضيلات",
     "toBreak": "إستراحة مطوّلة",
-    "toolTipHeader": "Stretchly - تطبيق التذكير لأخذ الإستراحات",
+    "toolTipHeader": "Rest Spark - تطبيق التذكير لأخذ الإستراحات",
     "breakIn": "إستراحة مطوّلة خلال $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "إستكمال الإستراحة",
     "downloadLatestVersion": "تحميل أحدث إصدار",
@@ -70,10 +70,10 @@
       "latestVersion": "أحدث إصدار ",
       "checkNewVersion": "تفحّص من التحديثات تلقائياً",
       "ourWebsite": "زيارة الموقع",
-      "learnMore": "لمعرفة المزيد حول ميزات Stretchly أو عرض برنامج تعليمي أو تنزيل أحدث إصدار أو اتصل بنا للحصول على الدعم. ",
-      "developedBy": "قام بالتطوير",
+      "learnMore": "لمعرفة المزيد حول ميزات Rest Spark أو عرض برنامج تعليمي أو تنزيل أحدث إصدار أو اتصل بنا للحصول على الدعم. ",
+      "developedBy": "Stretchly — قام بالتطوير",
       "janH": "جان هوفانتشيك",
-      "designedBy": "قام بتصميم الأيقونة و تجربة المستخدم",
+      "designedBy": "Stretchly — قام بتصميم الأيقونة و تجربة المستخدم",
       "dot": "."
     },
     "heart": {
@@ -86,16 +86,16 @@
       "contributorPreferences": "تفضيلات المساهم",
       "syncPreferences": "تفضيلات المزامنة"
     },
-    "title": "تفضيلات Stretchly",
+    "title": "تفضيلات Rest Spark",
     "nav": {
       "settings": "الإعدادات",
       "schedule": "تحديد موعد",
       "about": "معلومات عنّا",
-      "heart": "حب Stretchly",
+      "heart": "Support Stretchly upstream",
       "theme": "السمة"
     },
     "settings": {
-      "openAtLogin": "بدء تشغيل Stretchly تلقائياً عند الدخول للنظام",
+      "openAtLogin": "بدء تشغيل Rest Spark تلقائياً عند الدخول للنظام",
       "showBreaksIn": "إظهار الإستراحة خلال:",
       "showIdeas": "إظهار معلومات عن تمارين خلال الإستراحات",
       "allScreens": "إظهار الإستراحات على جميع الشاشات",
@@ -185,7 +185,7 @@
     "inAbout": "في حوالي {{count}}"
   },
   "welcome": {
-    "title": "مرحبا بك في Stretchly",
+    "title": "مرحبا بك في Rest Spark",
     "breakTimeReminderApp": "تطبيق التذكير لأخذ الإستراحات",
     "viewTutorial": "عرض البرنامج التعليمي",
     "openPreferences": "افتح التفضيلات",
@@ -226,5 +226,11 @@
     "aae": {
       "text": "أغلق عينيك وإسترخ."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

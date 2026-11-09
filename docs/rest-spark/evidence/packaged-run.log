@@ -1,0 +1,8 @@
+PACKAGED_MACOS_SMOKE_PASSED {
+  brand: '元气',
+  heading: '休息计划',
+  selected: '20 秒',
+  version: '1.20.0',
+  controls: 4
+}
+PACKAGED_APP_EXIT 0 null

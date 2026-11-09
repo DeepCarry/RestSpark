@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Aplicación para notificar cuándo hacer descansos",
+    "toolTipHeader": "Rest Spark - Aplicación para notificar cuándo hacer descansos",
     "microbreakIn": "Descanso corto en $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Descanso largo en $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Reanudando descansos",
@@ -16,7 +16,7 @@
     "untilMorning": "Hasta la mañana",
     "indefinitely": "Indefinidamente",
     "resetBreaks": "Restablecer descansos",
-    "quitStretchly": "Salir de Stretchly",
+    "quitStretchly": "Salir de Rest Spark",
     "restoreDefaults": "Restaurar valores predeterminados",
     "warning": "Esto restaurará los valores predeterminados de la aplicación y se perderán todas sus configuraciones.",
     "continue": "Continuar",
@@ -32,16 +32,16 @@
     "finish": "Termina este descanso"
   },
   "preferences": {
-    "title": "Configuración de Stretchly",
+    "title": "Configuración de Rest Spark",
     "nav": {
       "settings": "Configuraciones",
       "schedule": "Horario",
       "theme": "Tema",
       "about": "Acerca de",
-      "heart": "Me encanta Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Iniciar Stretchly automáticamente al iniciar sesión",
+      "openAtLogin": "Iniciar Rest Spark automáticamente al iniciar sesión",
       "showBreaksIn": "Muestra descansos en:",
       "window": "Ventana",
       "fullscreen": "Pantalla Completa",
@@ -101,12 +101,12 @@
       "version": "Versión ",
       "latestVersion": "Última versión ",
       "notifyNewVersion": "Notificar automáticamente las actualizaciones en la aplicación",
-      "learnMore": "Para obtener más información sobre las funciones de Stretchly, vea un tutorial, descargue la última versión o contáctenos para obtener ayuda, ",
+      "learnMore": "Para obtener más información sobre las funciones de Rest Spark, vea un tutorial, descargue la última versión o contáctenos para obtener ayuda, ",
       "ourWebsite": "visite nuestro sitio web",
       "dot": ".",
-      "developedBy": "Desarrollado por",
+      "developedBy": "Stretchly — Desarrollado por",
       "janH": "Jan Hovancik",
-      "designedBy": "Diseño de icono e interfaz de usuario por Colin Shanley",
+      "designedBy": "Stretchly — Diseño de icono e interfaz de usuario por Colin Shanley",
       "checkNewVersion": "Comprobar actualizaciones de la app automáticamente"
     },
     "heart": {
@@ -179,7 +179,7 @@
     "currentTimeInBreaks": "Hora actual",
     "showCurrentTimeInBreaks": "Mostrar la hora local actual en la ventana de descanso",
     "showTrayIcon": "Mostrar icono en la bandeja del sistema",
-    "toShowTrayIcon": "Mostrar el icono de Stretchly en la bandeja del sistema"
+    "toShowTrayIcon": "Mostrar el icono de Rest Spark en la bandeja del sistema"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -208,7 +208,7 @@
     "newVersionAvailable": "¡Nueva versión disponible!"
   },
   "welcome": {
-    "title": "Bienvenido a Stretchly",
+    "title": "Bienvenido a Rest Spark",
     "breakTimeReminderApp": "Aplicación para notificar cuándo hacer descansos",
     "viewTutorial": "Ver tutorial",
     "openPreferences": "Abrir configuración",
@@ -526,5 +526,11 @@
       "title": "¿Abrumado?",
       "text": "Prueba la técnica 5-4-3-2-1: Identifica 5 cosas que puedes ver, 4 cosas que puedes tocar, 3 cosas que puedes escuchar, 2 cosas que puedes oler y 1 cosa que puedes saborear."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

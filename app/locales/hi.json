@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - विराम समय अनुस्मारक एप्लिकेशन",
+    "toolTipHeader": "Rest Spark - विराम समय अनुस्मारक एप्लिकेशन",
     "resumingBreaks": "पुनः ब्रेक शुरू करें",
     "downloadLatestVersion": "नया वर्ज़न डाउनलोड करेंc",
     "skipToTheNext": "ये छोड़ के अगले ब्रेक पे जाए",
@@ -52,9 +52,9 @@
     },
     "about": {
       "tagline": "विराम समय अनुस्मारक एप्लिकेशन",
-      "designedBy": "कॉलिन शैनली द्वारा आइकन और यूआई डिज़ाइन",
+      "designedBy": "Stretchly — कॉलिन शैनली द्वारा आइकन और यूआई डिज़ाइन",
       "janH": "जैन होवांसिक",
-      "developedBy": "विकसित करने वाले",
+      "developedBy": "Stretchly — विकसित करने वाले",
       "dot": "।",
       "ourWebsite": "हमारी वेबसाइट पर जाए",
       "learnMore": "स्ट्रेचली सुविधाओं के बारे में अधिक जानने के लिए, एक ट्यूटोरियल देखें, नवीनतम संस्करण डाउनलोड करें या समर्थन के लिए हमसे संपर्क करें, ",
@@ -104,7 +104,7 @@
       "openAtLogin": "लॉग इन करते समय स्ट्रेचली को प्रारंभ करें"
     },
     "nav": {
-      "heart": "स्ट्रेचली पसंद",
+      "heart": "Support Stretchly upstream",
       "about": "बारे में",
       "theme": "थीम",
       "schedule": "अनुसूची",
@@ -203,5 +203,11 @@
     "notificationsInfo": "ब्रेक से पहले दिखाया गया सिस्टम नोटिफिकेशन आपको इसकी तैयारी करने देता है।",
     "notifications": "ब्रेक सूचनाएं:",
     "title": "योगदानकर्ता वरीयताएँ"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

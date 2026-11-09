@@ -1,0 +1,31 @@
+
+DevTools listening on ws://127.0.0.1:50413/devtools/browser/027fb313-2cb0-45aa-b7d0-a924e1586279
+11:17:26.056 › Stretchly: initializing...
+11:17:26.064 › Stretchly: migrating preferences from Stretchly v0.0.0 to v1.13.0
+11:17:26.065 › Stretchly: not migrating pauseBreaksShortcut
+11:17:26.069 › Stretchly: migrating preferences from Stretchly v1.13.0 to v1.17.0
+11:17:26.069 › Stretchly: not migrating showBreakActionsInStrictMode
+11:17:26.073 › Stretchly: migrating preferences from Stretchly v1.17.0 to v1.18.2
+11:17:26.077 › Stretchly: migrating preferences from Stretchly v1.18.2 to v1.19.0
+11:17:26.077 › Stretchly: not migrating audio to longBreakAudio
+11:17:26.077 › Stretchly: not migrating microbreakStartSoundPlaying
+11:17:26.077 › Stretchly: not migrating breakStartSoundPlaying
+11:17:26.082 › Stretchly: migrating preferences from Stretchly v1.19.0 to v1.20.0
+11:17:26.086 › Stretchly: loading preferences
+11:17:26.095 › Stretchly: attempting to set autostart to false
+🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+(node:9109) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Rest Spark --trace-deprecation ...` to show where the warning was created)
+11:17:26.208 › Stretchly: loading default break ideas
+11:17:26.209 › null
+11:17:26.391 › Stretchly: arguments received from second instance: --user-data-dir=/var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-packaged-1794194245805,preferences
+11:17:26.392 › Stretchly: open Preferences window (requested by second instance)
+11:17:26.411 › Stretchly 2: forwarding command 'preferences' to the main instance
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject
+2026-11-09 11:17:26.605 Rest Spark[9109:4202774] representedObject is not a WeakPtrToElectronMenuModelAsNSObject

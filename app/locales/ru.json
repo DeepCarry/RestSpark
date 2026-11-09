@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly — напоминания о перерывах",
+    "toolTipHeader": "Rest Spark — напоминания о перерывах",
     "microbreakIn": "Мини-перерыв через $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Длинный перерыв через $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Продолжаем перерывы",
@@ -16,7 +16,7 @@
     "untilMorning": "до утра",
     "indefinitely": "на неопределённый срок",
     "resetBreaks": "Сбросить перерывы",
-    "quitStretchly": "Выход из Stretchly",
+    "quitStretchly": "Выход из Rest Spark",
     "restoreDefaults": "Восстановить настройки по умолчанию",
     "warning": "Это действие вернёт настройки к первоначальным, ваши настройки будут утеряны.",
     "continue": "Продолжить",
@@ -32,16 +32,16 @@
     "finish": "Завершить этот перерыв"
   },
   "preferences": {
-    "title": "Настройки Stretchly",
+    "title": "Настройки Rest Spark",
     "nav": {
       "settings": "Настройки",
       "schedule": "Расписание",
       "theme": "Тема",
       "about": "О программе",
-      "heart": "Поддержка"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Запускать Stretchly автоматически при входе в систему",
+      "openAtLogin": "Запускать Rest Spark автоматически при входе в систему",
       "showBreaksIn": "Показывать перерывы:",
       "window": "в окне",
       "fullscreen": "на весь экран",
@@ -101,12 +101,12 @@
       "version": "Версия ",
       "latestVersion": "Последняя версия ",
       "notifyNewVersion": "Уведомлять о наличии обновлений",
-      "learnMore": "Чтобы узнать больше о функционале Stretchly, пройдите обучение, скачайте последнюю версию или свяжитесь с нами для получения поддержки, ",
+      "learnMore": "Чтобы узнать больше о функционале Rest Spark, пройдите обучение, скачайте последнюю версию или свяжитесь с нами для получения поддержки, ",
       "ourWebsite": "посетив наш сайт",
       "dot": ".",
-      "developedBy": "Разработано",
+      "developedBy": "Stretchly — Разработано",
       "janH": "Jan Hovancik",
-      "designedBy": "Дизайн значка и UI от Colin Shanley",
+      "designedBy": "Stretchly — Дизайн значка и UI от Colin Shanley",
       "checkNewVersion": "Автоматически проверять обновления приложения"
     },
     "heart": {
@@ -179,7 +179,7 @@
     "currentTimeInBreaks": "Текущее время",
     "showCurrentTimeInBreaks": "Показать текущее местное время в окне перерыва",
     "showTrayIcon": "Отображение значка в трее",
-    "toShowTrayIcon": "Показывать значок Stretchly в трее"
+    "toShowTrayIcon": "Показывать значок Rest Spark в трее"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -208,7 +208,7 @@
     "newVersionAvailable": "Доступна новая версия!"
   },
   "welcome": {
-    "title": "Добро пожаловать в Stretchly",
+    "title": "Добро пожаловать в Rest Spark",
     "breakTimeReminderApp": "напоминания о перерывах",
     "viewTutorial": "Пройти обучение",
     "openPreferences": "Открыть настройки",
@@ -526,5 +526,11 @@
       "title": "Чувствуете перенапряжение?",
       "text": "Попробуйте технику заземления «5-4-3-2-1»: Назовите 5 вещей, которые вы видите, 4 вещи, которые можно потрогать, 3 вещи, которые вы слышите, 2 вещи, запах которых вы чувствуете, и 1 вещь, которую можно попробовать на вкус."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

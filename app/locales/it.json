@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - L'app che ti ricorda quando prenderti una pausa",
+    "toolTipHeader": "Rest Spark - L'app che ti ricorda quando prenderti una pausa",
     "microbreakIn": "Mini-Pausa fra $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Pausa fra $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Riattiva pause",
@@ -16,7 +16,7 @@
     "untilMorning": "Fino al mattino",
     "indefinitely": "Indefinitamente",
     "resetBreaks": "Azzera le pause",
-    "quitStretchly": "Esci da Stretchly",
+    "quitStretchly": "Esci da Rest Spark",
     "restoreDefaults": "Ripristina impostazioni",
     "warning": "Questo ripristinerà le impostazioni predefinite dell'app e tutte le impostazioni personalizzate andranno perse.",
     "continue": "Continua",
@@ -31,16 +31,16 @@
     "title": "È ora di fare una pausa!"
   },
   "preferences": {
-    "title": "Impostazioni Stretchly",
+    "title": "Impostazioni Rest Spark",
     "nav": {
       "settings": "Impostazioni",
       "schedule": "Programmazione",
       "theme": "Tema",
       "about": "Informazioni",
-      "heart": "Mi piace Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Avvia Stretchly all'avvio del sistema",
+      "openAtLogin": "Avvia Rest Spark all'avvio del sistema",
       "showBreaksIn": "Mostra le pause:",
       "window": "In finestra",
       "fullscreen": "A tutto schermo",
@@ -95,12 +95,12 @@
       "version": "Versione corrente ",
       "latestVersion": "Ultima versione ",
       "notifyNewVersion": "Notifica automatica degli aggiornamenti dell'app",
-      "learnMore": "Per saperne di più sulle caratteristiche di Stretchly, visualizza un tutorial, scarica l'ultima versione o contattaci per il supporto, ",
+      "learnMore": "Per saperne di più sulle caratteristiche di Rest Spark, visualizza un tutorial, scarica l'ultima versione o contattaci per il supporto, ",
       "ourWebsite": "visita il nostro sito",
       "dot": ".",
-      "developedBy": "Sviluppata da",
+      "developedBy": "Stretchly — Sviluppata da",
       "janH": "Jan Hovancik",
-      "designedBy": "Icona e UI-design di Colin Shanley",
+      "designedBy": "Stretchly — Icona e UI-design di Colin Shanley",
       "checkNewVersion": "Controlla automaticamente gli aggiornamenti della app"
     },
     "heart": {
@@ -173,7 +173,7 @@
     "currentTimeInBreaks": "Ora attuale",
     "showCurrentTimeInBreaks": "Mostra l'ora locale corrente nella finestra di pausa",
     "showTrayIcon": "Mostra l'icona della barra dei menu",
-    "toShowTrayIcon": "Mostra l'icona Stretchly nella barra dei menu"
+    "toShowTrayIcon": "Mostra l'icona Rest Spark nella barra dei menu"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -201,7 +201,7 @@
     "newVersionAvailable": "È disponibile una nuova versione!"
   },
   "welcome": {
-    "title": "Benvenuto/a in Stretchly",
+    "title": "Benvenuto/a in Rest Spark",
     "breakTimeReminderApp": "L'app che ti ricorda quando prenderti una pausa",
     "viewTutorial": "Visualizza il tutorial",
     "openPreferences": "Impostazioni",
@@ -515,5 +515,11 @@
       "title": "Visualizzazione immaginativa",
       "text": "Chiudi gli occhi e immagina di trovarti in un luogo tranquillo e rilassante, come una spiaggia o una foresta, concentrandoti sulle immagini, i suoni e le sensazioni di quell'ambiente."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

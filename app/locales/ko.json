@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - 휴식 시간 알림 앱",
+    "toolTipHeader": "Rest Spark - 휴식 시간 알림 앱",
     "microbreakIn": "짧은 휴식까지 $t(utils.seconds, {'count': {{seconds}} }) 남음",
     "breakIn": "긴 휴식까지 $t(utils.seconds, {'count': {{seconds}} }) 남음",
     "resumingBreaks": "휴식 재개",
@@ -16,7 +16,7 @@
     "untilMorning": "아침까지",
     "indefinitely": "무기한",
     "resetBreaks": "휴식 재설정",
-    "quitStretchly": "Stretchly 종료",
+    "quitStretchly": "Rest Spark 종료",
     "restoreDefaults": "기본값 복원",
     "warning": "앱 기본값이 복원되며, 모든 설정이 초기화됩니다.",
     "continue": "계속",
@@ -31,16 +31,16 @@
     "title": "휴식을 취할 시간입니다!"
   },
   "preferences": {
-    "title": "Stretchly 환경설정",
+    "title": "Rest Spark 환경설정",
     "nav": {
       "settings": "설정",
       "schedule": "일정",
       "theme": "테마",
       "about": "정보",
-      "heart": "Stretchly 사랑하기"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "로그인 시 Stretchly 자동 시작",
+      "openAtLogin": "로그인 시 Rest Spark 자동 시작",
       "showBreaksIn": "휴식 표시 방법:",
       "window": "창",
       "fullscreen": "전체 화면",
@@ -95,12 +95,12 @@
       "version": "버전 ",
       "latestVersion": "최신 버전 ",
       "checkNewVersion": "앱 업데이트 자동 확인",
-      "learnMore": "Stretchly 기능에 대해 더 알아보거나, 튜토리얼을 보거나, 최신 버전을 다운로드하거나, 지원을 받으려면, ",
+      "learnMore": "Rest Spark 기능에 대해 더 알아보거나, 튜토리얼을 보거나, 최신 버전을 다운로드하거나, 지원을 받으려면, ",
       "ourWebsite": "저희 웹사이트를 방문하세요",
       "dot": ".",
-      "developedBy": "개발:",
+      "developedBy": "Stretchly — 개발:",
       "janH": "얀 호반치크",
-      "designedBy": "아이콘 및 UI 디자인: 콜린 섀넌"
+      "designedBy": "Stretchly — 아이콘 및 UI 디자인: 콜린 섀넌"
     },
     "heart": {
       "loveStretchly": "Stretchly가 마음에 드시나요?",
@@ -170,7 +170,7 @@
     "timeToBreakInTray": "휴식까지 남은 시간",
     "showTimeToBreakInTray": "메뉴바 아이콘에 다음 휴식까지 남은 시간 표시",
     "showTrayIcon": "메뉴바 아이콘 표시",
-    "toShowTrayIcon": "메뉴바에 Stretchly 아이콘 표시",
+    "toShowTrayIcon": "메뉴바에 Rest Spark 아이콘 표시",
     "currentTimeInBreaks": "현재 시간",
     "showCurrentTimeInBreaks": "휴식 창에 현재 현지 시간 표시"
   },
@@ -188,7 +188,7 @@
     "newVersionAvailable": "새 버전이 나왔습니다!"
   },
   "welcome": {
-    "title": "Stretchly에 오신 것을 환영합니다",
+    "title": "Rest Spark에 오신 것을 환영합니다",
     "breakTimeReminderApp": "휴식 시간 알림 앱",
     "viewTutorial": "튜토리얼 보기",
     "openPreferences": "환경설정 열기",
@@ -500,5 +500,11 @@
       "title": "상상 시각화",
       "text": "눈을 감고 해변이나 숲과 같은 평화롭고 고요한 장소에 자신을 상상하며, 그 환경의 시각, 소리, 감각에 집중하세요."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

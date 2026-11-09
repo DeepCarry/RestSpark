@@ -37,7 +37,7 @@
       "schedule": "ਸਮਾਸੂਚੀ",
       "theme": "ਥੀਮ",
       "about": "ਬਾਰੇ",
-      "heart": "ਪਿਆਰ ਸਟ੍ਰੈਚਲੀ"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
       "openAtLogin": "ਲੌਗਇਨ ਕਰਨ ਵੇਲੇ ਆਪਣੇ ਆਪ ਸਟ੍ਰੈਚਲੀ ਚਾਲੂ ਕਰੋ",
@@ -97,9 +97,9 @@
       "learnMore": "ਸਟ੍ਰੈਚਲੀ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਬਾਰੇ ਵਧੇਰੇ ਜਾਣਨ ਲਈ, ਯੂਟਿਊਬ ਪਾਠ ਵੇਖੋ, ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਡਾਉਨਲੋਡ ਕਰੋ ਜਾਂ ਸਹਾਇਤਾ ਲਈ ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ, ",
       "ourWebsite": "ਸਾਡੀ ਵੈਬਸਾਈਟ 'ਤੇ ਜਾਓ",
       "dot": ".",
-      "developedBy": "ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ",
+      "developedBy": "Stretchly — ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ",
       "janH": "ਜਾਨ ਹੋਵੈਨਸਿਕ",
-      "designedBy": "ਆਈਕਾਨ ਅਤੇ ਯੂਆਈ ਡਿਜ਼ਾਈਨ ਕੋਲਿਨ ਸ਼ੈਨੀ ਦੁਆਰਾ"
+      "designedBy": "Stretchly — ਆਈਕਾਨ ਅਤੇ ਯੂਆਈ ਡਿਜ਼ਾਈਨ ਕੋਲਿਨ ਸ਼ੈਨੀ ਦੁਆਰਾ"
     },
     "heart": {
       "loveStretchly": "ਆਪਣੀ ਖਿੱਚ ਨੂੰ ਪਿਆਰ ਕਰੋ?",
@@ -189,5 +189,11 @@
     "afterMiniBreak_one": "{{count}} ਛੋਟੇ ਵਿਰਾਮ ਤੋਂ ਬਾਅਦ",
     "afterMiniBreak_other": "{{count}} ਛੋਟੇ ਵਿਰਾਮ ਤੋਂ ਬਾਅਦ",
     "resuming": "ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "Stretchly",
+  "name": "rest-spark",
   "version": "1.20.0",
-  "description": "The break time reminder app",
+  "description": "\u5143\u6c14 / Rest Spark \u2014 a break time reminder based on Stretchly",
   "main": "app/main.js",
   "type": "module",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hovancik/stretchly.git"
+    "url": "git+https://github.com/DeepCarry/RestSpark.git"
   },
   "keywords": [
     "Stretchly",
@@ -32,12 +32,12 @@
   "author": "Jan Hovancik <jan@hovancik.net>",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/hovancik/stretchly/issues"
+    "url": "https://github.com/DeepCarry/RestSpark/issues"
   },
-  "homepage": "https://hovancik.net/stretchly",
+  "homepage": "https://github.com/DeepCarry/RestSpark",
   "build": {
-    "appId": "net.hovancik.stretchly",
-    "productName": "Stretchly",
+    "appId": "io.github.deepcarry.restspark",
+    "productName": "Rest Spark",
     "dmg": {
       "icon": "build/icon.icns",
       "iconSize": 128,
@@ -68,8 +68,10 @@
       ],
       "extendInfo": {
         "LSBackgroundOnly": 1,
-        "LSUIElement": 1
-      }
+        "LSUIElement": 1,
+        "CFBundleDisplayName": "\u5143\u6c14"
+      },
+      "icon": "build/icon.icns"
     },
     "linux": {
       "category": "Utility",
@@ -124,8 +126,13 @@
       "**/*",
       "!docs/quiet-rest/**",
       "!scripts/quiet-rest-*.mjs",
-      "!test/quietRest*.js"
-    ]
+      "!test/quietRest*.js",
+      "!docs/rest-spark/**",
+      "!scripts/rest-spark-*.mjs",
+      "!test/restSpark*.js"
+    ],
+    "beforePack": "build/restspark-before-pack.cjs",
+    "publish": null
   },
   "standard": {
     "globals": [

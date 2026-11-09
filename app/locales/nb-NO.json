@@ -73,7 +73,7 @@
     "showTimeToBreakInTray": "Vis tid igjen til neste pause i menylinjeikonet",
     "currentTimeInBreaks": "Nåværende tid",
     "showCurrentTimeInBreaks": "Vis nåværende lokal tid i pausevindu",
-    "toShowTrayIcon": "Vis ikon for Stretchly i menylinjen"
+    "toShowTrayIcon": "Vis ikon for Rest Spark i menylinjen"
   },
   "preferences": {
     "heart": {
@@ -87,13 +87,13 @@
       "loveStretchly": "Elsker du Stretchly?"
     },
     "about": {
-      "learnMore": "For å lære mer om funksjonene i Stretchly, få en gjennomgang, laste ned nyeste versjon eller kontakte oss for brukerstøtte, ",
+      "learnMore": "For å lære mer om funksjonene i Rest Spark, få en gjennomgang, laste ned nyeste versjon eller kontakte oss for brukerstøtte, ",
       "notifyNewVersion": "Gi varsling om nye versjoner automatisk",
       "version": "Versjon ",
       "tagline": "Pausepåminnelsesprogrammet",
-      "designedBy": "Ikon- og grensesnittsdesign av Colin Shanley",
+      "designedBy": "Stretchly — Ikon- og grensesnittsdesign av Colin Shanley",
       "janH": "Jan Hovancik",
-      "developedBy": "Utviklet av",
+      "developedBy": "Stretchly — Utviklet av",
       "dot": ".",
       "ourWebsite": "besøk vår nettside",
       "latestVersion": "Siste versjon ",
@@ -148,16 +148,16 @@
       "fullscreen": "Fullskjerm",
       "window": "Vindu",
       "showBreaksIn": "Viser pauser i:",
-      "openAtLogin": "Start Stretchly automatisk ved innlogging"
+      "openAtLogin": "Start Rest Spark automatisk ved innlogging"
     },
     "nav": {
-      "heart": "Elsker Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "Om",
       "theme": "Drakt",
       "schedule": "Timeplan",
       "settings": "Innstillinger"
     },
-    "title": "Stretchly-innstillinger"
+    "title": "Rest Spark-innstillinger"
   },
   "statusMessages": {
     "afterMiniBreak_one": "etter {{count}} minipause",
@@ -175,7 +175,7 @@
     "openPreferences": "Åpne innstillinger",
     "viewTutorial": "Vis veiledning",
     "breakTimeReminderApp": "Pausepåminnelsesprogrammet",
-    "title": "Velkommen til Stretchly"
+    "title": "Velkommen til Rest Spark"
   },
   "process": {
     "newVersionAvailable": "Ny versjon tilgjengelig!"
@@ -193,7 +193,7 @@
     "continue": "Fortsett",
     "warning": "Dette vil gjenopprette programforvalgene og alle dine innstillinger vil gå tapt.",
     "restoreDefaults": "Tilbakestill forvalg",
-    "quitStretchly": "Avslutt Stretchly",
+    "quitStretchly": "Avslutt Rest Spark",
     "resetBreaks": "Tilbakestill pauser",
     "indefinitely": "På ubestemt tid",
     "forHour": "Én time",
@@ -209,7 +209,7 @@
     "resumingBreaks": "Gjenopptar pauser",
     "breakIn": "Lang pause om $t(utils.seconds, {'count': {{seconds}} })",
     "microbreakIn": "Minipause om $t(utils.seconds, {'count': {{seconds}} })",
-    "toolTipHeader": "Stretchly - Pausepåminnelsesprogrammet"
+    "toolTipHeader": "Rest Spark - Pausepåminnelsesprogrammet"
   },
   "miniBreakIdeas": {
     "aao": {
@@ -464,5 +464,11 @@
       "title": "Offentlig transport",
       "text": "Hvis du bruker offentlig transport regelmessig, kan du stå i stedet for å sitte. Hvis det er mulig, prøv å erstatte så mange av dine daglige turer som mulig med gåing eller sykling."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

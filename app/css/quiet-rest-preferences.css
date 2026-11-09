@@ -37,7 +37,7 @@ body.quiet-preferences {
 .schedule-heading p { color: var(--rest-muted); margin: 0 0 10px; line-height: 1.6; }
 .schedule-card { border-radius: var(--rest-radius); background: var(--rest-surface); border: 1px solid var(--rest-border); box-shadow: var(--rest-shadow); overflow: hidden; }
 .schedule-card h2 { font-size: 17px; margin: 0; padding: 16px 22px; background: color-mix(in srgb, var(--rest-mint) 16%, transparent); }
-.schedule-card h2::before { content: ''; display: inline-block; width: 24px; height: 24px; margin-inline-end: 10px; vertical-align: middle; background: url('../images/quiet-rest/leaf.svg') center/contain no-repeat; }
+.schedule-card h2::before { content: ''; display: inline-block; width: 24px; height: 24px; margin-inline-end: 10px; vertical-align: middle; background: url('../images/brand/restspark-mark-teal.svg') center/contain no-repeat; }
 .schedule-card > div { position: relative; padding: 17px 22px; border-top: 1px solid var(--rest-line); }
 .schedule-card output { text-align: center; padding: 8px 4px; border: 1px solid var(--rest-line); border-radius: 12px; font-variant-numeric: tabular-nums; background: var(--rest-surface); }
 .interval-help, .schedule-card p { font-size: 13px; color: var(--rest-muted); line-height: 1.6; margin: 0; }
@@ -94,3 +94,8 @@ body.quiet-preferences {
   .schedule-card > div:has(select[data-divisor]) { flex-wrap: wrap; gap: 10px; }
   .schedule-card select[data-divisor] { max-width: 100%; }
 }
+
+/* Approved brand geometry is not recolored, padded or clipped by the old leaf tile. */
+.rest-brand > img { padding: 0; background: none; border-radius: 0; object-fit: contain; }
+body.darwin .theme > div:has(input[name=useMonochromeTrayIcon]) { display: none; }
+.upstream-credit { color: var(--rest-muted); line-height: 1.7; font-size: 13px; }

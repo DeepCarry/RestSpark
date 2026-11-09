@@ -1,0 +1,16 @@
+PACKAGED_APP_EXIT 0 null
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: packaged preferences window loads
+    at file:///Users/carry/Documents/DeepCarry/Git/genki/stretchly/scripts/rest-spark-packaged-smoke.mjs:36:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.2

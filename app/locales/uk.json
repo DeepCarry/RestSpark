@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - застосунок для нагадування про перерви",
+    "toolTipHeader": "Rest Spark - застосунок для нагадування про перерви",
     "microbreakIn": "Маленька перерва за $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Довга перерва за $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Роботу відновлено",
@@ -14,7 +14,7 @@
     "untilMorning": "до ранку",
     "indefinitely": "на невизначений термін",
     "resetBreaks": "Скинути перерви",
-    "quitStretchly": "Вихід з Stretchly",
+    "quitStretchly": "Вихід з Rest Spark",
     "preferences": "Налаштування",
     "restoreDefaults": "Скинути налаштування",
     "syncPreferences": "Синхронізація налаштувань",
@@ -53,12 +53,12 @@
     },
     "about": {
       "tagline": "Нагадування про перервах",
-      "designedBy": "Іконографія та дизайн від Colin Shanley",
+      "designedBy": "Stretchly — Іконографія та дизайн від Colin Shanley",
       "janH": "Ян Гованчик",
-      "developedBy": "Розробник",
+      "developedBy": "Stretchly — Розробник",
       "dot": ".",
       "ourWebsite": "відвідайте наш веб-сайт",
-      "learnMore": "Щоб дізнатися більше про функції Stretchly, переглянути документацію, завантажити свіжу версію або звернутися за підтримкою, ",
+      "learnMore": "Щоб дізнатися більше про функції Rest Spark, переглянути документацію, завантажити свіжу версію або звернутися за підтримкою, ",
       "notifyNewVersion": "Оповіщувати про оновлення",
       "latestVersion": "Найновіша версія ",
       "version": "Версія ",
@@ -103,16 +103,16 @@
       "fullscreen": "На повний екран",
       "window": "Вікні",
       "showBreaksIn": "Показувати перерви у:",
-      "openAtLogin": "Запускати Stretchly при вході в систему"
+      "openAtLogin": "Запускати Rest Spark при вході в систему"
     },
     "nav": {
-      "heart": "Підтримати Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "Про програму",
       "theme": "Тема",
       "schedule": "Розклад",
       "settings": "Налаштування"
     },
-    "title": "Налаштування Stretchly"
+    "title": "Налаштування Rest Spark"
   },
   "process": {
     "newVersionAvailable": "Доступна нова версія!"
@@ -122,7 +122,7 @@
     "getStarted": "Почати",
     "openPreferences": "Відкрити налаштування",
     "viewTutorial": "Переглянути інструкцію",
-    "title": "Вітаємо в Stretchly"
+    "title": "Вітаємо в Rest Spark"
   },
   "contributorPreferences": {
     "0": "Перший монітор",
@@ -183,7 +183,7 @@
     "currentTimeInBreaks": "Поточний час",
     "showCurrentTimeInBreaks": "Показати поточний місцевий час у вікні перерви",
     "showTrayIcon": "Показати піктограму в меню",
-    "toShowTrayIcon": "Показати піктограму Stretchly на панелі меню"
+    "toShowTrayIcon": "Показати піктограму Rest Spark на панелі меню"
   },
   "statusMessages": {
     "resuming": "Продовжуємо",
@@ -519,5 +519,11 @@
       "title": "Приголомшені?",
       "text": "Спробуйте техніку заземлення 5-4-3-2-1: визначте 5 речей, які ви можете побачити, 4 речі, до яких ви можете доторкнутися, 3 речі, які ви можете почути, 2 речі, які ви можете відчути запах, і 1 річ, яку ви можете відчути на смак."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

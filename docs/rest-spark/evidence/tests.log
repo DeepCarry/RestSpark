@@ -1,0 +1,14 @@
+
+> rest-spark@1.20.0 test
+> vitest run
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+      Coverage enabled with istanbul
+
+
+ Test Files  22 passed (22)
+      Tests  349 passed (349)
+   Start at  11:13:43
+   Duration  17.62s (transform 3.20s, setup 0ms, import 5.81s, tests 20.27s, environment 1ms)
+

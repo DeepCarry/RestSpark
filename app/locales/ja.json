@@ -7,7 +7,7 @@
     "for2Hours": "2時間",
     "for5Hours": "5時間",
     "forHour": "1時間",
-    "toolTipHeader": "Stretchly - 休憩時間リマインダアプリ",
+    "toolTipHeader": "Rest Spark - 休憩時間リマインダアプリ",
     "breakIn": "$t(utils.seconds, {'count': {{seconds}} })後に休憩しましょう",
     "resumingBreaks": "休憩を再開します",
     "downloadLatestVersion": "最新版をダウンロード",
@@ -17,7 +17,7 @@
     "pause": "休憩を一時中断",
     "untilMorning": "朝まで",
     "indefinitely": "無期限",
-    "quitStretchly": "Stretchlyを終了",
+    "quitStretchly": "Rest Sparkを終了",
     "restoreDefaults": "デフォルトに戻す",
     "continue": "続ける",
     "cancel": "キャンセル",
@@ -50,12 +50,12 @@
       "schedule": "スケジュール",
       "theme": "テーマ",
       "about": "概要",
-      "heart": "Stretchly大好き"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
       "window": "ウィンドウ",
       "monitorIdleTime": "アイドル時間を監視する(システムがアイドル状態の場合には休憩は一時停止します)。",
-      "openAtLogin": "Stretchlyをログイン時に自動起動する",
+      "openAtLogin": "Rest Sparkをログイン時に自動起動する",
       "showBreaksIn": "休憩画面を表示します:",
       "fullscreen": "全画面",
       "showIdeas": "休憩中のエクササイズのヒントを表示する",
@@ -89,12 +89,12 @@
       "tagline": "休憩時間通知アプリ",
       "version": "バージョン ",
       "latestVersion": "最新版 ",
-      "learnMore": "Stretchlyの機能についてより知りたい場合には、チュートリアルを読むか、最新版をダウンロードするか、もしくは我々にサポートのご連絡をお寄せ下さい。 ",
+      "learnMore": "Rest Sparkの機能についてより知りたい場合には、チュートリアルを読むか、最新版をダウンロードするか、もしくは我々にサポートのご連絡をお寄せ下さい。 ",
       "ourWebsite": "ウェブサイトはこちら",
       "dot": "。",
-      "developedBy": "開発元",
+      "developedBy": "Stretchly — 開発元",
       "janH": "Jan Hovancik",
-      "designedBy": "アイコンとUIデザイン: Colin Shanley"
+      "designedBy": "Stretchly — アイコンとUIデザイン: Colin Shanley"
     },
     "heart": {
       "loveStretchly": "Stretchlyはお気に召しましたか？",
@@ -106,7 +106,7 @@
       "contributorPreferences": "コントリビュータ設定",
       "syncPreferences": "同期設定"
     },
-    "title": "Stretchlyの設定"
+    "title": "Rest Sparkの設定"
   },
   "contributorPreferences": {
     "newVersionNotification": "アプリの更新がある場合に通知する",
@@ -167,7 +167,7 @@
     "currentTimeInBreaks": "現在時刻",
     "showCurrentTimeInBreaks": "現在のローカル時刻を休憩画面に表示する",
     "showTrayIcon": "メニューバーアイコンを表示する",
-    "toShowTrayIcon": "Stretchlyアイコンをメニューバーに表示する"
+    "toShowTrayIcon": "Rest Sparkアイコンをメニューバーに表示する"
   },
   "utils": {
     "none_other": "{{count}}",
@@ -188,7 +188,7 @@
     "newVersionAvailable": "アプリに更新があります！"
   },
   "welcome": {
-    "title": "Stretchlyにようこそ",
+    "title": "Rest Sparkにようこそ",
     "breakTimeReminderApp": "休憩時間通知アプリ",
     "viewTutorial": "チュートリアルを見る",
     "openPreferences": "設定画面を開く",
@@ -497,5 +497,11 @@
       "title": "ひとりじゃない",
       "text": "一人では休憩しづらくないですか？同僚と一緒に休憩してみてください。休憩しやすくなるだけでなく、同僚のことをよりよく知る機会にもなります。一緒に休憩すると生産性が向上します。"
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

@@ -57,11 +57,11 @@
       "loveStretchly": "ชอบ Stretchly ใช่ไหม?"
     },
     "about": {
-      "designedBy": "ออกแบบไอคอนและส่วนติดต่อผู้ใช้โดย Colin Shanley",
+      "designedBy": "Stretchly — ออกแบบไอคอนและส่วนติดต่อผู้ใช้โดย Colin Shanley",
       "janH": "Jan Hovancik",
-      "developedBy": "พัฒนาโดย",
+      "developedBy": "Stretchly — พัฒนาโดย",
       "ourWebsite": "เยี่ยมชมเว็บไซต์ของเรา",
-      "learnMore": "หากต้องการเรียนรู้เกี่ยวกับความสามารถของ Stretchly, ดูตัวอย่าการใช้งาน, ดาวน์โหลดแอปรุ่นล่าสุด หรือต้องการความช่วยเหลือ สามารถ ",
+      "learnMore": "หากต้องการเรียนรู้เกี่ยวกับความสามารถของ Rest Spark, ดูตัวอย่าการใช้งาน, ดาวน์โหลดแอปรุ่นล่าสุด หรือต้องการความช่วยเหลือ สามารถ ",
       "notifyNewVersion": "เตือนอัตโนมัติหากแอปมีอัปเดต",
       "latestVersion": "รุ่นล่าสุด ",
       "version": "รุ่นที่ ",
@@ -117,16 +117,16 @@
       "fullscreen": "เต็มจอ",
       "window": "หน้าต่าง",
       "showBreaksIn": "แสดงการพักในรูปแบบ:",
-      "openAtLogin": "เริ่ม Stretchly อัตโนมัติเมื่อล็อกอิน"
+      "openAtLogin": "เริ่ม Rest Spark อัตโนมัติเมื่อล็อกอิน"
     },
     "nav": {
-      "heart": "รัก Stretchly จัง",
+      "heart": "Support Stretchly upstream",
       "about": "เกี่ยวกับ",
       "theme": "ธีม",
       "schedule": "ตารางเวลา",
       "settings": "ตั้งค่า"
     },
-    "title": "การตั้งค่า Stretchly"
+    "title": "การตั้งค่า Rest Spark"
   },
   "break": {
     "title": "ได้เวลาพักแล้วจ้า!",
@@ -141,7 +141,7 @@
     "continue": "ต่อ",
     "warning": "ตัวเลือกนี้จะคืนค่าตั้งต้นและการตั้งค่าทั้งหมดของคุณจะถูกลบทิ้ง",
     "restoreDefaults": "คืนค่าตั้งต้น",
-    "quitStretchly": "ออกจาก Stretchly",
+    "quitStretchly": "ออกจาก Rest Spark",
     "resetBreaks": "รีเซ็ตการพัก",
     "indefinitely": "ไม่มีกำหนด",
     "untilMorning": "จนถึงเช้า",
@@ -157,14 +157,14 @@
     "downloadLatestVersion": "ดาวน์โหลดเวอร์ชั่นล่าสุด",
     "breakIn": "พักใหญ่ใน $t(utils.seconds, {'count': {{seconds}} })",
     "microbreakIn": "พักย่อยใน $t(utils.seconds, {'count': {{seconds}} })",
-    "toolTipHeader": "Stretchly - แอปสำหรับเตือนเวลาพัก"
+    "toolTipHeader": "Rest Spark - แอปสำหรับเตือนเวลาพัก"
   },
   "welcome": {
     "getStarted": "เริ่มกันเลย",
     "breakTimeReminderApp": "แอพช่วยเตือนเมื่อถึงเวลาพัก",
     "openPreferences": "เปิดการปรับตั้งค่า",
     "viewTutorial": "ชมการใช้งาน",
-    "title": "ยินดีต้อนรับสู่ Stretchly"
+    "title": "ยินดีต้อนรับสู่ Rest Spark"
   },
   "statusMessages": {
     "indefinitely": "ไม่สิ้นสุด",
@@ -249,5 +249,11 @@
   },
   "utils": {
     "none_other": ""
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

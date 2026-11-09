@@ -37,7 +37,7 @@
       "schedule": "અનુસૂચિ",
       "theme": "થીમ",
       "about": "વિશે",
-      "heart": "સ્ટ્રેચલી ગમે છે"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
       "openAtLogin": "લોગિન થવા પર સ્ટ્રેચલી આપમેળે ચાલુ કરો",
@@ -97,9 +97,9 @@
       "learnMore": "સ્ટ્રેચલી સુવિધાઓ વિશે વધુ જાણવા, ટ્યુટોરીયલ જોવા, નવીનતમ સંસ્કરણ ડાઉનલોડ કરવા અથવા સપોર્ટ માટે અમારો સંપર્ક કરો,",
       "ourWebsite": "અમારી વેબસાઇટ ની મુલાકાત લો",
       "dot": ".",
-      "developedBy": "બનાવનાર",
+      "developedBy": "Stretchly — બનાવનાર",
       "janH": "જેન હોવાન્સિક",
-      "designedBy": "કોલિન શેનલી દ્વારા ચિહ્ન અને UI ડિઝાઇન"
+      "designedBy": "Stretchly — કોલિન શેનલી દ્વારા ચિહ્ન અને UI ડિઝાઇન"
     },
     "heart": {
       "loveStretchly": "તમારા સ્ટ્રેચલીને પ્રેમ કરો છો?",
@@ -189,5 +189,11 @@
     "afterMiniBreak_one": "{{count}} લઘુ વિરામ પછી",
     "afterMiniBreak_other": "{{count}} લઘુ વિરામો પછી",
     "resuming": "ફરી શરૂ કરી રહ્યા છીએ"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

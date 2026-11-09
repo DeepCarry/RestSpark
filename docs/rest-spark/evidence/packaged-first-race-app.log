@@ -1,0 +1,23 @@
+[8708:1109/111606.152475:ERROR:chrome/browser/process_singleton_posix.cc:347] Failed to create /private/var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-packaged-1794194164380/SingletonLock: File exists (17)
+11:16:06.152 › Stretchly 2: forwarding command 'preferences' to the main instance
+
+DevTools listening on ws://127.0.0.1:49984/devtools/browser/a50db9c2-8214-4375-ba3d-06ab278f8980
+[8708:1109/111606.206511:ERROR:net/disk_cache/simple/simple_version_upgrade.cc:107] Failed to write a new fake index.
+11:16:06.212 › Stretchly: initializing...
+11:16:06.220 › Stretchly: migrating preferences from Stretchly v0.0.0 to v1.13.0
+11:16:06.220 › Stretchly: not migrating pauseBreaksShortcut
+11:16:06.225 › Stretchly: migrating preferences from Stretchly v1.13.0 to v1.17.0
+11:16:06.225 › Stretchly: not migrating showBreakActionsInStrictMode
+11:16:06.230 › Stretchly: migrating preferences from Stretchly v1.17.0 to v1.18.2
+11:16:06.234 › Stretchly: migrating preferences from Stretchly v1.18.2 to v1.19.0
+11:16:06.234 › Stretchly: not migrating audio to longBreakAudio
+11:16:06.235 › Stretchly: not migrating microbreakStartSoundPlaying
+11:16:06.235 › Stretchly: not migrating breakStartSoundPlaying
+11:16:06.239 › Stretchly: migrating preferences from Stretchly v1.19.0 to v1.20.0
+11:16:06.244 › Stretchly: loading preferences
+11:16:06.255 › Stretchly: attempting to set autostart to false
+🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+(node:8714) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Rest Spark --trace-deprecation ...` to show where the warning was created)
+11:16:06.383 › Stretchly: loading default break ideas
+11:16:06.384 › null

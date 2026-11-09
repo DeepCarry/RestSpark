@@ -7,7 +7,7 @@
     "continue": "Continuar",
     "warning": "Isto vai restaurar as predefinições da aplicação e todas as configurações serão perdidas.",
     "restoreDefaults": "Restaurar predefinições",
-    "quitStretchly": "Sair do Stretchly",
+    "quitStretchly": "Sair do Rest Spark",
     "resetBreaks": "Recomeçar Pausas",
     "indefinitely": "Indefinidamente",
     "untilMorning": "Até à próxima manhã",
@@ -23,7 +23,7 @@
     "resumingBreaks": "Resumindo pausas",
     "microbreakIn": "Pausa curta em $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Pausa longa em $t(utils.seconds, {'count': {{seconds}} })",
-    "toolTipHeader": "Stretchly - A app de lembretes para pausas"
+    "toolTipHeader": "Rest Spark - A app de lembretes para pausas"
   },
   "statusMessages": {
     "resuming": "Retomando",
@@ -42,7 +42,7 @@
     "openPreferences": "Abrir Preferências",
     "viewTutorial": "Veja o Tutorial",
     "breakTimeReminderApp": "Apps para lembrá-lo de fazer pausas",
-    "title": "Bem-vindo ao Stretchly"
+    "title": "Bem-vindo ao Rest Spark"
   },
   "process": {
     "newVersionAvailable": "Nova versão disponível!"
@@ -128,7 +128,7 @@
     "timeToBreakInTray": "Tempo para pausar",
     "showTimeToBreakInTray": "Mostrar tempo para a próxima pausa no ícone da barra de menu",
     "showTrayIcon": "Mostrar ícone da barra de menu",
-    "toShowTrayIcon": "Mostrar ícone do Stretchly na barra de menu"
+    "toShowTrayIcon": "Mostrar ícone do Rest Spark na barra de menu"
   },
   "preferences": {
     "heart": {
@@ -142,12 +142,12 @@
       "loveStretchly": "Ama o seu Stretchly?"
     },
     "about": {
-      "designedBy": "Ícone e Interface de Utilizador desenvolvidas por Colin Shanley",
+      "designedBy": "Stretchly — Ícone e Interface de Utilizador desenvolvidas por Colin Shanley",
       "janH": "Jan Hovancik",
-      "developedBy": "Desenvolvido por",
+      "developedBy": "Stretchly — Desenvolvido por",
       "dot": ".",
       "ourWebsite": "visite nosso website",
-      "learnMore": "Para aprender mais sobre características do Stretchly, veja um tutorial, descarregue a última versão ou contate-nos para suporte, ",
+      "learnMore": "Para aprender mais sobre características do Rest Spark, veja um tutorial, descarregue a última versão ou contate-nos para suporte, ",
       "latestVersion": "Última versão ",
       "version": "Versão ",
       "tagline": "App para lembrá-lo de fazer pausas",
@@ -202,16 +202,16 @@
       "fullscreen": "Ecrã Cheio",
       "window": "Janela",
       "showBreaksIn": "Mostrar as pausas em:",
-      "openAtLogin": "Iniciar Stretchly automaticamente quando fizer login"
+      "openAtLogin": "Iniciar Rest Spark automaticamente quando fizer login"
     },
     "nav": {
-      "heart": "Amo Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "Sobre",
       "theme": "Tema",
       "schedule": "Agenda",
       "settings": "Configurações"
     },
-    "title": "Preferências do Stretchly"
+    "title": "Preferências do Rest Spark"
   },
   "break": {
     "title": "É hora de fazer uma pausa!",
@@ -514,5 +514,11 @@
       "title": "Visualização imaginativa",
       "text": "Feche os olhos e imagine-se num lugar tranquilo e calmo, como uma praia ou uma floresta, a concentrar-se nas imagens, sons e sensações desse ambiente."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

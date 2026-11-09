@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - prisimink pertraukėles",
+    "toolTipHeader": "Rest Spark - prisimink pertraukėles",
     "resumingBreaks": "Pertraukėlė tęsiasi",
     "downloadLatestVersion": "Atsisiųsti naujausią versiją",
     "skipToTheNext": "Praleisti iki kitos",
@@ -12,7 +12,7 @@
     "untilMorning": "iki rytojaus",
     "indefinitely": "neribotam laikui",
     "resetBreaks": "Atstatyti pertraukėles",
-    "quitStretchly": "Išjungti Stretchly",
+    "quitStretchly": "Išjungti Rest Spark",
     "preferences": "Nuostatos",
     "syncPreferences": "Sinchronizavimo nuostatos",
     "contributorPreferences": "Nuostatos rėmėjams",
@@ -53,15 +53,15 @@
     },
     "about": {
       "tagline": "Prisimink pertraukėles",
-      "designedBy": "Ženkliukas ir vartotojo sąsajos išvaizda - Colin Shanley",
+      "designedBy": "Stretchly — Ženkliukas ir vartotojo sąsajos išvaizda - Colin Shanley",
       "janH": "Janas Hovancikas",
-      "developedBy": "Sukūrė",
+      "developedBy": "Stretchly — Sukūrė",
       "dot": ".",
       "ourWebsite": "apsilankykite mūsų svetainėje",
       "latestVersion": "Naujausia versija ",
       "version": "Versija ",
       "checkNewVersion": "Automatiškai tikrinti, ar yra programos atnaujinimų",
-      "learnMore": "Jei norite sužinoti daugiau apie Stretchly funkcijas, peržiūrėkite pamoką, atsisiųskite naujausią versiją arba susisiekite su mumis dėl pagalbos, "
+      "learnMore": "Jei norite sužinoti daugiau apie Rest Spark funkcijas, peržiūrėkite pamoką, atsisiųskite naujausią versiją arba susisiekite su mumis dėl pagalbos, "
     },
     "schedule": {
       "enableStrictLong": "Įjungti griežtą veikseną ilgoms pertraukoms",
@@ -95,7 +95,7 @@
       "monitorIdleTime": "Stebėti sistemos neveikimo laiką (pertraukos pristabdomos, jei sistema neveikia)."
     },
     "nav": {
-      "heart": "Prisidėk / paremk",
+      "heart": "Support Stretchly upstream",
       "about": "Apie",
       "theme": "Išvaizda",
       "settings": "Nuostatos",
@@ -117,7 +117,7 @@
     "newVersionAvailable": "Pasiekiama nauja versija!"
   },
   "welcome": {
-    "title": "Jus sveikina Stretchly",
+    "title": "Jus sveikina Rest Spark",
     "breakTimeReminderApp": "Prisimink pertraukėles",
     "viewTutorial": "Peržiūrėti pamoką",
     "openPreferences": "Atverti nuostatas",
@@ -182,7 +182,7 @@
     "currentTimeInBreaks": "Dabartinis laikas",
     "showCurrentTimeInBreaks": "Rodyti vietinį laiką pertraukos lange",
     "showTrayIcon": "Rodyti meniu juostos ženkliuką",
-    "toShowTrayIcon": "Rodyti Stretchly ženkliuką meniu juostoje"
+    "toShowTrayIcon": "Rodyti Rest Spark ženkliuką meniu juostoje"
   },
   "statusMessages": {
     "nextLongBreak": "Kita ilgoji pertrauka",
@@ -518,5 +518,11 @@
       "title": "Užvaldė emocijos?",
       "text": "Išbandykite įsižeminimo pratimą „5-4-3-2-1“: pastebėkite 5 dalykus, kuriuos matote, 4 – paliečiamus, 3 – skleidžiančius garsą, 2 – kvepiančius ir vieną, kurį galėtumėte paragauti."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

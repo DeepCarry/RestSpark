@@ -1,7 +1,7 @@
 {
   "main": {
     "breakIn": "Μεγάλο διάλυμα σε $t(utils.seconds, {'count': {{seconds}} })",
-    "toolTipHeader": "Stretchly - Η εφαρμογή υπενθύμισης διαλυμάτων",
+    "toolTipHeader": "Rest Spark - Η εφαρμογή υπενθύμισης διαλυμάτων",
     "microbreakIn": "Μικρό διάλυμα σε $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Συνέχιση των διαλειμμάτων",
     "toBreak": "Μεγάλο διάλειμμα",
@@ -21,7 +21,7 @@
     "resetBreaks": "Επαναφορά διαλειμμάτων",
     "warning": "Αυτό θα επαναφέρει τις προεπιλογές της εφαρμογής και όλες οι ρυθμίσεις σας θα χαθούν.",
     "forHour": "1 ώρα",
-    "quitStretchly": "Έξοδος από το Stretchly",
+    "quitStretchly": "Έξοδος από το Rest Spark",
     "continue": "Συνέχεια",
     "downloadLatestVersion": "Κατεβάστε την τελευταία έκδοση"
   },
@@ -37,10 +37,10 @@
       "schedule": "Πρόγραμμα",
       "theme": "Θέμα",
       "about": "Σχετικά",
-      "heart": "Αγαπήστε το Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Εκκίνηση του Stretchly αυτόματα κατά την είσοδο",
+      "openAtLogin": "Εκκίνηση του Rest Spark αυτόματα κατά την είσοδο",
       "showBreaksIn": "Εμφανίζει διαλείμματα σε:",
       "fullscreen": "Πλήρης οθόνη",
       "showIdeas": "Εμφάνιση συμβουλών άσκησης κατά τη διάρκεια των διαλειμμάτων",
@@ -98,10 +98,10 @@
       "checkNewVersion": "Αυτόματος έλεγχος ενημερώσεων εφαρμογής",
       "ourWebsite": "επισκεφθείτε την ιστοσελίδα μας",
       "dot": ".",
-      "developedBy": "Αναπτύχθηκε από",
+      "developedBy": "Stretchly — Αναπτύχθηκε από",
       "janH": "Γιαν Χοβάντσικ",
-      "designedBy": "Σχεδίαση εικονιδίων και διεπαφής χρήστη από τον Colin Shanley",
-      "learnMore": "Για να μάθετε περισσότερα σχετικά με τις δυνατότητες του Stretchly, να δείτε ένα εγχειρίδιο, να κατεβάσετε την τελευταία έκδοση ή να επικοινωνήσετε μαζί μας για υποστήριξη, "
+      "designedBy": "Stretchly — Σχεδίαση εικονιδίων και διεπαφής χρήστη από τον Colin Shanley",
+      "learnMore": "Για να μάθετε περισσότερα σχετικά με τις δυνατότητες του Rest Spark, να δείτε ένα εγχειρίδιο, να κατεβάσετε την τελευταία έκδοση ή να επικοινωνήσετε μαζί μας για υποστήριξη, "
     },
     "heart": {
       "loveStretchly": "Αγαπάτε το Stretchly σας;",
@@ -113,7 +113,7 @@
       "desc1": "Η λήψη τακτικών διαλειμμάτων κατά τη χρήση υπολογιστή είναι επιστημονικά αποδεδειγμένο ότι είναι σημαντική για τη σωματική και ψυχική ευημερία σας.",
       "becomeContributor": "Γίνετε Χορηγός"
     },
-    "title": "Προτιμήσεις Stretchly"
+    "title": "Προτιμήσεις Rest Spark"
   },
   "contributorPreferences": {
     "beforeLongBreak": "Μακρύ Διάλειμμα:",
@@ -173,7 +173,7 @@
     "pauseUntilMorningInfo": "Καθορίστε μέχρι ποια ώρα θα πρέπει να παύει η \"Παύση μέχρι το πρωί\".",
     "opacityTheme": "Διαφάνεια θέματος:",
     "cursor": "Ακολουθήστε τον δείκτη",
-    "toShowTrayIcon": "Εμφάνιση του εικονιδίου Stretchly στη γραμμή μενού",
+    "toShowTrayIcon": "Εμφάνιση του εικονιδίου Rest Spark στη γραμμή μενού",
     "showCurrentTimeInBreaks": "Εμφάνιση τρέχουσας τοπικής ώρας στο παράθυρο διαλείμματος"
   },
   "utils": {
@@ -197,7 +197,7 @@
     "newVersionAvailable": "Η νέα έκδοση είναι διαθέσιμη!"
   },
   "welcome": {
-    "title": "Καλώς ήρθατε στο Stretchly",
+    "title": "Καλώς ήρθατε στο Rest Spark",
     "breakTimeReminderApp": "Η εφαρμογή υπενθύμισης χρόνου διαλείμματος",
     "viewTutorial": "Δείτε Εγχειρίδιο",
     "openPreferences": "Ανοίξτε τις Προτιμήσεις",
@@ -514,5 +514,11 @@
       "title": "Συγκλονισμένος;",
       "text": "Δοκίμασε την τεχνική γείωσης 5-4-3-2-1: Εντόπισε 5 πράγματα που βλέπεις, 4 πράγματα που μπορείς να αγγίξεις, 3 πράγματα που ακούς, 2 πράγματα που μυρίζεις και 1 πράγμα που μπορείς να γευτείς."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

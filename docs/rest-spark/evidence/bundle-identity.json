@@ -1,0 +1,10 @@
+{
+  "CFBundleIdentifier": "io.github.deepcarry.restspark",
+  "CFBundleDisplayName": "元气",
+  "CFBundleName": "Rest Spark",
+  "CFBundleExecutable": "Rest Spark",
+  "CFBundleIconFile": "icon.icns",
+  "LSUIElement": 1,
+  "LSBackgroundOnly": 1,
+  "approvedIconMatches": true
+}

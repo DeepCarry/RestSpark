@@ -2,10 +2,10 @@
   "main": {
     "breakIn": "දිගු විවේක $t(utils.seconds, {'count': {{seconds}} }) හිදී",
     "microbreakIn": "කෙටි විවේක $t(utils.seconds, {'count': {{seconds}} }) හිදී",
-    "toolTipHeader": "Stretchly - විවේක වේලාව මතක් කිරීමේ යෙදුම",
+    "toolTipHeader": "Rest Spark - විවේක වේලාව මතක් කිරීමේ යෙදුම",
     "for2Hours": "පැය 2කට",
     "forHour": "පැයකට",
-    "quitStretchly": "Stretchly වසා දමන්න",
+    "quitStretchly": "Rest Spark වසා දමන්න",
     "resetBreaks": "විවේක යළි පිහිටුවන්න",
     "indefinitely": "දිගටම",
     "untilMorning": "උදෑසන දක්වා",
@@ -31,16 +31,16 @@
     "title": "විවේකයක් ගන්න වෙලාව!"
   },
   "preferences": {
-    "title": "Stretchly මනාපයන්",
+    "title": "Rest Spark මනාපයන්",
     "nav": {
       "settings": "සැකසුම්",
       "schedule": "කාලසටහන",
-      "heart": "Stretchlyට ආදරය පෙන්වන්න",
+      "heart": "Support Stretchly upstream",
       "theme": "තේමාව",
       "about": "ගැන"
     },
     "settings": {
-      "openAtLogin": "පිවිසීමේදී ස්වයංක්රීයව Stretchly ආරම්භ කරන්න",
+      "openAtLogin": "පිවිසීමේදී ස්වයංක්රීයව Rest Spark ආරම්භ කරන්න",
       "showBreaksIn": "විවේක පෙන්වන්න:",
       "fullscreen": "සම්පූර්ණ තිරය",
       "showIdeas": "විවේක කාලය තුළ ව්යායාම ඉඟි පෙන්වන්න",
@@ -60,5 +60,11 @@
       "enableMiniBreaks": "කුඩා විවේක සක්‍රිය කරන්න",
       "showNotificationBeforeMiniBreak": "කුඩා විවේකය ආරම්භ වීමට පෙර දැනුම්දීම පෙන්වන්න"
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

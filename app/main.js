@@ -27,6 +27,7 @@ import AutostartManager from './utils/autostartManager.js'
 import Command from './utils/commands.js'
 import { registerBreakShortcuts } from './utils/breakShortcuts.js'
 import defaultSettings from './utils/defaultSettings.js'
+import { migrateMintTheme } from './utils/settingsTheme.js'
 import StatusMessages from './utils/statusMessages.js'
 import DisplayManager from './utils/displayManager.js'
 import { BRAND } from './utils/brand.js'
@@ -327,6 +328,7 @@ async function initialize (isAppStart = true) {
       },
       watch: true
     })
+    migrateMintTheme(settings)
     log.info('Stretchly: loading preferences')
     Store.initRenderer()
     Object.entries(settings.store).forEach(([key, _]) => {

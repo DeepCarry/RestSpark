@@ -1,0 +1,7 @@
+
+> rest-spark@0.1.1 lint
+> cross-env ./node_modules/.bin/standard
+
+standard: Use JavaScript Standard Style (https://standardjs.com)
+standard: Run `standard --fix` to automatically fix some problems.
+  /Users/carry/Documents/DeepCarry/Git/dc-restspark/test/quietRestPreferences.js:166:5: Block must not be padded by blank lines. (padded-blocks)

@@ -11,14 +11,13 @@ window.onload = async (e) => {
   let initialSizeApplied = false
   const settings = await window.settings.currentSettings()
   if (settings.disableAppUpdateFeatures) {
-    document.querySelector('#checkNewVersion').closest('div').classList.add('hidden')
+    document.querySelector('[data-update-section]').classList.add('hidden')
   }
 
   if (settings.hideStrictModePreferences) {
     document.querySelectorAll('[data-strict-mode]').forEach(element => {
       element.classList.add('hidden')
     })
-    document.querySelector('#enablePostponeLong').closest('div').style.marginBottom = '56px'
   }
 
   if (settings.hidePreferencesFileLocation) {
@@ -108,11 +107,12 @@ window.onload = async (e) => {
       const output = range.closest('div').querySelector('output')
       setScheduleValue(range, settings[range.name] / divisor)
       const unit = output.dataset.unit
-      output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
+      output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
       document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-        .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
+        .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
     }))
     await updateScheduleChoices()
+    await renderUpdateStatus()
     setWindowHeight()
   })
 
@@ -178,7 +178,7 @@ window.onload = async (e) => {
         }
       })
 
-      window.scrollTo(0, 0)
+      toBeDisplayed.scrollTop = 0
       setSameWidths()
       setWindowHeight()
     }
@@ -187,9 +187,15 @@ window.onload = async (e) => {
   document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
     const isNegative = checkbox.classList.contains('negative')
     checkbox.checked = isNegative ? !settings[checkbox.value] : settings[checkbox.value]
-    checkbox.onchange = (event) =>
+    checkbox.onchange = async () => {
+      if (checkbox.classList.contains('enabletype') && !document.querySelector('.enabletype:checked')) {
+        checkbox.checked = true
+        window.alert(await window.i18next.t('preferences.schedule.cantDisableBoth'))
+        return
+      }
       window.settings.saveSettings(checkbox.value,
         isNegative ? !checkbox.checked : checkbox.checked)
+    }
   })
 
   document.querySelectorAll('input[type="radio"]').forEach(radio => {
@@ -220,60 +226,49 @@ window.onload = async (e) => {
     window.settings.saveSettings('trayIconStyle', event.target.value)
   }
 
-  document.querySelectorAll('[data-divisor]').forEach(async range => {
+  await Promise.all(Array.from(document.querySelectorAll('[data-divisor]')).map(async range => {
     const divisor = range.dataset.divisor
     const output = range.closest('div').querySelector('output')
     setScheduleValue(range, settings[range.name] / divisor)
     const unit = output.dataset.unit
-    output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
+    output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
     document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-      .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
+      .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
     range.onchange = async event => {
-      output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
+      output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
       document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-        .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
+        .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
       window.settings.saveSettings(range.name, range.value * divisor)
       await updateScheduleChoices()
     }
     range.oninput = async event => {
       await updateScheduleChoices()
-      output.innerHTML = await window.utils.formatUnitAndValue(unit, range.value)
+      output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
       document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-        .innerHTML = await window.i18next.t('utils.minutes', { count: parseInt(realBreakInterval()) })
+        .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
     }
-  })
+  }))
 
   await updateScheduleChoices()
 
-  document.querySelectorAll('.sounds img').forEach(preview => {
+  document.querySelectorAll('[data-preview-sound]').forEach(preview => {
     preview.onclick = (event) =>
-      window.stretchly.playSound(preview.closest('div').querySelector('input').value)
+      window.stretchly.playSound(preview.dataset.previewSound)
   })
 
   setWindowHeight()
 
-  document.querySelectorAll('.enabletype').forEach((element) => {
-    element.onclick = async (event) => {
-      const enabletypeChecked = document.querySelectorAll('.enabletype:checked')
-      if (enabletypeChecked.length === 0) {
-        element.checked = true
-        window.settings.saveSettings(element.value, element.checked)
-        window.alert(await window.i18next.t('preferences.schedule.cantDisableBoth'))
-      }
-    }
-  })
-
-  document.querySelector('.settings > div > button').onclick = (event) => {
+  document.querySelector('#restore-defaults').onclick = (event) => {
     window.stretchly.restoreDefaults()
   }
 
   document.querySelectorAll('.about a').forEach((item) => {
     item.onclick = (event) => {
       event.preventDefault()
-      if (event.target.classList.contains('file')) {
-        window.electronApi.openPath(event.target.innerHTML)
+      if (item.classList.contains('file')) {
+        window.electronApi.openPath(item.textContent)
       } else {
-        window.electronApi.openExternal(event.target.href)
+        window.electronApi.openExternal(item.href)
       }
     }
   })
@@ -299,17 +294,32 @@ window.onload = async (e) => {
     }
   })
 
-  document.querySelector('.version').innerHTML = await window.stretchly.getVersion()
-  if (!settings.disableAppUpdateFeatures) {
-    versionChecker.latest()
-      .then(version => {
-        document.querySelector('.latestVersion').innerHTML = version.replace('v', '')
-      })
-      .catch(exception => {
-        console.error(exception)
-        document.querySelector('.latestVersion').innerHTML = 'N/A'
-      })
+  const currentVersion = await window.stretchly.getVersion()
+  document.querySelector('.version').textContent = currentVersion
+  const updateStatus = document.querySelector('.update-status')
+  let latestVersion
+  const renderUpdateStatus = async () => {
+    updateStatus.textContent = await window.i18next.t(latestVersion
+      ? (latestVersion.replace(/^v/, '') === currentVersion ? 'settingsV1.latest' : 'settingsV1.available')
+      : 'settingsV1.noRelease', { version: latestVersion })
   }
+  const checkUpdates = async () => {
+    const button = document.querySelector('#check-updates')
+    button.disabled = true
+    updateStatus.textContent = await window.i18next.t('settingsV1.checking')
+    try {
+      latestVersion = await versionChecker.latest()
+      await renderUpdateStatus()
+    } finally {
+      button.disabled = false
+    }
+  }
+  document.querySelector('#check-updates').onclick = checkUpdates
+  document.querySelector('#themeSource').value = settings.themeSource
+  document.querySelector('#themeSource').onchange = event => {
+    window.settings.saveSettings('themeSource', event.target.value)
+  }
+  if (!settings.disableAppUpdateFeatures) checkUpdates()
 
   function setWindowHeight () {
     if (initialSizeApplied) return
@@ -338,7 +348,7 @@ window.onload = async (e) => {
           ? await window.i18next.t('utils.minutes', {
             count: document.querySelector('#miniBreakEvery').value * (Number(option.value) + 1)
           })
-          : await window.utils.formatUnitAndValue(unit, option.value)
+          : await window.i18next.t(`utils.${unit}`, { count: Number(option.value) })
       }))
     }))
   }

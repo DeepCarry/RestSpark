@@ -1,0 +1,326 @@
+
+> rest-spark@0.1.1 test
+> vitest run
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+stdout | test/appExclusionsManager.js > appExclusionsManager > app should be paused with none resume exception found
+22:11:12.102 › Stretchly: starting App exclusions monitoring
+
+ ❯ test/appExclusionsManager.js (11 tests | 8 failed) 84619ms
+     × app should take the first active rule 10009ms
+     × app should be runnig when no rule is active 10007ms
+     × app should be paused with some pause exception active 10007ms
+     × app should be paused with some pause exception active after reinitialize 10010ms
+     × app should not paused with some pause exception inactive 10010ms
+     × app should not be paused with some resume exception active 10009ms
+     × app should be paused with none resume exception found 10010ms
+     × app should not be paused with some resume exception inactive 10009ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should take the first active rule
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:49:3
+     47|     }))
+     48|
+     49|   it('app should take the first active rule', () =>
+       |   ^
+     50|     new Promise((resolve) => {
+     51|       psList().then((running) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should be runnig when no rule is active
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:78:3
+     76|     }))
+     77|
+     78|   it('app should be runnig when no rule is active', () =>
+       |   ^
+     79|     new Promise((resolve) => {
+     80|       psList().then((running) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should be paused with some pause exception active
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:107:3
+    105|     }))
+    106|
+    107|   it('app should be paused with some pause exception active', () =>
+       |   ^
+    108|     new Promise((resolve) => {
+    109|       psList().then((running) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should be paused with some pause exception active after reinitialize
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:126:3
+    124|     }))
+    125|
+    126|   it('app should be paused with some pause exception active after rein…
+       |   ^
+    127|     new Promise((resolve) => {
+    128|       psList().then((running) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should not paused with some pause exception inactive
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:162:3
+    160|     }))
+    161|
+    162|   it('app should not paused with some pause exception inactive', () =>
+       |   ^
+    163|     new Promise((resolve) => {
+    164|       psList().then((running) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should not be paused with some resume exception active
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:181:3
+    179|     }))
+    180|
+    181|   it('app should not be paused with some resume exception active', () …
+       |   ^
+    182|     new Promise((resolve) => {
+    183|       psList().then((running) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should be paused with none resume exception found
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:200:3
+    198|     }))
+    199|
+    200|   it('app should be paused with none resume exception found', () =>
+       |   ^
+    201|     new Promise((resolve) => {
+    202|       settings.set('appExclusions', [{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  test/appExclusionsManager.js > appExclusionsManager > app should not be paused with some resume exception inactive
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ test/appExclusionsManager.js:216:3
+    214|     }))
+    215|
+    216|   it('app should not be paused with some resume exception inactive', (…
+       |   ^
+    217|     new Promise((resolve) => {
+    218|       psList().then((running) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 10 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should take the first active rule". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should be runnig when no rule is active". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should be paused with some pause exception active". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should be paused with some pause exception active after reinitialize". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+ ❯ AppExclusionsManager._runningAppExclusion app/utils/appExclusionsManager.js:42:31
+     40|   async _runningAppExclusion () {
+     41|     const runningCommands = await psList()
+     42|     const appExclusionCommands = this.appExclusion.commands
+       |                               ^
+     43|     let foundAppExclusion = false
+     44|     for (const appExclusionCommand of appExclusionCommands) {
+ ❯ Timeout._onTimeout app/utils/appExclusionsManager.js:58:60
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should not paused with some pause exception not found". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should not paused with some pause exception inactive". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should not be paused with some resume exception active". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+ ❯ AppExclusionsManager._runningAppExclusion app/utils/appExclusionsManager.js:42:31
+     40|   async _runningAppExclusion () {
+     41|     const runningCommands = await psList()
+     42|     const appExclusionCommands = this.appExclusion.commands
+       |                               ^
+     43|     let foundAppExclusion = false
+     44|     for (const appExclusionCommand of appExclusionCommands) {
+ ❯ Timeout._onTimeout app/utils/appExclusionsManager.js:58:60
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should be paused with none resume exception found". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+AssertionError: expected true to equal false
+ ❯ Timeout._onTimeout test/appExclusionsManager.js:210:57
+    208|       setTimeout(() => {
+    209|         clearInterval(appExclusionsManager.timer)
+    210|         appExclusionsManager.isOnAppExclusion.should.be.equal(false)
+       |                                                         ^
+    211|         appExclusionsManager.isSchedulerCleared.should.be.equal(true)
+    212|         resolve()
+ ❯ listOnTimeout node:internal/timers:685:17
+ ❯ processTimers node:internal/timers:618:7
+
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should be paused with none resume exception found". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: spawn EPERM
+ ❯ ChildProcess.spawn node:internal/child_process:486:11
+ ❯ spawn node:child_process:813:9
+ ❯ execFile node:child_process:349:17
+ ❯ execFile node:child_process:245:21
+ ❯ node_modules/ps-list/index.js:205:26
+ ❯ nonWindowsFallbackMultipleCalls node_modules/ps-list/index.js:203:27
+ ❯ nonWindows node_modules/ps-list/index.js:360:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'spawn' }
+This error originated in "test/appExclusionsManager.js" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "app should not be paused with some resume exception inactive". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 22 passed (23)
+      Tests  8 failed | 352 passed (360)
+     Errors  10 errors
+   Start at  22:10:06
+   Duration  85.24s (transform 2.72s, setup 0ms, import 4.80s, tests 88.01s, environment 1ms)
+

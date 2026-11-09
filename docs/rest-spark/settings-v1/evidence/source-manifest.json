@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-09T14:21:16.633Z",
+  "branch": "feature/settings-design-system-v1",
+  "base": "3bb9ba1b0206438740472505ea69d65b15b318b9",
+  "packageVersion": "0.1.1",
+  "appAsarSHA256": "edc2f9c9ca6b16f1c6fd344c5305c46e4d0db531255082f4c987d7d8e9fff047",
+  "files": [
+    {
+      "path": "app/preferences.html",
+      "sha256": "579244ee2abbdc2918e1cc7fe991f1e8fa1f3175df90baece41f020ada8e1de5",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/preferences-renderer.js",
+      "sha256": "aafe2dc89335fcdb8c6060d5490abbac5334a223855d93c135808a935518256a",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/css/preferences.css",
+      "sha256": "b337d219a3d79119ed5a6b597a534ffb129083254d12731cc38435814223c3db",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/css/quiet-rest-preferences.css",
+      "sha256": "4aacc2873e0d0c25e9c0902f61c6bbb3ad8791e578489f100e2acda1e5cd9b29",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/locales/en.json",
+      "sha256": "d8fbedd743570c88a600b3986699a2d3ac3c949a1624731e3df961faa8bb2ba6",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/locales/zh-CN.json",
+      "sha256": "18b8d3db13c80603d37047d3774ff026939ba2498a774cb93824859304bcb61a",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/main.js",
+      "sha256": "24ae740bd4eaa71ee89eab701b26a780df8445825fc0a7eef2abd8e1f9bf9cd3",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/settingsTheme.js",
+      "sha256": "904c9064597107228932ed6a7b6fe5df8658be2dfbd5c25716001395a72c420a",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "1cda17a79c97f5103711cc8f96470e6dce93cf7b15b22d1a5985e33be0d8f593",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/images/quiet-rest/stretch.png",
+      "sha256": "99df08f86edd30d7f69d3ac513b3c2a6ff2c41ccc390578f40220038d63a21de",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/images/brand/restspark-app-icon-master.svg",
+      "sha256": "6508a25e5458ad49927e4e2e7887c390c0c0757bee404969c1a42b3db1df9ab4",
+      "packedMatchesSource": true
+    }
+  ]
+}

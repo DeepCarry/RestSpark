@@ -1,101 +1,59 @@
-body.quiet-preferences {
-  background: radial-gradient(ellipse at 15% 10%, #d0eae2, transparent 65%), var(--rest-background);
-  margin: 0;
-  padding-inline-start: 212px;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
+/* Brand composition only. Shared settings primitives live in preferences.css. */
 .quiet-preferences .navigation {
-  box-sizing: border-box;
-  position: fixed;
-  inset-block: 0;
-  inset-inline-start: 0;
-  width: 212px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 40px 16px 24px;
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
+  min-height: 0;
   overflow-y: auto;
+  padding: 32px 16px 24px;
+  background: linear-gradient(155deg, color-mix(in srgb, var(--rest-mint) 25%, var(--rest-background)), var(--rest-background));
 }
-.rest-brand { display: flex; align-items: center; gap: 12px; margin: 8px 6px 42px; }
-.rest-brand > img { width: 46px; height: 46px; padding: 4px; box-sizing: border-box; border-radius: 14px; background: linear-gradient(145deg, #98dfbf, #3a987c); }
-.rest-brand strong { display: block; font-size: 22px; letter-spacing: -.7px; font-weight: 650; }
-.rest-brand span { display: block; margin-top: 4px; font-size: 13px; color: var(--rest-muted); }
-.quiet-preferences .navigation > a { border-radius: 12px; }
-.quiet-preferences .navigation > a > div { display: flex; flex-direction: row; justify-content: start; gap: 12px; padding: 0 14px; height: auto; min-height: 48px; box-sizing: border-box; text-align: start; color: var(--rest-ink); font: 500 16px var(--rest-font); }
-.quiet-preferences .navigation > a > div > img { width: 23px; height: 23px; filter: grayscale(1); opacity: .75; }
-.quiet-preferences .navigation > a.active { background: linear-gradient(145deg, #70cba7, #288770); box-shadow: 0 5px 12px #397f6b24; }
-.quiet-preferences .navigation > a.active > div { color: #fff; }
-.quiet-preferences .navigation > a.active img { filter: brightness(0) invert(1); opacity: 1; }
-.quiet-preferences .navigation > a:hover:not(.active) { background: var(--rest-surface); }
-.quiet-preferences > :is(.schedule, .settings, .theme, .about, .heart) { margin: 20px 20px 20px 0; padding: 32px; min-height: calc(100vh - 40px); box-sizing: border-box; border: 1px solid var(--rest-border); border-radius: 28px; background: color-mix(in srgb, var(--rest-surface) 65%, transparent); }
-.quiet-preferences .schedule { display: flex; flex-direction: column; gap: 20px; font-size: 15px; }
-.schedule-heading h1 { font-size: 30px; font-weight: 650; letter-spacing: -.7px; margin: 0 0 8px; }
-.schedule-heading p { color: var(--rest-muted); margin: 0 0 10px; line-height: 1.6; }
-.schedule-card { border-radius: var(--rest-radius); background: var(--rest-surface); border: 1px solid var(--rest-border); box-shadow: var(--rest-shadow); overflow: hidden; }
-.schedule-card h2 { font-size: 17px; margin: 0; padding: 16px 22px; background: color-mix(in srgb, var(--rest-mint) 16%, transparent); }
-.schedule-card h2::before { content: ''; display: inline-block; width: 24px; height: 24px; margin-inline-end: 10px; vertical-align: middle; background: url('../images/brand/restspark-mark-teal.svg') center/contain no-repeat; }
-.schedule-card > div { position: relative; padding: 17px 22px; border-top: 1px solid var(--rest-line); }
-.schedule-card output { text-align: center; padding: 8px 4px; border: 1px solid var(--rest-line); border-radius: 12px; font-variant-numeric: tabular-nums; background: var(--rest-surface); }
-.interval-help, .schedule-card p { font-size: 13px; color: var(--rest-muted); line-height: 1.6; margin: 0; }
-.schedule-card .interval-help { padding: 4px 22px 18px; }
-/* Keep native inputs in the focus order; the adjacent label paints the switch. */
-.quiet-preferences input[type=checkbox], .quiet-preferences input[type=radio] { display: inline-block; position: absolute; opacity: 0; width: 1px; height: 1px; }
-.quiet-preferences input:focus-visible + label { outline: 3px solid var(--rest-accent); outline-offset: 4px; border-radius: 6px; }
-.schedule-card input[type=checkbox] + label { display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; line-height: 1.5; }
-.schedule-card input[type=checkbox] + label::before { display: none; }
-.schedule-card input[type=checkbox] + label::after { content: ''; flex: 0 0 44px; height: 26px; border-radius: 30px; background: radial-gradient(circle at 13px 13px, white 9px, transparent 10px), #a4b7b0; box-shadow: inset 0 1px 3px #183f3620; }
-.schedule-card input[type=checkbox]:checked + label::after { background: radial-gradient(circle at 31px 13px, white 9px, transparent 10px), linear-gradient(135deg, #6bc7a4, #25846c); }
-.quiet-preferences .custom-message { top: 0; background: var(--rest-surface); border-radius: 12px; margin: 16px 20px 0 0; }
-.quiet-preferences > div > :last-child { margin-bottom: 0; }
-.quiet-preferences :is(.settings, .theme, .about, .heart) { grid-template-columns: minmax(70px, 23%) minmax(0, 1fr); color: var(--rest-ink); }
-.quiet-preferences :is(.settings, .theme, .about, .heart) > div { grid-column-end: -1; }
-.quiet-preferences .settings > div { grid-column: 1 / -1; }
-.quiet-preferences .settings > :nth-child(3) { padding-inline-start: 0; }
-.quiet-preferences :is(.settings, .theme, .about, .heart) button { font-size: 13px; }
-.quiet-preferences select { height: 32px; border-radius: 8px; background: var(--rest-surface); color: var(--rest-ink); border: 1px solid var(--rest-line); }
-.quiet-preferences .has-select::before { height: 32px; border-radius: 0 8px 8px 0; background: var(--rest-accent); }
-.quiet-preferences .has-select::after { top: 6px; }
+.rest-brand { display: flex; align-items: center; gap: 12px; margin: 0 8px 28px; }
+.navigation .rest-brand > img { width: 44px; height: 44px; flex-shrink: 0; }
+.rest-brand strong { display: block; font-size: 20px; font-weight: 600; line-height: 28px; }
+.rest-brand span { display: block; font-size: 12px; font-weight: 400; line-height: 18px; }
+.navigation > a { border-radius: 12px; text-decoration: none; }
+.navigation > a > div { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 10px 12px; }
+.navigation img { width: 20px; height: 20px; opacity: .85; }
+.navigation > a.active { color: white; background: linear-gradient(120deg, #58b99a, #238b71); box-shadow: 0 3px 8px #397f6b20; }
+.navigation > a.active img { filter: brightness(0) invert(1); opacity: 1; }
+.navigation > a:hover:not(.active) { background: var(--rest-surface); }
+.schedule-times { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.schedule-times .settings-row { flex-direction: column; align-items: stretch; gap: 4px; padding-block: 8px; border: 0; }
+.schedule-times .settings-row__control { max-width: none; justify-content: stretch; }
+.schedule-times select { width: 100%; }
+.schedule .settings-card > .settings-switch { min-height: 40px; }
+.schedule .interval-help { padding-top: 8px; }
+.theme-current { display: flex; gap: 20px; align-items: center; padding-block: 8px; }
+.theme-preview { position: relative; display: flex; justify-content: flex-end; width: 168px; height: 104px; border: 2px solid var(--rest-accent); border-radius: 12px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #d9f0e3, #a9d7b9); }
+.theme-preview img { height: 100%; width: auto; object-fit: contain; }
+.theme-preview > span { position: absolute; top: 6px; left: 6px; width: 20px; height: 20px; text-align: center; line-height: 20px; color: white; background: #008b70; border-radius: 50%; font-size: 12px; }
+.theme-current h3 { font-size: 14px; font-weight: 600; line-height: 22px; }
+.status-badge { display: inline-block; padding: 3px 10px; margin-top: 8px; border-radius: 9px; font-size: 13px; line-height: 20px; background: var(--rest-track); white-space: nowrap; }
+.sounds { justify-content: flex-start; gap: 10px; min-height: 48px; }
+.sounds input { width: 16px; height: 16px; accent-color: var(--rest-accent); margin: 0; flex-shrink: 0; }
+.sounds label { flex: 1; cursor: pointer; }
+.quiet-preferences .preview-button { min-height: 32px; padding: 4px 10px; font-size: 12px; background: color-mix(in srgb, var(--rest-mint) 12%, var(--rest-surface)); box-shadow: none; }
+.product-card { display: flex; gap: 16px; align-items: center; }
+.product-card > img { width: 64px; height: 64px; flex-shrink: 0; }
+.product-card > div { flex: 1; }
+.product-card h2 { display: block; font-size: 24px; line-height: 32px; margin-bottom: 4px; }
+.product-card h2 span { display: inline-block; font-size: 14px; font-weight: 500; }
+.product-card .version { margin-top: 0; align-self: flex-start; }
+.update-status { min-height: 18px; }
 @media (prefers-color-scheme: dark) {
-  body.quiet-preferences { background: radial-gradient(ellipse at 15% 10%, #294e3f, transparent 65%), var(--rest-background); }
-  .quiet-preferences .navigation > a:not(.active) img { filter: grayscale(1) invert(1); }
+  .navigation > a:not(.active) img { filter: brightness(0) invert(1); }
 }
-@media (max-width: 760px) {
-  body.quiet-preferences { padding-inline-start: 174px; }
-  .quiet-preferences .navigation { width: 174px; padding-inline: 10px; }
-  .rest-brand { gap: 8px; margin-inline: 4px; }
-  .rest-brand strong { font-size: 18px; }
-  .rest-brand > img { width: 36px; height: 36px; }
-  .quiet-preferences .navigation > a > div { font-size: 14px; padding-inline: 10px; }
-  .quiet-preferences > :is(.schedule, .settings, .theme, .about, .heart) { margin-inline-end: 12px; padding: 20px; }
+@media (max-width: 700px) {
+  .quiet-preferences .navigation { padding-inline: 12px; }
+  .rest-brand { gap: 8px; margin-inline: 0; }
+  .navigation .rest-brand > img { width: 38px; height: 38px; }
+  .theme-current { gap: 12px; }
+  .theme-preview { width: 128px; height: 88px; }
+  .product-card { flex-wrap: wrap; }
 }
-@media (max-width: 520px) {
-  body.quiet-preferences { padding-inline-start: 70px; }
-  .quiet-preferences .navigation { width: 70px; }
-  .rest-brand { margin: 0 0 20px; }
-  .rest-brand > div { display: none; }
-  .quiet-preferences .navigation a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-  .quiet-preferences .navigation a > div { justify-content: center; padding: 12px 0; }
-  .schedule-heading h1 { font-size: 24px; }
-  .schedule-card > div, .schedule-card h2 { padding: 14px; }
+@media (max-width: 540px) {
+  .schedule-times { grid-template-columns: 1fr; gap: 0; }
+  .navigation > a > div { gap: 8px; padding-inline: 6px; }
+  .rest-brand { flex-wrap: wrap; }
 }
-/* Reset the legacy schedule's positional heading rules. */
-.quiet-preferences .schedule > .schedule-heading { text-align: start; padding: 0; }
-.schedule-card > div:has(select[data-divisor]) { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.schedule-card select[data-divisor] { width: 122px; min-width: 110px; height: 40px; font: 500 15px var(--rest-font); padding: 0 30px 0 14px; appearance: auto; box-shadow: 0 2px 5px #396a5810; }
-.schedule-card output { display: none; }
-.schedule-card select[data-divisor] { flex: 0 0 auto; width: 170px; }
-.schedule-card select[data-divisor]:lang(zh) { width: 122px; }
-.quiet-preferences .navigation > a > div > img { flex-shrink: 0; }
-@media (max-width: 520px) {
-  .schedule-card > div:has(select[data-divisor]) { flex-wrap: wrap; gap: 10px; }
-  .schedule-card select[data-divisor] { max-width: 100%; }
-}
-
-/* Approved brand geometry is not recolored, padded or clipped by the old leaf tile. */
-.rest-brand > img { padding: 0; background: none; border-radius: 0; object-fit: contain; }
-body.darwin .theme > div:has(input[name=useMonochromeTrayIcon]) { display: none; }
-.upstream-credit { color: var(--rest-muted); line-height: 1.7; font-size: 13px; }

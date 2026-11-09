@@ -1,0 +1,25 @@
+node:events:505
+    throw er; // Unhandled 'error' event
+    ^
+
+Error: spawn /Users/carry/Documents/DeepCarry/Git/dc-restspark/dist/mac-arm64/Rest Spark.app/Contents/MacOS/Rest Spark ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:315:19)
+    at onErrorNT (node:internal/child_process:553:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+Emitted 'error' event on ChildProcess instance at:
+    at ChildProcess._handle.onexit (node:internal/child_process:321:12)
+    at onErrorNT (node:internal/child_process:553:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'spawn /Users/carry/Documents/DeepCarry/Git/dc-restspark/dist/mac-arm64/Rest Spark.app/Contents/MacOS/Rest Spark',
+  path: '/Users/carry/Documents/DeepCarry/Git/dc-restspark/dist/mac-arm64/Rest Spark.app/Contents/MacOS/Rest Spark',
+  spawnargs: [
+    '--user-data-dir=/var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-packaged-1794234011397',
+    '--remote-debugging-port=64679',
+    '--remote-debugging-address=127.0.0.1',
+    'preferences'
+  ]
+}
+
+Node.js v26.10.0

@@ -1,0 +1,14 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/quietRestPreferences.js test/restSparkTheme.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  22:15:47
+   Duration  928ms (transform 174ms, setup 0ms, import 285ms, tests 580ms, environment 0ms)
+

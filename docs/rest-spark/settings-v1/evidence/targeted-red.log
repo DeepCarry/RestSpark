@@ -1,0 +1,110 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/quietRestPreferences.js test/restSparkTheme.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+ ❯ test/restSparkTheme.js (0 test)
+stderr | test/quietRestPreferences.js > Quiet Rest preferences > shows a safe missing-release state rather than N/A or throwing
+TypeError: Cannot read properties of undefined (reading 'replace')
+    at /Users/carry/Documents/DeepCarry/Git/dc-restspark/app/preferences-renderer.js:308:27
+
+ ❯ test/quietRestPreferences.js (12 tests | 5 failed) 493ms
+     × binds sound previews and controls even when IPC takes more than 500 ms 34ms
+     × exposes one real theme and accessible sound preview controls 23ms
+     × opens nested project link content using the anchor URL 21ms
+     × shows a safe missing-release state rather than N/A or throwing 26ms
+     × has a complete distributable upstream license in the disclosure 19ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/restSparkTheme.js [ test/restSparkTheme.js ]
+Error: Cannot find module '../app/utils/settingsTheme.js' imported from /Users/carry/Documents/DeepCarry/Git/dc-restspark/test/restSparkTheme.js
+ ❯ test/restSparkTheme.js:2:1
+      1| import { describe, it, expect } from 'vitest'
+      2| import { migrateMintTheme, MINT_COLOR } from '../app/utils/settingsThe…
+       | ^
+      3|
+      4| describe('mint theme compatibility', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > binds sound previews and controls even when IPC takes more than 500 ms
+TypeError: Cannot read properties of null (reading 'onclick')
+ ❯ test/quietRestPreferences.js:84:65
+     82|     await vi.advanceTimersByTimeAsync(2500)
+     83|     await loaded
+     84|     expect(typeof document.querySelector('[data-preview-sound]').oncli…
+       |                                                                 ^
+     85|     expect(typeof document.querySelector('#miniBreakFor').onchange).to…
+     86|     document.querySelector('[data-preview-sound]').click()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > exposes one real theme and accessible sound preview controls
+AssertionError: expected <input type="radio" …(3)></input>
+…(5) to have a length of +0 but got 6
+
+- Expected
++ Received
+
+- 0
++ 6
+
+ ❯ test/quietRestPreferences.js:120:59
+    118|   })
+    119|   it('exposes one real theme and accessible sound preview controls', (…
+    120|     expect(document.querySelectorAll('[name=mainColor]')).toHaveLength…
+       |                                                           ^
+    121|     expect(document.querySelector('.theme-preview img').getAttribute('…
+    122|     expect(document.querySelectorAll('button[data-preview-sound]')).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > opens nested project link content using the anchor URL
+TypeError: Cannot read properties of null (reading 'click')
+ ❯ test/quietRestPreferences.js:126:86
+    124|   it('opens nested project link content using the anchor URL', () => {
+    125|     window.electronApi = { openExternal: vi.fn() }
+    126|     document.querySelector('a[href="https://github.com/DeepCarry/RestS…
+       |                                                                                      ^
+    127|     expect(window.electronApi.openExternal).toHaveBeenCalledWith('http…
+    128|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > shows a safe missing-release state rather than N/A or throwing
+TypeError: Cannot read properties of null (reading 'textContent')
+ ❯ test/quietRestPreferences.js:135:52
+    133|     await window.onload({})
+    134|     await vi.advanceTimersByTimeAsync(0)
+    135|     expect(document.querySelector('.update-status').textContent).toCon…
+       |                                                    ^
+    136|     expect(document.querySelector('.version').textContent).toBe('1.20.…
+    137|     vi.restoreAllMocks()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > has a complete distributable upstream license in the disclosure
+TypeError: Cannot read properties of null (reading 'textContent')
+ ❯ test/quietRestPreferences.js:140:56
+    138|   })
+    139|   it('has a complete distributable upstream license in the disclosure'…
+    140|     const license = document.querySelector('#licenses').textContent
+       |                                                        ^
+    141|     expect(license).toContain('Copyright (c) 2016-, Jan Hovancik')
+    142|     expect(license).toContain('THIS SOFTWARE IS PROVIDED')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 7 passed (12)
+   Start at  22:05:38
+   Duration  1.04s (transform 189ms, setup 0ms, import 412ms, tests 493ms, environment 0ms)
+

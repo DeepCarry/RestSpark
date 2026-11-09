@@ -1,601 +1,1012 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <title data-i18next="preferences.title"></title>
-  <meta http-equiv="Content-Security-Policy"
+  <head>
+    <meta charset="UTF-8">
+    <title data-i18next="preferences.title">
+    </title>
+    <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; script-src 'self'; connect-src https://api.github.com">
-  <meta http-equiv="X-Content-Security-Policy"
+    <meta http-equiv="X-Content-Security-Policy"
     content="default-src 'self'; script-src 'self'; connect-src https://api.github.com">
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/commons.css">
-  <link rel="stylesheet" type="text/css" href="css/color-scheme.css">
-  <link rel="stylesheet" type="text/css" href="css/preferences.css">
-  <link rel="stylesheet" type="text/css" href="css/quiet-rest.css">
-  <link rel="stylesheet" type="text/css" href="css/quiet-rest-preferences.css">
-</head>
-
-<body class="quiet-rest quiet-preferences">
-  <nav class="navigation" aria-label="Rest Spark">
-    <div class="rest-brand"><img src="images/brand/restspark-app-icon-master.svg" alt=""><div><strong data-i18next="brand.name">Rest Spark</strong><span data-i18next="brand.otherName">元气</span></div></div>
-    <a href="#" data-section="settings">
-      <div>
-        <img alt="" src="images/quiet-rest/nav-settings.svg">
-        <span data-i18next="preferences.nav.settings"></span>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/quiet-rest.css">
+    <link rel="stylesheet" type="text/css" href="css/preferences.css">
+    <link rel="stylesheet" type="text/css" href="css/quiet-rest-preferences.css">
+  </head>
+  <body class="quiet-rest quiet-preferences">
+    <nav class="navigation" aria-label="Rest Spark">
+      <div class="rest-brand">
+        <img src="images/brand/restspark-app-icon-master.svg" alt="">
+        <div>
+          <strong data-i18next="brand.name">Rest Spark</strong>
+          <span data-i18next="brand.otherName">元气</span>
+        </div>
       </div>
-    </a>
-    <a href="#" class="active" aria-current="page" data-section="schedule">
-      <div>
-        <img alt="" src="images/quiet-rest/nav-schedule.svg">
-        <span data-i18next="quietRest.scheduleTitle"></span>
-      </div>
-    </a>
-    <a href="#" data-section="theme">
-      <div>
-        <img alt="" src="images/quiet-rest/nav-theme.svg">
-        <span data-i18next="preferences.nav.theme"></span>
-      </div>
-    </a>
-    <a href="#" data-section="about">
-      <div>
-        <img alt="" src="images/quiet-rest/nav-about.svg">
-        <span data-i18next="preferences.nav.about"></span>
-      </div>
-    </a>
-    <a href="#" data-section="heart" hidden>
-      <div>
-        <img alt="" src="images/quiet-rest/nav-heart.svg">
-        <span data-i18next="preferences.nav.heart"></span>
-      </div>
-    </a>
-  </nav>
-  <div class="settings hidden">
-    <div class="store-hidden portable-hidden">
-      <input type="checkbox" value="openAtLogin" id="openAtLogin">
-      <label data-i18next="preferences.settings.openAtLogin" for="openAtLogin"></label>
+      <a href="#" data-section="settings">
+        <div>
+          <img alt="" src="images/quiet-rest/nav-settings.svg">
+          <span data-i18next="preferences.nav.settings">
+          </span>
+        </div>
+      </a>
+      <a href="#" class="active" aria-current="page" data-section="schedule">
+        <div>
+          <img alt="" src="images/quiet-rest/nav-schedule.svg">
+          <span data-i18next="quietRest.scheduleTitle">
+          </span>
+        </div>
+      </a>
+      <a href="#" data-section="theme">
+        <div>
+          <img alt="" src="images/quiet-rest/nav-theme.svg">
+          <span data-i18next="preferences.nav.theme">
+          </span>
+        </div>
+      </a>
+      <a href="#" data-section="about">
+        <div>
+          <img alt="" src="images/quiet-rest/nav-about.svg">
+          <span data-i18next="preferences.nav.about">
+          </span>
+        </div>
+      </a>
+      <a href="#" data-section="heart" hidden>
+        <div>
+          <img alt="" src="images/quiet-rest/nav-heart.svg">
+          <span data-i18next="preferences.nav.heart">
+          </span>
+        </div>
+      </a>
+    </nav>
+    <div class="settings settings-page hidden" tabindex="-1">
+      <header class="settings-page-header">
+        <h1 data-i18next="settingsV1.generalTitle" >
+        </h1>
+        <p data-i18next="settingsV1.generalSubtitle" >
+        </p>
+      </header>
+      <section class="settings-card store-hidden portable-hidden">
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v9 M6 5a9 9 0 1 0 12 0"/>
+          </svg>
+          <span data-i18next="settingsV1.startup" >
+          </span>
+        </h2>
+        <div class="settings-row settings-switch store-hidden portable-hidden">
+          <input type="checkbox" id="openAtLogin" value="openAtLogin" class="">
+          <label for="openAtLogin">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.login" >
+              </span>
+              <p data-i18next="settingsV1.loginHelp" >
+              </p>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4h13v8a6 6 0 0 1-12 0V4 M18 5h2a3 3 0 0 1 0 6h-2 M3 20h18"/>
+          </svg>
+          <span data-i18next="settingsV1.display" >
+          </span>
+        </h2>
+        <div class="settings-row" >
+          <div class="settings-row__label">
+            <span data-i18next="settingsV1.displayMode" id="display-mode-label">
+            </span>
+          </div>
+          <div class="settings-row__control">
+            <div class="settings-segmented" role="group" aria-labelledby="display-mode-label">
+              <input type="radio" name="fullscreen" id="window" value="false">
+              <label data-i18next="preferences.settings.window" for="window">
+              </label>
+              <input type="radio" name="fullscreen" id="fullscreen" value="true">
+              <label data-i18next="preferences.settings.fullscreen" for="fullscreen">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="allScreens" value="allScreens" class="">
+          <label for="allScreens">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.allScreens" >
+              </span>
+              <p data-i18next="settingsV1.screensHelp" >
+              </p>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 7v6l4 2 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"/>
+          </svg>
+          <span data-i18next="settingsV1.behavior" >
+          </span>
+        </h2>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="showIdeas" value="ideas" class="">
+          <label for="showIdeas">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.ideas" >
+              </span>
+              <p data-i18next="settingsV1.ideasHelp" >
+              </p>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="monitorIdleTime" value="naturalBreaks" class="">
+          <label for="monitorIdleTime">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.idle" >
+              </span>
+              <p data-i18next="settingsV1.idleHelp" >
+              </p>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="monitorDnd" value="monitorDnd" class="negative ">
+          <label for="monitorDnd">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.dnd" >
+              </span>
+              <p data-i18next="settingsV1.dndHelp" >
+              </p>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18 M12 3a16 16 0 0 1 0 18 16 16 0 0 1 0-18 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"/>
+          </svg>
+          <span data-i18next="settingsV1.languageMaintenance" >
+          </span>
+        </h2>
+        <div class="settings-row" >
+          <div class="settings-row__label">
+            <label data-i18next="settingsV1.language" for="language">
+            </label>
+            <p data-i18next="settingsV1.languageHelp" >
+            </p>
+          </div>
+          <div class="settings-row__control">
+            <select class="settings-select" name="language" id="language">
+              <!--Keep languages in the alphabet order-->
+              <option value="ajp">اللهجة الأردنية</option>
+              <option value="bg">Български</option>
+              <option value="be">Беларуская мова</option>
+              <option value="bn">বাংলা</option>
+              <option value="ca">Català</option>
+              <option value="cs">Čeština</option>
+              <option value="da">Dansk</option>
+              <option value="de">Deutsch</option>
+              <option value="el">Ελληνικά</option>
+              <option value="en">English</option>
+              <option value="eo">Esperanto</option>
+              <option value="es">Español</option>
+              <option value="et">Eesti keel</option>
+              <option value="fa">فارسی</option>
+              <option value="fi">Suomi</option>
+              <option value="fil">Wikang Filipino</option>
+              <option value="fr">Français</option>
+              <option value="gl">Galego</option>
+              <option value="gu">ગુજરાતી</option>
+              <option value="he">עברית</option>
+              <option value="hi">हिन्दी</option>
+              <option value="hu">Magyar</option>
+              <option value="id">Bahasa Indonesia</option>
+              <option value="it">Italiano</option>
+              <option value="ja">日本語</option>
+              <option value="ko">한국어</option>
+              <option value="lt">Lietuvių</option>
+              <option value="lv">Latviešu</option>
+              <option value="mk">Македонски</option>
+              <option value="nb-NO">Bokmål</option>
+              <option value="nl">Nederlands</option>
+              <option value="np">नेपाली</option>
+              <option value="pl">Polski</option>
+              <option value="pt">Português</option>
+              <option value="pt-BR">Brasileiro</option>
+              <option value="pu">ਪੰਜਾਬੀ</option>
+              <option value="ro">Română</option>
+              <option value="ru">Русский</option>
+              <option value="si">සිංහල</option>
+              <option value="sk">Slovenčina</option>
+              <option value="sl">Slovenščina</option>
+              <option value="sr">српски језик</option>
+              <option value="sv">Svenska</option>
+              <option value="ta">தமிழ்</option>
+              <option value="th">ภาษาไทย</option>
+              <option value="tr">Türkçe</option>
+              <option value="uk">Українська</option>
+              <option value="vi">Tiếng Việt</option>
+              <option value="yi">ייִדיש</option>
+              <option value="zh-CN">简体中文</option>
+              <option value="zh-TW">正體中文</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-row" >
+          <div class="settings-row__label">
+            <span data-i18next="settingsV1.reset" >
+            </span>
+          </div>
+          <div class="settings-row__control">
+            <button id="restore-defaults" type="button" class="secondary-button">
+              <span data-i18next="settingsV1.restore" >
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
-    <div>
-      <span data-i18next="preferences.settings.showBreaksIn"></span>
+    <div class="schedule settings-page " tabindex="-1">
+      <header class="settings-page-header">
+        <h1 data-i18next="settingsV1.scheduleTitle" >
+        </h1>
+        <p data-i18next="settingsV1.scheduleSubtitle" >
+        </p>
+      </header>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4h13v8a6 6 0 0 1-12 0V4 M18 5h2a3 3 0 0 1 0 6h-2 M3 20h18"/>
+          </svg>
+          <span data-i18next="settingsV1.mini" >
+          </span>
+        </h2>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="enableMiniBreaks" value="microbreak" class="enabletype">
+          <label for="enableMiniBreaks">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.enableMini" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="schedule-times">
+          <div class="settings-row" >
+            <div class="settings-row__label">
+              <label data-i18next="quietRest.interval" for="miniBreakEvery">
+              </label>
+            </div>
+            <div class="settings-row__control">
+              <select class="settings-select" name="microbreakInterval"
+                data-divisor="60000" id="miniBreakEvery">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+                <option value="45">45</option>
+                <option value="50">50</option>
+                <option value="55">55</option>
+                <option value="60">60</option>
+                <option value="65">65</option>
+              </select>
+              <output data-unit="minutes" for="miniBreakEvery" id="miniBreakEvery-value">
+              </output>
+            </div>
+          </div>
+          <div class="settings-row" >
+            <div class="settings-row__label">
+              <label data-i18next="quietRest.duration" for="miniBreakFor">
+              </label>
+            </div>
+            <div class="settings-row__control">
+              <select class="settings-select" name="microbreakDuration"
+                data-divisor="1000" id="miniBreakFor">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
+                <option value="90">90</option>
+                <option value="100">100</option>
+                <option value="110">110</option>
+                <option value="120">120</option>
+                <option value="130">130</option>
+                <option value="140">140</option>
+                <option value="150">150</option>
+                <option value="160">160</option>
+                <option value="170">170</option>
+                <option value="180">180</option>
+                <option value="190">190</option>
+                <option value="200">200</option>
+                <option value="210">210</option>
+                <option value="220">220</option>
+                <option value="230">230</option>
+                <option value="240">240</option>
+                <option value="250">250</option>
+                <option value="260">260</option>
+                <option value="270">270</option>
+                <option value="280">280</option>
+                <option value="290">290</option>
+                <option value="300">300</option>
+                <option value="310">310</option>
+                <option value="320">320</option>
+                <option value="330">330</option>
+                <option value="340">340</option>
+                <option value="350">350</option>
+                <option value="360">360</option>
+                <option value="370">370</option>
+                <option value="380">380</option>
+                <option value="390">390</option>
+                <option value="400">400</option>
+                <option value="410">410</option>
+                <option value="420">420</option>
+                <option value="430">430</option>
+                <option value="440">440</option>
+                <option value="450">450</option>
+                <option value="460">460</option>
+                <option value="470">470</option>
+                <option value="480">480</option>
+                <option value="490">490</option>
+                <option value="500">500</option>
+                <option value="510">510</option>
+                <option value="520">520</option>
+                <option value="530">530</option>
+                <option value="540">540</option>
+                <option value="550">550</option>
+                <option value="560">560</option>
+                <option value="570">570</option>
+                <option value="580">580</option>
+                <option value="590">590</option>
+                <option value="600">600</option>
+              </select>
+              <output data-unit="seconds" for="miniBreakFor" id="miniBreakFor-value">
+              </output>
+            </div>
+          </div>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="showNotificationBeforeMiniBreak" value="microbreakNotification" class="">
+          <label for="showNotificationBeforeMiniBreak">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.notify" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="enablePostponeMini" value="microbreakPostpone" class="">
+          <label for="enablePostponeMini">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.postpone" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 3C8 3 3 7 4 14c1 6 10 7 13 1 2-3 3-7 3-12 M3 21 15 9"/>
+          </svg>
+          <span data-i18next="settingsV1.long" >
+          </span>
+        </h2>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="enableLongBreaks" value="break" class="enabletype">
+          <label for="enableLongBreaks">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.enableLong" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="schedule-times">
+          <div class="settings-row" >
+            <div class="settings-row__label">
+              <label data-i18next="quietRest.interval" for="longBreakEvery">
+              </label>
+            </div>
+            <div class="settings-row__control">
+              <select class="settings-select" name="breakInterval" data-divisor="1"
+                aria-describedby="long-interval-help" id="longBreakEvery">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+              </select>
+              <output data-unit="minutes" for="longBreakEvery" id="longBreakEvery-value">
+              </output>
+            </div>
+          </div>
+          <div class="settings-row" >
+            <div class="settings-row__label">
+              <label data-i18next="quietRest.duration" for="longBreakFor">
+              </label>
+            </div>
+            <div class="settings-row__control">
+              <select class="settings-select" name="breakDuration"
+                data-divisor="60000" id="longBreakFor">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+                <option value="60">60</option>
+              </select>
+              <output data-unit="minutes" for="longBreakFor" id="longBreakFor-value">
+              </output>
+            </div>
+          </div>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="showNotificationBeforeLongBreak" value="breakNotification" class="">
+          <label for="showNotificationBeforeLongBreak">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.notify" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="enablePostponeLong" value="breakPostpone" class="">
+          <label for="enablePostponeLong">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.postpone" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <p class="interval-help" id="long-interval-help" data-i18next="quietRest.longIntervalHelp">
+        </p>
+      </section>
+      <section class="settings-card" data-strict-mode>
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 11h12v10H6z M8 11V7a4 4 0 0 1 8 0v4 M12 15v2"/>
+          </svg>
+          <span data-i18next="settingsV1.strict" >
+          </span>
+        </h2>
+        <p data-i18next="settingsV1.strictHelp" class="card-description">
+        </p>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="enableStrictMini" value="microbreakStrictMode" class="">
+          <label for="enableStrictMini">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.strictMini" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="enableStrictLong" value="breakStrictMode" class="">
+          <label for="enableStrictLong">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.strictLong" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+      </section>
     </div>
-    <div>
-      <input type="radio" value="false" name="fullscreen" id="window">
-      <label data-i18next="preferences.settings.window" for="window"></label>
-      <input type="radio" value="true" name="fullscreen" id="fullscreen">
-      <label data-i18next="preferences.settings.fullscreen" for="fullscreen"></label>
+    <div class="theme settings-page hidden" tabindex="-1">
+      <header class="settings-page-header">
+        <h1 data-i18next="settingsV1.themeTitle" >
+        </h1>
+        <p data-i18next="settingsV1.themeSubtitle" >
+        </p>
+      </header>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4h18v13H3z M8 21h8 M12 17v4"/>
+          </svg>
+          <span data-i18next="settingsV1.appearance" >
+          </span>
+        </h2>
+        <div class="settings-row" >
+          <div class="settings-row__label">
+            <label data-i18next="settingsV1.appAppearance" for="themeSource">
+            </label>
+          </div>
+          <div class="settings-row__control">
+            <select id="themeSource" class="settings-select" name="themeSource">
+              <option value="system" data-i18next="settingsV1.system">
+              </option>
+              <option value="light" data-i18next="settingsV1.light">
+              </option>
+              <option value="dark" data-i18next="settingsV1.dark">
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-row settings-switch">
+          <input type="checkbox" id="enableTransparency" value="transparentMode">
+          <label for="enableTransparency">
+            <span class="settings-row__label" data-i18next="preferences.theme.transparentMode">
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4h13v8a6 6 0 0 1-12 0V4 M18 5h2a3 3 0 0 1 0 6h-2 M3 20h18"/>
+          </svg>
+          <span data-i18next="settingsV1.currentTheme" >
+          </span>
+        </h2>
+        <div class="theme-current">
+          <div class="theme-preview">
+            <img src="images/quiet-rest/stretch.png" alt="">
+            <span aria-hidden="true">✓</span>
+          </div>
+          <div>
+            <h3>
+              <span data-i18next="settingsV1.mint" >
+              </span>
+            </h3>
+            <p data-i18next="settingsV1.mintHelp" >
+            </p>
+            <span data-i18next="settingsV1.inUse" class="status-badge">
+            </span>
+          </div>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 9h4l5-5v16l-5-5H4z M17 8a6 6 0 0 1 0 8 M20 5a10 10 0 0 1 0 14"/>
+          </svg>
+          <span data-i18next="settingsV1.sounds" >
+          </span>
+        </h2>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="enableSounds" value="silentNotifications" class="negative ">
+          <label for="enableSounds">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.enableSounds" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+        <div class="sounds settings-row">
+          <input type="radio" value="crystal-glass" name="longBreakAudio" id="crystalGlass">
+          <label data-i18next="preferences.theme.crystalGlass" for="crystalGlass">
+          </label>
+          <button type="button" class="preview-button" data-preview-sound="crystal-glass">
+            <span data-i18next="settingsV1.preview" >
+            </span>
+            <span aria-hidden="true"> ▷</span>
+          </button>
+        </div>
+        <div class="sounds settings-row">
+          <input type="radio" value="wind-chime" name="longBreakAudio" id="windChime">
+          <label data-i18next="preferences.theme.windChime" for="windChime">
+          </label>
+          <button type="button" class="preview-button" data-preview-sound="wind-chime">
+            <span data-i18next="settingsV1.preview" >
+            </span>
+            <span aria-hidden="true"> ▷</span>
+          </button>
+        </div>
+        <div class="sounds settings-row">
+          <input type="radio" value="tic-toc" name="longBreakAudio" id="ticToc">
+          <label data-i18next="preferences.theme.ticToc" for="ticToc">
+          </label>
+          <button type="button" class="preview-button" data-preview-sound="tic-toc">
+            <span data-i18next="settingsV1.preview" >
+            </span>
+            <span aria-hidden="true"> ▷</span>
+          </button>
+        </div>
+        <div class="sounds settings-row">
+          <input type="radio" value="reverie" name="longBreakAudio" id="reverie">
+          <label data-i18next="preferences.theme.reverie" for="reverie">
+          </label>
+          <button type="button" class="preview-button" data-preview-sound="reverie">
+            <span data-i18next="settingsV1.preview" >
+            </span>
+            <span aria-hidden="true"> ▷</span>
+          </button>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4h18v16H3z M3 9h18 M6 6.5h1 M9 6.5h1"/>
+          </svg>
+          <span data-i18next="settingsV1.tray" >
+          </span>
+        </h2>
+        <div class="settings-row" >
+          <div class="settings-row__label">
+            <label data-i18next="settingsV1.trayStyle" for="trayIconStyle">
+            </label>
+          </div>
+          <div class="settings-row__control">
+            <select class="settings-select" name="trayIconStyle" id="trayIconStyle">
+              <option value="default" data-i18next="preferences.theme.trayIconStyleDefault">
+              </option>
+              <option value="time" data-i18next="preferences.theme.trayIconStyleTime">
+              </option>
+              <option value="progress" data-i18next="preferences.theme.trayIconStyleProgress">
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="darwin-hidden">
+          <div class="settings-row" >
+            <div class="settings-row__label">
+              <span data-i18next="settingsV1.trayColor" >
+              </span>
+            </div>
+            <div class="settings-row__control">
+              <div class="settings-segmented">
+                <input type="radio" name="useMonochromeTrayIcon" id="colour" value="false">
+                <label data-i18next="preferences.theme.colour" for="colour">
+                </label>
+                <input type="radio" name="useMonochromeTrayIcon" id="monochrome" value="true">
+                <label data-i18next="preferences.theme.monochrome" for="monochrome">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="settings-row settings-switch" >
+            <input type="checkbox" id="invertedMonochrome" value="useMonochromeInvertedTrayIcon" class="">
+            <label for="invertedMonochrome">
+              <span class="settings-row__label">
+                <span data-i18next="settingsV1.invert" >
+                </span>
+              </span>
+              <span class="switch-track" aria-hidden="true">
+              </span>
+            </label>
+          </div>
+        </div>
+      </section>
     </div>
-    <div>
-      <input type="checkbox" value="ideas" id="showIdeas">
-      <label data-i18next="preferences.settings.showIdeas" for="showIdeas"></label>
-    </div>
-    <div>
-      <input type="checkbox" value="allScreens" id="allScreens">
-      <label data-i18next="preferences.settings.allScreens" for="allScreens"></label>
-    </div>
-    <div>
-      <input type="checkbox" value="naturalBreaks" id="monitorIdleTime">
-      <label data-i18next="preferences.settings.monitorIdleTime" for="monitorIdleTime"></label>
-    </div>
-    <div>
-      <input type="checkbox" class="negative" value="monitorDnd" id="monitorDnd">
-      <label data-i18next="preferences.settings.monitorDnd" for="monitorDnd"></label>
-    </div>
-    <div>
-      <hr />
-    </div>
-    <div>
-      <label data-i18next="preferences.settings.language" for="language"></label>
-      <div class="has-select">
-        <select name="language" id="language">
-          <!--Keep languages in the alphabet order-->
-          <option value="ajp">اللهجة الأردنية</option>
-          <option value="bg">Български</option>
-          <option value="be">Беларуская мова</option>
-          <option value="bn">বাংলা</option>
-          <option value="ca">Català</option>
-          <option value="cs">Čeština</option>
-          <option value="da">Dansk</option>
-          <option value="de">Deutsch</option>
-          <option value="el">Ελληνικά</option>
-          <option value="en">English</option>
-          <option value="eo">Esperanto</option>
-          <option value="es">Español</option>
-          <option value="et">Eesti keel</option>
-          <option value="fa">فارسی</option>
-          <option value="fi">Suomi</option>
-          <option value="fil">Wikang Filipino</option>
-          <option value="fr">Français</option>
-          <option value="gl">Galego</option>
-          <option value="gu">ગુજરાતી</option>
-          <option value="he">עברית</option>
-          <option value="hi">हिन्दी</option>
-          <option value="hu">Magyar</option>
-          <option value="id">Bahasa Indonesia</option>
-          <option value="it">Italiano</option>
-          <option value="ja">日本語</option>
-          <option value="ko">한국어</option>
-          <option value="lt">Lietuvių</option>
-          <option value="lv">Latviešu</option>
-          <option value="mk">Македонски</option>
-          <option value="nb-NO">Bokmål</option>
-          <option value="nl">Nederlands</option>
-          <option value="np">नेपाली</option>
-          <option value="pl">Polski</option>
-          <option value="pt">Português</option>
-          <option value="pt-BR">Brasileiro</option>
-          <option value="pu">ਪੰਜਾਬੀ</option>
-          <option value="ro">Română</option>
-          <option value="ru">Русский</option>
-          <option value="si">සිංහල</option>
-          <option value="sk">Slovenčina</option>
-          <option value="sl">Slovenščina</option>
-          <option value="sr">српски језик</option>
-          <option value="sv">Svenska</option>
-          <option value="ta">தமிழ்</option>
-          <option value="th">ภาษาไทย</option>
-          <option value="tr">Türkçe</option>
-          <option value="uk">Українська</option>
-          <option value="vi">Tiếng Việt</option>
-          <option value="yi">ייִדיש</option>
-          <option value="zh-CN">简体中文</option>
-          <option value="zh-TW">正體中文</option>
-        </select>
-      </div>
-    </div>
-    <div>
-      <hr />
-    </div>
-    <div>
-      <button type="button" data-i18next="preferences.settings.restoreDefaults"></button>
-    </div>
-  </div>
-  <div class="schedule">
-    <header class="schedule-heading"><h1 data-i18next="quietRest.scheduleTitle"></h1><p data-i18next="quietRest.scheduleSubtitle"></p></header>
-    <section class="schedule-card">
-      <h2 data-i18next="quietRest.miniSection"></h2>
-    <div>
-      <label data-i18next="quietRest.interval" for="miniBreakEvery"></label>
-      <select name="microbreakInterval"
-        data-divisor="60000" id="miniBreakEvery">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="25">25</option>
-        <option value="30">30</option>
-        <option value="35">35</option>
-        <option value="40">40</option>
-        <option value="45">45</option>
-        <option value="50">50</option>
-        <option value="55">55</option>
-        <option value="60">60</option>
-        <option value="65">65</option>
-      </select>
-      <output data-unit="minutes" for="miniBreakEvery" id="miniBreakEvery-value"></output>
-    </div>
-    <div>
-      <label data-i18next="quietRest.duration" for="miniBreakFor"></label>
-      <select name="microbreakDuration"
-        data-divisor="1000" id="miniBreakFor">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-        <option value="60">60</option>
-        <option value="70">70</option>
-        <option value="80">80</option>
-        <option value="90">90</option>
-        <option value="100">100</option>
-        <option value="110">110</option>
-        <option value="120">120</option>
-        <option value="130">130</option>
-        <option value="140">140</option>
-        <option value="150">150</option>
-        <option value="160">160</option>
-        <option value="170">170</option>
-        <option value="180">180</option>
-        <option value="190">190</option>
-        <option value="200">200</option>
-        <option value="210">210</option>
-        <option value="220">220</option>
-        <option value="230">230</option>
-        <option value="240">240</option>
-        <option value="250">250</option>
-        <option value="260">260</option>
-        <option value="270">270</option>
-        <option value="280">280</option>
-        <option value="290">290</option>
-        <option value="300">300</option>
-        <option value="310">310</option>
-        <option value="320">320</option>
-        <option value="330">330</option>
-        <option value="340">340</option>
-        <option value="350">350</option>
-        <option value="360">360</option>
-        <option value="370">370</option>
-        <option value="380">380</option>
-        <option value="390">390</option>
-        <option value="400">400</option>
-        <option value="410">410</option>
-        <option value="420">420</option>
-        <option value="430">430</option>
-        <option value="440">440</option>
-        <option value="450">450</option>
-        <option value="460">460</option>
-        <option value="470">470</option>
-        <option value="480">480</option>
-        <option value="490">490</option>
-        <option value="500">500</option>
-        <option value="510">510</option>
-        <option value="520">520</option>
-        <option value="530">530</option>
-        <option value="540">540</option>
-        <option value="550">550</option>
-        <option value="560">560</option>
-        <option value="570">570</option>
-        <option value="580">580</option>
-        <option value="590">590</option>
-        <option value="600">600</option>
-      </select>
-      <output data-unit="seconds" for="miniBreakFor" id="miniBreakFor-value"></output>
-    </div>
-    <div>
-      <input type="checkbox" class="enabletype" value="microbreak" id="enableMiniBreaks">
-      <label data-i18next="preferences.schedule.enableMiniBreaks" for="enableMiniBreaks"></label>
-    </div>
-    <div>
-      <input type="checkbox" value="microbreakNotification" id="showNotificationBeforeMiniBreak">
-      <label data-i18next="preferences.schedule.showNotificationBeforeMiniBreak"
-        for="showNotificationBeforeMiniBreak"></label>
-    </div>
-    <div>
-      <input type="checkbox" value="microbreakPostpone" id="enablePostponeMini">
-      <label data-i18next="preferences.schedule.enablePostponeMini" for="enablePostponeMini"></label>
-    </div>
-    </section>
-    <section class="schedule-card">
-      <h2 data-i18next="quietRest.longSection"></h2>
-    <div>
-      <label data-i18next="quietRest.interval" for="longBreakEvery"></label>
-      <select name="breakInterval" data-divisor="1"
-        aria-describedby="long-interval-help" id="longBreakEvery">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-        <option value="26">26</option>
-        <option value="27">27</option>
-        <option value="28">28</option>
-        <option value="29">29</option>
-        <option value="30">30</option>
-      </select>
-      <output data-unit="minutes" for="longBreakEvery" id="longBreakEvery-value"></output>
-    </div>
-    <div>
-      <label data-i18next="quietRest.duration" for="longBreakFor"></label>
-      <select name="breakDuration"
-        data-divisor="60000" id="longBreakFor">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-        <option value="26">26</option>
-        <option value="27">27</option>
-        <option value="28">28</option>
-        <option value="29">29</option>
-        <option value="30">30</option>
-        <option value="31">31</option>
-        <option value="32">32</option>
-        <option value="33">33</option>
-        <option value="34">34</option>
-        <option value="35">35</option>
-        <option value="36">36</option>
-        <option value="37">37</option>
-        <option value="38">38</option>
-        <option value="39">39</option>
-        <option value="40">40</option>
-        <option value="41">41</option>
-        <option value="42">42</option>
-        <option value="43">43</option>
-        <option value="44">44</option>
-        <option value="45">45</option>
-        <option value="46">46</option>
-        <option value="47">47</option>
-        <option value="48">48</option>
-        <option value="49">49</option>
-        <option value="50">50</option>
-        <option value="51">51</option>
-        <option value="52">52</option>
-        <option value="53">53</option>
-        <option value="54">54</option>
-        <option value="55">55</option>
-        <option value="56">56</option>
-        <option value="57">57</option>
-        <option value="58">58</option>
-        <option value="59">59</option>
-        <option value="60">60</option>
-      </select>
-      <output data-unit="minutes" for="longBreakFor" id="longBreakFor-value"></output>
-    </div>
-    <div>
-      <input type="checkbox" class="enabletype" value="break" id="enableLongBreaks">
-      <label data-i18next="preferences.schedule.enableLongBreaks" for="enableLongBreaks"></label>
-    </div>
-    <div>
-      <input type="checkbox" value="breakNotification" id="showNotificationBeforeLongBreak">
-      <label data-i18next="preferences.schedule.showNotificationBeforeLongBreak"
-        for="showNotificationBeforeLongBreak"></label>
-    </div>
-    <div>
-      <input type="checkbox" value="breakPostpone" id="enablePostponeLong">
-      <label data-i18next="preferences.schedule.enablePostponeLong" for="enablePostponeLong"></label>
-    </div>
-    <p class="interval-help" id="long-interval-help" data-i18next="quietRest.longIntervalHelp"></p>
-    </section>
-    <section class="schedule-card" data-strict-mode>
-      <h2 data-i18next="quietRest.strictTitle"></h2>
-    <div data-strict-mode>
-      <p data-i18next="preferences.schedule.strictModeInfo">
-      </p>
-    </div>
-    <div data-strict-mode>
-      <input type="checkbox" value="microbreakStrictMode" id="enableStrictMini">
-      <label data-i18next="preferences.schedule.enableStrictMini" for="enableStrictMini"></label>
-    </div>
-    <div data-strict-mode>
-      <input type="checkbox" value="breakStrictMode" id="enableStrictLong">
-      <label data-i18next="preferences.schedule.enableStrictLong" for="enableStrictLong"></label>
-    </div>
-    </section>
-  </div>
-  <div class="theme hidden">
-    <div>
-      <span data-i18next="preferences.theme.appearance">
-      </span>
-    </div>
-    <div class="appearance">
-      <input type="radio" value="#478484" name="mainColor" id="greenClouds">
-      <label data-i18next="preferences.theme.greenClouds" for="greenClouds"></label>
-    </div>
-    <div class="appearance">
-      <input type="radio" value="#633738" name="mainColor" id="autumnBeBlessed">
-      <label data-i18next="preferences.theme.autumnBeBlessed" for="autumnBeBlessed"></label>
-    </div>
-
-    <div class="appearance">
-      <input type="radio" value="#ffffff" name="mainColor" id="snowWhite">
-      <label data-i18next="preferences.theme.snowWhite" for="snowWhite"></label>
-    </div>
-    <div class="appearance">
-      <input type="radio" value="#1D1F21" name="mainColor" id="graphiteCrystal">
-      <label data-i18next="preferences.theme.graphiteCrystal" for="graphiteCrystal"></label>
-    </div>
-    <div class="appearance">
-      <input type="radio" value="#A49898" name="mainColor" id="coffeeKisses">
-      <label data-i18next="preferences.theme.coffeeKisses" for="coffeeKisses"></label>
-    </div>
-    <div class="appearance">
-      <input type="radio" value="#567890" name="mainColor" id="morningSwim">
-      <label data-i18next="preferences.theme.morningSwim" for="morningSwim"></label>
-    </div>
-    <div>
-      <input type="checkbox" value="transparentMode" id="enableTransparency">
-      <label data-i18next="preferences.theme.transparentMode" for="enableTransparency"></label>
-    </div>
-    <div>
-      <hr>
-    </div>
-    <div>
-      <span data-i18next="preferences.theme.sounds">
-      </span>
-    </div>
-    <div>
-      <input type="checkbox" class="negative" value="silentNotifications" id="enableSounds">
-      <label data-i18next="preferences.theme.enableSounds" for="enableSounds"></label>
-    </div>
-    <div class="sounds">
-      <input type="radio" value="crystal-glass" name="longBreakAudio" id="crystalGlass">
-      <label data-i18next="preferences.theme.crystalGlass" for="crystalGlass"></label>
-      <img src="images/preferences/speaker.png" data-has-dark-version alt="Play sound">
-    </div>
-    <div class="sounds">
-      <input type="radio" value="wind-chime" name="longBreakAudio" id="windChime">
-      <label data-i18next="preferences.theme.windChime" for="windChime"></label>
-      <img src="images/preferences/speaker.png" data-has-dark-version alt="Play sound">
-    </div>
-    <div class="sounds">
-      <input type="radio" value="tic-toc" name="longBreakAudio" id="ticToc">
-      <label data-i18next="preferences.theme.ticToc" for="ticToc"></label>
-      <img src="images/preferences/speaker.png" data-has-dark-version alt="Play sound">
-    </div>
-    <div class="sounds">
-      <input type="radio" value="reverie" name="longBreakAudio" id="reverie">
-      <label data-i18next="preferences.theme.reverie" for="reverie"></label>
-      <img src="images/preferences/speaker.png" data-has-dark-version alt="Play sound">
-    </div>
-    <div>
-      <hr>
-    </div>
-    <div>
-      <span data-i18next="preferences.theme.trayIcon">
-      </span>
-    </div>
-    <div>
-      <div class="has-select">
-        <select name="trayIconStyle" id="trayIconStyle">
-          <option value="default" data-i18next="preferences.theme.trayIconStyleDefault"></option>
-          <option value="time" data-i18next="preferences.theme.trayIconStyleTime"></option>
-          <option value="progress" data-i18next="preferences.theme.trayIconStyleProgress"></option>
-        </select>
-      </div>
-    </div>
-    <div>
-      <input type="radio" value="false" name="useMonochromeTrayIcon" id="colour">
-      <label data-i18next="preferences.theme.colour" for="colour"></label>
-    </div>
-    <div>
-      <input type="radio" value="true" name="useMonochromeTrayIcon" id="monochrome">
-      <label data-i18next="preferences.theme.monochrome" for="monochrome"></label>
-      <span class="darwin-hidden">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" value="useMonochromeInvertedTrayIcon" id="invertedMonochrome">
-        <label data-i18next="preferences.theme.invertedMonochrome" for="invertedMonochrome"></label>
-      </span>
-    </div>
-  </div>
-  <div class="about hidden">
-    <div>
-      <div>
-        <img src="images/brand/restspark-app-icon-master.svg" alt="元气 / Rest Spark">
-        <span data-i18next="brand.name">Rest Spark</span>
-      </div>
-      <span data-i18next="preferences.about.tagline"></span>
-    </div>
-    <div>
-      <span data-i18next="preferences.about.version"></span>
-      <span class="version"></span>
-    </div>
-    <div>
-      <input type="checkbox" value="checkNewVersion" id="checkNewVersion">
-      <label data-i18next="preferences.about.checkNewVersion" for="checkNewVersion"></label>
-      <br />(<span data-i18next="preferences.about.latestVersion"></span>
-      <span class="latestVersion"></span>)
-    </div>
-    <div>
-      <img src="images/preferences/home.svg" data-has-dark-version alt="Home">
-      <div>
-        <span data-i18next="preferences.about.learnMore"></span>
-        <a data-i18next="preferences.about.ourWebsite" href="https://github.com/DeepCarry/RestSpark"></a>
-        <span data-i18next="preferences.about.dot"></span>
-      </div>
-    </div>
-    <div class="debug">
+    <div class="about settings-page hidden" tabindex="-1">
+      <header class="settings-page-header">
+        <h1 data-i18next="settingsV1.aboutTitle" >
+        </h1>
+        <p data-i18next="settingsV1.aboutSubtitle" >
+        </p>
+      </header>
+      <section class="settings-card product-card">
+        <img src="images/brand/restspark-app-icon-master.svg" alt="">
+        <div>
+          <h2>元气 <span>Rest Spark</span>
+          </h2>
+          <p data-i18next="settingsV1.productType" >
+          </p>
+        </div>
+        <span class="status-badge version">
+        </span>
+      </section>
+      <section class="settings-card" data-update-section>
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6v5h-5 M4 18v-5h5 M5 8a8 8 0 0 1 13-3l2 3 M19 16A8 8 0 0 1 6 19l-2-3"/>
+          </svg>
+          <span data-i18next="settingsV1.versionUpdates" >
+          </span>
+        </h2>
+        <div class="settings-row" >
+          <div class="settings-row__label">
+            <strong data-i18next="settingsV1.updates" >
+            </strong>
+          </div>
+          <div class="settings-row__control">
+            <button id="check-updates" type="button">
+              <span data-i18next="settingsV1.checkUpdates" >
+              </span>
+            </button>
+          </div>
+        </div>
+        <p class="update-status" role="status" aria-live="polite">
+        </p>
+        <div class="settings-row settings-switch" >
+          <input type="checkbox" id="checkNewVersion" value="checkNewVersion" class="">
+          <label for="checkNewVersion">
+            <span class="settings-row__label">
+              <span data-i18next="settingsV1.autoUpdates" >
+              </span>
+            </span>
+            <span class="switch-track" aria-hidden="true">
+            </span>
+          </label>
+        </div>
+      </section>
+      <section class="settings-card" >
+        <h2>
+          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 8V5a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3v14a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V8"/>
+          </svg>
+          <span data-i18next="settingsV1.project" >
+          </span>
+        </h2>
+        <a class="settings-link" href="https://github.com/DeepCarry/RestSpark">
+          <div>
+            <strong data-i18next="settingsV1.source" >
+            </strong>
+            <p data-i18next="settingsV1.sourceHelp" >
+            </p>
+          </div>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a class="settings-link" href="https://github.com/DeepCarry">
+          <div>
+            <strong data-i18next="settingsV1.developer" >
+            </strong>
+            <p data-i18next="settingsV1.developerHelp" >
+            </p>
+          </div>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+      <section class="settings-card">
+        <details id="licenses">
+          <summary>
+            <span>
+              <strong data-i18next="settingsV1.licenses" >
+              </strong>
+              <p data-i18next="brand.upstream" >
+              </p>
+            </span>
+          </summary>
+          <div class="license-content">
+            <p>Rest Spark · DeepCarry</p>
+            <p class="upstream-credit">Stretchly — Jan Hovancik<br>Original icon and UI design — Colin Shanley (<a href="http://www.colinshanley.com/">colinshanley.com</a>)</p>
+            <pre>Copyright (c) 2016-, Jan Hovancik
+              All rights reserved.
+              Redistribution and use in source and binary forms, with or without
+              modification, are permitted provided that the following conditions are met:
+              * Redistributions of source code must retain the above copyright notice, this
+              list of conditions and the following disclaimer.
+              * Redistributions in binary form must reproduce the above copyright notice,
+              this list of conditions and the following disclaimer in the documentation
+              and/or other materials provided with the distribution.
+              THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+              AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+              IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+              DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+              FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+              DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+              SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+              CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+              OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+              OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+            </pre>
+            <p>Sounds: <a href="https://freesound.org/people/mlteenie/">crystal glass — mlteenie</a> · <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>; <a href="https://freesound.org/people/GnoteSoundz/">wind chime — GnoteSoundz</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a href="https://freesound.org/people/magundah14/">tic toc — magundah14</a> · CC0; <a href="https://freesound.org/people/parcodeisuoni/">silence — parcodeisuoni</a> · CC BY 3.0; reverie — Seemant Chandra (piyush.x_x).</p>
+<p data-i18next="settingsV1.artworkCredit">
+            </p>
+            <a href="https://github.com/DeepCarry/RestSpark/blob/trunk/package.json">
+              <span data-i18next="settingsV1.dependencies" >
+              </span>
+            </a>
+          </div>
+        </details>
+      </section>    <div class="debug">
       <div class="hidden">
         <p id="to-copy">
-          breakPlanner: {reference: <span id="reference"></span>,
-          timeleft: <span id="timeleft"></span>,
-          breakNumber: <span id="breakNumber"></span>,
-          postponesNumber: <span id="postponesNumber"></span>,
-          Do Not Disturb: <span id="donotdisturb"></span>}
-          <br />
-          <span data-preferences-file>
-          settingsFile: <a href="" class="file" id="settingsfile"></a>
-          <br />
-          imagesFolder: <a href="" class="file" id="imagesfolder"></a>
-          <br />
-          </span>
-          logsFile: <a href="" class="file" id="logsfile"></a>
-          <br />Node.js: <span id="node"></span>,
-          Chromium: <span id="chrome"></span>,
-          Electron: <span id="electron"></span>
-          <br />OS: <span id="platform"></span><span class="linux-hidden darwin-hidden">,
-            Windows Store: <span id="windowsStore"></span>,
-            Windows Portable: <span id="windowsPortable"></span></span>
-        </p>
-        <p>
-          <button>copy to clipboard</button>
-        </p>
-      </div>
-    </div>
-    <div>
-      <span data-i18next="preferences.about.developedBy"></span>
-      <a data-i18next="preferences.about.janH" href="https://hovancik.net/"></a>
-    </div>
-    <div>
-      <span data-i18next="preferences.about.designedBy"></span>
-      (<a href="http://www.colinshanley.com/">www.colinshanley.com</a>)
-    </div>
-
-    <div class="upstream-credit"><span data-i18next="brand.upstream"></span><br>Copyright (c) 2016-, Jan Hovancik</div>
+          breakPlanner: {reference: <span id="reference">
+        </span>,
+        timeleft: <span id="timeleft">
+      </span>,
+      breakNumber: <span id="breakNumber">
+    </span>,
+    postponesNumber: <span id="postponesNumber">
+  </span>,
+  Do Not Disturb: <span id="donotdisturb">
+</span>}
+<br />
+<span data-preferences-file>
+  settingsFile: <a href="" class="file" id="settingsfile">
+</a>
+<br />
+imagesFolder: <a href="" class="file" id="imagesfolder">
+</a>
+<br />
+</span>
+logsFile: <a href="" class="file" id="logsfile">
+</a>
+<br />Node.js: <span id="node">
+</span>,
+Chromium: <span id="chrome">
+</span>,
+Electron: <span id="electron">
+</span>
+<br />OS: <span id="platform">
+</span>
+<span class="linux-hidden darwin-hidden">,
+  Windows Store: <span id="windowsStore">
+</span>,
+Windows Portable: <span id="windowsPortable">
+</span>
+</span>
+</p>
+<p>
+  <button>copy to clipboard</button>
+</p>
+</div>
+</div>
+<footer>© 2026 DeepCarry · 元气 Rest Spark</footer>
+</div>
+<div class="heart hidden">
+  <div>
+    <img src="images/stretchly.svg" data-has-dark-version alt="Stretchly upstream">
   </div>
-  <div class="heart hidden">
-    <div>
-      <img src="images/stretchly.svg" data-has-dark-version alt="Stretchly upstream">
-    </div>
-    <div>
-      <span data-i18next="preferences.heart.loveStretchly"></span>
-    </div>
-    <div>
-      <span data-i18next="preferences.heart.desc1"></span>
-    </div>
-    <div>
-      <span data-i18next="preferences.heart.desc2"></span>
-    </div>
-    <div>
-    </div>
-    <div class="become">
-      <button type="button" name="becomeContributor" data-same-width-button
-        data-i18next="preferences.heart.becomeContributor"></button>
-    </div>
-    <div class="become">
-      <button type="button" name="alreadyContributor" data-same-width-button
-        data-i18next="preferences.heart.alreadyContributor"></button>
-    </div>
-    <div class="authenticate hidden">
-      <span data-i18next="preferences.heart.authenticateUsing"></span>
-    </div>
-    <div class="contributor hidden">
-      <button type="button" name="contributorPreferences" data-same-width-button
-        data-i18next="preferences.heart.contributorPreferences"></button>
-    </div>
-    <div class="contributor hidden">
-      <button type="button" name="syncPreferences" data-same-width-button
-        data-i18next="preferences.heart.syncPreferences"></button>
-    </div>
-    <div class="authenticate hidden">
-      <a data-provider="patreon">
-        <img alt="" src="images/preferences/patreon.svg" data-has-dark-version alt="Patreon">
-      </a>
-      <a data-provider="github">
-        <img alt="" src="images/preferences/github.svg" data-has-dark-version alt="Github">
-      </a>
-    </div>
-    <div></div>
+  <div>
+    <span data-i18next="preferences.heart.loveStretchly">
+    </span>
   </div>
+  <div>
+    <span data-i18next="preferences.heart.desc1">
+    </span>
+  </div>
+  <div>
+    <span data-i18next="preferences.heart.desc2">
+    </span>
+  </div>
+  <div>
+  </div>
+  <div class="become">
+    <button type="button" name="becomeContributor" data-same-width-button
+      data-i18next="preferences.heart.becomeContributor">
+    </button>
+  </div>
+  <div class="become">
+    <button type="button" name="alreadyContributor" data-same-width-button
+      data-i18next="preferences.heart.alreadyContributor">
+    </button>
+  </div>
+  <div class="authenticate hidden">
+    <span data-i18next="preferences.heart.authenticateUsing">
+    </span>
+  </div>
+  <div class="contributor hidden">
+    <button type="button" name="contributorPreferences" data-same-width-button
+      data-i18next="preferences.heart.contributorPreferences">
+    </button>
+  </div>
+  <div class="contributor hidden">
+    <button type="button" name="syncPreferences" data-same-width-button
+      data-i18next="preferences.heart.syncPreferences">
+    </button>
+  </div>
+  <div class="authenticate hidden">
+    <a data-provider="patreon">
+      <img alt="" src="images/preferences/patreon.svg" data-has-dark-version alt="Patreon">
+    </a>
+    <a data-provider="github">
+      <img alt="" src="images/preferences/github.svg" data-has-dark-version alt="Github">
+    </a>
+  </div>
+  <div>
+  </div>
+</div>
 </body>
-<script type="module" src="./preferences-renderer.js"></script>
-
+<script type="module" src="./preferences-renderer.js">
+</script>
 </html>

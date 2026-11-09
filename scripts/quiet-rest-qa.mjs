@@ -1,5 +1,5 @@
 // Isolated macOS QA: runs the actual application and production preload/IPC.
-import { app, BrowserWindow, nativeTheme } from 'electron'
+import { app, BrowserWindow, nativeTheme, nativeImage } from 'electron'
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
@@ -9,10 +9,23 @@ const baseline = process.argv.includes('--baseline')
 const checks = []
 const verify = (condition, name) => { assert.ok(condition, name); checks.push(name) }
 const root = resolve(import.meta.dirname, '..')
-const evidence = join(root, 'docs/quiet-rest/evidence')
+const evidence = process.env.REST_LAYOUT_EVIDENCE || join(root, 'docs/quiet-rest/evidence')
 const profile = join(tmpdir(), `stretchly-quiet-rest-qa-${Date.now()}`)
 mkdirSync(profile, { recursive: true })
 mkdirSync(evidence, { recursive: true })
+const portrait = nativeImage.createFromPath(join(root, 'app/images/quiet-rest/stretch.png'))
+const pixels = portrait.toBitmap()
+const { width: pw, height: ph } = portrait.getSize()
+const bounds = { left: pw, top: ph, right: -1, bottom: -1 }
+for (let y = 0; y < ph; y++) {
+  for (let x = 0; x < pw; x++) {
+    if (pixels[(y * pw + x) * 4 + 3] > 0) {
+      bounds.left = Math.min(bounds.left, x); bounds.top = Math.min(bounds.top, y)
+      bounds.right = Math.max(bounds.right, x); bounds.bottom = Math.max(bounds.bottom, y)
+    }
+  }
+}
+writeFileSync(join(evidence, 'portrait-alpha.json'), JSON.stringify({ width: pw, height: ph, bounds }, null, 2))
 app.setPath('userData', profile)
 app.setPath('logs', join(profile, 'logs'))
 writeFileSync(join(profile, 'config.json'), JSON.stringify({
@@ -67,14 +80,16 @@ app.whenReady().then(async () => {
   }
   command('mini', '-T', '让眼睛放松一下')
   const mini = await page('microbreak')
+  await layoutMatrix(mini, 'microbreak')
   await capture(mini, baseline ? 'before-microbreak' : 'after-microbreak-zh-light')
   await mini.webContents.executeJavaScript('window.breaks.finishBreak(false)')
   await delay(800)
   command('long', '-T', '起身，舒展一下', '-t', '离开屏幕，让身体和思绪一起放松。')
   const long = await page('break')
+  await layoutMatrix(long, 'long-break')
   await capture(long, baseline ? 'before-long-break' : 'after-long-break-zh-light')
   if (!baseline) { nativeTheme.themeSource = 'dark'; await capture(long, 'after-long-break-zh-dark'); nativeTheme.themeSource = 'light' }
-  if (!baseline) await acceptance(prefs, long)
+  if (!baseline && !process.argv.includes('--layout-only')) await acceptance(prefs, long)
   writeFileSync(join(evidence, 'macos-qa.json'), JSON.stringify({ baseline, profile, versions: process.versions, platform: process.platform, checks }, null, 2))
   console.log('MACOS_QA_PASSED', checks.length, profile)
   app.exit(0)
@@ -219,4 +234,29 @@ async function acceptance (prefs, long) {
   verify(await js(mini, "document.querySelector('#close').getBoundingClientRect().bottom <= innerHeight + 1"), 'long custom content keeps action reachable by scrolling')
   await js(mini, "document.querySelector('#close').click()")
   await delay(500)
+}
+
+async function layoutMatrix (win, kind) {
+  const original = win.getSize()
+  for (const [width, height] of [[1920, 1080], [2560, 1440], [3440, 1440], [3840, 2160], [700, 1000], [600, 620]]) {
+    // Device emulation permits viewports larger than the attached display.
+    win.webContents.enableDeviceEmulation({ screenPosition: 'desktop', screenSize: { width, height }, viewPosition: { x: 0, y: 0 }, deviceScaleFactor: 1, viewSize: { width, height }, scale: Math.min(1, win.getContentSize()[0] / width, win.getContentSize()[1] / height) })
+    await delay(200)
+    const geometry = await win.webContents.executeJavaScript(`(() => {
+      const img = document.querySelector('.rest-illustration')
+      const box = img.getBoundingClientRect()
+      const content = document.querySelector('.breaks').getBoundingClientRect()
+      return { width: innerWidth, height: innerHeight, image: { x: box.x, right: box.right, width: box.width, height: box.height }, contentRight: content.right, hidden: getComputedStyle(img).display === 'none', overflow: document.documentElement.scrollWidth > innerWidth }
+    })()`)
+    writeFileSync(join(evidence, `${kind}-${width}x${height}.json`), JSON.stringify(geometry, null, 2))
+    verify(!geometry.overflow, `${kind} ${width}x${height}: no horizontal overflow`)
+    if (!geometry.hidden) {
+      verify(Math.abs(geometry.image.right - width) < 1, `${kind} ${width}x${height}: right anchored`)
+      verify(Math.abs(geometry.image.width / geometry.image.height - 442 / 765) < 0.001, `${kind} ${width}x${height}: original aspect ratio`)
+      verify(geometry.contentRight <= geometry.image.x, `${kind} ${width}x${height}: text and image do not overlap`)
+    }
+    await capture(win, `${kind}-${width}x${height}`)
+  }
+  win.webContents.disableDeviceEmulation()
+  win.setSize(...original)
 }

@@ -157,7 +157,7 @@ window.onload = async (e) => {
     setTimeout(() => copiedEl.remove(), 1275)
   }
 
-  document.querySelectorAll('.navigation a').forEach(element => {
+  document.querySelectorAll('.navigation a:not([hidden])').forEach(element => {
     element.onclick = event => {
       event.preventDefault()
       event.target.closest('.navigation').childNodes.forEach(link => {

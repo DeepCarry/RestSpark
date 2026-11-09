@@ -135,10 +135,11 @@ async function acceptance (prefs, long) {
   await js(prefs, "document.querySelector('#showNotificationBeforeMiniBreak').click()")
   await delay(700)
   verify(JSON.parse(readFileSync(join(profile, 'config.json'))).microbreakNotification === false, 'notification toggle persists')
-  for (const section of ['settings', 'theme', 'about', 'heart', 'schedule']) {
+  for (const section of ['settings', 'theme', 'about', 'schedule']) {
     await js(prefs, `document.querySelector('[data-section=${section}]').click()`)
     verify(await js(prefs, `!document.querySelector('body > .${section}').classList.contains('hidden')`), `original section remains accessible: ${section}`)
   }
+  verify(await js(prefs, "getComputedStyle(document.querySelector('[data-section=heart]')).display === 'none'"), 'retired upstream support entry stays hidden')
   // Reload reads stored settings through the actual preload again.
   prefs.reload()
   await delay(1000)

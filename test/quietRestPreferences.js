@@ -38,9 +38,10 @@ describe('Quiet Rest preferences', () => {
     delete global.window
     delete global.document
   })
-  it('opens the plan and keeps every original section reachable', () => {
+  it('opens the plan, hides the retired support entry and keeps settings reachable', () => {
     expect(document.querySelector('.schedule').classList.contains('hidden')).toBe(false)
-    for (const section of ['settings', 'theme', 'about', 'heart', 'schedule']) {
+    expect(window.getComputedStyle(document.querySelector('[data-section=heart]')).display).toBe('none')
+    for (const section of ['settings', 'theme', 'about', 'schedule']) {
       const link = document.querySelector(`[data-section=${section}]`)
       link.click()
       expect(link.getAttribute('aria-current')).toBe('page')

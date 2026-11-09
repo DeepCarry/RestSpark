@@ -105,3 +105,9 @@ node scripts/rest-spark-packaged-smoke.mjs
 ```
 
 测试脚本写入临时 appData/profile，保留原设置；packaged smoke 使用随机 loopback CDP 端口并在完成后退出测试实例。真实应用运行会按上面规则创建独立配置目录并做首次复制；本次没有启动真实个人目录下的产品实例。
+
+## 后续调整：临时隐藏支持入口
+
+按用户 2026-11-09 的最新要求，左侧「支持 Stretchly 原项目」菜单已隐藏，并从导航事件绑定中排除。原页面实现暂时保留供后续替换；未创建 DeepCarry 赞助页或支付通道。LICENSE 和关于页原作者署名不变。前述品牌阶段记录对应 `d9202bb`；本次后续验证见 [support-hidden/README.md](support-hidden/README.md)。
+
+新版独立产物：`dist/support-hidden/mac-arm64/Rest Spark.app`。它避免覆盖正在运行的旧包；退出旧版本后打开此包即可看到隐藏后的入口。

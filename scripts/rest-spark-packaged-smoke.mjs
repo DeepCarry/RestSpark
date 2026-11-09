@@ -1,7 +1,7 @@
 /* global WebSocket */
 // Smoke the built macOS app with a disposable profile and loopback-only CDP.
 import { spawn } from 'node:child_process'
-import { mkdirSync, writeFileSync, openSync } from 'node:fs'
+import { mkdirSync, writeFileSync, openSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { createServer } from 'node:net'
@@ -63,7 +63,7 @@ try {
   assert.equal(state.heading, '休息计划')
   assert.equal(state.brand, '元气')
   assert.equal(state.controls, 4)
-  assert.equal(state.version, '1.20.0')
+  assert.equal(state.version, JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).version)
   const screenshot = await send('Page.captureScreenshot', { format: 'png' })
   writeFileSync(join(evidence, 'packaged-schedule.png'), Buffer.from(screenshot.result.data, 'base64'))
   await send('Runtime.evaluate', { expression: 'document.querySelector("[data-section=about]").click()' })

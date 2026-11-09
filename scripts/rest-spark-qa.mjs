@@ -11,7 +11,7 @@ const baseline = process.argv.includes('--baseline')
 const checks = []
 const verify = (condition, name) => { assert.ok(condition, name); checks.push(name) }
 const root = resolve(import.meta.dirname, '..')
-const evidence = join(root, 'docs/rest-spark/evidence')
+const evidence = process.env.REST_LAYOUT_EVIDENCE || join(root, 'docs/rest-spark/evidence')
 const sandbox = join(tmpdir(), `rest-spark-qa-${Date.now()}`)
 const legacy = join(sandbox, 'Stretchly')
 const profile = join(sandbox, 'Rest Spark')

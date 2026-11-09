@@ -6,3 +6,4 @@ PACKAGED_MACOS_SMOKE_PASSED {
   version: '1.20.0',
   controls: 4
 }
+PACKAGED_APP_EXIT 0 null

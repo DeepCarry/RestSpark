@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - A aplicación para lembrar acougar",
+    "toolTipHeader": "Rest Spark - A aplicación para lembrar acougar",
     "microbreakIn": "Descanso breve en $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Descanso longo en $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "A retomar os descansos",
@@ -16,7 +16,7 @@
     "untilMorning": "Ata mañá",
     "indefinitely": "Indefinidamente",
     "resetBreaks": "Restituír descansos",
-    "quitStretchly": "Saír de Stretchly",
+    "quitStretchly": "Saír de Rest Spark",
     "restoreDefaults": "Restituír opcións por defecto",
     "warning": "Isto vai restituír as opcións por defecto da aplicación e perderás as que teñas configuradas.",
     "continue": "Continuar",
@@ -31,16 +31,16 @@
     "title": "Tempo de acougar!"
   },
   "preferences": {
-    "title": "Configuración de Stretchly",
+    "title": "Configuración de Rest Spark",
     "nav": {
       "settings": "Configuración",
       "schedule": "Horario",
       "theme": "Tema",
       "about": "Sobre",
-      "heart": "Encántame Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Abrir Stretchly automáticamente ao iniciar sesión",
+      "openAtLogin": "Abrir Rest Spark automáticamente ao iniciar sesión",
       "showBreaksIn": "Amosar descansos:",
       "window": "Nunha ventá",
       "fullscreen": "A pantalla completa",
@@ -94,12 +94,12 @@
       "version": "Versión ",
       "latestVersion": "Última versión ",
       "checkNewVersion": "Comprobar actualizacións de maneira automática",
-      "learnMore": "Para aprender acerca das funcións de Stretchly, ver un titorial, descargar a última versión ou contactar connosco para obter axuda, ",
+      "learnMore": "Para aprender acerca das funcións de Rest Spark, ver un titorial, descargar a última versión ou contactar connosco para obter axuda, ",
       "ourWebsite": "visita a nosa web",
       "dot": ".",
-      "developedBy": "Desenvolto por",
+      "developedBy": "Stretchly — Desenvolto por",
       "janH": "Jan Hovancik",
-      "designedBy": "Deseño da icona e da interfaz de usuario por Colin Shanley"
+      "designedBy": "Stretchly — Deseño da icona e da interfaz de usuario por Colin Shanley"
     },
     "heart": {
       "loveStretchly": "¿Engaioloute Stretchly?",
@@ -191,7 +191,7 @@
     "newVersionAvailable": "Nova versión dispoñíbel!"
   },
   "welcome": {
-    "title": "Benvido a Stretchly",
+    "title": "Benvido a Rest Spark",
     "breakTimeReminderApp": "A aplicación para lembrar acougar",
     "viewTutorial": "Ver titorial",
     "openPreferences": "Configurar",
@@ -461,5 +461,11 @@
       "title": "Respiración lenta",
       "text": "Investigacións emerxentes suxiren o uso potencial de técnicas de respiración lenta controlada como medio de optimizár parámetros psicolóxicos que aparecen asociados á saúde e á lonxevidade."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - A szünet emlékeztető alkalmazás",
+    "toolTipHeader": "Rest Spark - A szünet emlékeztető alkalmazás",
     "microbreakIn": "Rövid szünet $t(utils.seconds, {'count': {{seconds}} }) múlva",
     "breakIn": "Hosszú szünet $t(utils.seconds, {'count': {{seconds}} }) múlva",
     "resumingBreaks": "Szünetek folytatása",
@@ -16,7 +16,7 @@
     "untilMorning": "Reggelig",
     "indefinitely": "Határozatlan ideig",
     "resetBreaks": "Szünetek visszaállítása",
-    "quitStretchly": "Stretchly bezárása",
+    "quitStretchly": "Rest Spark bezárása",
     "restoreDefaults": "Alapértelmezések visszaállítása",
     "warning": "Az alkalmazás alapértelmezett beállításai visszaállnak és az összes jelenlegi beállítás elvész.",
     "continue": "Folytatás",
@@ -32,16 +32,16 @@
     "finish": "Szünet befejezése"
   },
   "preferences": {
-    "title": "Stretchly Beállítások",
+    "title": "Rest Spark Beállítások",
     "nav": {
       "settings": "Beállítások",
       "schedule": "Időzítés",
       "theme": "Téma",
       "about": "Névjegy",
-      "heart": "Stretchly támogatása"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Stretchly automatikus indítása bejelentkezés után",
+      "openAtLogin": "Rest Spark automatikus indítása bejelentkezés után",
       "showBreaksIn": "Szünetek megjelenítése:",
       "window": "Ablakban",
       "fullscreen": "Teljes képernyőn",
@@ -101,12 +101,12 @@
       "version": "Verzió: ",
       "latestVersion": "Legfrissebb verzió: ",
       "notifyNewVersion": "Automatikus értesítés új verziók esetén",
-      "learnMore": "Ahhoz, hogy többet tudj meg a Stretchly funkciókról, útmutatókat nézz meg, letöltsd a legfrissebb verziót vagy, hogy írj az ügyfélszolgálatunknak, ",
+      "learnMore": "Ahhoz, hogy többet tudj meg a Rest Spark funkciókról, útmutatókat nézz meg, letöltsd a legfrissebb verziót vagy, hogy írj az ügyfélszolgálatunknak, ",
       "ourWebsite": "látogasd meg a weboldalunkat",
       "dot": ".",
-      "developedBy": "Fejlesztette",
+      "developedBy": "Stretchly — Fejlesztette",
       "janH": "Jan Hovancik",
-      "designedBy": "Ikont és kinézetet tervezte Colin Shanley",
+      "designedBy": "Stretchly — Ikont és kinézetet tervezte Colin Shanley",
       "checkNewVersion": "Frissítés automatikus engedélyezése"
     },
     "heart": {
@@ -163,7 +163,7 @@
     "3": "Negyedik monitor",
     "showBreaksAsRegularWindowsTitle": "Ablak üzemmód:",
     "showTrayIcon": "Tálca ikon megjelenítése",
-    "toShowTrayIcon": "Mutassa a Stretchly ikont a tálcán",
+    "toShowTrayIcon": "Mutassa a Rest Spark ikont a tálcán",
     "showCurrentTimeInBreaks": "Mutassa a jelenlegi időt a szünet ablakban",
     "screen": "Monitor a szünetekhez:",
     "screenInfo": "Ha a szünetek megjelenítése az összes monitoron nincs engedélyezve, kiválaszthatod, hogy melyik monitoron szeretnéd a szüneteket megjeleníteni.",
@@ -202,7 +202,7 @@
     "newVersionAvailable": "Új verzió érhető el!"
   },
   "welcome": {
-    "title": "Üdvözöl a Stretchly",
+    "title": "Üdvözöl a Rest Spark",
     "breakTimeReminderApp": "A szünet emlékeztető alkalmazás",
     "viewTutorial": "Útmutató megnyitása",
     "openPreferences": "Beállítások megnyitása",
@@ -469,7 +469,7 @@
     },
     "aas": {
       "title": "Ismétlés",
-      "text": "Megtaláltad már a Stretchly rutinod? Ne felejtsd el ismételni több alkalommal is, hogy a hosszantartó ülés káros hatásait megelőzd."
+      "text": "Megtaláltad már a Rest Spark rutinod? Ne felejtsd el ismételni több alkalommal is, hogy a hosszantartó ülés káros hatásait megelőzd."
     },
     "aaa": {
       "title": "Nem vagy egyedül",
@@ -519,5 +519,11 @@
       "title": "Túlterhelt?",
       "text": "Próbáld ki az 5-4-3-2-1 technikát: Nevezz meg 5 dolgot, amit láthatsz, 4 dolgot, amit megtapinthatsz, 3 dolgot, amit hallhatsz, 2 dolgot, amit megszagolhatsz, és 1 dolgot, amit megízlelhetsz."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

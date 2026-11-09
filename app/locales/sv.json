@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - appen för pauspåminnelser",
+    "toolTipHeader": "Rest Spark - appen för pauspåminnelser",
     "microbreakIn": "Kort paus om $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Lång paus om $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Återupptar pauser",
@@ -16,7 +16,7 @@
     "untilMorning": "Till morgonen",
     "indefinitely": "Obegränsat",
     "resetBreaks": "Återställ pauser",
-    "quitStretchly": "Avsluta Stretchly",
+    "quitStretchly": "Avsluta Rest Spark",
     "restoreDefaults": "Återställ till standardvärden",
     "warning": "Detta återställer standardvärden för appen och alla dina inställningar går förlorade.",
     "continue": "Fortsätt",
@@ -32,16 +32,16 @@
     "finish": "Avsluta denna paus"
   },
   "preferences": {
-    "title": "Stretchly-inställningar",
+    "title": "Rest Spark-inställningar",
     "nav": {
       "settings": "Inställningar",
       "schedule": "Schema",
       "theme": "Tema",
       "about": "Om",
-      "heart": "Älska Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Starta Stretchly automatiskt när du loggar in",
+      "openAtLogin": "Starta Rest Spark automatiskt när du loggar in",
       "showBreaksIn": "Visar pauser om:",
       "window": "Fönster",
       "fullscreen": "Helskärm",
@@ -100,12 +100,12 @@
       "version": "Version ",
       "latestVersion": "Senaste version ",
       "notifyNewVersion": "Meddela automatiskt om appuppdateringar",
-      "learnMore": "För att lära dig mer om funktioner i Stretchly, se en handledning, hämta den senaste versionen eller kontakta oss för support, ",
+      "learnMore": "För att lära dig mer om funktioner i Rest Spark, se en handledning, hämta den senaste versionen eller kontakta oss för support, ",
       "ourWebsite": "besök vår hemsida",
       "dot": ".",
-      "developedBy": "Utvecklad av",
+      "developedBy": "Stretchly — Utvecklad av",
       "janH": "Jan Hovancik",
-      "designedBy": "Ikon- och användargränssnittsdesign av Colin Shanley",
+      "designedBy": "Stretchly — Ikon- och användargränssnittsdesign av Colin Shanley",
       "checkNewVersion": "Sök automatiskt efter appuppdateringar"
     },
     "heart": {
@@ -178,7 +178,7 @@
     "showCurrentTimeInBreaks": "Visa aktuell lokal tid i pausfönster",
     "showBreaksAsRegularWindowsInfo": "När det är aktiverat kommer pausfönster att bli fokuserbara, de kommer inte att vara \"Alltid överst\" längre och de kommer också att visas i aktivitetsfältet.",
     "showTrayIcon": "Visa ikon i aktivitetsfältet",
-    "toShowTrayIcon": "Visa Stretchly-ikonen i fältet"
+    "toShowTrayIcon": "Visa Rest Spark-ikonen i fältet"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -201,7 +201,7 @@
     "newVersionAvailable": "Ny version är tillgänglig!"
   },
   "welcome": {
-    "title": "Välkommen till Stretchly",
+    "title": "Välkommen till Rest Spark",
     "breakTimeReminderApp": "Appen för paustidspåminnelse",
     "viewTutorial": "Visa handledning",
     "openPreferences": "Öppna inställningar",
@@ -396,7 +396,7 @@
     },
     "aas": {
       "title": "Upprepa",
-      "text": "Har du hittat din stretchly-rutin? Glöm inte att upprepa det mer än en gång för att bättre bekämpa effekterna av långvarigt sittande."
+      "text": "Har du hittat din Rest Spark-rutin? Glöm inte att upprepa det mer än en gång för att bättre bekämpa effekterna av långvarigt sittande."
     },
     "aat": {
       "title": "Handled och underarm",
@@ -518,5 +518,11 @@
       "title": "Överväldigad?",
       "text": "Prova 5-4-3-2-1 jordningstekniken: Identifiera 5 saker du kan se, 4 saker du kan röra vid, 3 saker du kan höra, 2 saker du kan lukta och 1 sak du kan smaka."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

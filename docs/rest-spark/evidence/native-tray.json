@@ -1,0 +1,46 @@
+[
+  {
+    "name": "default",
+    "status": "not_captured",
+    "reason": "macOS returned zero-size native status-item bounds; on-screen visibility is unverified",
+    "bounds": {
+      "x": 0,
+      "y": 982,
+      "width": 34,
+      "height": 0
+    }
+  },
+  {
+    "name": "time",
+    "status": "not_captured",
+    "reason": "macOS returned zero-size native status-item bounds; on-screen visibility is unverified",
+    "bounds": {
+      "x": 0,
+      "y": 982,
+      "width": 49,
+      "height": 0
+    }
+  },
+  {
+    "name": "progress",
+    "status": "not_captured",
+    "reason": "macOS returned zero-size native status-item bounds; on-screen visibility is unverified",
+    "bounds": {
+      "x": 0,
+      "y": 982,
+      "width": 69,
+      "height": 0
+    }
+  },
+  {
+    "name": "paused",
+    "status": "not_captured",
+    "reason": "macOS returned zero-size native status-item bounds; on-screen visibility is unverified",
+    "bounds": {
+      "x": 0,
+      "y": 982,
+      "width": 47,
+      "height": 0
+    }
+  }
+]

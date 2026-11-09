@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Потсетник за паузи",
+    "toolTipHeader": "Rest Spark - Потсетник за паузи",
     "syncPreferences": "Синхронизирај подесувања",
     "contributorPreferences": "Подесувања на соработници",
     "preferences": "Подесувања",
@@ -8,7 +8,7 @@
     "continue": "Продолжи",
     "warning": "Ова ќе ги врати стандардните вредност на апликацијата и сите ваши подесувања ќе бидат избришани.",
     "restoreDefaults": "Вратете ги стандардните вредности",
-    "quitStretchly": "Затвори Stretchly",
+    "quitStretchly": "Затвори Rest Spark",
     "resetBreaks": "Ресетирај паузи",
     "indefinitely": "Неопределено",
     "untilMorning": "До изутрина",
@@ -51,20 +51,26 @@
       "fullscreen": "Цел екран",
       "window": "Прозорец",
       "showBreaksIn": "Прикажи ги паузите на:",
-      "openAtLogin": "Стартувај го Stretchly автоматски кога ќе се најавиш"
+      "openAtLogin": "Стартувај го Rest Spark автоматски кога ќе се најавиш"
     },
     "nav": {
-      "heart": "Засакај го Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "За нас",
       "theme": "Тема",
       "schedule": "Распоред",
       "settings": "Подесувања"
     },
-    "title": "Stretchly подесувања"
+    "title": "Rest Spark подесувања"
   },
   "break": {
     "title": "Време е за пауза!",
     "skip": "Прескокнете ја оваа пауза",
     "postpone": "Одложете ја оваа пауза"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

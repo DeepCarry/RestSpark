@@ -1,3 +1,29 @@
+# 元气 / Rest Spark
+
+<img src="app/images/brand/restspark-app-icon-master.svg" width="128" align="right" alt="元气 Rest Spark">
+
+休息一下，恢复元气。Rest Spark 是面向 macOS 的休息提醒工具，采用浅薄荷绿界面，保留短休息、长休息、严格模式、推迟、提前提醒、空闲/勿扰检测和原有设置行为。
+
+本项目基于 [Jan Hovancik 的 Stretchly](https://github.com/hovancik/stretchly) 二次开发，感谢原作者及所有贡献者。保留完整提交历史、[BSD-2-Clause 许可证](LICENSE) 与 `Copyright (c) 2016-, Jan Hovancik` 署名。新的产品名称为 **元气 / Rest Spark**，与上游 Stretchly 独立维护。
+
+当前仓库为 `DeepCarry/RestSpark` 独立私有开发仓库；后续是否公开由维护者决定，当前不正式发布。品牌图形的独立授权条款尚待维护者明确，不能据此推定获得商标授权；原源代码许可证保持不变。
+
+## 开发
+
+使用 Node 24，执行 `npm ci`、`npm start`；检查 `npm test`、`npm run lint`、`npm run pack`。当前只验收 macOS 构建，Windows/Linux 发布身份和图标需另行审阅。正常运行不改变已安装的 Stretchly 应用。
+
+macOS 应用 ID 为 `io.github.deepcarry.restspark`，应用包为 `Rest Spark.app`，中文显示名为「元气」。默认配置位于 `~/Library/Application Support/Rest Spark`。首次正常启动会复制旧 `Stretchly` 目录内的配置、自定义图片及已有贡献者状态，保留原文件；已有 Rest Spark 配置优先。显式选择的配置目录和便携目录保持原样。
+
+版本检查只查询本仓库发行版，不会下载或安装上游 Stretchly 更新。当前仓库私有且没有配置公开更新通道；匿名查询不可用时不提示更新，不在客户端嵌入 GitHub 令牌。自动下载、签名、公证和正式分发均未启用。
+
+品牌集成与验证记录见 [品牌交付报告](docs/rest-spark/DELIVERY.md)；此前 UI 记录见 [Quiet Rest 交付报告](docs/quiet-rest/DELIVERY.md)。
+
+---
+
+## 上游 Stretchly 文档（保留原始说明与致谢）
+
+以下为原项目说明；其中下载地址、Homebrew 包、平台发行及赞助服务属于原项目，不是 Rest Spark 的发布渠道。
+
 # Stretchly [![Awesome Humane Tech](https://raw.githubusercontent.com/humanetech-community/awesome-humane-tech/main/humane-tech-badge.svg?sanitize=true)](https://github.com/humanetech-community/awesome-humane-tech) [![Build Status](https://travis-ci.org/hovancik/stretchly.svg?branch=master)](https://travis-ci.org/hovancik/stretchly) [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![codecov](https://codecov.io/gh/hovancik/stretchly/graph/badge.svg?token=eOjky4kr2j)](https://codecov.io/gh/hovancik/stretchly) [![Translation status](https://hosted.weblate.org/widgets/stretchly/-/stretchly/svg-badge.svg)](https://hosted.weblate.org/engage/stretchly/)
 
 <img src="stretchly_128x128.png" align="right" alt="Stretchly logo">

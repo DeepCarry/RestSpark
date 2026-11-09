@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Mola hatırlatıcı uygulama",
+    "toolTipHeader": "Rest Spark - Mola hatırlatıcı uygulama",
     "resumingBreaks": "Molalara devam ediliyor",
     "downloadLatestVersion": "Son sürümü indir",
     "skipToTheNext": "Bir sonrakine geç",
@@ -12,7 +12,7 @@
     "untilMorning": "Sabaha kadar",
     "indefinitely": "Sonsuza kadar",
     "resetBreaks": "Molaları sıfırla",
-    "quitStretchly": "Stretchly'den çık",
+    "quitStretchly": "Rest Spark'den çık",
     "preferences": "Tercihler",
     "syncPreferences": "Ayarları Eşzamanla",
     "contributorPreferences": "Destekçi Ayarları",
@@ -53,9 +53,9 @@
     },
     "about": {
       "tagline": "Mola hatırlatıcı uygulama",
-      "designedBy": "Simge ve kullanıcı arayüzü Colin Shanley tarafından tasarlandı",
+      "designedBy": "Stretchly — Simge ve kullanıcı arayüzü Colin Shanley tarafından tasarlandı",
       "janH": "tarafından geliştirildi",
-      "developedBy": "Jan Hovancik",
+      "developedBy": "Stretchly — Jan Hovancik",
       "dot": ".",
       "ourWebsite": "internet sitemizi ziyaret edin",
       "learnMore": "Stretchy hakkında daha çok şey öğrenmek istiyorsanız kılavuza göz atabilir, son sürümü indirebilir, veya destek için bizle iletişime geçebilirsiniz, ",
@@ -69,20 +69,20 @@
       "fullscreen": "Tam Ekran",
       "window": "Pencere",
       "showBreaksIn": "Molaları Gör:",
-      "openAtLogin": "Giriş yapıldığında Stretchly'i otomatik başlat",
+      "openAtLogin": "Giriş yapıldığında Rest Spark'i otomatik başlat",
       "language": "Dili seç:",
       "restoreDefaults": "Varsayılanı geri yükle",
       "monitorDnd": "Rahatsız Etme modundayken de molaları göster",
       "monitorIdleTime": "Sistemin boşta olduğu zamanı gözlemle (sistem boşta iken molalar durdurulur)."
     },
     "nav": {
-      "heart": "Stretchly'i Seviyor Musun",
+      "heart": "Support Stretchly upstream",
       "about": "Hakkında",
       "theme": "Tema",
       "schedule": "Zamanla",
       "settings": "Ayarlar"
     },
-    "title": "Stretchly Ayarları",
+    "title": "Rest Spark Ayarları",
     "schedule": {
       "miniBreaksInfo": "Mini Molalar, esneme ve rahatlama şansı vermek için düzenli olarak yapılan kısa molalardır.",
       "enableMiniBreaks": "Mini Molaları Etkinleştir",
@@ -117,7 +117,7 @@
     "newVersionAvailable": "Yeni sürüm çıktı!"
   },
   "welcome": {
-    "title": "Stretchly'ye hoş geldiniz",
+    "title": "Rest Spark'ye hoş geldiniz",
     "breakTimeReminderApp": "Mola hatırlatıcı uygulama",
     "viewTutorial": "Kılavuzu Aç",
     "openPreferences": "Seçenekleri aç",
@@ -182,7 +182,7 @@
     "currentTimeInBreaks": "Geçerli saat",
     "showCurrentTimeInBreaks": "Mola penceresinde geçerli yerel saati göster",
     "showTrayIcon": "Menü çubuğu simgesini göster",
-    "toShowTrayIcon": "Menü çubuğunda Stretchly simgesini göster"
+    "toShowTrayIcon": "Menü çubuğunda Rest Spark simgesini göster"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -511,5 +511,11 @@
       "title": "Bunaldınız mı?",
       "text": "5-4-3-2-1 Topraklama Tekniğini deneyin: Görebildiğiniz 5 şeyi, dokunabileceğiniz 4 şeyi, duyabileceğiniz 3 şeyi, koklayabileceğiniz 2 şeyi ve tadabileceğiniz 1 şeyi belirleyin."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

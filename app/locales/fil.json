@@ -17,9 +17,9 @@
     "indefinitely": "Walang Katapusan",
     "continue": "Ipagpatuloy",
     "skipToTheNext": "Lumaktaw sa susunod",
-    "toolTipHeader": "Stretchly - Ang app para sa pagpapaalala ng pagpahinga",
+    "toolTipHeader": "Rest Spark - Ang app para sa pagpapaalala ng pagpahinga",
     "cancel": "Bawiin",
-    "quitStretchly": "Itigil ang Stretchly",
+    "quitStretchly": "Itigil ang Rest Spark",
     "downloadLatestVersion": "I-download ang kasalukuyang version",
     "preferences": "Mga Kagustuhan",
     "contributorPreferences": "Mga Kagustuhan para sa Contributor",
@@ -30,11 +30,11 @@
       "latestVersion": "Pinakabagong version ",
       "version": "Version ",
       "checkNewVersion": "Awtomatikong mag tsek ng mga update ng app",
-      "learnMore": "Para matuto pa tungkol sa mga feature ng Stretchly, manuod ng tutorial, i-download ang pinakabagong version o makipag-ugnayan sa amin para sa suporta. ",
+      "learnMore": "Para matuto pa tungkol sa mga feature ng Rest Spark, manuod ng tutorial, i-download ang pinakabagong version o makipag-ugnayan sa amin para sa suporta. ",
       "ourWebsite": "bisitahin ang aming website",
       "dot": ".",
-      "developedBy": "Binuo ni",
-      "designedBy": "Icon at design ng UI ni Colin Shanley",
+      "developedBy": "Stretchly — Binuo ni",
+      "designedBy": "Stretchly — Icon at design ng UI ni Colin Shanley",
       "tagline": "Ang app para sa pagpapaalala ng pagpahinga",
       "janH": "Jan Hovancik"
     },
@@ -59,7 +59,7 @@
     },
     "settings": {
       "monitorIdleTime": "Subaybayan ang nakatigil na oras ng system (naka-pause ang mga pahinga kung nakatigil ang system).",
-      "openAtLogin": "Awtomatikong simulan ang stretchly kapag naglogin",
+      "openAtLogin": "Awtomatikong simulan ang Rest Spark kapag naglogin",
       "fullscreen": "Buong screen",
       "showIdeas": "Ipakita ang mga tip sa pag ehersisyo kapag nasa pahinga",
       "allScreens": "Ipakita ang pahinga sa lahat na mga monitor",
@@ -98,10 +98,10 @@
       "longBreaksInfo": "Ang Matagalang Pahinga ay minsan lang ginagawa, pero ng matagalan, na nagpapahintulot sa iyo ng matagalang pahinga sa trabaho.",
       "enablePostponeLong": "Paganahin ang Pagpapaliban para sa Matagalang Pahinga"
     },
-    "title": "Mga Kagustuhan para sa Stretchly",
+    "title": "Mga Kagustuhan para sa Rest Spark",
     "nav": {
       "theme": "Tema",
-      "heart": "Mahalin ang Stretchly",
+      "heart": "Support Stretchly upstream",
       "settings": "Mga Setting",
       "schedule": "Talakdaan",
       "about": "Tungkol"
@@ -186,7 +186,7 @@
     "newVersionAvailable": "Bagong bersyon ay magagamit!"
   },
   "welcome": {
-    "title": "Welcome sa Stretchly",
+    "title": "Welcome sa Rest Spark",
     "breakTimeReminderApp": "Ang app ng paalala sa oras ng pahinga",
     "viewTutorial": "Tingnan ang Tutorial",
     "openPreferences": "Buksan ang Mga Kagustuhan",
@@ -461,5 +461,11 @@
     "skip": "Ipagpaliban ang pahingang ito",
     "postpone": "Itigil ang pahingang ito",
     "title": "Oras na para magpahinga!"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

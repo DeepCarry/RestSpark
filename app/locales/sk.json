@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Pamätá si prestávky za vás",
+    "toolTipHeader": "Rest Spark - Pamätá si prestávky za vás",
     "microbreakIn": "Mini prestávka za $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Dlhá prestávka za $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Obnovenie prestávok",
@@ -16,7 +16,7 @@
     "untilMorning": "Do rána",
     "indefinitely": "Na neurčito",
     "resetBreaks": "Resetovať prestávky",
-    "quitStretchly": "Ukončiť Stretchly",
+    "quitStretchly": "Ukončiť Rest Spark",
     "restoreDefaults": "Obnoviť pôvodné nastavenia",
     "areYouSure": "Táto akcia obnoví pôvodné nastavenia a všetky vaše zmeny budú stratené.",
     "continue": "Pokračovať",
@@ -33,16 +33,16 @@
     "finish": "Dokončiť túto prestávku"
   },
   "preferences": {
-    "title": "Nastavenia Stretchly",
+    "title": "Nastavenia Rest Spark",
     "nav": {
       "settings": "Nastavenia",
       "schedule": "Časovanie",
       "theme": "Téma",
       "about": "Informácie",
-      "heart": "Pomôcť Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Spustiť Stretchly automaticky po prihlásení",
+      "openAtLogin": "Spustiť Rest Spark automaticky po prihlásení",
       "showBreaksIn": "Ukázať prestávky ako:",
       "window": "Okno",
       "fullscreen": "Celá obrazovka",
@@ -102,12 +102,12 @@
       "version": "Verzia ",
       "latestVersion": "Najnovšia verzia ",
       "notifyNewVersion": "Automaticky ma upozorni na novú verziu",
-      "learnMore": "Ak sa chcete dozvedieť viac o funkciách Stretchly, prezrieť tutoriál, stiahnuť najnovšiu verziu alebo nás kontaktovať kvôli podpore, ",
+      "learnMore": "Ak sa chcete dozvedieť viac o funkciách Rest Spark, prezrieť tutoriál, stiahnuť najnovšiu verziu alebo nás kontaktovať kvôli podpore, ",
       "ourWebsite": "navštívte našu webstránku",
       "dot": ".",
-      "developedBy": "Vyvinul",
+      "developedBy": "Stretchly — Vyvinul",
       "janH": "Ján Hovančík",
-      "designedBy": "Ikona a UI dizajn Colin Shanley",
+      "designedBy": "Stretchly — Ikona a UI dizajn Colin Shanley",
       "checkNewVersion": "Automaticky kontrolovať aktualizácie aplikácie"
     },
     "heart": {
@@ -180,7 +180,7 @@
     "showCurrentTimeInBreaks": "Ukázať aktuálny lokálny čas v okne Prestávky",
     "currentTimeInBreaks": "Aktuálny čas",
     "showTrayIcon": "Zobraziť ikonu",
-    "toShowTrayIcon": "Zobraziť ikonu Stretchly"
+    "toShowTrayIcon": "Zobraziť ikonu Rest Spark"
   },
   "utils": {
     "remaining": "{{count}} do konca",
@@ -209,7 +209,7 @@
     "newVersionAvailable": "Je dostupná nová verzia!"
   },
   "welcome": {
-    "title": "Vitajte v Stretchly",
+    "title": "Vitajte v Rest Spark",
     "breakTimeReminderApp": "Pamätá si prestávky za vás",
     "viewTutorial": "Prezrieť Tutoriál",
     "openPreferences": "Otvoriť Nastavenia",
@@ -527,5 +527,11 @@
       "title": "Vizualizácia",
       "text": "Zavrite oči a predstavte si, že ste na pokojnom a upokojujúcom mieste, napríklad na pláži alebo v lese, a sústreďte sa na výhľad, zvuky a pocity tohto prostredia."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - 休息提醒应用",
+    "toolTipHeader": "元气 - 休息提醒应用",
     "microbreakIn": "距离下次小憩约 $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "距离下次休息约 $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "正在恢复休息",
@@ -16,7 +16,7 @@
     "untilMorning": "直至早晨",
     "indefinitely": "无限期",
     "resetBreaks": "重置休息",
-    "quitStretchly": "退出 Stretchly",
+    "quitStretchly": "退出 元气",
     "restoreDefaults": "还原至默认值",
     "warning": "即将恢复默认值，所有已有设置会被清除。",
     "continue": "继续",
@@ -32,16 +32,16 @@
     "finish": "完成本次休息"
   },
   "preferences": {
-    "title": "Stretchly 偏好设置",
+    "title": "元气 偏好设置",
     "nav": {
       "settings": "设置",
       "schedule": "计划",
       "theme": "主题",
       "about": "关于",
-      "heart": "喜欢 Stretchly"
+      "heart": "支持 Stretchly 原项目"
     },
     "settings": {
-      "openAtLogin": "登录后自动启动 Stretchly",
+      "openAtLogin": "登录后自动启动 元气",
       "showBreaksIn": "休息提示画面：",
       "window": "窗口",
       "fullscreen": "全屏",
@@ -101,12 +101,12 @@
       "version": "版本 ",
       "latestVersion": "最新版本 ",
       "notifyNewVersion": "新版本提醒",
-      "learnMore": "如需深入了解 Stretchly 的功能，查看教程，下载最新版本或联系我们寻求支持，请 ",
-      "ourWebsite": "访问我们的网站",
+      "learnMore": "查看元气源码、发行版及问题反馈：",
+      "ourWebsite": "GitHub 仓库",
       "dot": "。",
-      "developedBy": "开发者",
+      "developedBy": "Stretchly — 开发者",
       "janH": "Jan Hovancik",
-      "designedBy": "图标和用户界面由 Colin Shanley 设计",
+      "designedBy": "Stretchly — 图标和用户界面由 Colin Shanley 设计",
       "checkNewVersion": "自动检查更新"
     },
     "heart": {
@@ -179,7 +179,7 @@
     "showCurrentTimeInBreaks": "在休息画面显示当前时间",
     "currentTimeInBreaks": "当前时间",
     "showTrayIcon": "显示托盘图标",
-    "toShowTrayIcon": "在托盘中显示 Stretchly 图标"
+    "toShowTrayIcon": "在托盘中显示 元气 图标"
   },
   "utils": {
     "none_other": "{{count}}",
@@ -196,7 +196,7 @@
     "newVersionAvailable": "有新的版本！"
   },
   "welcome": {
-    "title": "欢迎使用 Stretchly",
+    "title": "欢迎使用 元气",
     "breakTimeReminderApp": "休息提醒应用",
     "viewTutorial": "查看教程",
     "openPreferences": "打开偏好设置",
@@ -512,5 +512,24 @@
       "title": "压力太大了？",
       "text": "试试 5-4-3-2-1 着陆法：找出你能看到的 5 样东西，你能摸到的 4 样东西，你能听到的 3 样东西，你能闻到的 2 样东西，和 1 样你可以尝到的东西。"
     }
+  },
+  "quietRest": {
+    "miniTitle": "休息一下",
+    "longTitle": "舒展一下",
+    "footer": "好好休息，才能更好地专注",
+    "scheduleTitle": "休息计划",
+    "scheduleSubtitle": "设置短休息和长休息的时间安排",
+    "interval": "休息间隔",
+    "duration": "休息时长",
+    "strictTitle": "严格模式",
+    "longIntervalHelp": "长休息在设定次数的短休息后开始，上方显示对应的总间隔。",
+    "miniSection": "短休息",
+    "longSection": "长休息"
+  },
+  "brand": {
+    "name": "元气",
+    "otherName": "Rest Spark",
+    "upstream": "基于 Stretchly 二次开发 · BSD-2-Clause",
+    "upstreamSupport": "支持 Stretchly 原项目"
   }
 }

@@ -29,24 +29,24 @@
       "showIdeas": "הצגת הצעות לתרגילים בזמן ההפסקות",
       "fullscreen": "על כל המסך",
       "window": "בתוך חלון",
-      "openAtLogin": "הפעלת Stretchly באופן אוטומטי בעת הכניסה"
+      "openAtLogin": "הפעלת Rest Spark באופן אוטומטי בעת הכניסה"
     },
     "nav": {
-      "heart": "תמיכה ב־Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "על אודות",
       "theme": "ערכת נושא",
       "schedule": "תזמונים",
       "settings": "הגדרות"
     },
-    "title": "ההעדפות של Stretchly",
+    "title": "ההעדפות של Rest Spark",
     "about": {
       "dot": ".",
-      "developedBy": "פותח על ידי",
-      "designedBy": "הסמל ועיצוב ממשק המשתמש הוכנו על ידי קולין שנלי",
+      "developedBy": "Stretchly — פותח על ידי",
+      "designedBy": "Stretchly — הסמל ועיצוב ממשק המשתמש הוכנו על ידי קולין שנלי",
       "tagline": "היישום שמזכיר לך לקחת הפסקה",
       "version": "גרסה ",
       "ourWebsite": "אפשר לבקר באתר שלנו",
-      "learnMore": "כדי ללמוד עוד על התכונות של Stretchly, לצפות בהדרכה, להוריד את הגרסה העדכנית או ליצור איתנו קשר לקבלת תמיכה, ",
+      "learnMore": "כדי ללמוד עוד על התכונות של Rest Spark, לצפות בהדרכה, להוריד את הגרסה העדכנית או ליצור איתנו קשר לקבלת תמיכה, ",
       "notifyNewVersion": "הודע אוטומטית על עדכונים",
       "latestVersion": "גרסה אחרונה ",
       "janH": "יאן הוֹבַנְציק",
@@ -102,7 +102,7 @@
     "continue": "אישור",
     "warning": "פעולה זו תחזיר את ההגדרות לברירת המחדל וכל ההגדרות ששינית יבוטלו.",
     "restoreDefaults": "איפוס ההגדרות",
-    "quitStretchly": "יציאה מ־Stretchly",
+    "quitStretchly": "יציאה מ־Rest Spark",
     "resetBreaks": "איפוס ההפסקות",
     "indefinitely": "לתמיד",
     "untilMorning": "עד הבוקר",
@@ -118,7 +118,7 @@
     "breakIn": "הפסקה ארוכה בעוד $t(utils.seconds, {'count': {{seconds}} })",
     "microbreakIn": "הפסקה קצרה בעוד $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "חידוש ההפסקות",
-    "toolTipHeader": "‏Stretchly - היישום שמזכיר לך לקחת הפסקה"
+    "toolTipHeader": "‏Rest Spark - היישום שמזכיר לך לקחת הפסקה"
   },
   "contributorPreferences": {
     "0": "הצג הראשון",
@@ -179,7 +179,7 @@
     "currentTimeInBreaks": "השעה הנוכחית",
     "showCurrentTimeInBreaks": "הצגת השעה המקומית הנוכחית בחלון ההפסקה",
     "showTrayIcon": "הצגת סמל בשורת המערכת",
-    "toShowTrayIcon": "הצגת הסמל של Stretchly בשורת המערכת"
+    "toShowTrayIcon": "הצגת הסמל של Rest Spark בשורת המערכת"
   },
   "statusMessages": {
     "resuming": "מתחדש",
@@ -198,7 +198,7 @@
     "openPreferences": "פתיחת ההעדפות",
     "viewTutorial": "הצגת מדריך",
     "breakTimeReminderApp": "היישום שמזכיר לך לקחת הפסקה",
-    "title": "ברוך בואך אל Stretchly"
+    "title": "ברוך בואך אל Rest Spark"
   },
   "process": {
     "newVersionAvailable": "גרסה חדשה זמינה!"
@@ -526,5 +526,11 @@
       "title": "יותר מדי?",
       "text": "כדאי לנסות את שיטת קרקוע 5-4-3-2-1: לזהות 5 דברים שאפשר לראות, 4 דברים שאפשר לחוש, 3 דברים שאפשר לשמוע, 2 דברים שאפשר להריח ודבר אחד שניתן לטעום."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

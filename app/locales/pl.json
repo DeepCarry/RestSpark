@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Przerwo-przypominajka",
+    "toolTipHeader": "Rest Spark - Przerwo-przypominajka",
     "microbreakIn": "Mikroprzerwa za $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Długa przerwa za $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Wznawiam przerwy",
@@ -16,7 +16,7 @@
     "untilMorning": "do rana",
     "indefinitely": "do odwołania",
     "resetBreaks": "Zresetuj przerwy",
-    "quitStretchly": "Zamknij Stretchly",
+    "quitStretchly": "Zamknij Rest Spark",
     "restoreDefaults": "Przywróć domyślne",
     "warning": "To przywróci ustawienia domyślne i skasuje twoje zmiany.",
     "continue": "Kontynuuj",
@@ -31,16 +31,16 @@
     "title": "Czas na przerwę!"
   },
   "preferences": {
-    "title": "Ustawienia Stretchly",
+    "title": "Ustawienia Rest Spark",
     "nav": {
       "settings": "Ustawienia",
       "schedule": "Harmonogram",
       "theme": "Motyw",
-      "about": "O Stretchly",
-      "heart": "Pokochaj Stretchly"
+      "about": "O Rest Spark",
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Uruchom Stretchly automatycznie po zalogowaniu",
+      "openAtLogin": "Uruchom Rest Spark automatycznie po zalogowaniu",
       "showBreaksIn": "Pokaż przerwy za:",
       "window": "Okno",
       "fullscreen": "Pełny ekran",
@@ -95,12 +95,12 @@
       "version": "Wersja ",
       "latestVersion": "Najnowsza wersja ",
       "notifyNewVersion": "Automatycznie powiadamiaj o aktualizacjach aplikacji",
-      "learnMore": "Aby dowiedzieć się więcej o funkjach Stretchly, zobacz wprowadzenie, pobierz najnowszą wersję lub skontaktuj się z nami po wsparcie, ",
+      "learnMore": "Aby dowiedzieć się więcej o funkjach Rest Spark, zobacz wprowadzenie, pobierz najnowszą wersję lub skontaktuj się z nami po wsparcie, ",
       "ourWebsite": "odwiedź naszą stronę",
       "dot": ".",
-      "developedBy": "Stworzona przez",
+      "developedBy": "Stretchly — Stworzona przez",
       "janH": "Jana Hovancika",
-      "designedBy": "Ikony oraz UI Colin Shanley",
+      "designedBy": "Stretchly — Ikony oraz UI Colin Shanley",
       "checkNewVersion": "Automatycznie sprawdzaj aktualizacje"
     },
     "heart": {
@@ -172,7 +172,7 @@
     "currentTimeInBreaks": "Aktualny czas",
     "showCurrentTimeInBreaks": "Pokaż aktualną godzinę w okienku przerwy",
     "showTimeToBreakInTray": "Pokaż czas pozostały do następnej przerwy w ikonie paska zadań",
-    "toShowTrayIcon": "Pokaż ikonę Stretchly w pasku menu",
+    "toShowTrayIcon": "Pokaż ikonę Rest Spark w pasku menu",
     "showTrayIcon": "Pokaż ikonę na pasku menu"
   },
   "utils": {
@@ -201,7 +201,7 @@
     "newVersionAvailable": "Dostępna nowa wersja!"
   },
   "welcome": {
-    "title": "Witaj w Stretchly",
+    "title": "Witaj w Rest Spark",
     "breakTimeReminderApp": "Przerwo-przypominajka",
     "viewTutorial": "Zobacz wprowadzenie",
     "openPreferences": "Otwórz ustawienia",
@@ -449,5 +449,11 @@
     "aas": {
       "title": "Powtarzanie"
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

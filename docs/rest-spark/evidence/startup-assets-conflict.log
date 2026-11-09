@@ -1,0 +1,5 @@
+11:15:40.535 › Rest Spark could not load/import settings Error: Rest Spark images path is not a directory
+    at migrateLegacyProfile (file:///Users/carry/Documents/DeepCarry/Git/genki/stretchly/app/utils/brandProfile.js:39:15)
+    at EventEmitter.initialize (file:///Users/carry/Documents/DeepCarry/Git/genki/stretchly/app/main.js:231:27)
+    at EventEmitter.emit (node:events:520:35)
+CLEAN_STARTUP_FAILURE_EXIT assets-conflict

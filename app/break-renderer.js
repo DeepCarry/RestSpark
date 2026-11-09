@@ -1,6 +1,7 @@
 import HtmlTranslate from './utils/htmlTranslate.js'
 import applyBreakHealthEffect from './utils/breakHealthEffect.js'
 import './platform.js'
+import { showBreakProgress } from './utils/quietRestProgress.js'
 
 window.onload = async (event) => {
   const [idea, started, duration, strictMode, postpone,
@@ -50,6 +51,9 @@ window.onload = async (event) => {
   const manualFinishElement = document.querySelector('#finish')
   document.body.classList.add(mainColor.substring(1))
   document.body.style.backgroundColor = backgroundColor
+  document.body.style.setProperty('--rest-configured-color', backgroundColor)
+  const opacity = await window.settings.get('transparentMode') ? await window.settings.get('opacity') : 1
+  document.body.style.setProperty('--rest-opacity', opacity)
 
   document.querySelectorAll('.tiptext').forEach(async tt => {
     const keyboardShortcut = await window.settings.get('endBreakShortcut')
@@ -59,14 +63,15 @@ window.onload = async (event) => {
   let manualAwaiting = false
 
   const locale = await window.settings.get('language')
+  document.documentElement.lang = locale
 
   manualFinishElement.onclick = async () => {
     await window.breaks.finishBreak(manualAwaiting)
   }
 
-  setInterval(async () => {
+  const updateProgress = async () => {
     if (await window.settings.get('currentTimeInBreaks')) {
-      document.querySelector('.breaks > :last-child').innerHTML = (new Date()).toLocaleTimeString()
+      document.querySelector('.break-clock').innerHTML = (new Date()).toLocaleTimeString()
     }
     const now = Date.now()
     const passed = now - started
@@ -84,12 +89,16 @@ window.onload = async (event) => {
           closeElement.classList.add('hidden')
         }
         progress.value = (100 - passedPercent) * progress.max / 100
-        progressTime.innerHTML = await window.utils.formatTimeRemaining(duration - passed, locale)
+        showBreakProgress(progress, progressTime, duration - passed)
+        progressTime.setAttribute('aria-label', await window.utils.formatTimeRemaining(duration - passed, locale))
       }
     } else {
-      progressTime.innerHTML = await window.utils.formatElapsedDuration(passed, locale)
+      showBreakProgress(progress, progressTime, passed, true)
+      progressTime.setAttribute('aria-label', await window.utils.formatElapsedDuration(passed, locale))
     }
-  }, 100)
+  }
+  await updateProgress()
+  setInterval(updateProgress, 100)
 
   window.breaks.onEnterManualAwait(async (which) => {
     if (which !== 'break' || manualAwaiting) return
@@ -99,7 +108,8 @@ window.onload = async (event) => {
     postponeElement.classList.add('hidden')
     closeElement.classList.add('hidden')
     manualFinishElement.classList.remove('hidden')
-    progressTime.innerHTML = await window.utils.formatElapsedDuration(Date.now() - started, locale)
+    showBreakProgress(progress, progressTime, Date.now() - started, true)
+    progressTime.setAttribute('aria-label', await window.utils.formatElapsedDuration(Date.now() - started, locale))
   })
 
   await window.breaks.signalLoaded()

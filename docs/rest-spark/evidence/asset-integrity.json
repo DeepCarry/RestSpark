@@ -1,0 +1,42 @@
+{
+  "build/icon.icns": {
+    "sha256": "477ecaf5f2f2591af84bcc43c1df27a50f8c339750062fb4340db663a0af4b7b",
+    "approvedSource": "macos/restspark-icon.icns"
+  },
+  "app/images/app-icons/restsparkTemplate.png": {
+    "sha256": "2a39b86292135b1d296e99cfb9d6def445e897f35b9ba3366289e2a77cdcabb7",
+    "approvedSource": "macos/MenuBar/restsparkTemplate.png"
+  },
+  "app/images/app-icons/restsparkTemplate@2x.png": {
+    "sha256": "5a147e1ba54c61a352cfffab56b9bdbf859e6acbdab0e1c39e8ba2fd4a450648",
+    "approvedSource": "macos/MenuBar/restsparkTemplate@2x.png"
+  },
+  "app/images/brand/restspark-icon-256.png": {
+    "sha256": "cf435e4f500c2e72bcaffb316bd7767b36c134d8519e0835b7e766b2d993bc2d",
+    "approvedSource": "png/restspark-icon-256.png"
+  },
+  "app/images/brand/restspark-mark-teal.svg": {
+    "sha256": "6a5eafc1637b5391e92c2e70ccd5cdb589c56b1803b7f73fc65b176d0133464c",
+    "approvedSource": "svg/restspark-mark-teal.svg"
+  },
+  "app/images/brand/restspark-app-icon-master.svg": {
+    "sha256": "6508a25e5458ad49927e4e2e7887c390c0c0757bee404969c1a42b3db1df9ab4",
+    "approvedSource": "svg/restspark-app-icon-master.svg"
+  },
+  "app/images/brand/restspark-mark-black.svg": {
+    "sha256": "45c2a78b38a19f2d9522b5e17a0f97752605c0358127fa3f1c5e411d5a24ed7f",
+    "approvedSource": "svg/restspark-mark-black.svg"
+  },
+  "app/images/brand/restspark-app-icon-light.svg": {
+    "sha256": "742353b007879ded80a4517bf6d6fd639ffaa5d0049418c4364a265a631ffc3e",
+    "approvedSource": "svg/restspark-app-icon-light.svg"
+  },
+  "app/images/brand/restspark-mark-white.svg": {
+    "sha256": "3229881c7c5af0326a34396996bec0f4f33e5962fc7ab25d953dae52a78c8548",
+    "approvedSource": "svg/restspark-mark-white.svg"
+  },
+  "app/images/brand/restspark-app-icon-solid.svg": {
+    "sha256": "d2eff0b453f72582d237bb8fd03083ef23ea191715216f43af3b3235816f2648",
+    "approvedSource": "svg/restspark-app-icon-solid.svg"
+  }
+}

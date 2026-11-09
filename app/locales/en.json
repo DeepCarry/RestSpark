@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - The break time reminder app",
+    "toolTipHeader": "Rest Spark - The break time reminder app",
     "microbreakIn": "Mini break in $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Long break in $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Resuming breaks",
@@ -16,7 +16,7 @@
     "untilMorning": "Until morning",
     "indefinitely": "Indefinitely",
     "resetBreaks": "Reset breaks",
-    "quitStretchly": "Quit Stretchly",
+    "quitStretchly": "Quit Rest Spark",
     "restoreDefaults": "Restore defaults",
     "warning": "This will restore app defaults and all your settings will be lost.",
     "continue": "Continue",
@@ -32,16 +32,16 @@
     "finish": "Finish this break"
   },
   "preferences": {
-    "title": "Stretchly Preferences",
+    "title": "Rest Spark Preferences",
     "nav": {
       "settings": "Settings",
       "schedule": "Schedule",
       "theme": "Theme",
       "about": "About",
-      "heart": "Love Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Start Stretchly automatically when logging in",
+      "openAtLogin": "Start Rest Spark automatically when logging in",
       "showBreaksIn": "Shows breaks in:",
       "window": "Window",
       "fullscreen": "Full screen",
@@ -101,12 +101,12 @@
       "version": "Version ",
       "latestVersion": "Latest version ",
       "checkNewVersion": "Automatically check for app updates",
-      "learnMore": "To learn more about Stretchly features, view a tutorial, download the latest version or contact us for support, ",
-      "ourWebsite": "visit our website",
+      "learnMore": "For Rest Spark source, releases and support, visit ",
+      "ourWebsite": "project repository",
       "dot": ".",
-      "developedBy": "Developed by",
+      "developedBy": "Stretchly — Developed by",
       "janH": "Jan Hovancik",
-      "designedBy": "Icon and UI design by Colin Shanley"
+      "designedBy": "Stretchly — Icon and UI design by Colin Shanley"
     },
     "heart": {
       "loveStretchly": "Love your Stretchly?",
@@ -174,7 +174,7 @@
     "primary": "Primary monitor",
     "cursor": "Follow cursor",
     "showTrayIcon": "Show tray icon",
-    "toShowTrayIcon": "Show Stretchly icon in tray",
+    "toShowTrayIcon": "Show Rest Spark icon in tray",
     "currentTimeInBreaks": "Current time",
     "showCurrentTimeInBreaks": "Show current local time in break window"
   },
@@ -199,7 +199,7 @@
     "newVersionAvailable": "New version is available!"
   },
   "welcome": {
-    "title": "Welcome to Stretchly",
+    "title": "Welcome to Rest Spark",
     "breakTimeReminderApp": "The break time reminder app",
     "viewTutorial": "View Tutorial",
     "openPreferences": "Open Preferences",
@@ -516,5 +516,24 @@
       "title": "Overwhelmed?",
       "text": "Try the 5-4-3-2-1 Grounding Technique: Identify 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, and 1 thing you can taste."
     }
+  },
+  "quietRest": {
+    "miniTitle": "Take a little break",
+    "longTitle": "Time to unwind",
+    "footer": "Rest well. Come back refreshed.",
+    "scheduleTitle": "Break schedule",
+    "scheduleSubtitle": "Make a little room for rest in your day.",
+    "interval": "Break interval",
+    "duration": "Break duration",
+    "strictTitle": "Strict mode",
+    "longIntervalHelp": "Long breaks follow the configured number of mini breaks. The interval above is the resulting total time.",
+    "miniSection": "Mini breaks",
+    "longSection": "Long breaks"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

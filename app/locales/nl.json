@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Pauze herinnering app",
+    "toolTipHeader": "Rest Spark - Pauze herinnering app",
     "microbreakIn": "Mini Pauze in $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Lange Pauze in $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Pauzes hervatten",
@@ -16,7 +16,7 @@
     "untilMorning": "voor morgen",
     "indefinitely": "voor onbepaalde tijd",
     "resetBreaks": "Reset pauzes",
-    "quitStretchly": "Stop Stretchly",
+    "quitStretchly": "Stop Rest Spark",
     "warning": "Dit zal de standaardinstellingen herstellen en al je wijzigingen gaan verloren.",
     "continue": "Doorgaan",
     "cancel": "Annuleer",
@@ -31,16 +31,16 @@
     "title": "Tijd voor een pauze!"
   },
   "preferences": {
-    "title": "Stretchly Instellingen",
+    "title": "Rest Spark Instellingen",
     "nav": {
       "settings": "Instellingen",
       "schedule": "Schema",
       "theme": "Thema",
       "about": "Over",
-      "heart": "Waardeer Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Start Stretchly automatisch tijdens het inloggen",
+      "openAtLogin": "Start Rest Spark automatisch tijdens het inloggen",
       "showBreaksIn": "Toon pauzes in:",
       "window": "Venster",
       "fullscreen": "Volledig Scherm",
@@ -95,12 +95,12 @@
       "version": "Versie ",
       "latestVersion": "Laatste versie ",
       "notifyNewVersion": "Automatisch informeren wanneer er een app update beschikbaar is",
-      "learnMore": "Om meer te leren over de mogelijkheden van Stretchly, een tutorial te bekijken, de nieuwste versie te downloaden of om contact met ons op te nemen, ",
+      "learnMore": "Om meer te leren over de mogelijkheden van Rest Spark, een tutorial te bekijken, de nieuwste versie te downloaden of om contact met ons op te nemen, ",
       "ourWebsite": "bezoek onze website",
       "dot": ".",
-      "developedBy": "Ontwikkeld door",
+      "developedBy": "Stretchly — Ontwikkeld door",
       "janH": "Jan Hovancik",
-      "designedBy": "Pictogram en UI ontwerp door Colin Shanley",
+      "designedBy": "Stretchly — Pictogram en UI ontwerp door Colin Shanley",
       "checkNewVersion": "Controleer automatisch voor updates"
     },
     "heart": {
@@ -173,7 +173,7 @@
     "currentTimeInBreaks": "Huidige tijd",
     "showCurrentTimeInBreaks": "Toon huidige tijd in pauze scherm",
     "showTrayIcon": "Laat een icoon in het menu zien",
-    "toShowTrayIcon": "Laat het Stretchly icoon in de menubar zien"
+    "toShowTrayIcon": "Laat het Rest Spark icoon in de menubar zien"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -195,7 +195,7 @@
     "newVersionAvailable": "Nieuwe versie beschikbaar!"
   },
   "welcome": {
-    "title": "Welkom bij Stretchly",
+    "title": "Welkom bij Rest Spark",
     "breakTimeReminderApp": "Pauze herinnering app",
     "viewTutorial": "Bekijk Tutorial",
     "openPreferences": "Open Instellingen",
@@ -512,5 +512,11 @@
       "title": "Overprikkeld?",
       "text": "Probeer de 5-4-3-2-1-oefening: kijk rond en benoem 5 dingen die je ziet, 4 die je kunt aanraken, 3 die je hoort, 2 die je ruikt en 1 die je proeft."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

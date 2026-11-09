@@ -1,0 +1,4 @@
+
+> Stretchly@1.20.0 lint
+> cross-env ./node_modules/.bin/standard
+

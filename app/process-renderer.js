@@ -1,3 +1,4 @@
+import { BRAND, displayName } from './utils/brand.js'
 import VersionChecker from './utils/versionChecker.js'
 
 window.onload = async (e) => {
@@ -14,13 +15,13 @@ window.onload = async (e) => {
       await window.runtime.platform(),
       await window.runtime.getSystemVersion()
     )
-      ? 'Stretchly'
+      ? displayName(await window.settings.get('language'))
       : ''
     const notification = new Notification(title, {
       body: text,
       requireInteraction: true,
       silent,
-      icon: '../build/icon.ico'
+      icon: 'images/brand/restspark-icon-256.png'
     })
     setTimeout(() => notification.close(), 7000)
   })
@@ -51,12 +52,12 @@ window.onload = async (e) => {
   })
 
   async function notifyNewVersion (silent) {
-    const title = await window.utils.shouldShowNotificationTitle(await window.runtime.platform(), await window.runtime.getSystemVersion()) ? 'Stretchly' : ''
+    const title = await window.utils.shouldShowNotificationTitle(await window.runtime.platform(), await window.runtime.getSystemVersion()) ? displayName(await window.settings.get('language')) : ''
     const notification = new Notification(title, {
       body: await window.i18next.t('process.newVersionAvailable'),
       silent,
-      icon: '../build/icon.ico'
+      icon: 'images/brand/restspark-icon-256.png'
     })
-    notification.onclick = () => window.electronApi.openExternal('https://hovancik.net/stretchly/downloads')
+    notification.onclick = () => window.electronApi.openExternal(BRAND.releases)
   }
 }

@@ -25,7 +25,7 @@
   },
   "preferences": {
     "nav": {
-      "heart": "Подржите",
+      "heart": "Support Stretchly upstream",
       "about": "О програму",
       "theme": "Тема",
       "schedule": "Распоред",
@@ -53,7 +53,7 @@
       "appearance": "Изглед:",
       "sounds": "Звукови:"
     },
-    "title": "Подешавања Stretchly-ја"
+    "title": "Подешавања Rest Spark-ја"
   },
   "main": {
     "preferences": "Подешавања",
@@ -67,7 +67,7 @@
     "skipToTheNext": "Прескочи на следећу",
     "toMicrobreak": "кратку паузу",
     "toBreak": "дугу паузу",
-    "toolTipHeader": "Stretchly – подсетник за паузу",
+    "toolTipHeader": "Rest Spark – подсетник за паузу",
     "microbreakIn": "Кратка пауза за $t(utils.seconds, {'count': {{seconds}} })",
     "untilMorning": "до јутра",
     "indefinitely": "до даљњег",
@@ -78,5 +78,11 @@
     "postpone": "Одложи ову паузу",
     "skip": "Прескочи ову паузу",
     "title": "Време је за паузу!"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

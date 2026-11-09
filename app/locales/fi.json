@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Taukomuistutussovellus",
+    "toolTipHeader": "Rest Spark - Taukomuistutussovellus",
     "microbreakIn": "Minitauko $t(utils.seconds, {'count': {{seconds}} }) kuluttua",
     "breakIn": "Pitkä tauko $t(utils.seconds, {'count': {{seconds}} }) kuluttua",
     "resumingBreaks": "Jatketaan taukoja",
@@ -16,7 +16,7 @@
     "untilMorning": "Aamuun saakka",
     "indefinitely": "Toistaiseksi",
     "resetBreaks": "Nollaa tauot",
-    "quitStretchly": "Lopeta Stretchly",
+    "quitStretchly": "Lopeta Rest Spark",
     "restoreDefaults": "Palauta oletusasetukset",
     "warning": "Tämä palauttaa sovelluksen oletusasetukset ja tekemäsi muutokset menetetään.",
     "continue": "Jatka",
@@ -31,16 +31,16 @@
     "title": "Aika pitää tauko!"
   },
   "preferences": {
-    "title": "Stretchly asetukset",
+    "title": "Rest Spark asetukset",
     "nav": {
       "settings": "Asetukset",
       "schedule": "Aikataulu",
       "theme": "Teema",
-      "about": "Stretchlystä",
-      "heart": "Rakasta Stretchlyä"
+      "about": "Rest Sparkstä",
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Käynnistä Stretchly automaattisesti sisäänkirjautumisen yhteydessä.",
+      "openAtLogin": "Käynnistä Rest Spark automaattisesti sisäänkirjautumisen yhteydessä.",
       "showBreaksIn": "Näytä tauot:",
       "window": "Ikkunassa",
       "fullscreen": "Koko näytöllä",
@@ -94,12 +94,12 @@
       "version": "Versio ",
       "latestVersion": "Viimeisin versio ",
       "notifyNewVersion": "Ilmoita päivityksistä automaattisesti",
-      "learnMore": "Saadaksesi lisätietoa Stretchlyn ominaisuuksista, katso tutoriaali, lataa uusin versio tai ota yhteyttä tukeen, ",
+      "learnMore": "Saadaksesi lisätietoa Rest Sparkn ominaisuuksista, katso tutoriaali, lataa uusin versio tai ota yhteyttä tukeen, ",
       "ourWebsite": "vieraile nettisivuillamme",
       "dot": ".",
-      "developedBy": "Kehittänyt",
+      "developedBy": "Stretchly — Kehittänyt",
       "janH": "Jan Hovancik",
-      "designedBy": "Kuvakkeen ja käyttöliittymän suunnittelija Colin Shanley",
+      "designedBy": "Stretchly — Kuvakkeen ja käyttöliittymän suunnittelija Colin Shanley",
       "checkNewVersion": "Tarkista päivitykset automaattisesti"
     },
     "heart": {
@@ -186,7 +186,7 @@
     "newVersionAvailable": "Uusi verio on saatavilla!"
   },
   "welcome": {
-    "title": "Tervetuloa Stretchlyyn",
+    "title": "Tervetuloa Rest Sparkyn",
     "breakTimeReminderApp": "Taukomuistutusaplikaatio",
     "viewTutorial": "Katso tutoriaali",
     "openPreferences": "Avaa asetukset",
@@ -201,5 +201,11 @@
     "afterMiniBreak_one": "{{count}} minitauon jälkeen",
     "afterMiniBreak_other": "{{count}} minitauon jälkeen",
     "resuming": "Jatketaan"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

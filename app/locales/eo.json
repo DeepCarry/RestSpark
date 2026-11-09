@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - La aplikaĵo por memorigi pri paŭzoj",
+    "toolTipHeader": "Rest Spark - La aplikaĵo por memorigi pri paŭzoj",
     "microbreakIn": "Paŭzeto post $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Longa Paŭzo post $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Daŭrigi paŭzojn",
@@ -16,7 +16,7 @@
     "untilMorning": "Ĝis mateno",
     "indefinitely": "Senfine",
     "resetBreaks": "Restarigi Paŭzojn",
-    "quitStretchly": "Forlasi Stretchly",
+    "quitStretchly": "Forlasi Rest Spark",
     "restoreDefaults": "Restaŭri la defaŭltojn",
     "warning": "Ĉi tiu restaŭros la defaŭltojn de la aplikaĵo kaj ĉiuj viaj agordoj perdiĝos.",
     "continue": "Daŭrigi",
@@ -31,16 +31,16 @@
     "title": "Tempo por paŭzi!"
   },
   "preferences": {
-    "title": "Agordoj de Stretchly",
+    "title": "Agordoj de Rest Spark",
     "nav": {
       "settings": "Agordoj",
       "schedule": "Horaro",
       "theme": "Etoso",
       "about": "Pri",
-      "heart": "Ami Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Aŭtolanĉi Stretchly kiam vi ensalutas",
+      "openAtLogin": "Aŭtolanĉi Rest Spark kiam vi ensalutas",
       "showBreaksIn": "Montri paŭzojn:",
       "window": "En fenestro",
       "fullscreen": "Tutekrane",
@@ -95,12 +95,12 @@
       "version": "Versio ",
       "latestVersion": "Plej freŝa versio ",
       "notifyNewVersion": "Aŭtomate sciigi kiam ĝisdatiginta",
-      "learnMore": "Por lerni pli pri ebloj de Stretchly, spekti instruilon, elŝuti la plej freŝan version, aŭ kontakti nin por subteno, ",
+      "learnMore": "Por lerni pli pri ebloj de Rest Spark, spekti instruilon, elŝuti la plej freŝan version, aŭ kontakti nin por subteno, ",
       "ourWebsite": "visitu nian retejon",
       "dot": ".",
-      "developedBy": "Programis de",
+      "developedBy": "Stretchly — Programis de",
       "janH": "Jan Hovancik",
-      "designedBy": "Bildsimbolo kaj interfaca aspektigo de Colin Shanley",
+      "designedBy": "Stretchly — Bildsimbolo kaj interfaca aspektigo de Colin Shanley",
       "checkNewVersion": "Aŭtomate kontroli ĝisdatigojn de la programo"
     },
     "heart": {
@@ -171,7 +171,7 @@
     "timeToBreakInTray": "Tempo por paŭzi",
     "showTimeToBreakInTray": "Montri tempon al la sekva paŭzo en menuzono-ikono",
     "showTrayIcon": "Montri menuzono-ikonon",
-    "toShowTrayIcon": "Montri Stretchly-ikonon en la menuzono",
+    "toShowTrayIcon": "Montri Rest Spark-ikonon en la menuzono",
     "currentTimeInBreaks": "Nuna horo",
     "showCurrentTimeInBreaks": "Montri nunan lokan horon en la paŭzfenestro"
   },
@@ -195,7 +195,7 @@
     "newVersionAvailable": "Freŝa versio haveblas!"
   },
   "welcome": {
-    "title": "Bonvenon al Stretchly",
+    "title": "Bonvenon al Rest Spark",
     "breakTimeReminderApp": "La aplikaĵo por memorigi pri paŭzoj",
     "viewTutorial": "Spekti instruilon",
     "openPreferences": "Malfermi Agordojn",
@@ -252,5 +252,11 @@
     "abe": {
       "text": "Skuu viajn manojn por malstreĉi."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

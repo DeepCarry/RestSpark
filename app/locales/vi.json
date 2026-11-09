@@ -12,7 +12,7 @@
     "continue": "Tiếp tục",
     "contributorPreferences": "Tuỳ chọn Cộng tác viên",
     "syncPreferences": "Đồng bộ tuỳ chọn",
-    "toolTipHeader": "Stretchly - Ứng dụng nhắc giờ giải lao",
+    "toolTipHeader": "Rest Spark - Ứng dụng nhắc giờ giải lao",
     "microbreakIn": "Khoảng giải lao NGẮN sẽ bắt đầu sau $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Khoảng giải lao DÀI sẽ bắt đầu sau $t(utils.seconds, {'count': {{seconds}} })",
     "downloadLatestVersion": "Tải phiên bản mới nhất",
@@ -20,7 +20,7 @@
     "pause": "Tạm dừng giải lao",
     "for2Hours": "2 tiếng",
     "for5Hours": "5 tiếng",
-    "quitStretchly": "Thoát Stretchly",
+    "quitStretchly": "Thoát Rest Spark",
     "cancel": "Huỷ",
     "warning": "Thao tác này sẽ khôi phục cài đặt mặc định của ứng dụng và tất cả cài đặt của bạn sẽ bị mất.",
     "preferences": "Tuỳ chọn"
@@ -33,13 +33,13 @@
   "preferences": {
     "nav": {
       "schedule": "Kế hoạch",
-      "heart": "Thích Stretchly",
+      "heart": "Support Stretchly upstream",
       "settings": "Cài đặt",
       "theme": "Chủ đề",
-      "about": "Về Stretchly"
+      "about": "Về Rest Spark"
     },
     "settings": {
-      "openAtLogin": "Tự động chạy Stretchly khi khởi động máy tính",
+      "openAtLogin": "Tự động chạy Rest Spark khi khởi động máy tính",
       "showBreaksIn": "Màn hình Giải lao sẽ xuất hiện dưới dạng:",
       "fullscreen": "Toàn màn hình",
       "showIdeas": "Hiển thị những gợi ý vận động trong lúc giải lao",
@@ -89,18 +89,18 @@
       "snowWhite": "Trắng tuyết"
     },
     "about": {
-      "developedBy": "Phát triển bởi",
+      "developedBy": "Stretchly — Phát triển bởi",
       "version": "Phiên bản ",
       "ourWebsite": "Ghé thăm website",
       "tagline": "Ứng dụng nhắc giờ giải lao",
       "latestVersion": "Phiên bản mới nhất ",
       "dot": ".",
       "checkNewVersion": "Tự động kiểm tra phiên bản cập nhật của ứng dụng",
-      "learnMore": "Để tìm hiểu thêm về các tính năng của Stretchly, hãy xem hướng dẫn, tải xuống phiên bản mới nhất hoặc liên hệ với chúng tôi để được hỗ trợ, ",
+      "learnMore": "Để tìm hiểu thêm về các tính năng của Rest Spark, hãy xem hướng dẫn, tải xuống phiên bản mới nhất hoặc liên hệ với chúng tôi để được hỗ trợ, ",
       "janH": "Jan Hovancik cute",
-      "designedBy": "Biểu tượng và Giao diện người dùng thiết kế bởi Colin Shanley"
+      "designedBy": "Stretchly — Biểu tượng và Giao diện người dùng thiết kế bởi Colin Shanley"
     },
-    "title": "Tuỳ chọn Stretchly",
+    "title": "Tuỳ chọn Rest Spark",
     "heart": {
       "loveStretchly": "Bạn có thích Stretchly?",
       "desc1": "Nghỉ giải lao thường xuyên khi sử dụng máy tính đã được khoa học chứng minh là rất quan trọng đối với sức khỏe thể chất và tinh thần của bạn.",
@@ -169,12 +169,12 @@
     "cursor": "Theo dõi con trỏ",
     "showTimeToBreakInTray": "Hiển thị thời gian đến lần Giải lao tiếp theo trong biểu tượng thanh thực đơn",
     "showTrayIcon": "Hiển thị biểu tượng thanh thực đơn",
-    "toShowTrayIcon": "Hiển thị biểu tượng Stretchly trên thanh thực đơn",
+    "toShowTrayIcon": "Hiển thị biểu tượng Rest Spark trên thanh thực đơn",
     "currentTimeInBreaks": "Thời điểm hiện tại",
     "showCurrentTimeInBreaks": "Hiển thị giờ địa phương hiện tại trong cửa sổ Giải lao"
   },
   "welcome": {
-    "title": "Chào mừng đến với Stretchly",
+    "title": "Chào mừng đến với Rest Spark",
     "getStarted": "Bắt đầu",
     "breakTimeReminderApp": "Ứng dụng nhắc giờ giải lao",
     "viewTutorial": "Xem Hướng dẫn sử dụng",
@@ -391,7 +391,7 @@
       "text": "Bằng chứng cho thấy một lượng nhỏ tập thể dục thường xuyên có thể mang lại những lợi ích sức khỏe đáng kể, bao gồm giảm nhanh căng thẳng."
     },
     "aas": {
-      "text": "Bạn đã tìm thấy thói quen vận động theo Stretchly của mình chưa? Đừng quên lặp lại nó nhiều lần để chống lại tác động không tốt của việc ngồi lâu.",
+      "text": "Bạn đã tìm thấy thói quen vận động theo Rest Spark của mình chưa? Đừng quên lặp lại nó nhiều lần để chống lại tác động không tốt của việc ngồi lâu.",
       "title": "Lặp lại"
     },
     "aat": {
@@ -499,5 +499,11 @@
   },
   "process": {
     "newVersionAvailable": "Có phiên bản mới!"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

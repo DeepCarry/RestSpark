@@ -196,17 +196,17 @@
     },
     "about": {
       "ourWebsite": "külasta meie veebilehte",
-      "developedBy": "Arendaja",
-      "designedBy": "Ikoonide ja kasutajaliidese disain Colin Shanley poolt",
+      "developedBy": "Stretchly — Arendaja",
+      "designedBy": "Stretchly — Ikoonide ja kasutajaliidese disain Colin Shanley poolt",
       "dot": ".",
       "tagline": "Pausiaegade meeldetuletusrakendus",
       "checkNewVersion": "Rakenduse uuenduste automaatne kontroll",
       "version": "Versioon ",
       "latestVersion": "Uusim versioon ",
-      "learnMore": "Et rohkem teada saada Stretchly funktsioonidest, vaata õpetust, laadi alla uusim versioon või võta meiega ühendust toe saamiseks, ",
+      "learnMore": "Et rohkem teada saada Rest Spark funktsioonidest, vaata õpetust, laadi alla uusim versioon või võta meiega ühendust toe saamiseks, ",
       "janH": "Jan Hovancik"
     },
-    "title": "Stretchly Seaded",
+    "title": "Rest Spark Seaded",
     "heart": {
       "becomeContributor": "Hakka toetajaks",
       "desc1": "On teaduslikult tõestatud, et arvutit kasutades on regulaarsed pausid olulised nii sinu füüsilise kui ka vaimse heaolu jaoks.",
@@ -224,7 +224,7 @@
       "allScreens": "Kuvab pause kõigil ekraanidel",
       "restoreDefaults": "Taasta vaikeseaded",
       "monitorIdleTime": "Monitoorib süsteemi passiivset aega (pausid on peatatud, kui süsteem on passiivne).",
-      "openAtLogin": "Käivita Stretchly automaatselt sisselogimisel",
+      "openAtLogin": "Käivita Rest Spark automaatselt sisselogimisel",
       "showIdeas": "Näita pauside ajal harjutuste soovitusi",
       "fullscreen": "Täisekraanil",
       "showBreaksIn": "Pause näidatakse:"
@@ -232,7 +232,7 @@
     "nav": {
       "theme": "Kujundus",
       "schedule": "Ajakava",
-      "heart": "Armastan Stretchlyt",
+      "heart": "Support Stretchly upstream",
       "settings": "Seaded",
       "about": "Info"
     }
@@ -257,7 +257,7 @@
     "dark": "Tume",
     "2": "Kolmas monitor",
     "longBreaks": "Suured pausid:",
-    "toShowTrayIcon": "Kuva menüüribal Stretchly ikoon",
+    "toShowTrayIcon": "Kuva menüüribal Rest Spark ikoon",
     "naturalBreaksInfo": "Kui peamistes eelistustes on süsteemi passiivsuse jälgimine lubatud, saate määrata, mis aja möödudes pausid peatada.",
     "timeToBreakInTray": "Aeg paus teha",
     "3": "Neljas monitor",
@@ -470,8 +470,8 @@
     "cancel": "Katkesta",
     "toMicrobreak": "Väike paus",
     "contributorPreferences": "Kaasautorite eelistused",
-    "quitStretchly": "Sulge Stretchly",
-    "toolTipHeader": "Stretchly - Puhkehetkede meeldetuletusrakendus",
+    "quitStretchly": "Sulge Rest Spark",
+    "toolTipHeader": "Rest Spark - Puhkehetkede meeldetuletusrakendus",
     "breakIn": "Suure pausini $t(utils.seconds, {'count': {{seconds}} })",
     "resetBreaks": "Lähtesta pausid",
     "resumingBreaks": "Pauside jätkamine",
@@ -495,7 +495,7 @@
   },
   "welcome": {
     "getStarted": "Alusta",
-    "title": "Teretulemast Stretchlysse",
+    "title": "Teretulemast Rest Sparksse",
     "viewTutorial": "Vaata õpetust",
     "breakTimeReminderApp": "Puhkepauside meeldetuletuse rakendus",
     "openPreferences": "Ava seaded"
@@ -507,5 +507,11 @@
   },
   "process": {
     "newVersionAvailable": "Uus versioon on saadaval!"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - تطبيق تذكير وقت الراحة",
+    "toolTipHeader": "Rest Spark - تطبيق تذكير وقت الراحة",
     "microbreakIn": "استراحة قصيرة خلال $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "استراحة طويلة خلال$t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "استئناف الاستراحات",
@@ -8,5 +8,16 @@
     "toBreak": "استراحة طويلة",
     "toMicrobreak": "استراحة قصيرة",
     "skipToTheNext": "تخطي إلى التالي"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
+  },
+  "preferences": {
+    "nav": {
+      "heart": "Support Stretchly upstream"
+    }
   }
 }

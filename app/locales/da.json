@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - Pause påmindelses app",
+    "toolTipHeader": "Rest Spark - Pause påmindelses app",
     "microbreakIn": "Mini pause om $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Pause om $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Genoptag pauser",
@@ -9,14 +9,14 @@
     "toMicrobreak": "Mini pause",
     "skipToTheNext": "Spring til næste..",
     "resume": "Genoptag",
-    "pause": "Pause Stretchly",
+    "pause": "Pause Rest Spark",
     "forHour": "en time",
     "for2Hours": "2 timer",
     "for5Hours": "5 timer",
     "untilMorning": "Indtil imorgen",
     "indefinitely": "For evigt",
     "resetBreaks": "Genstart pauser",
-    "quitStretchly": "Luk Stretchly",
+    "quitStretchly": "Luk Rest Spark",
     "restoreDefaults": "Nulstil til standardindstillinger",
     "warning": "Dette vil nulstille til standardindstillinger og alle dine indstillinger vil blive slettet.",
     "continue": "Fortsæt",
@@ -31,16 +31,16 @@
     "title": "Tid til at holde en pause!"
   },
   "preferences": {
-    "title": "Stretchly Indstillinger",
+    "title": "Rest Spark Indstillinger",
     "nav": {
       "settings": "Indstillinger",
       "schedule": "Schedule",
       "theme": "Tema",
       "about": "Om os",
-      "heart": "Elsker Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Start Stretchly automatisk når du logger ind",
+      "openAtLogin": "Start Rest Spark automatisk når du logger ind",
       "showBreaksIn": "Viser pauser i:",
       "window": "Vindue",
       "fullscreen": "Fuld skærm",
@@ -95,12 +95,12 @@
       "version": "Version ",
       "latestVersion": "Nyeste version ",
       "notifyNewVersion": "Vis nye opdateringer automatisk",
-      "learnMore": "For at lære mere om Stretchlys funktioner, se en vejledning, hent den nyeste version eller kontakt os for support,",
+      "learnMore": "For at lære mere om Rest Sparks funktioner, se en vejledning, hent den nyeste version eller kontakt os for support,",
       "ourWebsite": "besøg vores hjemmeside",
       "dot": ".",
-      "developedBy": "Udviklet af",
+      "developedBy": "Stretchly — Udviklet af",
       "janH": "Jan Hovancik",
-      "designedBy": "Ikon og UI design af Colin Shanley",
+      "designedBy": "Stretchly — Ikon og UI design af Colin Shanley",
       "checkNewVersion": "Tjek automatisk for app opdateringer"
     },
     "heart": {
@@ -193,7 +193,7 @@
     "newVersionAvailable": "Ny version er tilgængelig!"
   },
   "welcome": {
-    "title": "Velkommen til Stretchly",
+    "title": "Velkommen til Rest Spark",
     "breakTimeReminderApp": "Pause påmindelses app",
     "viewTutorial": "Se vejledning",
     "openPreferences": "Åben præferencer",
@@ -253,5 +253,11 @@
     "aam": {
       "text": "Tag et øjeblik til at tænke på noget du er taknemlig for."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

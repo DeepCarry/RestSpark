@@ -6,7 +6,7 @@
     "continue": "Nadaljuj",
     "warning": "To bo ponastavilo na privzete nastavitve in vse vaše nastavitve bodo izgubljene.",
     "restoreDefaults": "Ponastavi nastavitve",
-    "quitStretchly": "Izhod iz Stretchly",
+    "quitStretchly": "Izhod iz Rest Spark",
     "resetBreaks": "Ponastavi premore",
     "indefinitely": "Trajno",
     "untilMorning": "Do jutra",
@@ -19,7 +19,7 @@
     "downloadLatestVersion": "Prenesi najnovejšo verzijo",
     "breakIn": "Dolg premor čez $t(utils.seconds, {'count': {{seconds}} })",
     "microbreakIn": "Mini premor čez $t(utils.seconds, {'count': {{seconds}} })",
-    "toolTipHeader": "Stretchly - Opomnik za odmor",
+    "toolTipHeader": "Rest Spark - Opomnik za odmor",
     "contributorPreferences": "Nastavitve podpornikov",
     "pause": "Zaustavi premore",
     "resume": "Nadaljuj premor",
@@ -43,7 +43,7 @@
     "openPreferences": "Odpri nastavitve",
     "viewTutorial": "Ogled vodiča",
     "breakTimeReminderApp": "Aplikacija za opomnike o premorih",
-    "title": "Dobrodošli v Stretchly"
+    "title": "Dobrodošli v Rest Spark"
   },
   "process": {
     "newVersionAvailable": "Nova različica na voljo!"
@@ -136,7 +136,7 @@
     "currentTimeInBreaks": "Trenutni čas",
     "showCurrentTimeInBreaks": "Prikaži trenutni lokalni čas v oknu premora",
     "showTrayIcon": "Pokaži ikono v opravilni vrstici",
-    "toShowTrayIcon": "Pokaži Stretchly ikono v opravilni vrstici"
+    "toShowTrayIcon": "Pokaži Rest Spark ikono v opravilni vrstici"
   },
   "preferences": {
     "heart": {
@@ -150,12 +150,12 @@
       "loveStretchly": "Ljubite Stretchly?"
     },
     "about": {
-      "designedBy": "Ikono in izgled aplikacije ustvaril Colin Shanley",
+      "designedBy": "Stretchly — Ikono in izgled aplikacije ustvaril Colin Shanley",
       "janH": "Jan Hovančik",
-      "developedBy": "Razvil",
+      "developedBy": "Stretchly — Razvil",
       "dot": ".",
       "ourWebsite": "obiščite našo spletno stran",
-      "learnMore": "Če želite izvedeti več o funkcijah Stretchly, si ogledati vodič, prenesti najnovejšo različico ali nas kontaktirati, ",
+      "learnMore": "Če želite izvedeti več o funkcijah Rest Spark, si ogledati vodič, prenesti najnovejšo različico ali nas kontaktirati, ",
       "checkNewVersion": "Samodejno preverjanje za posodobitve",
       "latestVersion": "Najnovejša različica ",
       "version": "Različica ",
@@ -215,16 +215,16 @@
       "fullscreen": "Cel zaslon",
       "window": "Okno",
       "showBreaksIn": "Prikaz premora:",
-      "openAtLogin": "Zaženi Stretchly ob vpisu v sistem"
+      "openAtLogin": "Zaženi Rest Spark ob vpisu v sistem"
     },
     "nav": {
-      "heart": "Ljubim Stretchly",
+      "heart": "Support Stretchly upstream",
       "about": "O programu",
       "theme": "Videz",
       "schedule": "Urnik",
       "settings": "Nastavitve"
     },
-    "title": "Nastavitve Stretchly"
+    "title": "Nastavitve Rest Spark"
   },
   "break": {
     "title": "Čas za premor!",
@@ -532,5 +532,11 @@
       "title": "Preobremenjen/a?",
       "text": "Poskusite tehniko ozemljitve 5-4-3-2-1: določite 5 stvari, ki jih lahko vidite, 4 stvari, ki jih lahko dotaknete, 3 stvari, ki jih lahko slišite, 2 stvari, ki jih lahko vonjate, in 1 stvar, ki jo lahko okusite."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

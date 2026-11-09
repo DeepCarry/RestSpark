@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly – Pamatuje na přestávky za Vás",
+    "toolTipHeader": "Rest Spark – Pamatuje na přestávky za Vás",
     "microbreakIn": "Mini přestávka za $t(utils.seconds, {'count': {{seconds}} })",
     "breakIn": "Dlouhá přestávka za $t(utils.seconds, {'count': {{seconds}} })",
     "resumingBreaks": "Obnovení přestávek",
@@ -16,7 +16,7 @@
     "untilMorning": "Do rána",
     "indefinitely": "Na neurčito",
     "resetBreaks": "Resetovat přestávky",
-    "quitStretchly": "Ukončit Stretchly",
+    "quitStretchly": "Ukončit Rest Spark",
     "restoreDefaults": "Obnovit výchozí nastavení",
     "areYouSure": "Tato akce obnoví původní nastavení a všechny vaše změny budou ztraceny.",
     "continue": "Pokračovat",
@@ -33,16 +33,16 @@
     "finish": "Dokončit tuto přestávku"
   },
   "preferences": {
-    "title": "Nastavení Stretchly",
+    "title": "Nastavení Rest Spark",
     "nav": {
       "settings": "Nastavení",
       "schedule": "Časování",
       "theme": "Motiv",
       "about": "Informace",
-      "heart": "Pomoci Stretchly"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "Spustit Stretchly automaticky po přihlášení",
+      "openAtLogin": "Spustit Rest Spark automaticky po přihlášení",
       "showBreaksIn": "Zobrazovat přestávky jako:",
       "window": "Okno",
       "fullscreen": "Celá obrazovka",
@@ -102,12 +102,12 @@
       "version": "Verze ",
       "latestVersion": "Nejnovější verze ",
       "notifyNewVersion": "Automaticky upozorňovat na nové verze",
-      "learnMore": "Pokud se chcete o funkcích Stretchly dozvědět víc, zhlédnout tutoriál, stáhnout nejnovější verzi nebo nás kontaktovat kvůli podpoře, ",
+      "learnMore": "Pokud se chcete o funkcích Rest Spark dozvědět víc, zhlédnout tutoriál, stáhnout nejnovější verzi nebo nás kontaktovat kvůli podpoře, ",
       "ourWebsite": "navštivte naši webovou stránku",
       "dot": ".",
-      "developedBy": "Vyvinul",
+      "developedBy": "Stretchly — Vyvinul",
       "janH": "Ján Hovančík",
-      "designedBy": "Ikony a uživatelské rozhraní Colin Shanley",
+      "designedBy": "Stretchly — Ikony a uživatelské rozhraní Colin Shanley",
       "checkNewVersion": "Automaticky kontrolovat aktualizace aplikace"
     },
     "heart": {
@@ -180,7 +180,7 @@
     "timeToBreakInTray": "Čas si dát přestávku",
     "showTimeToBreakInTray": "Zobrazit čas do další přestávky v ikoně na panelu nabídek",
     "showTrayIcon": "Zobrazit ikonu nabídky",
-    "toShowTrayIcon": "Zobrazit ikonu aplikace Stretchly v nabídce"
+    "toShowTrayIcon": "Zobrazit ikonu aplikace Rest Spark v nabídce"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -209,7 +209,7 @@
     "newVersionAvailable": "Je dostupná nová verze!"
   },
   "welcome": {
-    "title": "Vítejte ve Stretchly",
+    "title": "Vítejte ve Rest Spark",
     "breakTimeReminderApp": "Pamatuje na přestávky za vás",
     "viewTutorial": "Zhlédnout Tutoriál",
     "openPreferences": "Otevřít Nastavení",
@@ -527,5 +527,11 @@
       "title": "Pod tlakem?",
       "text": "Zkuste uzemňovací techniku 5-4-3-2-1: Najděte 5 věcí, které vidíte, 4 věci, kterých se můžete dotknout, 3 věci, které slyšíte, 2 věci, které cítíte, a 1 věc, kterou můžete ochutnat."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

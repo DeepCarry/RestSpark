@@ -1,0 +1,23 @@
+
+DevTools listening on ws://127.0.0.1:54233/devtools/browser/16ddfbd3-b752-43c5-a83b-e5785e915ba6
+11:31:37.506 › Stretchly: initializing...
+11:31:37.514 › Stretchly: migrating preferences from Stretchly v0.0.0 to v1.13.0
+11:31:37.514 › Stretchly: not migrating pauseBreaksShortcut
+11:31:37.519 › Stretchly: migrating preferences from Stretchly v1.13.0 to v1.17.0
+11:31:37.519 › Stretchly: not migrating showBreakActionsInStrictMode
+11:31:37.522 › Stretchly: migrating preferences from Stretchly v1.17.0 to v1.18.2
+11:31:37.526 › Stretchly: migrating preferences from Stretchly v1.18.2 to v1.19.0
+11:31:37.527 › Stretchly: not migrating audio to longBreakAudio
+11:31:37.527 › Stretchly: not migrating microbreakStartSoundPlaying
+11:31:37.527 › Stretchly: not migrating breakStartSoundPlaying
+11:31:37.531 › Stretchly: migrating preferences from Stretchly v1.19.0 to v1.20.0
+11:31:37.536 › Stretchly: loading preferences
+11:31:37.557 › Stretchly: attempting to set autostart to false
+🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+(node:22506) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Rest Spark --trace-deprecation ...` to show where the warning was created)
+11:31:37.750 › Stretchly: loading default break ideas
+11:31:37.751 › null
+11:31:37.949 › Stretchly: arguments received from second instance: --user-data-dir=/var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-packaged-1794195094051,preferences
+11:31:37.949 › Stretchly: open Preferences window (requested by second instance)
+11:31:37.965 › Stretchly 2: forwarding command 'preferences' to the main instance

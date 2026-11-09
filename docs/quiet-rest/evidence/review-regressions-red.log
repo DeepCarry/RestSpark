@@ -1,0 +1,56 @@
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+
+ ❯ test/quietRestPreferences.js (8 tests | 2 failed) 258ms
+     × binds sound previews and controls even when IPC takes more than 500 ms 32ms
+     × does not reset the user window size when navigating 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > binds sound previews and controls even when IPC takes more than 500 ms
+AssertionError: expected 'object' to be 'function' // Object.is equality
+
+Expected: "function"
+Received: "object"
+
+ ❯ test/quietRestPreferences.js:83:66
+     81|     await vi.advanceTimersByTimeAsync(2500)
+     82|     await loaded
+     83|     expect(typeof document.querySelector('.sounds img').onclick).toBe(…
+       |                                                                  ^
+     84|     expect(typeof document.querySelector('#miniBreakFor').onchange).to…
+     85|     document.querySelector('.sounds img').click()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > does not reset the user window size when navigating
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      860,
+      740,
+    ]
+
+
+Number of calls: 1
+
+ ❯ test/quietRestPreferences.js:91:48
+     89|     window.stretchly.setWindowSize.mockClear()
+     90|     document.querySelector('[data-section=theme]').click()
+     91|     expect(window.stretchly.setWindowSize).not.toHaveBeenCalled()
+       |                                                ^
+     92|   })
+     93|   it('preserves negative settings semantics and independent strict mod…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed (8)
+   Start at  02:20:31
+   Duration  676ms (transform 28ms, setup 0ms, import 310ms, tests 258ms, environment 0ms)
+

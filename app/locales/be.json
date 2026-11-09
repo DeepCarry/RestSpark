@@ -17,7 +17,7 @@
     "cancel": "Скасаваць",
     "toMicrobreak": "Кароткі перапынак",
     "quitStretchly": "Выйсьці",
-    "toolTipHeader": "Stretchly - Праграма напамінаў пра перапынкі",
+    "toolTipHeader": "Rest Spark - Праграма напамінаў пра перапынкі",
     "breakIn": "Доўгі перапынак праз $t(utils.seconds, {'count': {{seconds}} })",
     "resetBreaks": "Скінуць таймер перапынкаў",
     "resumingBreaks": "Аднаўленне перапынкаў",
@@ -70,7 +70,7 @@
       "enablePostponeLong": "Дазволіць адкладаць доўгія перапынкі",
       "enableMiniBreaks": "Уключыць кароткія перапынкі"
     },
-    "title": "Параметры Stretchly",
+    "title": "Параметры Rest Spark",
     "settings": {
       "language": "Выбраць мову:",
       "window": "Акно",
@@ -78,7 +78,7 @@
       "allScreens": "Паказваць перапынкі на ўсіх маніторах",
       "restoreDefaults": "Аднавіць прадвызначаныя налады",
       "monitorIdleTime": "Сачыць за прастоем сістэмы (парапынкі на паўзе, калі сістэма не выкарыстоўваецца).",
-      "openAtLogin": "Аўтаматычна запусціць Stretchly пры ўваходзе ў сістэму",
+      "openAtLogin": "Аўтаматычна запусціць Rest Spark пры ўваходзе ў сістэму",
       "showIdeas": "Паказваць парады фізічных практыкаванняў падчас перапынкаў",
       "fullscreen": "На ўвесь экран",
       "showBreaksIn": "Паказваць перапынкі як:"
@@ -86,7 +86,7 @@
     "nav": {
       "theme": "Тэма",
       "schedule": "Расклад",
-      "heart": "Падабаецца Stretchly",
+      "heart": "Support Stretchly upstream",
       "settings": "Налады",
       "about": "Аб праграме"
     },
@@ -96,10 +96,10 @@
       "version": "Версія ",
       "latestVersion": "Апошняя версія ",
       "ourWebsite": "наведайце наш вэб-сайт",
-      "developedBy": "Распрацаваная",
-      "designedBy": "Дызайн значка і інтэрфейса ад Colin Shanley",
+      "developedBy": "Stretchly — Распрацаваная",
+      "designedBy": "Stretchly — Дызайн значка і інтэрфейса ад Colin Shanley",
       "dot": ".",
-      "learnMore": "Каб даведацца больш пра функцыі Stretchly, глядзіце ў інструкцыю, спампуйце апошнюю версію або звяжыцеся з намі па падтрымку, ",
+      "learnMore": "Каб даведацца больш пра функцыі Rest Spark, глядзіце ў інструкцыю, спампуйце апошнюю версію або звяжыцеся з намі па падтрымку, ",
       "janH": "Jan Hovancik"
     },
     "heart": {
@@ -288,7 +288,7 @@
     "dark": "Цёмны",
     "2": "Трэці манітор",
     "longBreaks": "Доўгія перапынкі:",
-    "toShowTrayIcon": "Паказваць значок Stretchly ў панелі меню",
+    "toShowTrayIcon": "Паказваць значок Rest Spark ў панелі меню",
     "naturalBreaksInfo": "Калі маніторынг часу прастою ўключаны ў галоўных параметрах, вы можаце вызначыць, праз які час перапынкі мусяць быць пастаўлены на паўзу.",
     "timeToBreakInTray": "Час зрабіць перапынак",
     "3": "Чацвёрты манітор",
@@ -365,7 +365,7 @@
   },
   "welcome": {
     "getStarted": "Пачаць",
-    "title": "Вітаем у Stretchly",
+    "title": "Вітаем у Rest Spark",
     "viewTutorial": "Глядзець інструкцыю",
     "breakTimeReminderApp": "Праграма напамінаў пра перапынкі",
     "openPreferences": "Адкрыць параметры"
@@ -514,5 +514,11 @@
       "title": "Візуалізацыя ўяўлення",
       "text": "Заплюшчыце вочы і ўявіце сябе ў ціхім і спакойным месцы, напрыклад, на пляжы або ў лесе, канцэнтруйцеся на ўяўленнях, гуках і адчуваннях гэтага асяроддзя."
     }
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

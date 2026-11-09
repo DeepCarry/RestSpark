@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - ब्रेक समय रिमाइन्डर एप्लिकेशन",
+    "toolTipHeader": "Rest Spark - ब्रेक समय रिमाइन्डर एप्लिकेशन",
     "microbreakIn": "अर्को छोटो ब्रेक पुनः $t(utils.seconds, {'count': {{seconds}} }) मा सुरु हुन्छ । ",
     "breakIn": "अर्को लामो ब्रेक पुनः $t(utils.seconds, {'count': {{seconds}} }) मा सुरु हुन्छ ।",
     "resumingBreaks": "पुनः ब्रेक सुरु गर्दै ।",
@@ -16,7 +16,7 @@
     "untilMorning": "बिहान सम्म ।",
     "indefinitely": "अनिश्चित अवधिको लागि ।",
     "resetBreaks": "ब्रेकहरू रिसेट गर्नुहोस् ।",
-    "quitStretchly": "stretchly बन्द गर्नुहोस् ।",
+    "quitStretchly": "Rest Spark बन्द गर्नुहोस् ।",
     "restoreDefaults": "फेरी पहिलाकै अवस्था मा लैजाऊ ।",
     "warning": "यसले एप्लिकेशनको सेटिंग्सलाई पहिलाकै अवस्थामा रूपान्तरण गर्दछ र तपाईंको सबै सेटिंग्स हराउनेछ ।",
     "continue": "जारी राख्नुहोस् ।",
@@ -30,16 +30,16 @@
     "title": "ब्रेक लिन समय भयो ।"
   },
   "preferences": {
-    "title": "Stretchly प्राथमिकताहरू",
+    "title": "Rest Spark प्राथमिकताहरू",
     "nav": {
       "settings": "सेटिंग्स",
       "schedule": "तालिका",
       "theme": "थिम",
       "about": "बारेमा",
-      "heart": "Stretchly लाई माया पठाउनुहोस्"
+      "heart": "Support Stretchly upstream"
     },
     "settings": {
-      "openAtLogin": "लग ईन गर्ने बखत स्वचालित रूपमा Stretchly शुरू गर्नुहोस् ।",
+      "openAtLogin": "लग ईन गर्ने बखत स्वचालित रूपमा Rest Spark शुरू गर्नुहोस् ।",
       "showBreaksIn": "ब्रेक कसरी प्रस्तुत गर्ने:",
       "window": "विन्डो",
       "fullscreen": "फूल स्क्रीन",
@@ -92,7 +92,7 @@
       "version": "संस्करण ",
       "latestVersion": "पछिल्लो संस्करण ",
       "notifyNewVersion": "एप्लिकेशन अपडेटहरू स्वचालित रूपमा सूचित गर्नुहोस् ।",
-      "learnMore": "Stretchly को सुविधाहरूको बारेमा अधिक जान्नको लागि, ट्यूटोरियल हेर्नुहोस्, भर्खरको संस्करण डाउनलोड गर्नुहोस् वा समर्थनका लागि हामीलाई सम्पर्क गर्नुहोस् । ",
+      "learnMore": "Rest Spark को सुविधाहरूको बारेमा अधिक जान्नको लागि, ट्यूटोरियल हेर्नुहोस्, भर्खरको संस्करण डाउनलोड गर्नुहोस् वा समर्थनका लागि हामीलाई सम्पर्क गर्नुहोस् । ",
       "ourWebsite": "हाम्रो वेबसाइटको भ्रमण गर्नुहोस्",
       "dot": "."
     },
@@ -163,7 +163,7 @@
     "newVersionAvailable": "नयाँ संस्करण उपलब्ध छ!"
   },
   "welcome": {
-    "title": "Stretchly मा तपाईंको स्वागत छ । ",
+    "title": "Rest Spark मा तपाईंको स्वागत छ । ",
     "breakTimeReminderApp": "ब्रेक समय रिमाइन्डर एप्लिकेशन",
     "viewTutorial": "ट्यूटोरियल हेर्नुहोस्",
     "openPreferences": "प्राथमिकताहरू खोल्नुहोस्",
@@ -178,5 +178,11 @@
     "afterMiniBreak_one": " {{count}} वटा छोटो ब्रेक पछि",
     "afterMiniBreak_other": " {{count}} वटा लामो ब्रेक पछि",
     "resuming": "पुनःसुरु गर्दै ।"
+  },
+  "brand": {
+    "name": "Rest Spark",
+    "otherName": "元气",
+    "upstream": "Based on Stretchly · BSD-2-Clause",
+    "upstreamSupport": "Support Stretchly upstream"
   }
 }

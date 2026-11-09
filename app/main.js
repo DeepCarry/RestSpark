@@ -1,7 +1,7 @@
 import {
   app, nativeTheme, BrowserWindow, Menu, ipcMain,
   screen, shell, dialog, globalShortcut, Tray,
-  powerMonitor
+  powerMonitor, nativeImage
 } from 'electron'
 import { EventEmitter } from 'node:events'
 import { readFile, writeFile, existsSync, mkdirSync } from 'node:fs'
@@ -29,21 +29,25 @@ import { registerBreakShortcuts } from './utils/breakShortcuts.js'
 import defaultSettings from './utils/defaultSettings.js'
 import StatusMessages from './utils/statusMessages.js'
 import DisplayManager from './utils/displayManager.js'
+import { BRAND } from './utils/brand.js'
+import { configureBrandIdentity, migrateLegacyProfile, readSavedOpenAtLogin, resolveLoginPreference } from './utils/brandProfile.js'
+import { macTrayAsset, trayStatusTitle } from './utils/restSparkTray.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
+const brandIdentity = configureBrandIdentity(app, { portable: insideWindowsPortable() })
 
 process.on('uncaughtException', (err, _) => {
   log.error(err)
   const dialogOpts = {
     type: 'error',
-    title: 'Stretchly',
-    message: 'An error occured while running Stretchly and it will now quit. To report the issue, click Report.',
+    title: BRAND.name,
+    message: 'Rest Spark encountered an error and will now quit. Click Report to open the project issue tracker.',
     buttons: ['Report', 'OK']
   }
   dialog.showMessageBox(dialogOpts).then((returnValue) => {
     if (returnValue.response === 0) {
-      shell.openExternal('https://github.com/hovancik/stretchly/issues')
+      shell.openExternal(BRAND.issues)
     }
     app.quit()
   })
@@ -91,7 +95,7 @@ log.initialize({ preload: true })
 
 // https://stackoverflow.com/questions/65859634/notification-from-electron-shows-electron-app-electron/65863174#65863174
 if (process.platform === 'win32') {
-  app.setAppUserModelId('Stretchly')
+  app.setAppUserModelId(BRAND.appId)
 }
 
 const global = {
@@ -196,6 +200,10 @@ app.on('window-all-closed', () => {
   // do nothing, so app wont get closed
 })
 app.on('before-quit', (event) => {
+  if (!breakPlanner || !settings) {
+    globalShortcut.unregisterAll()
+    return
+  }
   if ((breakPlanner.scheduler.reference === 'finishMicrobreak' && settings.get('microbreakStrictMode')) ||
       (breakPlanner.scheduler.reference === 'finishBreak' && settings.get('breakStrictMode'))
   ) {
@@ -214,6 +222,23 @@ app.on('before-quit', (event) => {
 async function initialize (isAppStart = true) {
   if (!gotTheLock) {
     return
+  }
+  // Read explicit preferences before electron-store adds defaults.
+  let savedOpenAtLogin
+  if (!settings) {
+    try {
+      if (brandIdentity.allowLegacyMigration) {
+        const migration = migrateLegacyProfile(brandIdentity)
+        log.info(`Rest Spark profile: ${migration.status}`)
+      }
+      savedOpenAtLogin = readSavedOpenAtLogin(app.getPath('userData'))
+    } catch (error) {
+      log.error('Rest Spark could not load/import settings', error)
+      dialog.showErrorBox(BRAND.name,
+        `Rest Spark could not load or import settings.\n\nSource: ${brandIdentity.source}\nDestination: ${app.getPath('userData')}\n\n${error.message}\n\nYour original Stretchly files were left in place. Resolve the error and restart Rest Spark.`)
+      app.quit()
+      return
+    }
   }
   // TODO maybe we should not reinitialize but handle everything when we save new values for preferences
   log.info(`Stretchly: ${isAppStart ? '' : 're'}initializing...`)
@@ -352,7 +377,7 @@ async function initialize (isAppStart = true) {
 
   if (!settings.get('_migratedOpenAtLogin')) {
     // one time migration with 1.20 or after
-    settings.set('openAtLogin', await autostartManager.autoLaunchStatus())
+    settings.set('openAtLogin', resolveLoginPreference(savedOpenAtLogin, await autostartManager.autoLaunchStatus()))
     settings.set('_migratedOpenAtLogin', true)
     log.info('Stretchly: Migrated to openAtLogin')
   }
@@ -506,7 +531,14 @@ function closeWindows (windowArray) {
 }
 
 function trayIconPath () {
-  const params = {
+  const params = trayIconParams()
+  if (process.platform === 'darwin') return join(__dirname, 'images/app-icons', macTrayAsset)
+  const trayIconFileName = new AppIcon(params).trayIconFileName
+  return join(__dirname, 'images/app-icons', trayIconFileName)
+}
+
+function trayIconParams () {
+  return {
     paused:
       breakPlanner.isPaused ||
       breakPlanner.dndManager.isOnDnd ||
@@ -521,24 +553,16 @@ function trayIconPath () {
     percentage: breakPlanner.progressPercentage,
     reference: breakPlanner.scheduler.reference
   }
-  const trayIconFileName = new AppIcon(params).trayIconFileName
-  const pathToTrayIcon = join(__dirname, '/images/app-icons/', trayIconFileName)
-  return pathToTrayIcon
+}
+
+function trayImage () {
+  const image = nativeImage.createFromPath(trayIconPath())
+  if (process.platform === 'darwin') image.setTemplateImage(true)
+  return image
 }
 
 function windowIconPath () {
-  const unusedParams = null
-  const params = {
-    paused: false,
-    monochrome: settings.get('useMonochromeTrayIcon'),
-    inverted: settings.get('useMonochromeInvertedTrayIcon'),
-    darkMode: nativeTheme.shouldUseDarkColors,
-    platform: unusedParams,
-    timeToBreakInTrayString: unusedParams,
-    reference: unusedParams
-  }
-  const windowIconFileName = new AppIcon(params).windowIconFileName
-  return join(__dirname, '/images/app-icons', windowIconFileName)
+  return join(__dirname, 'images/brand/restspark-icon-256.png')
 }
 
 function startProcessWin () {
@@ -773,7 +797,7 @@ function startMicrobreak () {
       focusable: showBreaksAsRegularWindows,
       alwaysOnTop: !showBreaksAsRegularWindows,
       hasShadow: false,
-      title: 'Stretchly',
+      title: BRAND.name,
       titleBarStyle: process.platform === 'darwin' ? (showBreaksAsRegularWindows ? 'default' : 'hidden') : undefined,
       titleBarOverlay: process.platform === 'darwin' ? !showBreaksAsRegularWindows : undefined,
       webPreferences: {
@@ -929,7 +953,7 @@ function startBreak () {
       focusable: showBreaksAsRegularWindows,
       alwaysOnTop: !showBreaksAsRegularWindows,
       hasShadow: false,
-      title: 'Stretchly',
+      title: BRAND.name,
       titleBarStyle: process.platform === 'darwin' ? (showBreaksAsRegularWindows ? 'default' : 'hidden') : undefined,
       titleBarOverlay: process.platform === 'darwin' ? !showBreaksAsRegularWindows : undefined,
       webPreferences: {
@@ -1236,11 +1260,11 @@ function createPreferencesWindow () {
     show: false,
     backgroundThrottling: false,
     icon: windowIconPath(),
-    width: 600,
-    height: 530,
+    width: 860,
+    height: 740,
     maxHeight: Math.round(maxHeight),
-    x: displayManager.getDisplayX(-1, 600),
-    y: displayManager.getDisplayY(-1, 530),
+    x: displayManager.getDisplayX(-1, 860),
+    y: displayManager.getDisplayY(-1, 740),
     backgroundColor: '#EDEDED',
     webPreferences: {
       preload: join(__dirname, './preferences-preload.mjs'),
@@ -1270,7 +1294,7 @@ function updateTray () {
 
   if (settings.get('showTrayIcon')) {
     if (!appIcon) {
-      appIcon = new Tray(trayIconPath())
+      appIcon = new Tray(trayImage())
       appIcon.on('double-click', () => {
         createPreferencesWindow()
       })
@@ -1282,11 +1306,12 @@ function updateTray () {
       trayUpdateIntervalObj = setInterval(updateTray, 10000)
     }
 
+    if (process.platform === 'darwin') appIcon.setTitle(trayStatusTitle(trayIconParams()), { fontType: 'monospacedDigit' })
     updateToolTip()
 
     const newTrayIconPath = trayIconPath()
     if (newTrayIconPath !== currentTrayIconPath) {
-      appIcon.setImage(newTrayIconPath)
+      appIcon.setImage(trayImage())
       currentTrayIconPath = newTrayIconPath
     }
 
@@ -1306,7 +1331,7 @@ function getTrayMenuTemplate () {
     trayMenu.push({
       label: i18next.t('main.downloadLatestVersion'),
       click: function () {
-        shell.openExternal('https://hovancik.net/stretchly/downloads')
+        shell.openExternal(BRAND.releases)
       }
     }, {
       type: 'separator'

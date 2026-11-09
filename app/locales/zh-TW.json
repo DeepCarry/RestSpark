@@ -1,6 +1,6 @@
 {
   "main": {
-    "toolTipHeader": "Stretchly - 休息提醒軟體",
+    "toolTipHeader": "元气 - 休息提醒軟體",
     "microbreakIn": "$t(utils.seconds, {'count': {{seconds}} })後小休息",
     "breakIn": "$t(utils.seconds, {'count': {{seconds}} })後長休息",
     "resumingBreaks": "正在繼續休息",
@@ -16,7 +16,7 @@
     "untilMorning": "直到早上",
     "indefinitely": "無限期",
     "resetBreaks": "重設休息時間",
-    "quitStretchly": "結束 Stretchly",
+    "quitStretchly": "結束 元气",
     "restoreDefaults": "還原至預設值",
     "warning": "這會將 App 還原至預設值，而您所有的設定則會遺失。",
     "continue": "繼續",
@@ -31,16 +31,16 @@
     "title": "該休息囉！"
   },
   "preferences": {
-    "title": "Stretchly 偏好設定",
+    "title": "元气 偏好設定",
     "nav": {
       "settings": "設定",
       "schedule": "排程",
       "theme": "主題",
       "about": "關於",
-      "heart": "喜歡 Stretchly"
+      "heart": "支持 Stretchly 原项目"
     },
     "settings": {
-      "openAtLogin": "登入時自動啟動 Stretchly",
+      "openAtLogin": "登入時自動啟動 元气",
       "showBreaksIn": "用什麼方式顯示休息畫面：",
       "window": "視窗",
       "fullscreen": "全螢幕",
@@ -95,12 +95,12 @@
       "version": "版本 ",
       "latestVersion": "最新版 ",
       "notifyNewVersion": "自動在 App 有更新時提醒",
-      "learnMore": "如要深入了解 Stretchly 的功能，請查看教學文件、下載最新版或聯絡我們尋求支援， ",
-      "ourWebsite": "造訪我們的網站",
+      "learnMore": "查看元气源码、发行版及问题反馈：",
+      "ourWebsite": "GitHub 仓库",
       "dot": ".",
-      "developedBy": "開發自",
+      "developedBy": "Stretchly — 開發自",
       "janH": "Jan Hovancik",
-      "designedBy": "圖示與使用者介面由 Colin Shanley 設計",
+      "designedBy": "Stretchly — 圖示與使用者介面由 Colin Shanley 設計",
       "checkNewVersion": "自動檢查 App 更新"
     },
     "heart": {
@@ -173,7 +173,7 @@
     "showTimeToBreakInTray": "在托盤圖標顯示下次休息時間",
     "showCurrentTimeInBreaks": "在休息畫面顯示當前時間",
     "showTrayIcon": "顯示選單列圖示",
-    "toShowTrayIcon": "在選單列中顯示 Stretchly 圖示"
+    "toShowTrayIcon": "在選單列中顯示 元气 圖示"
   },
   "utils": {
     "none_other": "{{count}}",
@@ -189,7 +189,7 @@
     "newVersionAvailable": "有新版可用！"
   },
   "welcome": {
-    "title": "歡迎使用 Stretchly",
+    "title": "歡迎使用 元气",
     "breakTimeReminderApp": "休息提醒軟體",
     "viewTutorial": "查看教學",
     "openPreferences": "開啟偏好設定",
@@ -505,5 +505,24 @@
     "abt": {
       "text": "將一隻手臂伸直向上，然後使用另一隻手臂輕輕地推動第一隻手臂的肘部朝你的頭部方向。保持10至15秒。然後換另一隻手臂重複相同的動作。"
     }
+  },
+  "quietRest": {
+    "miniTitle": "休息一下",
+    "longTitle": "舒展一下",
+    "footer": "好好休息，才能更好地專注",
+    "scheduleTitle": "休息計劃",
+    "scheduleSubtitle": "設定短休息和長休息的時間安排",
+    "interval": "休息間隔",
+    "duration": "休息時長",
+    "strictTitle": "嚴格模式",
+    "longIntervalHelp": "長休息在設定次數的短休息後開始，上方顯示對應的總間隔。",
+    "miniSection": "短休息",
+    "longSection": "長休息"
+  },
+  "brand": {
+    "name": "元气",
+    "otherName": "Rest Spark",
+    "upstream": "基于 Stretchly 二次开发 · BSD-2-Clause",
+    "upstreamSupport": "支持 Stretchly 原项目"
   }
 }

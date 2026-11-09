@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "cleanQuit": true,
+  "dialogMessage": "Rest Spark\nRest Spark could not load or import settings.\n\nSource: /var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-startup-failure-j4WJVi/Stretchly\nDestination: /var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-startup-failure-j4WJVi/Rest Spark\n\nExpected property name or '}' in JSON at position 1 (line 1 column 2)\n\nYour original Stretchly files were left in place. Resolve the error and restart Rest Spark.",
+  "originalIntact": true,
+  "targetConfigNotPublished": true
+}

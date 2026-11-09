@@ -1,0 +1,32 @@
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+
+ ❯ test/quietRestPreferences.js (6 tests | 1 failed) 199ms
+     × represents advanced saved values without silently clearing them 26ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/quietRestPreferences.js > Quiet Rest preferences > represents advanced saved values without silently clearing them
+AssertionError: expected '' to be '25' // Object.is equality
+
+- Expected
++ Received
+
+- 25
+
+ ❯ test/quietRestPreferences.js:72:59
+     70|     await translate()
+     71|     await vi.advanceTimersByTimeAsync(0)
+     72|     expect(document.querySelector('#miniBreakFor').value).toBe('25')
+       |                                                           ^
+     73|     expect(saved.microbreakDuration).toBe(25000)
+     74|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  02:17:17
+   Duration  641ms (transform 32ms, setup 0ms, import 326ms, tests 199ms, environment 0ms)
+

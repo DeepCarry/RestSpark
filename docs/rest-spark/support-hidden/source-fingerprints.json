@@ -1,0 +1,10 @@
+{
+  "base": "d9202bb",
+  "sha256": {
+    "app/preferences.html": "b1e251a70c180530979c0b453c372a22d36ec09a87c7fa6f11ec12418ac6853a",
+    "app/preferences-renderer.js": "fa1d1e5a96cd1c3d850f2a8203df993a0baa3cc243647e4d57be6a12f688345c",
+    "test/quietRestPreferences.js": "5d02a8cd4d4fbf238bd9de3f99d8c1cdb509f3381530412e065266caa0d219b1",
+    "scripts/rest-spark-qa.mjs": "3a16fb68d10abc632651bee0ce6e57cc64225c40ce2eaaa56452fe109c0209ef",
+    "scripts/rest-spark-packaged-smoke.mjs": "fb93b5c3bfe642e9dab398587c12e2148bebc871bfa1f7d262cb9986186130a3"
+  }
+}

@@ -1,0 +1,14 @@
+
+> Stretchly@1.20.0 test
+> vitest run
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+      Coverage enabled with istanbul
+
+
+ Test Files  19 passed (19)
+      Tests  331 passed (331)
+   Start at  02:26:19
+   Duration  17.93s (transform 4.07s, setup 0ms, import 8.37s, tests 20.34s, environment 3ms)
+

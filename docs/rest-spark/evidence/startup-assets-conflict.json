@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "cleanQuit": true,
+  "dialogMessage": "Rest Spark\nRest Spark could not load or import settings.\n\nSource: /var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-startup-failure-BCeBeW/Stretchly\nDestination: /var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-startup-failure-BCeBeW/Rest Spark\n\nRest Spark images path is not a directory\n\nYour original Stretchly files were left in place. Resolve the error and restart Rest Spark.",
+  "originalIntact": true,
+  "targetConfigNotPublished": true
+}

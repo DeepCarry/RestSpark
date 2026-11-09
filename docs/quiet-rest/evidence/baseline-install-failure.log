@@ -1,0 +1,38 @@
+
+> Stretchly@1.20.0 test
+> vitest run
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/genki/stretchly
+      Coverage enabled with istanbul
+
+ ❯ test/dndManager.js (0 test)
+ ❯ test/naturalBreaksManager.js (0 test)
+ ❯ test/appExclusionsManager.js (0 test)
+ ❯ test/displayManager.js (0 test)
+ ❯ test/commands.js (0 test)
+ ❯ test/breakShortcuts.js (0 test)
+ ❯ test/untilMorning.js (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/appExclusionsManager.js [ test/appExclusionsManager.js ]
+ FAIL  test/breakShortcuts.js [ test/breakShortcuts.js ]
+ FAIL  test/commands.js [ test/commands.js ]
+ FAIL  test/displayManager.js [ test/displayManager.js ]
+ FAIL  test/dndManager.js [ test/dndManager.js ]
+ FAIL  test/naturalBreaksManager.js [ test/naturalBreaksManager.js ]
+ FAIL  test/untilMorning.js [ test/untilMorning.js ]
+Error: Electron failed to install correctly, please delete node_modules/electron and try installing again
+ ❯ getElectronPath node_modules/electron/index.js:17:11
+ ❯ Object.<anonymous> node_modules/electron/index.js:21:18
+ ❯ Object.<anonymous> node_modules/electron-log/src/main/index.js:3:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+
+ Test Files  7 failed | 10 passed (17)
+      Tests  216 passed (216)
+   Start at  02:02:02
+   Duration  2.13s (transform 2.42s, setup 0ms, import 1.83s, tests 1.79s, environment 1ms)
+

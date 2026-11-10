@@ -110,7 +110,9 @@ body:not(.\34 78484) .timer-remaining { stroke: var(--rest-configured-color); }
     mask-image: linear-gradient(to right, transparent, #000 32%);
   }
 
-  body.quiet-break :is(.rest-badge, .timer-leaf, .rest-footer) img {
+  body.quiet-break .rest-badge img,
+  body.quiet-break .timer-leaf,
+  body.quiet-break .rest-footer img {
     filter: brightness(0) invert(1);
   }
 

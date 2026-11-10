@@ -1,0 +1,14 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/scheduleControls.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+
+ Test Files  1 passed (1)
+      Tests  26 passed (26)
+   Start at  22:49:50
+   Duration  186ms (transform 68ms, setup 0ms, import 74ms, tests 3ms, environment 0ms)
+

@@ -52,12 +52,12 @@ app.whenReady().then(async () => {
       await delay(180)
       verify(config()[key] === before, `toggle can restore: ${key}`)
     }
-    for (const [id, value, key, expected] of [['miniBreakEvery', '20', 'microbreakInterval', 1200000], ['miniBreakFor', '80', 'microbreakDuration', 80000], ['longBreakEvery', '3', 'breakInterval', 3], ['longBreakFor', '6', 'breakDuration', 360000], ['trayIconStyle', 'time', 'trayIconStyle', 'time'], ['trayIconStyle', 'progress', 'trayIconStyle', 'progress'], ['themeSource', 'dark', 'themeSource', 'dark'], ['themeSource', 'system', 'themeSource', 'system']]) {
-      await js(`(() => { const input = document.querySelector('#${id}'); input.value = '${value}'; input.dispatchEvent(new Event('change')); })()`)
+    for (const [id, value, key, expected] of [['miniBreakEvery', '20', 'microbreakInterval', 1200000], ['miniBreakFor', '80', 'microbreakDuration', 80000], ['longBreakEvery', '4', 'breakInterval', 3], ['longBreakFor', '6', 'breakDuration', 360000], ['trayIconStyle', 'time', 'trayIconStyle', 'time'], ['trayIconStyle', 'progress', 'trayIconStyle', 'progress'], ['themeSource', 'dark', 'themeSource', 'dark'], ['themeSource', 'system', 'themeSource', 'system']]) {
+      await js(`(() => { const input = document.querySelector('#${id}'); input.value = '${value}'; input.dispatchEvent(new Event(input.type === 'number' ? 'input' : 'change')); if (input.type === 'number') input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); })()`)
       await delay(250)
       verify(config()[key] === expected, `real selector persistence: ${key} = ${expected}`)
     }
-    verify(await js("document.querySelector('#longBreakEvery').selectedOptions[0].textContent.includes('80')"), 'long interval displays derived minutes')
+    verify(await js("document.querySelector('#longBreakEvery-value').textContent.includes('80')"), 'long interval displays derived minutes')
     for (const audio of ['crystal-glass', 'wind-chime', 'tic-toc', 'reverie']) {
       await js(`document.querySelector('input[value="${audio}"]').click(); document.querySelector('[data-preview-sound="${audio}"]').click()`)
       await delay(150)
@@ -111,8 +111,8 @@ app.whenReady().then(async () => {
     await js("document.querySelector('#restore-defaults').click()")
     await delay(1000)
     dialog.showMessageBox = originalDialog
-    verify(config().microbreak && config().break && config().microbreakDuration === 20000, 'confirmed restore reloads real default settings')
-    verify(await js("document.querySelector('#miniBreakFor').value === '20'"), 'restored defaults bind after reload')
+    verify(config().microbreak && config().break && config().microbreakDuration === 30000, 'confirmed restore reloads real default settings')
+    verify(await js("document.querySelector('#miniBreakFor').value === '30'"), 'restored defaults bind after reload')
     writeFileSync(join(evidence, 'layout-matrix.json'), JSON.stringify(layouts, null, 2))
     writeFileSync(join(evidence, 'acceptance.json'), JSON.stringify({ checks, platform: process.platform, profile }, null, 2))
   }

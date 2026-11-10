@@ -1,0 +1,14 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/scheduleEditor.js test/scheduleControls.js test/quietRestPreferences.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+
+ Test Files  3 passed (3)
+      Tests  49 passed (49)
+   Start at  19:56:03
+   Duration  1.03s (transform 292ms, setup 0ms, import 657ms, tests 813ms, environment 0ms)
+

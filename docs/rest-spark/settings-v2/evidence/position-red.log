@@ -1,0 +1,38 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/scheduleEditor.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+ ❯ test/scheduleEditor.js (9 tests | 1 failed) 205ms
+     × includes the panel border when placing presets above the input 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/scheduleEditor.js > schedule numeric editors > includes the panel border when placing presets above the input
+AssertionError: expected 6 to be 8 // Object.is equality
+
+- Expected
++ Received
+
+- 8
++ 6
+
+ ❯ test/scheduleEditor.js:102:62
+    100|     await flush()
+    101|     expect(panel.dataset.placement).toBe('above')
+    102|     expect(600 - (Number.parseFloat(panel.style.top) + 160)).toBe(8)
+       |                                                              ^
+    103|   })
+    104| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  19:55:49
+   Duration  854ms (transform 156ms, setup 0ms, import 535ms, tests 205ms, environment 0ms)
+

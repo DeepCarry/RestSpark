@@ -66,6 +66,7 @@ function exposeSettings () {
     currentSettings: async () => {
       return await ipcRenderer.invoke('current-settings')
     },
+    saveSchedule: patch => ipcRenderer.invoke('save-schedule', patch),
     saveSettings: async (key, value) => {
       ipcRenderer.send('save-setting', key, value)
     }

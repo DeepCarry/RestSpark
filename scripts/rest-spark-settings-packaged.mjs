@@ -57,12 +57,16 @@ try {
     socket.send(JSON.stringify({ id, method, params }))
   })
   await delay(1000)
-  const result = await send('Runtime.evaluate', { expression: '({ supportHidden: getComputedStyle(document.querySelector("[data-section=heart]")).display === "none", brand: document.querySelector(".rest-brand strong").textContent, heading: document.querySelector(".schedule h1").textContent, selected: document.querySelector("#miniBreakFor").selectedOptions[0].textContent, version: document.querySelector(".version").textContent, controls: document.querySelectorAll("select[data-divisor]").length })', returnByValue: true })
+  const result = await send('Runtime.evaluate', { expression: '({ supportHidden: getComputedStyle(document.querySelector("[data-section=heart]")).display === "none", brand: document.querySelector(".rest-brand strong").textContent, heading: document.querySelector(".schedule h1").textContent, selected: document.querySelector("#miniBreakFor").value, version: document.querySelector(".version").textContent, controls: document.querySelectorAll(".schedule input[type=number]").length, interval: document.querySelector("#miniBreakEvery").value, cycles: document.querySelector("#longBreakEvery").value, longDuration: document.querySelector("#longBreakFor").value })', returnByValue: true })
   const state = result.result.result.value
   assert.equal(state.supportHidden, true)
   assert.equal(state.heading, '休息计划')
   assert.equal(state.brand, '元气')
   assert.equal(state.controls, 4)
+  assert.equal(state.selected, '30')
+  assert.equal(state.interval, '20')
+  assert.equal(state.cycles, '3')
+  assert.equal(state.longDuration, '5')
   assert.equal(state.version, JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).version)
   // Capture all four pages and the actual update endpoint response in this build.
   const endpoint = 'https://api.github.com/repos/DeepCarry/RestSpark/releases/latest'

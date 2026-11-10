@@ -27,6 +27,7 @@ import AutostartManager from './utils/autostartManager.js'
 import Command from './utils/commands.js'
 import { registerBreakShortcuts } from './utils/breakShortcuts.js'
 import defaultSettings from './utils/defaultSettings.js'
+import { saveSchedulePatch } from './utils/scheduleControls.js'
 import { migrateMintTheme } from './utils/settingsTheme.js'
 import StatusMessages from './utils/statusMessages.js'
 import DisplayManager from './utils/displayManager.js'
@@ -1533,6 +1534,12 @@ ipcMain.on('finish-long-break', function (event, shouldPlaySound, manualAwaiting
     increaseDanger(2)
   }
   finishBreak(shouldPlaySound)
+})
+
+ipcMain.handle('save-schedule', (event, patch) => {
+  const result = saveSchedulePatch(settings, patch)
+  if (result.ok) updateTray()
+  return result
 })
 
 ipcMain.on('save-setting', function (event, key, value) {

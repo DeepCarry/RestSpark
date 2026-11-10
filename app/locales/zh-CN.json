@@ -603,5 +603,32 @@
     "licenses": "许可证与致谢",
     "artworkCredit": "元气 Logo 与休息画面由项目所有者提供并确认。上游音效及依赖遵循各自许可证；依赖许可随应用分发。",
     "dependencies": "查看项目依赖"
+  },
+  "scheduleV2": {
+    "minutes": "分钟",
+    "seconds": "秒",
+    "cycles": "工作周期",
+    "increase": "+",
+    "decrease": "−",
+    "presets": "选择常用值",
+    "apply": "应用",
+    "cancel": "取消",
+    "custom": "自定义…",
+    "frequency": "长休息频率",
+    "cycleHelp": "一个工作周期等于短休息的工作间隔。",
+    "derived": "约 {{count}} 分钟工作时间",
+    "legacy": "当前为历史设置",
+    "intervalConflict": "长休息间隔将超过 120 分钟，请调整工作周期数。",
+    "applyLinked": "一并改为每 {{cycles}} 周期（{{minutes}} 分钟）",
+    "saveFailed": "保存失败，请重试。",
+    "invalid_microbreakInterval": "请输入 5–60 的整数分钟。",
+    "invalid_microbreakDuration": "请输入 30–300 秒，按 10 秒递增。",
+    "invalid_breakInterval": "请输入 2–6 个工作周期，总间隔不超过 120 分钟。",
+    "invalid_breakDuration": "请输入 3–20 的整数分钟。",
+    "presetMinutes": "{{count}} 分钟",
+    "presetSeconds": "{{count}} 秒",
+    "presetCycles": "每 {{count}} 周期",
+    "increaseLabel": "增加数值",
+    "decreaseLabel": "减少数值"
   }
 }

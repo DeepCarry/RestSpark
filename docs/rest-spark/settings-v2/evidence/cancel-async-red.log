@@ -1,0 +1,57 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/scheduleEditor.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+ ❯ test/scheduleEditor.js (11 tests | 2 failed) 203ms
+     × does not revive a cancelled error after delayed translation 15ms
+     × does not revive a cancelled linked change after its label resolves 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/scheduleEditor.js > schedule numeric editors > does not revive a cancelled error after delayed translation
+AssertionError: expected 'invalid seconds' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ invalid seconds
+
+ ❯ test/scheduleEditor.js:114:71
+    112|     expect(input('miniBreakFor').value).toBe('25')
+    113|     expect(input('miniBreakFor').getAttribute('aria-invalid')).toBe('f…
+    114|     expect(document.querySelector('#miniBreakFor-error').textContent).…
+       |                                                                       ^
+    115|   })
+    116|   it('does not revive a cancelled linked change after its label resolv…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/scheduleEditor.js > schedule numeric editors > does not revive a cancelled linked change after its label resolves
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ test/scheduleEditor.js:124:99
+    122|     document.querySelector('[data-editor-for=miniBreakEvery] [data-can…
+    123|     finish('apply both'); await flush()
+    124|     expect(document.querySelector('[data-editor-for=miniBreakEvery] [d…
+       |                                                                                                   ^
+    125|     expect(saved.microbreakInterval).toBe(1200000)
+    126|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 9 passed (11)
+   Start at  19:57:03
+   Duration  614ms (transform 136ms, setup 0ms, import 301ms, tests 203ms, environment 0ms)
+

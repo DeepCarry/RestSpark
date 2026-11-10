@@ -607,5 +607,32 @@
     "licenses": "Licenses & acknowledgments",
     "artworkCredit": "The Rest Spark logo and break artwork were supplied and approved by the project owner. Upstream sounds and dependencies retain their respective licenses, distributed with the app.",
     "dependencies": "View project dependencies"
+  },
+  "scheduleV2": {
+    "minutes": "min",
+    "seconds": "sec",
+    "cycles": "cycles",
+    "increase": "+",
+    "decrease": "−",
+    "presets": "Choose a preset",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "custom": "Custom…",
+    "frequency": "Long break frequency",
+    "cycleHelp": "One work cycle equals your mini break interval.",
+    "derived": "About {{count}} minutes of work",
+    "legacy": "Existing custom setting",
+    "intervalConflict": "The long break interval would exceed 120 minutes. Adjust the number of cycles.",
+    "applyLinked": "Also set {{cycles}} cycles ({{minutes}} min)",
+    "saveFailed": "Could not save. Please retry.",
+    "invalid_microbreakInterval": "Enter a whole number from 5 to 60 minutes.",
+    "invalid_microbreakDuration": "Enter 30–300 seconds in steps of 10.",
+    "invalid_breakInterval": "Enter 2–6 cycles, up to 120 minutes total.",
+    "invalid_breakDuration": "Enter a whole number from 3 to 20 minutes.",
+    "presetMinutes": "{{count}} min",
+    "presetSeconds": "{{count}} sec",
+    "presetCycles": "{{count}} cycles",
+    "increaseLabel": "Increase value",
+    "decreaseLabel": "Decrease value"
   }
 }

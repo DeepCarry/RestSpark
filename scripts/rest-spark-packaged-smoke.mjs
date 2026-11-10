@@ -57,7 +57,7 @@ try {
     socket.send(JSON.stringify({ id, method, params }))
   })
   await delay(1000)
-  const result = await send('Runtime.evaluate', { expression: '({ supportHidden: getComputedStyle(document.querySelector("[data-section=heart]")).display === "none", brand: document.querySelector(".rest-brand strong").textContent, heading: document.querySelector(".schedule h1").textContent, selected: document.querySelector("#miniBreakFor").selectedOptions[0].textContent, version: document.querySelector(".version").textContent, controls: document.querySelectorAll("select[data-divisor]").length })', returnByValue: true })
+  const result = await send('Runtime.evaluate', { expression: '({ supportHidden: getComputedStyle(document.querySelector("[data-section=heart]")).display === "none", brand: document.querySelector(".rest-brand strong").textContent, heading: document.querySelector(".schedule h1").textContent, selected: document.querySelector("#miniBreakFor").value, version: document.querySelector(".version").textContent, controls: document.querySelectorAll(".schedule input[type=number]").length })', returnByValue: true })
   const state = result.result.result.value
   assert.equal(state.supportHidden, true)
   assert.equal(state.heading, '休息计划')

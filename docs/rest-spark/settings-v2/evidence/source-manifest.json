@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-10T12:02:09.939Z",
+  "branch": "feature/settings-design-system-v1",
+  "version": "0.1.1",
+  "archiveSHA256": "735f64d2ade297fb7c7fe1c0cdd97eea4459dca3239cf51e7d1f82387db52cba",
+  "files": [
+    {
+      "path": "app/preferences.html",
+      "sha256": "a8d7a3271997dcf39e09595ffd9c0a08d38744462601a34a791c06dde2395590",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/preferences-renderer.js",
+      "sha256": "18d1656c6f9d66d9aa377d50806f5f8253ef39780a4c434c5f54f9b540c1803f",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/schedule-editors.js",
+      "sha256": "931f8315ea2daf9744810842d6d3774f9656560a61db09d27492d27508ad1630",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/scheduleControls.js",
+      "sha256": "bc68ab616383f73a63fd07df1ffa1440b2259ae2d03788b3b66917463574cb87",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/context-bridge-exposers.js",
+      "sha256": "7e2cfa55212556d9cba64b9bbd0aa987a1de440e53f228c5f2cee59aa4c4924b",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/defaultSettings.js",
+      "sha256": "ca6f73be754d4331fbe32db61ac4800320dbbe60a5f76a788004d8fd55fc5b05",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/main.js",
+      "sha256": "f94a3ca84059cd4007134f83dd0f0ff8346672bb697046e67cd2558ac06490b3",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/css/quiet-rest-preferences.css",
+      "sha256": "21e30b81abf2257e792b2e07a55c2c52400a58ecd3ccb7402190bf94a92b9a8e",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/locales/en.json",
+      "sha256": "55100b9ea217b31513d354a64a2b19bf80ca7bc181aff512e1b1db2ffaea49a3",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/locales/zh-CN.json",
+      "sha256": "a47f0cbc7a8173b4c1898c5042f479c7bcefa7865d79656e31a8356d5f0c8a0f",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/images/quiet-rest/nav-settings.svg",
+      "sha256": "185b82b9d193ed25dfa9d81279a17aad5966b2253029f0cdca5b40efffd174d0",
+      "packedMatchesSource": true
+    }
+  ]
+}

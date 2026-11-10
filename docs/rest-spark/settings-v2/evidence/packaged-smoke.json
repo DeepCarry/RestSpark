@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "profile": "/var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-packaged-1794312128851",
+  "state": {
+    "supportHidden": true,
+    "brand": "元气",
+    "heading": "休息计划",
+    "selected": "30",
+    "version": "0.1.1",
+    "controls": 4,
+    "interval": "20",
+    "cycles": "3",
+    "longDuration": "5"
+  }
+}

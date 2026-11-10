@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { JSDOM } from 'jsdom'
 import { vi, expect } from 'vitest'
+import { saveSchedulePatch } from '../app/utils/scheduleControls.js'
 import defaults from '../app/utils/defaultSettings.js'
 
 describe('Quiet Rest preferences', () => {
@@ -16,6 +17,7 @@ describe('Quiet Rest preferences', () => {
     window.runtime = { platform: () => 'darwin', windowsStore: () => false, windowsPortable: () => false }
     saved = { ...defaults, language: 'en', disableAppUpdateFeatures: true, microbreakDuration: 80000, microbreakInterval: 900000, breakInterval: 3 }
     window.settings = { get: async key => saved[key], currentSettings: async () => saved, saveSettings: vi.fn((key, value) => { saved[key] = value }) }
+    window.settings.saveSchedule = async patch => saveSchedulePatch({ get store () { return saved }, set: patch => { saved = { ...saved, ...patch } } }, patch)
     window.i18next = { t: async (key, options) => `${key} ${options?.count ?? ''}`, dir: async () => 'ltr' }
     window.utils = { formatUnitAndValue: async (unit, value) => `${value} ${unit}` }
     window.global = { getValue: async () => false }
@@ -51,20 +53,20 @@ describe('Quiet Rest preferences', () => {
   })
   it('preserves an existing duration outside the master example and converts units on save', async () => {
     const duration = document.querySelector('#miniBreakFor')
-    expect(duration.tagName).toBe('SELECT')
+    expect(duration.tagName).toBe('INPUT')
     expect(duration.value).toBe('80')
     duration.value = '90'
-    duration.dispatchEvent(new window.Event('change'))
+    duration.dispatchEvent(new window.Event('input')); duration.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
     await vi.advanceTimersByTimeAsync(0)
     expect(saved.microbreakDuration).toBe(90000)
     const interval = document.querySelector('#miniBreakEvery')
     interval.value = '20'
-    interval.dispatchEvent(new window.Event('change'))
+    interval.dispatchEvent(new window.Event('input')); interval.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
     await vi.advanceTimersByTimeAsync(0)
     expect(saved.microbreakInterval).toBe(1200000)
     expect(document.querySelector('#longBreakEvery-value').textContent).toContain('80')
     expect(saved.breakInterval).toBe(3)
-    expect(document.querySelector('#longBreakEvery').selectedOptions[0].textContent).toContain('80')
+    expect(document.querySelector('#longBreakEvery').value).toBe('4')
   })
   it('represents advanced saved values without silently clearing them', async () => {
     saved.microbreakDuration = 25000
@@ -75,14 +77,18 @@ describe('Quiet Rest preferences', () => {
   })
   it('binds sound previews and controls even when IPC takes more than 500 ms', async () => {
     document.querySelectorAll('[data-preview-sound]').forEach(image => { image.onclick = null })
-    document.querySelector('#miniBreakFor').onchange = null
     window.i18next.t = (key, options) => new Promise(resolve => setTimeout(() => resolve(`${key} ${options?.count ?? ''}`), 600))
     window.stretchly.playSound = vi.fn()
     const loaded = window.onload({})
     await vi.advanceTimersByTimeAsync(2500)
     await loaded
     expect(typeof document.querySelector('[data-preview-sound]').onclick).toBe('function')
-    expect(typeof document.querySelector('#miniBreakFor').onchange).toBe('function')
+    const duration = document.querySelector('#miniBreakFor')
+    duration.value = '60'
+    duration.dispatchEvent(new window.Event('input'))
+    duration.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+    await vi.advanceTimersByTimeAsync(2500)
+    expect(saved.microbreakDuration).toBe(60000)
     document.querySelector('[data-preview-sound]').click()
     expect(window.stretchly.playSound).toHaveBeenCalledOnce()
   })
@@ -111,7 +117,7 @@ describe('Quiet Rest preferences', () => {
     await translate()
     await vi.advanceTimersByTimeAsync(0)
     expect(document.querySelector('#miniBreakFor').value).toBe('80')
-    for (const range of document.querySelectorAll('.schedule [data-divisor]')) {
+    for (const range of document.querySelectorAll('.schedule input[type=number]')) {
       expect(document.querySelector(`label[for=${range.id}]`)).not.toBeNull()
       expect(document.querySelector(`output[for=${range.id}]`)).not.toBeNull()
     }
@@ -172,7 +178,7 @@ describe('Quiet Rest preferences', () => {
     saved.breakInterval = 2
     await translate()
     await vi.advanceTimersByTimeAsync(0)
-    expect(document.querySelector('#miniBreakFor').selectedOptions[0].textContent).toContain('80.5')
+    expect(document.querySelector('#miniBreakFor').value).toBe('80.5')
     expect(document.querySelector('#miniBreakFor-value').textContent).toContain('80.5')
     expect(saved.microbreakDuration).toBe(80500)
     expect(document.querySelector('#longBreakEvery-value').textContent).toContain('45.75')

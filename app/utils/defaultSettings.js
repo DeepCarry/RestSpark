@@ -3,8 +3,8 @@ import defaultMicrobreakIdeas from './defaultMicrobreakIdeas.js'
 import { insideFlatpak, insideWindowsStore, insideSnap, insideWindowsPortable } from './utils.js'
 
 export default {
-  microbreakDuration: 20000,
-  microbreakInterval: 600000,
+  microbreakDuration: 30000,
+  microbreakInterval: 1200000,
   breakDuration: 300000,
   breakInterval: 2,
   breakNotification: true,

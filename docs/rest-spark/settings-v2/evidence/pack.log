@@ -1,0 +1,21 @@
+
+> rest-spark@0.1.1 pack
+> electron-builder build --dir
+
+  • electron-builder  version=26.8.1 os=27.2.0
+  • loaded configuration  file=package.json ("build" field)
+  • executing @electron/rebuild  electronVersion=41.1.0 arch=arm64 buildFromSource=false workspaceRoot=/Users/carry/Documents/DeepCarry/Git/dc-restspark projectDir=./ appDir=./
+  • installing native dependencies  arch=arm64
+  • preparing       moduleName=node-desktop-idle-v2 arch=arm64
+  • finished        moduleName=node-desktop-idle-v2 arch=arm64
+  • preparing       moduleName=windows-focus-assist arch=arm64
+  • finished        moduleName=windows-focus-assist arch=arm64
+  • completed installing native dependencies
+  • packaging       platform=darwin arch=arm64 electron=41.1.0 appOutDir=dist/mac-arm64
+  • searching for node modules  pm=npm searchDir=/Users/carry/Documents/DeepCarry/Git/dc-restspark
+(node:2850) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  • duplicate dependency references  dependencies=["type-fest@5.5.0"]
+  • falling back to ad-hoc signature for macOS application code signing
+  • signing         file=dist/mac-arm64/Rest Spark.app platform=darwin type=distribution identityName=- identityHash=none provisioningProfile=none
+  • skipped macOS notarization  reason=`notarize` options were unable to be generated

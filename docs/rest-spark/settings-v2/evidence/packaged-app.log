@@ -1,0 +1,13 @@
+
+DevTools listening on ws://127.0.0.1:50637/devtools/browser/d9faed81-0da4-4780-9ddf-2b4a63737a7e
+20:02:11.433 › Stretchly: initializing...
+20:02:11.448 › Stretchly: loading preferences
+20:02:11.459 › Stretchly: attempting to set autostart to false
+🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+(node:11966) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Rest Spark --trace-deprecation ...` to show where the warning was created)
+20:02:11.603 › Stretchly: loading default break ideas
+20:02:11.603 › null
+20:02:11.839 › Stretchly: arguments received from second instance: --user-data-dir=/var/folders/zk/mr32jnfj46jfwby5mc_tlb280000gn/T/rest-spark-packaged-1794312128851,preferences
+20:02:11.840 › Stretchly: open Preferences window (requested by second instance)
+20:02:11.855 › Stretchly 2: forwarding command 'preferences' to the main instance

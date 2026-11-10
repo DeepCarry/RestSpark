@@ -1,3 +1,4 @@
+import { initScheduleEditors } from './schedule-editors.js'
 import VersionChecker from './utils/versionChecker.js'
 import { setSameWidths } from './utils/sameWidths.js'
 import HtmlTranslate from './utils/htmlTranslate.js'
@@ -5,6 +6,7 @@ import HtmlTranslate from './utils/htmlTranslate.js'
 import './platform.js'
 
 const versionChecker = new VersionChecker()
+let scheduleEditors
 
 window.onload = async (e) => {
   const bounds = await window.stretchly.getWindowBounds()
@@ -100,18 +102,7 @@ window.onload = async (e) => {
   window.stretchly.onTranslate(async () => {
     document.documentElement.lang = await window.settings.get('language')
     new HtmlTranslate(document).translate()
-    const translatedSettings = await window.settings.currentSettings()
-    await Promise.all(Array.from(document.querySelectorAll('[data-divisor]')).map(async range => {
-      const settings = translatedSettings
-      const divisor = range.dataset.divisor
-      const output = range.closest('div').querySelector('output')
-      setScheduleValue(range, settings[range.name] / divisor)
-      const unit = output.dataset.unit
-      output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
-      document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-        .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
-    }))
-    await updateScheduleChoices()
+    await scheduleEditors?.refresh(await window.settings.currentSettings())
     await renderUpdateStatus()
     setWindowHeight()
   })
@@ -226,30 +217,8 @@ window.onload = async (e) => {
     window.settings.saveSettings('trayIconStyle', event.target.value)
   }
 
-  await Promise.all(Array.from(document.querySelectorAll('[data-divisor]')).map(async range => {
-    const divisor = range.dataset.divisor
-    const output = range.closest('div').querySelector('output')
-    setScheduleValue(range, settings[range.name] / divisor)
-    const unit = output.dataset.unit
-    output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
-    document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-      .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
-    range.onchange = async event => {
-      output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
-      document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-        .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
-      window.settings.saveSettings(range.name, range.value * divisor)
-      await updateScheduleChoices()
-    }
-    range.oninput = async event => {
-      await updateScheduleChoices()
-      output.innerHTML = await window.i18next.t(`utils.${unit}`, { count: Number(range.value) })
-      document.querySelector('#longBreakEvery').closest('div').querySelector('output')
-        .innerHTML = await window.i18next.t('utils.minutes', { count: realBreakInterval() })
-    }
-  }))
-
-  await updateScheduleChoices()
+  scheduleEditors?.destroy()
+  scheduleEditors = await initScheduleEditors(document, settings)
 
   document.querySelectorAll('[data-preview-sound]').forEach(preview => {
     preview.onclick = (event) =>
@@ -327,35 +296,5 @@ window.onload = async (e) => {
     const width = Math.min(Math.max(bounds.width, 760), window.screen.availWidth)
     const height = Math.min(Math.max(bounds.height, 700), window.screen.availHeight * 0.9)
     window.stretchly.setWindowSize(Math.round(width), Math.round(height))
-  }
-
-  function setScheduleValue (control, value) {
-    const saved = String(value)
-    // Advanced preferences may contain a duration between the standard steps.
-    if (!Array.from(control.options).some(option => option.value === saved)) {
-      const option = document.createElement('option')
-      option.value = saved
-      control.appendChild(option)
-    }
-    control.value = saved
-  }
-
-  async function updateScheduleChoices () {
-    await Promise.all(Array.from(document.querySelectorAll('select[data-divisor]')).map(async select => {
-      const unit = select.closest('div').querySelector('output').dataset.unit
-      await Promise.all(Array.from(select.options).map(async option => {
-        option.textContent = select.id === 'longBreakEvery'
-          ? await window.i18next.t('utils.minutes', {
-            count: document.querySelector('#miniBreakEvery').value * (Number(option.value) + 1)
-          })
-          : await window.i18next.t(`utils.${unit}`, { count: Number(option.value) })
-      }))
-    }))
-  }
-
-  function realBreakInterval () {
-    const microbreakInterval = document.querySelector('#miniBreakEvery').value * 1
-    const breakInterval = document.querySelector('#longBreakEvery').value * 1
-    return microbreakInterval * (breakInterval + 1)
   }
 }

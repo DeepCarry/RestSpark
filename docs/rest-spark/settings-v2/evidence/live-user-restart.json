@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-10T12:03:31.970Z",
+  "application": "/Users/carry/Documents/DeepCarry/Git/dc-restspark/dist/mac-arm64/Rest Spark.app",
+  "checks": [
+    {
+      "section": "settings",
+      "heading": "通用设置",
+      "unresolved": [],
+      "version": "0.1.1"
+    },
+    {
+      "section": "theme",
+      "heading": "外观与声音",
+      "unresolved": [],
+      "version": "0.1.1"
+    },
+    {
+      "section": "about",
+      "heading": "关于元气",
+      "unresolved": [],
+      "version": "0.1.1"
+    },
+    {
+      "section": "schedule",
+      "heading": "休息计划",
+      "unresolved": [],
+      "version": "0.1.1"
+    }
+  ],
+  "controls": {
+    "interval": "40",
+    "seconds": "300",
+    "cycles": "3",
+    "duration": "5",
+    "saveAPI": "function",
+    "numeric": 4
+  },
+  "changedKeys": [],
+  "settingsSHA256": "2669e76913a673b1f7a8fa2ad0fae68004c0ab32364db1d9b2855ce1da154f89"
+}

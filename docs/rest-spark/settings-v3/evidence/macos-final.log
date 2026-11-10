@@ -1,0 +1,1216 @@
+20:41:45.146 › Stretchly: initializing...
+20:41:45.158 › Stretchly: migrating preferences from Stretchly v0.0.0 to v1.13.0
+20:41:45.158 › Stretchly: not migrating pauseBreaksShortcut
+20:41:45.162 › Stretchly: migrating preferences from Stretchly v1.13.0 to v1.17.0
+20:41:45.163 › Stretchly: not migrating showBreakActionsInStrictMode
+20:41:45.167 › Stretchly: migrating preferences from Stretchly v1.17.0 to v1.18.2
+20:41:45.171 › Stretchly: migrating preferences from Stretchly v1.18.2 to v1.19.0
+20:41:45.171 › Stretchly: not migrating audio to longBreakAudio
+20:41:45.171 › Stretchly: not migrating microbreakStartSoundPlaying
+20:41:45.171 › Stretchly: not migrating breakStartSoundPlaying
+20:41:45.175 › Stretchly: migrating preferences from Stretchly v1.19.0 to v1.20.0
+20:41:45.191 › Stretchly: loading preferences
+20:41:45.202 › Stretchly: attempting to set autostart to false
+🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+i18next: hasLoadedNamespace: i18next was not initialized undefined
+i18next::translator: key "main.toolTipHeader" for languages "en" won't get resolved as namespace "translation" was not yet loaded This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!
+i18next::translator: missingKey undefined translation main.toolTipHeader main.toolTipHeader
+i18next::translator: missingKey undefined translation statusMessages.nextMiniBreak statusMessages.nextMiniBreak
+i18next::translator: missingKey undefined translation utils.inAbout utils.inAbout
+i18next::translator: missingKey undefined translation statusMessages.nextLongBreak statusMessages.nextLongBreak
+i18next::translator: missingKey undefined translation utils.inAbout utils.inAbout
+i18next::translator: missingKey undefined translation statusMessages.nextMiniBreak statusMessages.nextMiniBreak
+i18next::translator: missingKey undefined translation utils.inAbout utils.inAbout
+i18next::translator: missingKey undefined translation statusMessages.nextLongBreak statusMessages.nextLongBreak
+i18next::translator: missingKey undefined translation utils.inAbout utils.inAbout
+i18next::translator: missingKey undefined translation main.toMicrobreak main.toMicrobreak
+i18next::translator: missingKey undefined translation main.toBreak main.toBreak
+i18next::translator: missingKey undefined translation main.skipToTheNext main.skipToTheNext
+i18next::translator: missingKey undefined translation main.pause main.pause
+i18next::translator: missingKey undefined translation utils.minutes utils.minutes
+i18next::translator: missingKey undefined translation main.forHour main.forHour
+i18next::translator: missingKey undefined translation main.for2Hours main.for2Hours
+i18next::translator: missingKey undefined translation main.for5Hours main.for5Hours
+i18next::translator: missingKey undefined translation main.untilMorning main.untilMorning
+i18next::translator: missingKey undefined translation main.indefinitely main.indefinitely
+i18next::translator: missingKey undefined translation main.resetBreaks main.resetBreaks
+i18next::translator: missingKey undefined translation main.preferences main.preferences
+i18next::translator: missingKey undefined translation main.quitStretchly main.quitStretchly
+i18next::backendConnector: loading namespace translation for language zh failed [Error: ENOENT: no such file or directory, open '/Users/carry/Documents/DeepCarry/Git/dc-restspark/app/locales/zh.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carry/Documents/DeepCarry/Git/dc-restspark/app/locales/zh.json'
+}
+i18next::backendConnector: loaded namespace translation for language en {
+  main: {
+    toolTipHeader: 'Rest Spark - The break time reminder app',
+    microbreakIn: "Mini break in $t(utils.seconds, {'count': {{seconds}} })",
+    breakIn: "Long break in $t(utils.seconds, {'count': {{seconds}} })",
+    resumingBreaks: 'Resuming breaks',
+    downloadLatestVersion: 'Download latest version',
+    toBreak: 'Long break',
+    toMicrobreak: 'Mini break',
+    skipToTheNext: 'Skip to the next',
+    resume: 'Resume breaks',
+    pause: 'Pause breaks',
+    forHour: '1 hour',
+    for2Hours: '2 hours',
+    for5Hours: '5 hours',
+    untilMorning: 'Until morning',
+    indefinitely: 'Indefinitely',
+    resetBreaks: 'Reset breaks',
+    quitStretchly: 'Quit Rest Spark',
+    restoreDefaults: 'Restore defaults',
+    warning: 'This will restore app defaults and all your settings will be lost.',
+    continue: 'Continue',
+    cancel: 'Cancel',
+    preferences: 'Preferences',
+    contributorPreferences: 'Contributor Preferences',
+    syncPreferences: 'Sync Preferences'
+  },
+  break: {
+    postpone: 'Postpone this break',
+    skip: 'Skip this break',
+    title: 'Time to take a break!',
+    finish: 'Finish this break'
+  },
+  preferences: {
+    title: 'Rest Spark Preferences',
+    nav: {
+      settings: 'General',
+      schedule: 'Schedule',
+      theme: 'Appearance & sound',
+      about: 'About',
+      heart: 'Support Stretchly upstream'
+    },
+    settings: {
+      openAtLogin: 'Start Rest Spark automatically when logging in',
+      showBreaksIn: 'Shows breaks in:',
+      window: 'Window',
+      fullscreen: 'Full screen',
+      showIdeas: 'Show exercise tips during breaks',
+      allScreens: 'Shows breaks on all monitors',
+      monitorIdleTime: 'Monitor system idle time (breaks are paused if system is idle).',
+      monitorDnd: 'Show breaks even in Do Not Disturb mode',
+      language: 'Select language:',
+      restoreDefaults: 'Restore defaults'
+    },
+    schedule: {
+      miniBreaks: 'Mini breaks:',
+      miniBreaksInfo: 'Mini breaks are short breaks taken regularly to give you a chance to stretch and relax.',
+      enableMiniBreaks: 'Enable Mini breaks',
+      breakFor: 'Break for:',
+      every: 'Every:',
+      showNotificationBeforeMiniBreak: 'Show notification before Mini break starts',
+      enablePostponeMini: 'Enable postponement for Mini break',
+      longBreaks: 'Long breaks:',
+      longBreaksInfo: 'Long breaks are taken less regularly, but are of greater duration, allowing you to take an extended break from your work.',
+      enableLongBreaks: 'Enable Long breaks',
+      showNotificationBeforeLongBreak: 'Show notification before Long break starts',
+      enablePostponeLong: 'Enable postponement for Long break',
+      strictMode: 'Strict mode:',
+      strictModeInfo: 'Strict mode prevents you from skipping either Mini breaks or Long breaks and is designed to help discipline.',
+      enableStrictMini: 'Enable Strict mode for Mini breaks',
+      enableStrictLong: 'Enable Strict mode for Long breaks',
+      cantDisableBoth: 'It is not possible to disable both types of breaks'
+    },
+    theme: {
+      appearance: 'Appearance:',
+      greenClouds: 'Green clouds',
+      autumnBeBlessed: 'Autumn be blessed',
+      graphiteCrystal: 'Graphite crystal',
+      coffeeKisses: 'Coffee kisses',
+      morningSwim: 'Morning swim',
+      transparentMode: 'Enable transparency',
+      sounds: 'Sounds:',
+      enableSounds: 'Enable sounds',
+      crystalGlass: 'Crystal glass',
+      windChime: 'Wind chime',
+      ticToc: 'Tic toc',
+      reverie: 'Reverie',
+      silence: 'Silence',
+      trayIcon: 'Menubar (Tray):',
+      colour: 'Colour',
+      monochrome: 'Monochrome',
+      invertedMonochrome: 'Inverted Monochrome',
+      snowWhite: 'Snow white',
+      trayIconStyleLabel: 'Style:',
+      trayIconStyleDefault: 'Default',
+      trayIconStyleTime: 'Time to next break',
+      trayIconStyleProgress: 'Progress to next break'
+    },
+    about: {
+      tagline: 'The break time reminder app',
+      version: 'Version ',
+      latestVersion: 'Latest version ',
+      checkNewVersion: 'Automatically check for app updates',
+      learnMore: 'For Rest Spark source, releases and support, visit ',
+      ourWebsite: 'project repository',
+      dot: '.',
+      developedBy: 'Stretchly — Developed by',
+      janH: 'Jan Hovancik',
+      designedBy: 'Stretchly — Icon and UI design by Colin Shanley'
+    },
+    heart: {
+      loveStretchly: 'Love your Stretchly?',
+      desc1: 'Taking regular breaks when using a computer is scientifically proven to be important for your physical and mental well-being.',
+      desc2: 'Stretchly is free. But you can lend your support by donating and help us continue to improve Stretchly and release other free software.',
+      becomeContributor: 'Become a contributor',
+      alreadyContributor: "I'm already a contributor",
+      authenticateUsing: 'Authenticate using:',
+      contributorPreferences: 'Contributor Preferences',
+      syncPreferences: 'Sync Preferences'
+    }
+  },
+  contributorPreferences: {
+    '0': 'First monitor',
+    '1': 'Second monitor',
+    '2': 'Third monitor',
+    '3': 'Fourth monitor',
+    '4': 'Fifth monitor',
+    title: 'Contributor Preferences',
+    notifications: 'Break notifications:',
+    notificationsInfo: 'System notification shown before breaks to let you prepare for it.',
+    beforeLongBreak: 'Long break:',
+    beforeMiniBreak: 'Mini break:',
+    newVersion: 'New version:',
+    newVersionNotification: 'Notify when new version is available',
+    customIdeas: 'Custom ideas:',
+    customIdeasInfo: 'Allows you to use custom break ideas by editing configuration file. (For advanced users.)',
+    useIdeasFromSettings: 'Use break ideas from configuration file',
+    breakPostpone: 'Postponement of breaks:',
+    breakPostponeInfo: 'If enabled in main Preferences, you can postpone breaks. Following settings allow you to specify when, for how long and how many times you can postpone a break.',
+    miniBreaks: 'Mini breaks:',
+    postponableFor: 'Postponable for:',
+    postponeFor: 'Postpone for:',
+    maxPostpones: 'Maximum postpones:',
+    longBreaks: 'Long breaks:',
+    pauseUntilMorning: 'Pause until morning:',
+    pauseUntil: 'Pause until:',
+    pauseUntilMorningInfo: "Specify till what hour 'Pause until morning' should pause.",
+    welcomeWindow: 'Welcome window:',
+    showWelcomeWindow: 'Show Welcome window on next start',
+    opacityTheme: 'Theme transparency:',
+    opacityInfo: 'How solid should the break window be?',
+    opacity: 'Opacity:',
+    breakWindowSize: 'Break window size',
+    breakWindowSizeInfo: 'What percentage of the screen should the break window hide?',
+    breakWindowWidth: 'Width:',
+    breakWindowHeight: 'Height:',
+    sounds: 'Sounds:',
+    volume: 'Volume:',
+    miniBreakStartSound: 'Sound at the start of Mini break',
+    longBreakStartSound: 'Sound at the start of Long break',
+    naturalBreaks: 'Natural breaks:',
+    naturalBreaksInfo: 'If monitoring of idle time is enabled in main Preferences, you can specify after what time the breaks should be paused.',
+    pauseAfter: 'Pause after:',
+    appearance: 'Appearance:',
+    light: 'Light',
+    dark: 'Dark',
+    system: 'System',
+    showBreaksAsRegularWindowsTitle: 'Act as regular window:',
+    showBreaksAsRegularWindowsInfo: "When enabled, break windows will become focusable, they won't be 'Always on top' anymore and they will also appear in the taskbar.",
+    showBreaksAsRegularWindows: 'Show breaks as regular windows',
+    screen: 'Monitor for breaks:',
+    screenInfo: 'When showing breaks on all monitors is disabled, you can choose which one you would like to show your breaks on.',
+    showOnMonitor: 'Show breaks on',
+    primary: 'Primary monitor',
+    cursor: 'Follow cursor',
+    showTrayIcon: 'Show tray icon',
+    toShowTrayIcon: 'Show Rest Spark icon in tray',
+    currentTimeInBreaks: 'Current time',
+    showCurrentTimeInBreaks: 'Show current local time in break window'
+  },
+  utils: {
+    remaining: '{{count}} remaining',
+    elapsed: '{{count}} elapsed',
+    inAbout: 'in about {{count}}',
+    none_one: '{{count}}',
+    none_other: '{{count}}',
+    percent_one: '{{count}} percent',
+    percent_other: '{{count}} percent',
+    oclock_one: "{{count}} o'clock",
+    oclock_other: "{{count}} o'clock",
+    seconds_one: '{{count}} second',
+    seconds_other: '{{count}} seconds',
+    minutes_one: '{{count}} minute',
+    minutes_other: '{{count}} minutes',
+    hours_one: '{{count}} hour',
+    hours_other: '{{count}} hours'
+  },
+  process: { newVersionAvailable: 'New version is available!' },
+  welcome: {
+    title: 'Welcome to Rest Spark',
+    breakTimeReminderApp: 'The break time reminder app',
+    viewTutorial: 'View Tutorial',
+    openPreferences: 'Open Preferences',
+    getStarted: 'Get Started'
+  },
+  statusMessages: {
+    paused: 'Paused',
+    indefinitely: 'Indefinitely',
+    dndMode: 'Do Not Disturb is on',
+    appExclusion: 'App exclusion rule',
+    nextLongBreak: 'Next Long break',
+    nextMiniBreak: 'Next Mini break',
+    afterMiniBreak_one: 'after {{count}} Mini break',
+    afterMiniBreak_other: 'after {{count}} Mini breaks',
+    resuming: 'Resuming'
+  },
+  miniBreakIdeas: {
+    aaa: { text: 'Go grab a glass of water.' },
+    aab: { text: 'Slowly look all the way left, then right.' },
+    aac: { text: 'Slowly look all the way up, then down.' },
+    aad: { text: 'Close your eyes and take few deep breaths.' },
+    aae: { text: 'Close your eyes and relax.' },
+    aaf: { text: 'Stretch your legs.' },
+    aag: { text: 'Stretch your arms.' },
+    aah: { text: 'Is your sitting posture correct?' },
+    aai: { text: 'Slowly turn head to side and hold for 10 seconds.' },
+    aaj: { text: 'Slowly tilt head to side and hold for 5-10 seconds.' },
+    aak: { text: 'Stand from your chair and stretch.' },
+    aal: { text: 'Refocus your eyes on an object at least 20 meters away.' },
+    aam: { text: 'Take a moment to think about something you appreciate.' },
+    aan: { text: 'Take a moment to smile at being alive.' },
+    aao: {
+      text: 'A truly ergonomic workstation is one that you regularly push away from.'
+    },
+    aap: { text: 'Close your eyes and count your breaths.' },
+    aaq: { text: 'Close your eyes and name the things you hear.' },
+    aar: {
+      text: 'Place your fingertips on your shoulders. Roll your shoulders forward for 10 seconds, then backward.'
+    },
+    aas: {
+      text: 'Raise your right arm, stretch it over your head to the left, and hold for 10 seconds. Repeat on the other side.'
+    },
+    aat: {
+      text: 'With your right hand, grab each finger of your left hand in turn and squeeze. Repeat on the other side.'
+    },
+    aau: {
+      text: 'Stand up and do a lunge. Hold for 10 seconds, then do the other leg.'
+    },
+    aav: {
+      text: 'Close your eyes and simply notice whatever arises in current moment, without judgement.'
+    },
+    aaw: {
+      text: 'Focus every 20 minutes for 20 seconds on an object at 20 feet distance.'
+    },
+    aax: { text: 'If you need help, ask for it.' },
+    aay: { text: 'Do one thing at a time.' },
+    aaz: { text: 'Is your attention spent wisely?' },
+    aba: { text: 'Change your sitting posture.' },
+    abb: { text: 'Expose your eyes to natural light.' },
+    abc: {
+      text: 'With your eyes closed, slowly and gently raise your eyes to the ceiling and back down to the floor.'
+    },
+    abd: {
+      text: 'With your eyes closed, slowly and gently move your eyes to the left, then slowly to the right.'
+    },
+    abe: { text: 'Shake your hands out to get some relief.' },
+    abf: {
+      text: 'One at a time, touch the tip of each finger to the tip of your thumb so they make an O-shape.'
+    },
+    abg: {
+      text: "Make a fist and then slide your fingers up until they point toward the ceiling, like you're telling someone to stop."
+    },
+    abh: {
+      text: 'Make a fist and then fan your fingers out and stretch them as far as you can.'
+    },
+    abi: {
+      text: 'Sit tall, arms hanging at your sides, and slowly rotate neck in one direction in a large circle.'
+    },
+    abj: {
+      text: 'Stand tall and slowly tilt your head toward the shoulder using the same hand until you feel a stretch.'
+    },
+    abk: {
+      text: 'Stand tall with your arms by your side. Squeeze your shoulder blades together and hold.'
+    },
+    abl: {
+      text: 'Stand tall with your arms raised along your shoulders. Move hands slightly behind your back, hold for a second and return.'
+    },
+    abm: {
+      text: 'Sit on the edge of your chair, twist your torso to one side and hold for 10-15 seconds. Repeat on the other side.'
+    },
+    abn: {
+      text: 'Stand up and put one foot on a nearby object, like a chair or step stool. Keep your knee bent and hold for 10-15 seconds. Repeat with the other foot.'
+    },
+    abo: {
+      text: 'Stand with your feet shoulder-width apart, lower your body down as if you were sitting back into a chair, then stand back up. Repeat several times.'
+    },
+    abp: {
+      text: 'Stand with your back and hands on a wall, then slowly move your arms up and down as if you were making snow angels.'
+    },
+    abq: {
+      text: 'Stand facing a wall and place your hands on it, then do several push-ups.'
+    },
+    abr: {
+      text: 'Sit on the edge of your chair and extend one leg straight out in front of you, holding for 10-15 seconds. Repeat with the other leg.'
+    },
+    abs: {
+      text: 'Stand facing a wall, put one foot back and the other foot forward, then lean into the wall. Repeat with the other leg.'
+    },
+    abt: {
+      text: 'Hold one arm straight up, then use the other arm to gently push the elbow of the first arm towards your head. Hold for 10-15 seconds. Repeat with the other arm.'
+    },
+    abu: {
+      text: 'Tilt your head to one side, then to the other side, and then gently tilt it forward and backward.'
+    },
+    abv: {
+      text: 'Reach one arm across your chest, hold onto the elbow with the other hand, and gently pull it in towards your chest. Repeat with the other arm.'
+    },
+    abw: {
+      text: 'Stand up, put one foot on a nearby object, like a chair or step stool, and reach down to touch your toes. Repeat with the other leg.'
+    },
+    abx: {
+      text: 'Stand in a doorway and place one arm on each side of the doorway, then gently lean forward until you feel a stretch in your chest.'
+    },
+    aby: {
+      text: 'Sit on the edge of a chair or on the floor, and place the soles of your feet together, gently pressing down with your elbows to stretch your inner thighs.'
+    }
+  },
+  longBreakIdeas: {
+    aaa: {
+      title: 'Not alone',
+      text: 'Do you find it hard to take a break alone? Try to do it with a co-worker. Aside from making it easier to stick to breaks, you will have a chance to get to know them better. Taking breaks together increases productivity.'
+    },
+    aab: {
+      title: 'Step away',
+      text: 'Do you ever notice how your brain can figure things out by itself? All it takes is to step away from the computer and take a break to think about something totally unrelated.'
+    },
+    aac: {
+      title: 'Microbreaks',
+      text: 'Rest is a key component in ensuring the performance of the musculoskeletal system. Frequent breaks can decrease the duration of a task and help lower the exposure to ergonomic injury risk.'
+    },
+    aad: {
+      title: 'Meditation',
+      text: 'Research studies suggest that mindfulness-based exercises help decrease anxiety, depression, stress, and pain, and help improve general health, mental health, and quality of life. Not sure how to start? There are numerous apps to help you out.'
+    },
+    aae: {
+      title: 'Blink',
+      text: 'Looking at screens for a long time causes you to blink less, thus exposing your eyes to the air. Blink rapidly for a few seconds to refresh the tear film and clear dust from the eye surface.'
+    },
+    aaf: {
+      title: 'Ergonomics',
+      text: 'Improper height and angle of the keyboard, mouse, monitor or working surface can cause health problems. Take some time to read about desk ergonomics.'
+    },
+    aag: {
+      title: 'Move',
+      text: 'There are a lot of ways you can exercise within your office. Try marching in place or doing desk push-ups.'
+    },
+    aah: {
+      title: 'Change',
+      text: 'Do you have a stability ball or standing work desk? Consider replacing your desk chair with them for a while.'
+    },
+    aai: {
+      title: 'Notice',
+      text: 'Are you daydreaming or having trouble focusing? It is a sign that you need to take a break.'
+    },
+    aaj: { title: 'Tech', text: 'How about taking a no-tech walk?' },
+    aak: {
+      title: 'Metabolism',
+      text: 'Emerging research shows that sitting for long periods of time contributes to risk of metabolic syndrome, heart attack and stroke risk and overall death risk, among others. Taking regular walking breaks can help your circulation, working to counteract some of those problems.'
+    },
+    aal: {
+      title: 'Active Meetings',
+      text: 'How about moving meetings from the conference room to the concourse? Walking not only burns calories but it may even foster a sense of collaboration.'
+    },
+    aam: {
+      title: 'Fruit',
+      text: 'Take your time and eat some fruit. Slowly. Notice the flavor, the texture, the freshness.'
+    },
+    aan: {
+      title: 'Bathrooms',
+      text: 'Walk to the farthest bathroom in the worksite facility when going to the restroom.'
+    },
+    aao: {
+      title: 'Coffee break',
+      text: 'Going on coffee break? Consider doing a 5-minute walk every time you go for one.'
+    },
+    aap: {
+      title: 'Colleagues',
+      text: 'Do not email or message office colleagues, walk to their desks to communicate with them.'
+    },
+    aaq: {
+      title: 'Learning',
+      text: 'In a study of healthy volunteers, NIH researchers found that taking short breaks, early and often, may help our brains learn new skills.'
+    },
+    aar: {
+      title: 'Exercise',
+      text: 'Evidence suggests small amounts of regular exercise can bring dramatic health benefits, including measurably reducing stress.'
+    },
+    aas: {
+      title: 'Repeat',
+      text: 'Have you found your stretch-ly-routine? Do not forget to repeat it for more than once to better fight effects of prolonged sitting.'
+    },
+    aat: {
+      title: 'Wrist and forearm',
+      text: 'Extend your arms with the palms facing towards you, then slowly rotate the hands four times clockwise, then four times counter-clockwise.'
+    },
+    aau: {
+      title: 'Back stretching',
+      text: 'Join your hands behind your head, then lift them together up above your head ending with your palms facing upward.'
+    },
+    aav: {
+      title: 'Mobilize',
+      text: 'For every thirty minutes of stagnation, you should have at least one minute of stimulation.'
+    },
+    aaw: {
+      title: '7 Minute Workout',
+      text: 'This workout packs in a full-body exercise routine in a fraction of the time. But as with any exercise, be careful. There are numerous apps to get you started.'
+    },
+    aax: {
+      title: 'Pulse',
+      text: 'Raise your pulse rate to 120 beats per minute for 20 straight minutes four or five times a week doing anything you enjoy. Regularly raising your heart rate results in improved cardiovascular health.'
+    },
+    aay: {
+      title: 'Take the stairs',
+      text: 'Studies have shown that stair climbing, which is considered vigorous-intensity physical activity, burns more calories per minute than jogging.'
+    },
+    aaz: {
+      title: 'Make art',
+      text: 'Art therapy is known to have great mental health benefits, especially when it comes to stress management. How about writing a quick poem, taking a picture or painting something small?'
+    },
+    aba: {
+      title: 'Declutter',
+      text: 'A clean space helps your focus at work and is often linked to positive emotions like happiness.'
+    },
+    abb: {
+      title: 'Lunch outside',
+      text: 'Nature is linked to positive emotions and decreased stress and anxiety. Whenever possible, try to take your daily lunch break outside, surrounded by some greenery.'
+    },
+    abc: {
+      title: 'Public transport',
+      text: 'If you use public transport regularly, you can stand instead of sitting. If it is possible, try to replace as many of your daily trips as possible with walking or cycling.'
+    },
+    abd: {
+      title: 'Yawning',
+      text: 'Yawning can be really helpful, as it produces tears to help moisten and lubricate the eyes.'
+    },
+    abe: {
+      title: 'Focus change',
+      text: 'Hold one finger close to the eye and focus on it. Slowly move the finger away, focus far into the distance and then back to the finger. Bring the finger back and focus on something far away.'
+    },
+    abf: {
+      title: 'Palming',
+      text: 'While seated, brace elbows on the desk and close to the desk edge. Let your weight fall forward and cup hands over eyes. Close your eyes and inhale slowly through nose and hold for few seconds. Continue deep breathing.'
+    },
+    abg: {
+      title: 'Hand squeezes',
+      text: 'Squeeze a pair of balled-up socks or a soft rubber ball, hold for 5 seconds. Repeat whole process a few times.'
+    },
+    abh: {
+      title: 'Slow Breathing',
+      text: 'Emerging research suggests potential for use of controlled slow breathing techniques as a means of optimising physiological parameters that appear to be associated with health and longevity.'
+    },
+    abi: {
+      title: 'Imaginative visualization',
+      text: 'Close your eyes and imagine yourself in a peaceful and calming place, such as a beach or a forest, focusing on the sights, sounds, and sensations of that environment.'
+    },
+    abj: {
+      title: 'Overwhelmed?',
+      text: 'Try the 5-4-3-2-1 Grounding Technique: Identify 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, and 1 thing you can taste.'
+    }
+  },
+  quietRest: {
+    miniTitle: 'Take a little break',
+    longTitle: 'Time to unwind',
+    footer: 'Rest well. Come back refreshed.',
+    scheduleTitle: 'Break schedule',
+    scheduleSubtitle: 'Make a little room for rest in your day.',
+    interval: 'Break interval',
+    duration: 'Break duration',
+    strictTitle: 'Strict mode',
+    longIntervalHelp: 'Long breaks follow the configured number of mini breaks. The interval above is the resulting total time.',
+    miniSection: 'Mini breaks',
+    longSection: 'Long breaks'
+  },
+  brand: {
+    name: 'Rest Spark',
+    otherName: '元气',
+    upstream: 'Based on Stretchly · BSD-2-Clause',
+    upstreamSupport: 'Support Stretchly upstream'
+  },
+  settingsV1: {
+    generalTitle: 'General settings',
+    generalSubtitle: 'Choose how Rest Spark fits into your day.',
+    startup: 'Startup & operation',
+    login: 'Launch Rest Spark at login',
+    loginHelp: 'Run in the background when your day begins.',
+    display: 'Reminder display',
+    displayMode: 'Show breaks in',
+    allScreens: 'Show on all displays',
+    screensHelp: 'Show the break window on each connected screen.',
+    behavior: 'Reminder behavior',
+    ideas: 'Show break ideas',
+    ideasHelp: 'Small suggestions for stretching and unwinding.',
+    idle: 'Detect idle time',
+    idleHelp: 'Pause the reminder timer while you are away.',
+    dnd: 'Show breaks during Do Not Disturb',
+    dndHelp: 'When off, pause reminders during Do Not Disturb.',
+    languageMaintenance: 'Language & maintenance',
+    language: 'Interface language',
+    languageHelp: 'Changes take effect immediately.',
+    reset: 'Reset preferences',
+    restore: 'Restore defaults',
+    scheduleTitle: 'Break schedule',
+    scheduleSubtitle: 'Make a little room for rest in your day.',
+    mini: 'Mini breaks',
+    long: 'Long breaks',
+    enableMini: 'Enable mini breaks',
+    enableLong: 'Enable long breaks',
+    notify: 'Notify before a break',
+    postpone: 'Allow postponing',
+    strict: 'Strict mode',
+    strictHelp: 'Prevent skipping a break early. Postponing follows your existing settings.',
+    strictMini: 'Strict mini breaks',
+    strictLong: 'Strict long breaks',
+    themeTitle: 'Appearance & sound',
+    themeSubtitle: 'Your break visuals and reminder sounds.',
+    appearance: 'App appearance',
+    appAppearance: 'Display mode',
+    system: 'Follow system',
+    light: 'Light',
+    dark: 'Dark',
+    currentTheme: 'Current theme',
+    mint: 'Rest Spark Mint',
+    mintHelp: 'A fresh, calming mint palette for focus and rest.',
+    inUse: '✓ In use',
+    sounds: 'Sound',
+    enableSounds: 'Break reminder sounds',
+    preview: 'Preview',
+    tray: 'Menu bar',
+    trayStyle: 'Menu bar display',
+    trayColor: 'Icon color',
+    invert: 'Invert monochrome icon',
+    aboutTitle: 'About Rest Spark',
+    aboutSubtitle: 'A little rest. A little more energy.',
+    productType: 'A mindful break reminder',
+    versionUpdates: 'Version & updates',
+    updates: 'Check for a new version',
+    checkUpdates: 'Check updates',
+    autoUpdates: 'Check automatically',
+    checking: 'Checking for updates…',
+    noRelease: 'No update information available',
+    latest: 'You’re up to date',
+    available: 'Latest published version: {{version}}',
+    project: 'Project & developer',
+    source: 'Source code',
+    sourceHelp: 'DeepCarry / RestSpark',
+    developer: 'Development & design',
+    developerHelp: 'DeepCarry',
+    licenses: 'Licenses & acknowledgments',
+    artworkCredit: 'The Rest Spark logo and break artwork were supplied and approved by the project owner. Upstream sounds and dependencies retain their respective licenses, distributed with the app.',
+    dependencies: 'View project dependencies'
+  },
+  scheduleV2: {
+    minutes: 'min',
+    seconds: 'sec',
+    increase: '+',
+    decrease: '−',
+    presets: 'Choose a preset',
+    apply: 'Apply',
+    cancel: 'Cancel',
+    custom: 'Custom…',
+    legacy: 'Existing custom setting',
+    saveFailed: 'Could not save. Please retry.',
+    invalid_microbreakInterval: 'Enter a whole number from 5 to 60 minutes.',
+    invalid_microbreakDuration: 'Enter 30–300 seconds in steps of 10.',
+    invalid_breakDuration: 'Enter a whole number from 3 to 20 minutes.',
+    presetMinutes: '{{count}} min',
+    presetSeconds: '{{count}} sec',
+    increaseLabel: 'Increase value',
+    decreaseLabel: 'Decrease value',
+    longInterval: 'Long break interval',
+    invalid_longBreakInterval: 'Enter a whole number from 30 to 180 minutes.'
+  }
+}
+i18next::backendConnector: loaded namespace translation for language zh-CN {
+  main: {
+    toolTipHeader: '元气 - 休息提醒应用',
+    microbreakIn: "距离下次小憩约 $t(utils.seconds, {'count': {{seconds}} })",
+    breakIn: "距离下次休息约 $t(utils.seconds, {'count': {{seconds}} })",
+    resumingBreaks: '正在恢复休息',
+    downloadLatestVersion: '下载最新版本',
+    toBreak: '休息',
+    toMicrobreak: '小憩',
+    skipToTheNext: '跳到下一次',
+    resume: '恢复休息',
+    pause: '暂停休息',
+    forHour: '1 小时',
+    for2Hours: '2 小时',
+    for5Hours: '5 小时',
+    untilMorning: '直至早晨',
+    indefinitely: '无限期',
+    resetBreaks: '重置休息',
+    quitStretchly: '退出 元气',
+    restoreDefaults: '还原至默认值',
+    warning: '即将恢复默认值，所有已有设置会被清除。',
+    continue: '继续',
+    cancel: '取消',
+    preferences: '偏好设置',
+    contributorPreferences: '贡献者偏好设置',
+    syncPreferences: '同步偏好设置'
+  },
+  break: {
+    postpone: '延后此次休息',
+    skip: '跳过此次休息',
+    title: '该休息一下了！',
+    finish: '完成本次休息'
+  },
+  preferences: {
+    title: '元气 偏好设置',
+    nav: {
+      settings: '通用设置',
+      schedule: '计划',
+      theme: '外观与声音',
+      about: '关于元气',
+      heart: '支持 Stretchly 原项目'
+    },
+    settings: {
+      openAtLogin: '登录后自动启动 元气',
+      showBreaksIn: '休息提示画面：',
+      window: '窗口',
+      fullscreen: '全屏',
+      showIdeas: '在休息时显示锻炼提示',
+      allScreens: '在所有显示器显示休息提示画面',
+      monitorIdleTime: '监控系统的闲置时间（系统闲置时暂停计时）。',
+      monitorDnd: '即使处于「勿扰」模式，仍显示休息画面',
+      language: '选择语言：',
+      restoreDefaults: '还原至默认值'
+    },
+    schedule: {
+      miniBreaks: '小憩：',
+      miniBreaksInfo: '「小憩」是频率较高的短暂休息，您可以用来伸展和放松。',
+      enableMiniBreaks: '启用「小憩」',
+      breakFor: '持续时间：',
+      every: '每：',
+      showNotificationBeforeMiniBreak: '小憩前弹出通知',
+      enablePostponeMini: '允许延后小憩',
+      longBreaks: '休息：',
+      longBreaksInfo: '「休息」频率较低，但持续时间更长，让您能够从工作中得到长时间的休息。',
+      enableLongBreaks: '启用「休息」',
+      showNotificationBeforeLongBreak: '休息前弹出通知',
+      enablePostponeLong: '允许延后休息',
+      strictMode: '严格模式：',
+      strictModeInfo: '「严格模式」下不能跳过任何休息类型，目的是帮助自律。',
+      enableStrictMini: '启用「小憩」的严格模式',
+      enableStrictLong: '启用「休息」的严格模式',
+      cantDisableBoth: '不能同时停用两种休息类型'
+    },
+    theme: {
+      appearance: '外观：',
+      greenClouds: '绿色云朵',
+      autumnBeBlessed: '秋天祝福',
+      graphiteCrystal: '石墨水晶',
+      coffeeKisses: '咖啡之吻',
+      morningSwim: '沐浴晨光',
+      transparentMode: '启用半透明',
+      sounds: '音效：',
+      enableSounds: '启用音效',
+      crystalGlass: '水晶玻璃',
+      windChime: '风铃',
+      ticToc: '滴答',
+      trayIcon: '通知栏图标：',
+      colour: '彩色',
+      monochrome: '单色',
+      invertedMonochrome: '反转单色',
+      snowWhite: '纯白雪花',
+      reverie: '白日梦',
+      silence: '沉默',
+      trayIconStyleLabel: '样式：',
+      trayIconStyleDefault: '默认',
+      trayIconStyleTime: '距下次休息时间',
+      trayIconStyleProgress: '休息进度'
+    },
+    about: {
+      tagline: '休息提醒应用',
+      version: '版本 ',
+      latestVersion: '最新版本 ',
+      notifyNewVersion: '新版本提醒',
+      learnMore: '查看元气源码、发行版及问题反馈：',
+      ourWebsite: 'GitHub 仓库',
+      dot: '。',
+      developedBy: 'Stretchly — 开发者',
+      janH: 'Jan Hovancik',
+      designedBy: 'Stretchly — 图标和用户界面由 Colin Shanley 设计',
+      checkNewVersion: '自动检查更新'
+    },
+    heart: {
+      loveStretchly: '喜欢 Stretchly?',
+      desc1: '科学研究表明，使用电脑时定时休息有利于身心健康。',
+      desc2: 'Stretchly 是免费的。但是您可以通过捐赠来帮助我们改进 Stretchly 并发布其他免费软件。',
+      becomeContributor: '捐助',
+      alreadyContributor: '我已经是贡献者了',
+      authenticateUsing: '通过下列方法认证：',
+      contributorPreferences: '贡献者偏好设置',
+      syncPreferences: '同步偏好设置'
+    }
+  },
+  contributorPreferences: {
+    '0': '第一台显示器',
+    '1': '第二台显示器',
+    '2': '第三台显示器',
+    '3': '第四台显示器',
+    '4': '第五台显示器',
+    title: '贡献者偏好设置',
+    notifications: '休息通知：',
+    notificationsInfo: '在休息前弹出系统通知，让您做好准备。',
+    beforeLongBreak: '休息：',
+    beforeMiniBreak: '小憩：',
+    newVersion: '新版本：',
+    newVersionNotification: '新版本提醒',
+    customIdeas: '自定义理念：',
+    customIdeasInfo: '您可以编辑配置文件来使用自定义休息理念（专业用户）',
+    useIdeasFromSettings: '使用配置文件中的休息理念',
+    breakPostpone: '延后休息：',
+    breakPostponeInfo: '若在偏好设置启用，就能延后休息。以下设置让您能够指定延后休息的具体配置。',
+    miniBreaks: '小憩：',
+    postponableFor: '延后情况：',
+    postponeFor: '延后多久：',
+    maxPostpones: '最大延后次数：',
+    longBreaks: '休息：',
+    pauseUntilMorning: '暂停至早晨：',
+    pauseUntil: '暂停至：',
+    pauseUntilMorningInfo: '指定「暂停至早晨」的具体时间。',
+    welcomeWindow: '欢迎窗口：',
+    showWelcomeWindow: '下次启动时显示欢迎窗口',
+    opacityTheme: '透明主题：',
+    opacityInfo: '休息窗口应该有多不透明?',
+    opacity: '不透明度：',
+    breakWindowSize: '休息窗口尺寸',
+    breakWindowSizeInfo: '休息窗口的屏幕占比是多少?',
+    breakWindowWidth: '宽：',
+    breakWindowHeight: '高：',
+    sounds: '音效：',
+    volume: '音量：',
+    miniBreakStartSound: '小憩开始时播放的音效',
+    longBreakStartSound: '休息开始时播放的音效',
+    naturalBreaks: '自然休息：',
+    naturalBreaksInfo: '若在偏好设置中启用监视空闲时间，您可以指定什么时候暂停倒数。',
+    pauseAfter: '多久后暂停：',
+    appearance: '外观：',
+    light: '浅色',
+    dark: '深色',
+    system: '跟随系统',
+    screen: '监控休息时间：',
+    showBreaksAsRegularWindows: '休息画面设为常规窗口',
+    showBreaksAsRegularWindowsInfo: '启用后，休息窗口可被聚焦，不再始终置顶并将出现在任务栏中。',
+    showBreaksAsRegularWindowsTitle: '作为常规窗口：',
+    cursor: '跟随光标',
+    primary: '主显示器',
+    showOnMonitor: '显示休息画面于',
+    screenInfo: '禁用所有显示器显示休息画面时，你可以选择在哪个显示器显示休息画面。',
+    timeToBreakInTray: '休息时间',
+    showTimeToBreakInTray: '在托盘图标显示下次休息时间',
+    showCurrentTimeInBreaks: '在休息画面显示当前时间',
+    currentTimeInBreaks: '当前时间',
+    showTrayIcon: '显示托盘图标',
+    toShowTrayIcon: '在托盘中显示 元气 图标'
+  },
+  utils: {
+    none_other: '{{count}}',
+    percent_other: '{{count}} %',
+    oclock_other: '{{count}} 点钟',
+    seconds_other: '{{count}} 秒',
+    minutes_other: '{{count}} 分',
+    hours_other: '{{count}} 时',
+    remaining: '还有 {{count}}',
+    inAbout: '大约 {{count}}后',
+    elapsed: '已经过去了 {{count}}'
+  },
+  process: { newVersionAvailable: '有新的版本！' },
+  welcome: {
+    title: '欢迎使用 元气',
+    breakTimeReminderApp: '休息提醒应用',
+    viewTutorial: '查看教程',
+    openPreferences: '打开偏好设置',
+    getStarted: '开始'
+  },
+  statusMessages: {
+    paused: '已暂停',
+    indefinitely: '无限期',
+    dndMode: '已启用「勿扰」',
+    nextLongBreak: '下次休息',
+    nextMiniBreak: '下次小憩',
+    afterMiniBreak_other: '{{count}} 次小憩后',
+    resuming: '继续',
+    appExclusion: '应用程序排除规则'
+  },
+  miniBreakIdeas: {
+    aaa: { text: '去接杯水吧。' },
+    abd: { text: '闭上双眼，缓慢而轻柔地向左移动眼睛，然后再缓慢地向右移动。' },
+    aai: { text: '慢慢将头转向一侧并保持 10 秒钟。' },
+    aab: { text: '慢慢地向左看，然后向右看。' },
+    aac: { text: '慢慢地向上看，然后向下看。' },
+    aad: { text: '闭上眼睛，做几次深呼吸。' },
+    aae: { text: '闭上眼睛放松。' },
+    aaf: { text: '伸展双腿。' },
+    aag: { text: '伸展你的手臂。' },
+    aah: { text: '你的坐姿正确吗？' },
+    aaj: { text: '慢慢将头向一侧倾斜并保持 5-10 秒。' },
+    aak: { text: '从椅子上站起来伸展身体。' },
+    aal: { text: '将视线重新聚焦在至少 20 米外的物体上。' },
+    aam: { text: '花点时间想想你欣赏的东西。' },
+    aan: { text: '花一点时间为了活着而微笑。' },
+    aao: { text: '真正符合人体工程学的工作站是您经常远离的工作站。' },
+    aap: { text: '闭上眼睛，去数你的呼吸。' },
+    aaq: { text: '闭上眼睛，说出你听到的东西。' },
+    aar: { text: '将指尖放在肩膀上。向前转动肩膀 10 秒钟，然后向后转动。' },
+    aas: { text: '举起右臂，向左伸过头顶，保持 10 秒，换另一侧重复。' },
+    aat: { text: '用你的右手，依次抓住你左手的每个手指并挤压。在另一边重复。' },
+    aau: { text: '站起来做一个弓步。 保持 10 秒，然后换另一条腿。' },
+    aav: { text: '闭上眼睛，不加判断地注意当下发生的一切。' },
+    aaw: { text: '每隔 20 分钟，在 20 英尺距离的物体上聚焦 20 秒。' },
+    aax: { text: '如果你需要帮助，就去寻求帮助。' },
+    aay: { text: '一次只做一件事。' },
+    aaz: { text: '你的注意力花得明智吗？' },
+    aba: { text: '改变你的坐姿。' },
+    abb: { text: '将眼睛暴露在自然光下。' },
+    abc: { text: '闭上双眼，缓慢而轻柔地抬起眼睛看向天花板，然后落下看向地板。' },
+    abe: { text: '甩甩手，让自己放松一下。' },
+    abf: { text: '一次一个，用每个手指的指尖触摸你的拇指指尖，使它们形成 O 形。' },
+    abg: { text: '握紧拳头，然后向上张开手指，直到它们指向天花板，就像你在告诉别人停下来一样。' },
+    abh: { text: '握紧拳头，然后将手指展开并尽可能地伸展。' },
+    abi: { text: '坐直，手臂垂在身体两侧，慢慢地向一个方向旋转脖子，绕一个大圈。' },
+    abj: { text: '站直，用同一只手慢慢地将头向肩膀倾斜，直到感觉到拉伸。' },
+    abk: { text: '站直，双臂放在身体两侧。将肩胛骨挤压在一起并保持不动。' },
+    abl: { text: '站直，双臂沿着肩膀抬起。 将手稍微向后移动，保持一秒钟然后返回。' },
+    abn: {
+      text: '站起来，将一只脚放在附近的物体上，比如椅子或踏步凳上。保持膝盖弯曲，保持10-15秒钟。然后换另一只脚重复练习。'
+    },
+    abt: {
+      text: '将一只手臂伸直向上，然后用另一只手臂轻轻地推动第一只手臂的肘部朝向头部。保持10-15秒钟。然后用另一只手臂重复此动作。'
+    },
+    abq: { text: '面对一面墙，将双手放在上面，然后做几个俯卧撑。' },
+    abr: { text: '坐在椅子边缘，将一条腿伸直放在身前，保持10-15秒。然后换另一条腿重复练习。' },
+    abs: { text: '面对一面墙，将一只脚向后放，另一只脚向前放，然后倾斜身体靠在墙上。然后换另一只腿重复练习。' },
+    abm: { text: '坐在椅子边缘，扭转身体向一侧，保持10-15秒。然后在另一侧重复。' },
+    abo: { text: '双脚与肩同宽，身体下蹲就像坐在椅子上，然后站起来。重复多次。' },
+    abp: { text: '站在墙边，背靠着墙，双手放在墙上，然后慢慢地将双臂上下摆动，就像在制作雪天使一样。' },
+    abu: { text: '将头向一侧倾斜，然后向另一侧倾斜，然后轻轻地向前后倾斜。' },
+    abv: { text: '伸出一只手臂横跨胸前，用另一只手握住肘部，轻轻地向胸部拉近。然后用另一只手臂重复这个动作。' },
+    abw: { text: '站起来，将一只脚放在附近的物体上，比如椅子或踏板上，弯腰触摸脚趾。然后换另一只脚重复动作。' },
+    abx: { text: '站在门口，将一只手臂放在门口的每一侧，然后轻轻向前倾斜，直到你感到胸部有一种拉伸的感觉。' },
+    aby: { text: '坐在椅子或地板边缘，双脚并拢，轻轻用肘部向下压，拉伸内侧大腿肌肉。' }
+  },
+  longBreakIdeas: {
+    abf: {
+      text: '坐着时，手肘撑在桌子上，靠近桌子边缘。身体重心向前倾，用手捂住眼睛。闭上眼睛，用鼻子慢慢吸气，保持几秒钟。继续深呼吸。',
+      title: '捂住双眼'
+    },
+    aar: { text: '证据表明，少量的定期锻炼可以带来巨大的健康效益，包括显著减轻压力。', title: '锻炼' },
+    aaa: {
+      title: '你不孤单',
+      text: '你是否觉得很难独自休息？ 试着和同事一起休息吧。除了让休息更容易坚持外，你还有机会更好地了解他们。一起休息可以提高生产力。'
+    },
+    aab: {
+      title: '远离屏幕',
+      text: '你是否曾注意到自己的大脑可以独立解决问题？只需要远离电脑，休息一下，思考一些完全无关的事情。'
+    },
+    aac: {
+      title: '小憩',
+      text: '休息是确保肌肉骨骼系统性能的关键组成部分。 经常休息可以缩短任务的持续时间，并有助于降低人体工程学伤害风险。'
+    },
+    aad: {
+      title: '冥想',
+      text: '研究表明，基于正念的练习有助于减少焦虑、抑郁、压力和疼痛，并有助于改善整体健康、心理健康和生活质量。 不知道如何开始？ 有许多应用程序可以帮助您。'
+    },
+    aae: {
+      title: '眨眨眼',
+      text: '长时间看屏幕会减少眨眼次数，从而使您的眼睛暴露在空气中。 快速眨眼几秒钟以刷新泪膜并清除眼表的灰尘。'
+    },
+    aaf: {
+      title: '人体工程学',
+      text: '键盘、鼠标、显示器或工作台面的高度和角度不当会导致健康问题。 花一些时间阅读有关办公桌人体工程学的知识。'
+    },
+    aag: { title: '移动', text: '办公室里有很多锻炼的方法，比如原地踏步或者做桌上俯卧撑。' },
+    aah: { title: '改变', text: '你有稳定球或站立式办公桌吗？ 考虑用它们暂时替换您的办公椅。' },
+    aai: { title: '注意', text: '您是否在做白日梦或难以集中注意力？ 这是你需要休息的信号。' },
+    aaj: { text: '不如来一场无科技的散步？', title: '科技' },
+    aak: {
+      title: '新陈代谢',
+      text: '新兴研究表明，久坐会增加代谢综合征风险、心脏病发作和中风风险以及总体死亡风险等。 定期步行休息可以帮助您的血液循环，努力解决其中一些问题。'
+    },
+    aal: { title: '活动会议', text: '将会议从会议室转移到大厅怎么样？ 步行不仅可以燃烧卡路里，还可以培养合作意识。' },
+    aam: { title: '水果', text: '慢慢来，吃点水果吧。 慢慢地感受它的味道、口感和新鲜的感觉。' },
+    aan: { title: '洗手间', text: '去洗手间时，步行到工作场所中最远的洗手间。' },
+    aao: { title: '咖啡时间', text: '咖啡时间？ 每次去时你可以步行 5 分钟。' },
+    aap: { title: '同事', text: '不要给办公室同事发电子邮件或发信息，走到他们的办公桌前与他们交流。' },
+    aaq: {
+      title: '学习',
+      text: '在一项针对健康志愿者的研究中，美国国立卫生研究院的研究人员发现，尽早并经常进行短暂的休息可能有助于我们的大脑学习新技能。'
+    },
+    aas: { text: '找到适合自己的伸展运动了吗？ 不要忘记重复多次，以更好地对抗久坐的影响。', title: '重复' },
+    aat: { title: '手腕和前臂', text: '伸展双臂，掌心朝向自己，然后慢慢将双手顺时针旋转四次，再逆时针旋转四次。' },
+    aau: { title: '背部伸展', text: '双手交叉放在脑后，然后一起举过头顶，手掌朝上。' },
+    aav: { title: '动起来', text: '对于每三十分钟的停滞，你应该有至少一分钟的刺激。' },
+    aaw: {
+      title: '7 分钟锻炼',
+      text: '这种锻炼在很短的时间内就能完成全身锻炼。但和任何锻炼一样，要小心。 有许多应用程序可以帮助您入门。'
+    },
+    aax: {
+      title: '脉搏',
+      text: '每周四到五次，连续20分钟将你的心率提升至每分钟120次，可以选择任何你喜欢的活动。定期提高心率有助于改善心血管健康。'
+    },
+    aay: { title: '走楼梯', text: '研究表明，爬楼梯是比慢跑每分钟燃烧更多卡路里的高强度身体活动。' },
+    aaz: {
+      title: '艺术创作',
+      text: '众所周知，艺术疗法对心理健康有很大的好处，尤其是在压力管理方面。写一首小诗，拍张照片，或者画一些小东西怎么样？'
+    },
+    aba: { title: '整理', text: '干净的空间有助于您专注于工作，并且通常与幸福等积极情绪有关。' },
+    abb: {
+      title: '在户外吃午饭',
+      text: '大自然与积极的情绪、减少压力和焦虑有关。只要有可能，尽量每天在充满绿色植物的户外度过午休时间。'
+    },
+    abc: {
+      title: '公共交通',
+      text: '如果你经常使用公共交通工具，你可以站着而不是坐着。 如果可能的话，试着在日常出行中尽量步行或骑自行车。'
+    },
+    abd: { title: '打哈欠', text: '打哈欠真的很有帮助，因为它会产生眼泪来帮助滋润和润滑眼睛。' },
+    abe: {
+      title: '改变焦点',
+      text: '将一根手指靠近眼睛并专注于它。 慢慢地将手指移开，将注意力集中在远处，然后再回到手指上。 将手指收回并专注于远处的事物。'
+    },
+    abg: { title: '握力训练', text: '挤压一双揉成一团的袜子或一个软橡胶球，保持 5 秒钟。重复整个过程几次。' },
+    abh: { title: '缓慢呼吸', text: '最新研究表明，控制自己缓慢呼吸有益于提升健康与延长寿命。' },
+    abi: {
+      text: '闭上眼睛，想象自己身处一个平静、令人放松的地方，比如海滩或森林，专注于那个环境中的景象、声音和感觉。',
+      title: '创造性想象'
+    },
+    abj: {
+      title: '压力太大了？',
+      text: '试试 5-4-3-2-1 着陆法：找出你能看到的 5 样东西，你能摸到的 4 样东西，你能听到的 3 样东西，你能闻到的 2 样东西，和 1 样你可以尝到的东西。'
+    }
+  },
+  quietRest: {
+    miniTitle: '休息一下',
+    longTitle: '舒展一下',
+    footer: '好好休息，才能更好地专注',
+    scheduleTitle: '休息计划',
+    scheduleSubtitle: '设置短休息和长休息的时间安排',
+    interval: '休息间隔',
+    duration: '休息时长',
+    strictTitle: '严格模式',
+    longIntervalHelp: '长休息在设定次数的短休息后开始，上方显示对应的总间隔。',
+    miniSection: '短休息',
+    longSection: '长休息'
+  },
+  brand: {
+    name: '元气',
+    otherName: 'Rest Spark',
+    upstream: '基于 Stretchly 二次开发 · BSD-2-Clause',
+    upstreamSupport: '支持 Stretchly 原项目'
+  },
+  settingsV1: {
+    generalTitle: '通用设置',
+    generalSubtitle: '自定义休息提醒的行为与使用方式',
+    startup: '启动与运行',
+    login: '登录后自动启动元气',
+    loginHelp: '开机后在后台运行，陪你保持健康节奏',
+    display: '提醒显示',
+    displayMode: '休息画面显示方式',
+    allScreens: '在所有显示器显示',
+    screensHelp: '在每个连接的屏幕上显示休息画面',
+    behavior: '提醒行为',
+    ideas: '显示休息提示',
+    ideasHelp: '休息时提供伸展与放松的小建议',
+    idle: '系统空闲检测',
+    idleHelp: '离开电脑时暂停提醒计时',
+    dnd: '勿扰时仍显示休息',
+    dndHelp: '关闭后，跟随系统勿扰状态暂停提醒',
+    languageMaintenance: '语言与维护',
+    language: '界面语言',
+    languageHelp: '更改后立即生效',
+    reset: '恢复初始偏好',
+    restore: '恢复默认设置',
+    scheduleTitle: '休息计划',
+    scheduleSubtitle: '设置短休息与长休息的时间安排',
+    mini: '短休息',
+    long: '长休息',
+    enableMini: '启用短休息',
+    enableLong: '启用长休息',
+    notify: '提前通知',
+    postpone: '允许推迟',
+    strict: '严格模式',
+    strictHelp: '启用后无法提前跳过对应休息；推迟仍遵循原有设置。',
+    strictMini: '短休息严格模式',
+    strictLong: '长休息严格模式',
+    themeTitle: '外观与声音',
+    themeSubtitle: '管理休息界面的视觉与提醒声音',
+    appearance: '应用外观',
+    appAppearance: '显示模式',
+    system: '跟随系统',
+    light: '浅色',
+    dark: '深色',
+    currentTheme: '当前主题',
+    mint: '元气薄荷',
+    mintHelp: '清新、舒适的薄荷绿，陪你专注与放松。',
+    inUse: '✓ 当前使用',
+    sounds: '声音',
+    enableSounds: '休息提醒音效',
+    preview: '试听',
+    tray: '菜单栏',
+    trayStyle: '菜单栏显示',
+    trayColor: '图标颜色',
+    invert: '反转单色图标',
+    aboutTitle: '关于元气',
+    aboutSubtitle: '让每一次休息，都恢复一点元气。',
+    productType: '休息提醒应用',
+    versionUpdates: '版本与更新',
+    updates: '检查新版本',
+    checkUpdates: '检查更新',
+    autoUpdates: '自动检查更新',
+    checking: '正在检查更新…',
+    noRelease: '暂无可用更新信息',
+    latest: '已是最新版本',
+    available: '最新发布版本：{{version}}',
+    project: '项目与开发者',
+    source: '项目源代码',
+    sourceHelp: 'DeepCarry / RestSpark',
+    developer: '开发与设计',
+    developerHelp: 'DeepCarry',
+    licenses: '许可证与致谢',
+    artworkCredit: '元气 Logo 与休息画面由项目所有者提供并确认。上游音效及依赖遵循各自许可证；依赖许可随应用分发。',
+    dependencies: '查看项目依赖'
+  },
+  scheduleV2: {
+    minutes: '分钟',
+    seconds: '秒',
+    increase: '+',
+    decrease: '−',
+    presets: '选择常用值',
+    apply: '应用',
+    cancel: '取消',
+    custom: '自定义…',
+    legacy: '当前为历史设置',
+    saveFailed: '保存失败，请重试。',
+    invalid_microbreakInterval: '请输入 5–60 的整数分钟。',
+    invalid_microbreakDuration: '请输入 30–300 秒，按 10 秒递增。',
+    invalid_breakDuration: '请输入 3–20 的整数分钟。',
+    presetMinutes: '{{count}} 分钟',
+    presetSeconds: '{{count}} 秒',
+    increaseLabel: '增加数值',
+    decreaseLabel: '减少数值',
+    longInterval: '长休息间隔',
+    invalid_longBreakInterval: '请输入 30–180 的整数分钟。'
+  }
+}
+i18next: hasLoadedNamespace: i18next was not initialized [ 'zh-CN', 'zh', 'en' ]
+i18next::translator: key "main.toolTipHeader" for languages "zh-CN, zh, en" won't get resolved as namespace "translation" was not yet loaded This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!
+20:41:45.357 › Stretchly: loading default break ideas
+i18next: languageChanged zh-CN
+i18next: initialized {
+  debug: true,
+  initAsync: true,
+  ns: [ 'translation' ],
+  defaultNS: [ 'translation' ],
+  fallbackLng: [ 'en' ],
+  fallbackNS: false,
+  supportedLngs: false,
+  nonExplicitSupportedLngs: false,
+  load: 'all',
+  preload: false,
+  simplifyPluralSuffix: true,
+  keySeparator: '.',
+  nsSeparator: ':',
+  pluralSeparator: '_',
+  contextSeparator: '_',
+  partialBundledLanguages: false,
+  saveMissing: false,
+  updateMissing: false,
+  saveMissingTo: 'fallback',
+  saveMissingPlurals: true,
+  missingKeyHandler: false,
+  missingInterpolationHandler: false,
+  postProcess: false,
+  postProcessPassResolved: false,
+  returnNull: false,
+  returnEmptyString: true,
+  returnObjects: false,
+  joinArrays: false,
+  returnedObjectHandler: false,
+  parseMissingKeyHandler: false,
+  appendNamespaceToMissingKey: false,
+  appendNamespaceToCIMode: false,
+  overloadTranslationOptionHandler: [Function: overloadTranslationOptionHandler],
+  interpolation: {
+    escapeValue: true,
+    format: [Function: bound format],
+    prefix: '{{',
+    suffix: '}}',
+    formatSeparator: ',',
+    unescapePrefix: '-',
+    nestingPrefix: '$t(',
+    nestingSuffix: ')',
+    nestingOptionsSeparator: ',',
+    maxReplaces: 1000,
+    skipOnVariables: true
+  },
+  cacheInBuiltFormats: true,
+  lng: 'zh-CN',
+  backend: {
+    loadPath: '/Users/carry/Documents/DeepCarry/Git/dc-restspark/app/locales/{{lng}}.json',
+    jsonIndent: 2,
+    addPath: '/locales/{{lng}}/{{ns}}.missing.json',
+    ident: 2,
+    parse: [Function: parse],
+    stringify: [Function: stringify]
+  },
+  ignoreJSONStructure: true
+}
+20:41:45.357 › null
+20:41:46.904 › Stretchly: arguments received from second instance: preferences
+20:41:46.904 › Stretchly: open Preferences window (requested by second instance)
+20:41:49.774 › Stretchly: setting 'microbreakDuration' to '90000' (was '25000')
+20:41:50.040 › Stretchly: setting 'microbreakDuration' to '70000' (was '90000')
+20:41:50.412 › Stretchly: setting 'microbreakDuration' to '80000' (was '70000')
+20:41:50.681 › Stretchly: setting 'microbreakDuration' to '70000' (was '80000')
+20:41:51.053 › Stretchly: setting 'microbreakInterval' to '1200000' (was '1800000')
+20:41:51.438 › Stretchly: setting 'longBreakInterval' to '1800000' (was '5400000')
+20:41:51.808 › Stretchly: setting 'longBreakInterval' to '2700000' (was '1800000')
+20:41:52.175 › Stretchly: setting 'longBreakInterval' to '3600000' (was '2700000')
+20:41:52.545 › Stretchly: setting 'longBreakInterval' to '5400000' (was '3600000')
+20:41:52.917 › Stretchly: setting 'longBreakInterval' to '7200000' (was '5400000')
+20:41:53.285 › Stretchly: setting 'longBreakInterval' to '10800000' (was '7200000')
+20:41:53.650 › Stretchly: setting 'longBreakInterval' to '3600000' (was '10800000')
+20:41:53.919 › Stretchly: setting 'microbreakInterval' to '2400000' (was '1200000')
+20:41:54.495 › Stretchly: setting 'breakDuration' to '600000' (was '3600000')
+20:41:55.469 › Stretchly: loading default break ideas
+i18next: languageChanged zh-CN
+20:42:03.579 › Stretchly: loading default break ideas
+i18next: languageChanged en
+20:42:03.587 › Stretchly: setting 'language' to '"en"' (was '"zh-CN"')
+20:42:11.766 › Stretchly: setting 'microbreak' to 'false' (was 'true')
+20:42:11.788 › Stretchly: setting 'break' to 'false' (was 'true')
+20:42:11.802 › Stretchly: setting 'microbreakInterval' to '4000' (was '2400000')
+20:42:11.821 › Stretchly: setting 'longBreakInterval' to '6000' (was '3600000')
+20:42:11.837 › Stretchly: setting 'microbreakDuration' to '500' (was '70000')
+20:42:11.852 › Stretchly: setting 'breakDuration' to '500' (was '600000')
+20:42:11.863 › Stretchly: setting 'microbreakNotification' to 'false' (was 'true')
+20:42:11.878 › Stretchly: setting 'breakNotification' to 'false' (was 'true')
+20:42:11.886 › Stretchly: stopping Idle time monitoring
+20:42:11.897 › Stretchly: stopping Do Not Disturb monitoring
+20:42:11.919 › Stretchly: setting 'allScreens' to 'false' (was 'true')
+20:42:11.930 › Stretchly: setting 'showBreaksAsRegularWindows' to 'true' (was 'false')
+20:42:11.944 › Stretchly: setting 'silentNotifications' to 'true' (was 'false')
+20:42:11.976 › Stretchly: setting 'microbreak' to 'true' (was 'false')
+20:42:11.990 › Stretchly: setting 'break' to 'true' (was 'false')
+20:42:16.016 › Stretchly: not showing on more Monitors as it is disabled.
+20:42:16.138 › Stretchly: ready-to-show fired
+20:42:16.145 › Stretchly: Mini break window loaded
+20:42:16.153 › Stretchly: showing window 1 of 3
+20:42:16.154 › Stretchly: starting Mini break
+20:42:16.664 › Stretchly: finishing Mini break (shouldPlanNext: true)
+20:42:18.710 › Stretchly: not showing on more Monitors as it is disabled.
+20:42:18.814 › Stretchly: ready-to-show fired
+20:42:18.823 › Stretchly: Long break window loaded
+20:42:18.837 › Stretchly: showing window 1 of 3
+20:42:18.837 › Stretchly: starting Long break
+20:42:19.344 › Stretchly: finishing Long break (shouldPlanNext: true)
+20:42:23.373 › Stretchly: not showing on more Monitors as it is disabled.
+20:42:23.470 › Stretchly: ready-to-show fired
+20:42:23.474 › Stretchly: Mini break window loaded
+20:42:23.489 › Stretchly: showing window 1 of 3
+20:42:23.489 › Stretchly: starting Mini break
+MACOS_SCHEDULE_V3_PASSED 536 48

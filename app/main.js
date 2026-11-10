@@ -27,6 +27,7 @@ import AutostartManager from './utils/autostartManager.js'
 import Command from './utils/commands.js'
 import { registerBreakShortcuts } from './utils/breakShortcuts.js'
 import defaultSettings from './utils/defaultSettings.js'
+import { readScheduleSettings, migrateIndependentSchedule } from './utils/independentScheduleMigration.js'
 import { saveSchedulePatch } from './utils/scheduleControls.js'
 import { migrateMintTheme } from './utils/settingsTheme.js'
 import StatusMessages from './utils/statusMessages.js'
@@ -227,6 +228,7 @@ async function initialize (isAppStart = true) {
   }
   // Read explicit preferences before electron-store adds defaults.
   let savedOpenAtLogin
+  let savedScheduleSettings
   if (!settings) {
     try {
       if (brandIdentity.allowLegacyMigration) {
@@ -234,6 +236,7 @@ async function initialize (isAppStart = true) {
         log.info(`Rest Spark profile: ${migration.status}`)
       }
       savedOpenAtLogin = readSavedOpenAtLogin(app.getPath('userData'))
+      savedScheduleSettings = readScheduleSettings(app.getPath('userData'))
     } catch (error) {
       log.error('Rest Spark could not load/import settings', error)
       dialog.showErrorBox(BRAND.name,
@@ -330,6 +333,7 @@ async function initialize (isAppStart = true) {
       watch: true
     })
     migrateMintTheme(settings)
+    migrateIndependentSchedule(settings, savedScheduleSettings)
     log.info('Stretchly: loading preferences')
     Store.initRenderer()
     Object.entries(settings.store).forEach(([key, _]) => {
@@ -702,14 +706,14 @@ function checkVersion () {
 }
 
 function startMicrobreakNotification () {
-  showNotification(i18next.t('main.microbreakIn', { seconds: settings.get('microbreakNotificationInterval') / 1000 }))
+  showNotification(i18next.t('main.microbreakIn', { seconds: breakPlanner.notificationLead / 1000 }))
   log.info('Stretchly: showing Mini break notification')
   breakPlanner.nextBreakAfterNotification()
   updateTray()
 }
 
 function startBreakNotification () {
-  showNotification(i18next.t('main.breakIn', { seconds: settings.get('breakNotificationInterval') / 1000 }))
+  showNotification(i18next.t('main.breakIn', { seconds: breakPlanner.notificationLead / 1000 }))
   log.info('Stretchly: showing Long break notification')
   breakPlanner.nextBreakAfterNotification()
   updateTray()
@@ -733,8 +737,8 @@ function getBlurredBackgroundWindowOptions () {
 
 function startMicrobreak () {
   // don't start another break if break running
-  if (microbreakWins) {
-    log.warn('Stretchly: Mini break already running, not starting Mini break')
+  if (microbreakWins || breakWins) {
+    log.warn('Rest Spark: a reminder is already opening or running, not starting Mini break')
     return
   }
 
@@ -888,8 +892,8 @@ function startMicrobreak () {
 }
 
 function startBreak () {
-  if (breakWins) {
-    log.warn('Stretchly: Long break already running, not starting Long break')
+  if (breakWins || microbreakWins) {
+    log.warn('Rest Spark: a reminder is already opening or running, not starting Long break')
     return
   }
 
@@ -1538,7 +1542,10 @@ ipcMain.on('finish-long-break', function (event, shouldPlaySound, manualAwaiting
 
 ipcMain.handle('save-schedule', (event, patch) => {
   const result = saveSchedulePatch(settings, patch)
-  if (result.ok) updateTray()
+  if (result.ok) {
+    if (['microbreakInterval', 'longBreakInterval'].some(key => Object.hasOwn(patch, key))) breakPlanner.replan()
+    updateTray()
+  }
   return result
 })
 
@@ -1589,6 +1596,7 @@ ipcMain.on('save-setting', function (event, key, value) {
   }
 
   settings.set(key, value)
+  if (['microbreakInterval', 'longBreakInterval', 'microbreak', 'break'].includes(key)) breakPlanner.replan()
 
   updateTray()
 })

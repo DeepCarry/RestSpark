@@ -1,0 +1,1 @@
+LIVE_USER_V3_PASSED {"controls":{"interval":"40","seconds":"300","longMinutes":"80","longKey":"longBreakInterval","unit":"分钟","duration":"5"},"changedKeys":["longBreakInterval","independentScheduleVersion","independentScheduleBackup"],"preservedAllExistingFields":true}

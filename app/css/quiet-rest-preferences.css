@@ -78,7 +78,6 @@
 .schedule-editor-error { display: block; font-size: 12px; line-height: 18px; color: #ad3e37; font-weight: 400; padding-top: 4px; }
 .schedule-editor-error:empty { display: none; }
 .schedule-input-shell:has([aria-invalid=true]) { border-color: #ad3e37; }
-.quiet-preferences .linked-apply { width: 100%; margin-top: 8px; padding: 8px; min-height: 32px; font-size: 12px; background: var(--rest-track); white-space: normal; }
 .schedule-popover { position: fixed; inset: auto; margin: 0; padding: 10px; z-index: 1000; color: var(--rest-ink); border: 1px solid var(--rest-line); border-radius: 12px; background: var(--rest-background); box-shadow: 0 8px 24px #083e3230; overflow: auto; max-height: 280px; font-family: var(--settings-font); }
 .schedule-preset-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 .quiet-preferences .schedule-popover button { min-width: 0; min-height: 34px; padding: 6px 4px; box-shadow: none; font-size: 12px; line-height: 18px; overflow-wrap: anywhere; }

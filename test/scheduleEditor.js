@@ -13,7 +13,7 @@ describe('schedule numeric editors', () => {
   beforeEach(async () => {
     dom = new JSDOM(readFileSync(new URL('../app/preferences.html', import.meta.url), 'utf8'), { pretendToBeVisual: true })
     global.window = dom.window; global.document = dom.window.document
-    saved = { microbreakInterval: 1200000, microbreakDuration: 25000, breakInterval: 2, breakDuration: 300000 }
+    saved = { microbreakInterval: 1200000, microbreakDuration: 25000, longBreakInterval: 3600000, breakDuration: 300000 }
     store = { get store () { return saved }, set: patch => { saved = { ...saved, ...patch } } }
     window.i18next = { t: async (key, args) => `${key} ${JSON.stringify(args || {})}` }
     window.settings = { saveSchedule: vi.fn(async patch => saveSchedulePatch(store, patch)) }
@@ -26,7 +26,7 @@ describe('schedule numeric editors', () => {
     expect(input('miniBreakFor').type).toBe('number')
     expect(input('miniBreakFor').value).toBe('25')
     expect(document.querySelector('[data-editor-for=miniBreakFor] [data-legacy]').hidden).toBe(false)
-    expect(input('longBreakEvery').value).toBe('3')
+    expect(input('longBreakEvery').value).toBe('60')
     expect(document.querySelectorAll('.schedule input[type=number]')).toHaveLength(4)
   })
   it('does not persist empty, invalid, off-step or out-of-range input', async () => {
@@ -59,21 +59,21 @@ describe('schedule numeric editors', () => {
     input('miniBreakFor').dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
     expect(input('miniBreakFor').value).toBe('90')
   })
-  it('requires explicit combined apply for 45 minutes × 4 cycles, and persists both once', async () => {
-    saved.breakInterval = 3; await ui.refresh(saved)
+  it('edits mini and long intervals independently without a linked confirmation', async () => {
     edit('miniBreakEvery', '45'); await apply('miniBreakEvery')
-    expect(saved.microbreakInterval).toBe(1200000)
-    const linked = document.querySelector('[data-editor-for=miniBreakEvery] [data-linked-apply]')
-    expect(linked.hidden).toBe(false)
-    linked.click(); await flush()
     expect(saved.microbreakInterval).toBe(2700000)
-    expect(saved.breakInterval).toBe(1)
-    expect(window.settings.saveSchedule).toHaveBeenCalledTimes(1)
+    expect(saved.longBreakInterval).toBe(3600000)
+    edit('longBreakEvery', '60'); await apply('longBreakEvery')
+    expect(saved.longBreakInterval).toBe(3600000)
+    expect(saved.microbreakInterval).toBe(2700000)
+    expect(document.querySelector('[data-linked-apply]')).toBeNull()
   })
-  it('filters invalid cycle presets for a 60 minute work interval', async () => {
+  it('offers all six long interval presets even with a60-minute mini interval', async () => {
     saved.microbreakInterval = 3600000; await ui.refresh(saved)
     document.querySelector('[data-editor-for=longBreakEvery] [data-presets]').click(); await flush()
-    expect([...document.querySelectorAll('[data-preset-value]')].map(b => b.dataset.presetValue)).toEqual(['2'])
+    expect([...document.querySelectorAll('[data-preset-value]')].map(b => b.dataset.presetValue)).toEqual(['30', '45', '60', '90', '120', '180'])
+    document.querySelector('[data-preset-value="180"]').click(); await flush()
+    expect(saved.longBreakInterval).toBe(10800000)
   })
   it('retains old values on save failure and allows retry', async () => {
     window.settings.saveSchedule.mockRejectedValueOnce(new Error('IPC failed'))
@@ -113,25 +113,23 @@ describe('schedule numeric editors', () => {
     expect(input('miniBreakFor').getAttribute('aria-invalid')).toBe('false')
     expect(document.querySelector('#miniBreakFor-error').textContent).toBe('')
   })
-  it('does not revive a cancelled linked change after its label resolves', async () => {
-    saved.breakInterval = 3; await ui.refresh(saved)
+  it('does not revive cancelled long-interval validation after translation', async () => {
     let finish
     const translate = window.i18next.t
-    window.i18next.t = (key, args) => key.endsWith('applyLinked') ? new Promise(resolve => { finish = resolve }) : translate(key, args)
-    edit('miniBreakEvery', '45'); await apply('miniBreakEvery')
-    document.querySelector('[data-editor-for=miniBreakEvery] [data-cancel]').click()
-    finish('apply both'); await flush()
-    expect(document.querySelector('[data-editor-for=miniBreakEvery] [data-linked-apply]').hidden).toBe(true)
-    expect(saved.microbreakInterval).toBe(1200000)
+    window.i18next.t = (key, args) => key.endsWith('invalid_longBreakInterval') ? new Promise(resolve => { finish = resolve }) : translate(key, args)
+    edit('longBreakEvery', '181')
+    document.querySelector('[data-editor-for=longBreakEvery] [data-apply]').click()
+    document.querySelector('[data-editor-for=longBreakEvery] [data-cancel]').click()
+    finish('invalid interval'); await flush()
+    expect(document.querySelector('#longBreakEvery-error').textContent).toBe('')
+    expect(saved.longBreakInterval).toBe(3600000)
   })
-  it('marks an excessive legacy frequency combination without changing either value', async () => {
+  it('marks an out-of-range legacy long interval without changing it', async () => {
     saved.microbreakInterval = 3600000
-    saved.breakInterval = 2
+    saved.longBreakInterval = 55800000
     await ui.refresh(saved)
-    for (const id of ['miniBreakEvery', 'longBreakEvery']) {
-      expect(document.querySelector(`[data-editor-for=${id}] [data-legacy]`).hidden).toBe(false)
-    }
-    expect(saved.microbreakInterval).toBe(3600000)
-    expect(saved.breakInterval).toBe(2)
+    expect(document.querySelector('[data-editor-for=longBreakEvery] [data-legacy]').hidden).toBe(false)
+    expect(input('longBreakEvery').value).toBe('930')
+    expect(saved.longBreakInterval).toBe(55800000)
   })
 })

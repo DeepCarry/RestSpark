@@ -302,7 +302,6 @@
   <div class="schedule-editor-actions" hidden><button type="button" data-apply data-i18next="scheduleV2.apply"></button><button type="button" data-cancel data-i18next="scheduleV2.cancel"></button></div>
   <span id="miniBreakEvery-hint" class="schedule-editor-hint"><span data-legacy hidden></span></span>
   <span class="schedule-editor-error" id="miniBreakEvery-error" role="status"></span>
-  <button type="button" class="linked-apply" data-linked-apply hidden></button>
 </div>
               <output data-unit="minutes" for="miniBreakEvery" id="miniBreakEvery-value">
               </output>
@@ -324,7 +323,6 @@
   <div class="schedule-editor-actions" hidden><button type="button" data-apply data-i18next="scheduleV2.apply"></button><button type="button" data-cancel data-i18next="scheduleV2.cancel"></button></div>
   <span id="miniBreakFor-hint" class="schedule-editor-hint"><span data-legacy hidden></span></span>
   <span class="schedule-editor-error" id="miniBreakFor-error" role="status"></span>
-  <button type="button" class="linked-apply" data-linked-apply hidden></button>
 </div>
               <output data-unit="seconds" for="miniBreakFor" id="miniBreakFor-value">
               </output>
@@ -376,21 +374,20 @@
         <div class="schedule-times">
           <div class="settings-row" >
             <div class="settings-row__label">
-              <label data-i18next="scheduleV2.frequency" for="longBreakEvery">
+              <label data-i18next="scheduleV2.longInterval" for="longBreakEvery">
               </label>
             </div>
             <div class="settings-row__control">
-              <div class="schedule-editor" data-editor-for="longBreakEvery" data-schedule-key="breakInterval">
+              <div class="schedule-editor" data-editor-for="longBreakEvery" data-schedule-key="longBreakInterval">
   <div class="schedule-input-shell">
-    <input type="number" inputmode="numeric" id="longBreakEvery" name="breakInterval" min="2" max="6" step="1" aria-describedby="longBreakEvery-hint longBreakEvery-error" aria-invalid="false">
-    <span class="schedule-unit" data-i18next="scheduleV2.cycles"></span>
+    <input type="number" inputmode="numeric" id="longBreakEvery" name="longBreakInterval" min="30" max="180" step="1" aria-describedby="longBreakEvery-hint longBreakEvery-error" aria-invalid="false">
+    <span class="schedule-unit" data-i18next="scheduleV2.minutes"></span>
     <div class="schedule-steppers"><button type="button" data-adjust="1" data-i18next="scheduleV2.increase">+</button><button type="button" data-adjust="-1" data-i18next="scheduleV2.decrease">−</button></div>
     <button type="button" class="preset-trigger" data-presets aria-haspopup="dialog" aria-expanded="false" aria-controls="schedule-presets-panel"><span aria-hidden="true">⌄</span><span class="visually-hidden" data-i18next="scheduleV2.presets"></span></button>
   </div>
   <div class="schedule-editor-actions" hidden><button type="button" data-apply data-i18next="scheduleV2.apply"></button><button type="button" data-cancel data-i18next="scheduleV2.cancel"></button></div>
   <span id="longBreakEvery-hint" class="schedule-editor-hint"><span data-legacy hidden></span></span>
   <span class="schedule-editor-error" id="longBreakEvery-error" role="status"></span>
-  <button type="button" class="linked-apply" data-linked-apply hidden></button>
 </div>
               <output data-unit="minutes" for="longBreakEvery" id="longBreakEvery-value">
               </output>
@@ -412,7 +409,6 @@
   <div class="schedule-editor-actions" hidden><button type="button" data-apply data-i18next="scheduleV2.apply"></button><button type="button" data-cancel data-i18next="scheduleV2.cancel"></button></div>
   <span id="longBreakFor-hint" class="schedule-editor-hint"><span data-legacy hidden></span></span>
   <span class="schedule-editor-error" id="longBreakFor-error" role="status"></span>
-  <button type="button" class="linked-apply" data-linked-apply hidden></button>
 </div>
               <output data-unit="minutes" for="longBreakFor" id="longBreakFor-value">
               </output>
@@ -441,8 +437,6 @@
             </span>
           </label>
         </div>
-        <p class="interval-help" id="long-interval-help" data-i18next="scheduleV2.cycleHelp">
-        </p>
       </section>
       <section class="settings-card" data-strict-mode>
         <h2>

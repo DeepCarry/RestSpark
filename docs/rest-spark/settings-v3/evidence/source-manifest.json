@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-10T12:46:15.032Z",
+  "version": "0.1.1",
+  "branch": "feature/settings-design-system-v1",
+  "archiveSHA256": "ff0de12086dec7f04ab7713eca361dd6dedd4f678fe4c3df570d9871662d5946",
+  "files": [
+    {
+      "path": "app/breaksPlanner.js",
+      "sha256": "bff36cc407033ca1a28711be7c7506dd7381872b46c1770cc5ff4e18f3e0e340",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/workSchedule.js",
+      "sha256": "b171b4fc1b3d491de06f5e2f004f198d8ebbe788ce97c155cba03f3d6ca69a33",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/independentScheduleMigration.js",
+      "sha256": "b9d2850bbe8a7779811639eb59350a8e735a1cf436eb035ae348d8f0999c315f",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/scheduleControls.js",
+      "sha256": "a4f1129bc11dcd2fc6ed5b10b06c541dc90d9f26d47ccac9409402485709ed9e",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/schedule-editors.js",
+      "sha256": "b2e357669054a6f7c4e75cc9f7cf951e023529bb20293e51426297e5da9fd31a",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/main.js",
+      "sha256": "fc3e5f40c1081e826158bf78e1e1f0ea84552ca97f3aadde633494fa0e4fa438",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/defaultSettings.js",
+      "sha256": "f45dba3edac95a0f05fc9512f05fd63df796ef7b8dca21be02060982516e5839",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/utils/statusMessages.js",
+      "sha256": "80f343cf482ff44da44308f77d95d8e1594de63dcf5bf08e8e3314a3391e05f2",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/preferences.html",
+      "sha256": "6a53495bec0b482df57e982d27b37534f45065556b416bf3c9c2bc8949e15ae7",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/preferences-renderer.js",
+      "sha256": "18d1656c6f9d66d9aa377d50806f5f8253ef39780a4c434c5f54f9b540c1803f",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/css/quiet-rest-preferences.css",
+      "sha256": "9a0e21e543d059010c8e837f5fb871f8b37b9a1a2c521451f9db19e29e7983df",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/locales/en.json",
+      "sha256": "40cab3350f624f690f118ff6ed6c8c6fe1244574cfff9ab59a7e5200ef9acb23",
+      "packedMatchesSource": true
+    },
+    {
+      "path": "app/locales/zh-CN.json",
+      "sha256": "32cba043ac292c1905ff139409504151b5ccb35c9154474468c3b30cb3ab6666",
+      "packedMatchesSource": true
+    }
+  ]
+}

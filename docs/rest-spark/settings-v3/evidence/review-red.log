@@ -1,0 +1,82 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/independentBreakSchedule.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+ ❯ test/independentBreakSchedule.js (15 tests | 3 failed) 10ms
+     × does not stretch a short remaining delay to a longer notification lead 3ms
+     × does not replan another reminder while the first window is loading 1ms
+     × after sleep without pause prioritizes the overdue long break instead of replaying a stale mini 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > does not stretch a short remaining delay to a longer notification lead
+AssertionError: expected 30000 to be 5000 // Object.is equality
+
+- Expected
++ Received
+
+- 5000
++ 30000
+
+ ❯ test/independentBreakSchedule.js:116:37
+    114|   it('does not stretch a short remaining delay to a longer notificatio…
+    115|     setup({ microbreak: false, longBreakInterval: 5000, breakNotificat…
+    116|     expect(planner.timeToNextBreak).toBe(5000)
+       |                                     ^
+    117|     expect(planner._progressInterval).toBe(5000)
+    118|     expect(planner.notificationLead).toBe(5000)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > does not replan another reminder while the first window is loading
+AssertionError: expected [ 'mini', 'long' ] to deeply equal [ 'mini' ]
+
+- Expected
++ Received
+
+  [
+    "mini",
++   "long",
+  ]
+
+ ❯ test/independentBreakSchedule.js:128:37
+    126|     planner.replan()
+    127|     vi.advanceTimersByTime(500)
+    128|     expect(events.map(e => e.type)).toEqual(['mini'])
+       |                                     ^
+    129|     expect(planner.scheduler.reference).toBe('startMicrobreak')
+    130|     vi.advanceTimersByTime(500)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > after sleep without pause prioritizes the overdue long break instead of replaying a stale mini
+AssertionError: expected [ 'mini' ] to deeply equal [ 'long' ]
+
+- Expected
++ Received
+
+  [
+-   "long",
++   "mini",
+  ]
+
+ ❯ test/independentBreakSchedule.js:138:37
+    136|     planner.correctScheduler()
+    137|     vi.advanceTimersByTime(1)
+    138|     expect(events.map(e => e.type)).toEqual(['long'])
+       |                                     ^
+    139|   })
+    140| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 12 passed (15)
+   Start at  20:39:01
+   Duration  298ms (transform 149ms, setup 0ms, import 170ms, tests 10ms, environment 0ms)
+

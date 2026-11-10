@@ -1,19 +1,19 @@
-// Values here are UI units. Persistence keeps the existing millisecond/count keys.
+// All intervals and durations persist as milliseconds; each cadence is independent.
 export const SCHEDULE_FIELDS = {
   microbreakInterval: { id: 'miniBreakEvery', min: 5, max: 60, step: 1, divisor: 60000, unit: 'minutes', presets: [10, 15, 20, 25, 30, 45, 60] },
   microbreakDuration: { id: 'miniBreakFor', min: 30, max: 300, step: 10, divisor: 1000, unit: 'seconds', presets: [30, 40, 50, 60, 90, 120, 180, 300] },
-  breakInterval: { id: 'longBreakEvery', min: 2, max: 6, step: 1, divisor: 1, offset: 1, unit: 'cycles', presets: [2, 3, 4, 6] },
+  longBreakInterval: { id: 'longBreakEvery', min: 30, max: 180, step: 1, divisor: 60000, unit: 'minutes', presets: [30, 45, 60, 90, 120, 180] },
   breakDuration: { id: 'longBreakFor', min: 3, max: 20, step: 1, divisor: 60000, unit: 'minutes', presets: [3, 5, 10, 15, 20] }
 }
 
 export function displayScheduleValue (key, value) {
   const field = SCHEDULE_FIELDS[key]
-  return value / field.divisor + (field.offset || 0)
+  return value / field.divisor
 }
 
 export function storedScheduleValue (key, value) {
   const field = SCHEDULE_FIELDS[key]
-  return (Number(value) - (field.offset || 0)) * field.divisor
+  return Number(value) * field.divisor
 }
 
 export function validScheduleValue (key, stored) {
@@ -30,12 +30,6 @@ export function validateSchedulePatch (current, patch) {
   for (const key of keys) {
     // Existing advanced values may be displayed/resubmitted, never silently normalized.
     if (patch[key] !== current[key] && !validScheduleValue(key, patch[key])) return { ok: false, error: key }
-  }
-  const next = { ...current, ...patch }
-  const changesFrequency = keys.some(key => ['microbreakInterval', 'breakInterval'].includes(key) && patch[key] !== current[key])
-  if (changesFrequency && next.microbreakInterval * (next.breakInterval + 1) > 7200000) {
-    const suggestedCycles = Math.min(6, Math.floor(7200000 / next.microbreakInterval))
-    return { ok: false, error: 'intervalConflict', suggestedCycles: suggestedCycles >= 2 ? suggestedCycles : null }
   }
   return { ok: true }
 }

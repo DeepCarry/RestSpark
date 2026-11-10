@@ -6,7 +6,8 @@ export default {
   microbreakDuration: 30000,
   microbreakInterval: 1200000,
   breakDuration: 300000,
-  breakInterval: 2,
+  breakInterval: 2, // Legacy cycle value retained for old configuration compatibility.
+  longBreakInterval: 3600000,
   breakNotification: true,
   microbreakNotification: true,
   breakNotificationInterval: 30000,

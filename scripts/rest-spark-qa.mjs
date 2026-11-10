@@ -125,7 +125,7 @@ async function acceptance (prefs, long) {
   for (const [id, value, key, expected] of [
     ['miniBreakFor', '80', 'microbreakDuration', 80000],
     ['miniBreakEvery', '15', 'microbreakInterval', 900000],
-    ['longBreakEvery', '4', 'breakInterval', 3],
+    ['longBreakEvery', '60', 'longBreakInterval', 3600000],
     ['longBreakFor', '6', 'breakDuration', 360000]
   ]) {
     await js(prefs, `(() => { const input = document.querySelector('#${id}'); input.value = '${value}'; input.dispatchEvent(new Event(input.type === 'number' ? 'input' : 'change')); if (input.type === 'number') input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); })()`)

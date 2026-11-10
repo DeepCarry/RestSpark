@@ -1,0 +1,14 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/independentBreakSchedule.js test/independentScheduleMigration.js test/scheduleControls.js test/scheduleEditor.js test/quietRestPreferences.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+
+ Test Files  5 passed (5)
+      Tests  75 passed (75)
+   Start at  20:40:46
+   Duration  1.12s (transform 484ms, setup 0ms, import 1.28s, tests 777ms, environment 0ms)
+

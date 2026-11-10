@@ -1,0 +1,262 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/independentBreakSchedule.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+ ❯ test/independentBreakSchedule.js (13 tests | 11 failed) 9ms
+     × schedules a60-minute long break despite a40-minute mini interval, excluding rest duration 5ms
+     × chooses only the long break when both become due and restarts the mini cadence afterwards 1ms
+     × runs long-only on its own interval, independent of the disabled mini setting 1ms
+     × keeps notification lead times on the same independent deadline 0ms
+     × does not count manual-await time toward long work time 0ms
+     × a postponed mini cannot push an earlier long deadline back 0ms
+     × can postpone a long break without starting a stale mini during that wait 0ms
+     × replans a new long interval using work already elapsed, without interrupting an active break 0ms
+     × enabling long breaks starts a fresh long cadence rather than triggering immediately 0ms
+     × manual long breaks reset both cadences 0ms
+     × does not stretch a short remaining delay to a longer notification lead 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > schedules a60-minute long break despite a40-minute mini interval, excluding rest duration
+AssertionError: expected [ { type: 'mini', at: 2400000 } ] to deeply equal [ { type: 'mini', at: 2400000 }, …(1) ]
+
+- Expected
++ Received
+
+  [
+    {
+      "at": 2400000,
+      "type": "mini",
+    },
+-   {
+-     "at": 3660000,
+-     "type": "long",
+-   },
+  ]
+
+ ❯ test/independentBreakSchedule.js:30:20
+     28|     setup()
+     29|     vi.advanceTimersByTime(61 * M)
+     30|     expect(events).toEqual([{ type: 'mini', at: 40 * M }, { type: 'lon…
+       |                    ^
+     31|   })
+     32|   it('chooses only the long break when both become due and restarts th…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > chooses only the long break when both become due and restarts the mini cadence afterwards
+AssertionError: expected [ 'mini', 'mini' ] to deeply equal [ 'mini', 'long' ]
+
+- Expected
++ Received
+
+  [
+    "mini",
+-   "long",
++   "mini",
+  ]
+
+ ❯ test/independentBreakSchedule.js:35:37
+     33|     setup({ microbreakInterval: 30 * M })
+     34|     vi.advanceTimersByTime(61 * M)
+     35|     expect(events.map(e => e.type)).toEqual(['mini', 'long'])
+       |                                     ^
+     36|     vi.advanceTimersByTime(35 * M)
+     37|     expect(events.at(-1)).toEqual({ type: 'mini', at: 96 * M })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > runs long-only on its own interval, independent of the disabled mini setting
+AssertionError: expected [ { type: 'long', at: 900000 }, …(2) ] to deeply equal [ { type: 'long', at: 3600000 } ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "at": 3600000,
++     "at": 900000,
++     "type": "long",
++   },
++   {
++     "at": 2100000,
++     "type": "long",
++   },
++   {
++     "at": 3300000,
+      "type": "long",
+    },
+  ]
+
+ ❯ test/independentBreakSchedule.js:42:20
+     40|     setup({ microbreak: false, microbreakInterval: 5 * M })
+     41|     vi.advanceTimersByTime(60 * M)
+     42|     expect(events).toEqual([{ type: 'long', at: 60 * M }])
+       |                    ^
+     43|   })
+     44|   it('runs mini-only repeatedly without injecting a disabled long brea…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > keeps notification lead times on the same independent deadline
+AssertionError: expected [ { type: 'mini', at: 2400000 } ] to deeply equal [ { type: 'mini', at: 2400000 }, …(1) ]
+
+- Expected
++ Received
+
+  [
+    {
+      "at": 2400000,
+      "type": "mini",
+    },
+-   {
+-     "at": 3660000,
+-     "type": "long",
+-   },
+  ]
+
+ ❯ test/independentBreakSchedule.js:52:20
+     50|     setup({ microbreakNotification: true, breakNotification: true })
+     51|     vi.advanceTimersByTime(61 * M)
+     52|     expect(events).toEqual([{ type: 'mini', at: 40 * M }, { type: 'lon…
+       |                    ^
+     53|   })
+     54|   it('does not count manual-await time toward long work time', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > does not count manual-await time toward long work time
+AssertionError: expected 2400000 to be 1200000 // Object.is equality
+
+- Expected
++ Received
+
+- 1200000
++ 2400000
+
+ ❯ test/independentBreakSchedule.js:58:37
+     56|     vi.advanceTimersByTime(50 * M)
+     57|     planner.nextBreak()
+     58|     expect(planner.timeToNextBreak).toBe(20 * M)
+       |                                     ^
+     59|     vi.advanceTimersByTime(20 * M)
+     60|     expect(events.at(-1)).toEqual({ type: 'long', at: 70 * M })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > a postponed mini cannot push an earlier long deadline back
+AssertionError: expected { type: 'mini', at: 3540000 } to deeply equal { type: 'long', at: 3600000 }
+
+- Expected
++ Received
+
+  {
+-   "at": 3600000,
+-   "type": "long",
++   "at": 3540000,
++   "type": "mini",
+  }
+
+ ❯ test/independentBreakSchedule.js:67:27
+     65|     planner.postponeCurrentBreak()
+     66|     vi.advanceTimersByTime(M)
+     67|     expect(events.at(-1)).toEqual({ type: 'long', at: 60 * M })
+       |                           ^
+     68|     expect(planner.postponesNumber).toBe(0)
+     69|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > can postpone a long break without starting a stale mini during that wait
+AssertionError: expected 'mini' to be 'long' // Object.is equality
+
+Expected: "long"
+Received: "mini"
+
+ ❯ test/independentBreakSchedule.js:74:32
+     72|     vi.advanceTimersByTime(30 * M); planner.nextBreak()
+     73|     vi.advanceTimersByTime(30 * M)
+     74|     expect(events.at(-1).type).toBe('long')
+       |                                ^
+     75|     planner.postponeCurrentBreak()
+     76|     vi.advanceTimersByTime(5 * M)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > replans a new long interval using work already elapsed, without interrupting an active break
+TypeError: planner.replan is not a function
+ ❯ test/independentBreakSchedule.js:91:48
+     89|     setup()
+     90|     vi.advanceTimersByTime(20 * M)
+     91|     values.longBreakInterval = 30 * M; planner.replan()
+       |                                                ^
+     92|     expect(planner.timeToNextBreak).toBe(10 * M)
+     93|     vi.advanceTimersByTime(10 * M)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > enabling long breaks starts a fresh long cadence rather than triggering immediately
+TypeError: planner.replan is not a function
+ ❯ test/independentBreakSchedule.js:100:34
+     98|     setup({ break: false })
+     99|     vi.advanceTimersByTime(90 * M)
+    100|     values.break = true; planner.replan()
+       |                                  ^
+    101|     expect(planner.timeToLongBreak).toBe(60 * M)
+    102|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > manual long breaks reset both cadences
+AssertionError: expected undefined to be 3600000 // Object.is equality
+
+- Expected:
+3600000
+
++ Received:
+undefined
+
+ ❯ test/independentBreakSchedule.js:108:37
+    106|     vi.advanceTimersByTime(100 + 5 * M)
+    107|     expect(planner.timeToNextBreak).toBe(40 * M)
+    108|     expect(planner.timeToLongBreak).toBe(60 * M)
+       |                                     ^
+    109|   })
+    110|   it('does not stretch a short remaining delay to a longer notificatio…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > does not stretch a short remaining delay to a longer notification lead
+AssertionError: expected [] to deeply equal [ { type: 'long', at: 5000 } ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "at": 5000,
+-     "type": "long",
+-   },
+- ]
++ []
+
+ ❯ test/independentBreakSchedule.js:113:20
+    111|     setup({ microbreak: false, longBreakInterval: 5000, breakNotificat…
+    112|     vi.advanceTimersByTime(5000)
+    113|     expect(events).toEqual([{ type: 'long', at: 5000 }])
+       |                    ^
+    114|   })
+    115| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  11 failed | 2 passed (13)
+   Start at  20:29:39
+   Duration  305ms (transform 147ms, setup 0ms, import 169ms, tests 9ms, environment 0ms)
+

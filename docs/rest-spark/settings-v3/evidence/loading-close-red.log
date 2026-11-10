@@ -1,0 +1,51 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/independentBreakSchedule.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+ ❯ test/independentBreakSchedule.js (17 tests | 2 failed) 9ms
+     × closing a loading mini still completes its cadence rather than immediately reopening it 2ms
+     × manually replacing a loading long break with a mini resets the overdue long cadence 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > closing a loading mini still completes its cadence rather than immediately reopening it
+AssertionError: expected +0 to be 1200000 // Object.is equality
+
+- Expected
++ Received
+
+- 1200000
++ 0
+
+ ❯ test/independentBreakSchedule.js:144:37
+    142|     vi.advanceTimersByTime(40 * M)
+    143|     planner.nextBreak()
+    144|     expect(planner.timeToNextBreak).toBe(20 * M)
+       |                                     ^
+    145|     expect(planner._scheduledBreakType).toBe('break')
+    146|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/independentBreakSchedule.js > independent break schedule > manually replacing a loading long break with a mini resets the overdue long cadence
+AssertionError: expected 0 to be greater than 3540000
+ ❯ test/independentBreakSchedule.js:152:37
+    150|     planner.skipToMicrobreak()
+    151|     vi.advanceTimersByTime(100)
+    152|     expect(planner.timeToLongBreak).toBeGreaterThan(59 * M)
+       |                                     ^
+    153|   })
+    154| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 15 passed (17)
+   Start at  20:40:34
+   Duration  286ms (transform 139ms, setup 0ms, import 160ms, tests 9ms, environment 0ms)
+

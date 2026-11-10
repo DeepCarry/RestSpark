@@ -1,0 +1,14 @@
+
+> rest-spark@0.1.1 test
+> vitest run
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+
+ Test Files  27 passed (27)
+      Tests  423 passed (423)
+   Start at  20:41:40
+   Duration  17.49s (transform 2.43s, setup 0ms, import 4.56s, tests 20.92s, environment 1ms)
+

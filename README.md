@@ -220,7 +220,8 @@ Here are the preferences editable via the app. If values in the app does not sui
 - `microbreakDuration` - duration of Mini break (ms)
 - `microbreakInterval` - interval of Mini break (ms)
 - `breakDuration` - duration of Long break (ms)
-- `breakInterval` - interval of Long break (Mini breaks)
+- `longBreakInterval` - independent Long break interval in milliseconds (default `3600000`, UI range30–180minutes). Short and Long break work timers are independent; rest time does not advance either work timer.
+- `breakInterval` (legacy; retained only for migration/backup, no longer controls the active schedule) - interval of Long break (Mini breaks)
 - `breakNotification` - show notification before Mini break
 - `microbreakNotification` - show notification before Long break
 - `microbreak` - enable Mini breaks

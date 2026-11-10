@@ -64,9 +64,9 @@ describe('Quiet Rest preferences', () => {
     interval.dispatchEvent(new window.Event('input')); interval.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
     await vi.advanceTimersByTimeAsync(0)
     expect(saved.microbreakInterval).toBe(1200000)
-    expect(document.querySelector('#longBreakEvery-value').textContent).toContain('80')
+    expect(document.querySelector('#longBreakEvery-value').textContent).toContain('60')
     expect(saved.breakInterval).toBe(3)
-    expect(document.querySelector('#longBreakEvery').value).toBe('4')
+    expect(document.querySelector('#longBreakEvery').value).toBe('60')
   })
   it('represents advanced saved values without silently clearing them', async () => {
     saved.microbreakDuration = 25000
@@ -175,7 +175,7 @@ describe('Quiet Rest preferences', () => {
     window.utils.formatUnitAndValue = (unit, value) => formatUnitAndValue(unit, value, window.i18next)
     saved.microbreakDuration = 80500
     saved.microbreakInterval = 915000
-    saved.breakInterval = 2
+    saved.longBreakInterval = 2745000
     await translate()
     await vi.advanceTimersByTimeAsync(0)
     expect(document.querySelector('#miniBreakFor').value).toBe('80.5')

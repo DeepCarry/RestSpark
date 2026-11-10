@@ -19,7 +19,7 @@ export async function initScheduleEditors (document, initialSettings) {
   document.body.appendChild(panel)
   const editors = Object.entries(SCHEDULE_FIELDS).map(([key, field]) => {
     const root = document.querySelector(`[data-editor-for=${field.id}]`)
-    return { key, field, root, revision: 0, input: root.querySelector('input'), trigger: root.querySelector('[data-presets]'), error: root.querySelector('.schedule-editor-error'), actions: root.querySelector('.schedule-editor-actions'), linked: root.querySelector('[data-linked-apply]') }
+    return { key, field, root, revision: 0, input: root.querySelector('input'), trigger: root.querySelector('[data-presets]'), error: root.querySelector('.schedule-editor-error'), actions: root.querySelector('.schedule-editor-actions') }
   })
   function closePanel (focus = false) {
     const owner = panelOwner
@@ -32,23 +32,19 @@ export async function initScheduleEditors (document, initialSettings) {
   function cancel (editor) {
     if (busy || !editor) return
     ++editor.revision
-    editor.linked.onclick = null
     editor.input.value = String(displayScheduleValue(editor.key, current[editor.key]))
     editor.input.setAttribute('aria-invalid', 'false')
     editor.error.textContent = ''
     editor.actions.hidden = true
-    editor.linked.hidden = true
     if (active === editor) active = null
   }
   function begin (editor) {
     if (active && active !== editor) cancel(active)
     active = editor
     ++editor.revision
-    editor.linked.onclick = null
     editor.actions.hidden = false
     editor.error.textContent = ''
     editor.input.setAttribute('aria-invalid', 'false')
-    editor.linked.hidden = true
   }
   async function refresh (settings = current) {
     const revision = ++generation
@@ -59,9 +55,7 @@ export async function initScheduleEditors (document, initialSettings) {
     const labels = await Promise.all(editors.map(async editor => {
       const [legacy, output, increase, decrease] = await Promise.all([
         t('legacy'),
-        editor.key === 'breakInterval'
-          ? t('derived', { count: current.microbreakInterval / 60000 * (current.breakInterval + 1) })
-          : win.i18next.t(`utils.${editor.field.unit}`, { count: displayScheduleValue(editor.key, current[editor.key]) }),
+        win.i18next.t(`utils.${editor.field.unit}`, { count: displayScheduleValue(editor.key, current[editor.key]) }),
         t('increaseLabel'), t('decreaseLabel')
       ])
       return { editor, legacy, output, increase, decrease }
@@ -69,43 +63,29 @@ export async function initScheduleEditors (document, initialSettings) {
     if (revision !== generation) return
     for (const { editor, legacy, output, increase, decrease } of labels) {
       const hint = editor.root.querySelector('[data-legacy]')
-      const legacyFrequency = ['microbreakInterval', 'breakInterval'].includes(editor.key) && current.microbreakInterval * (current.breakInterval + 1) > 7200000
-      hint.hidden = validScheduleValue(editor.key, current[editor.key]) && !legacyFrequency
+      hint.hidden = validScheduleValue(editor.key, current[editor.key])
       hint.textContent = legacy
       editor.root.querySelector('[data-adjust="1"]').setAttribute('aria-label', increase)
       editor.root.querySelector('[data-adjust="-1"]').setAttribute('aria-label', decrease)
       document.getElementById(`${editor.field.id}-value`).textContent = output
-      if (editor.key === 'breakInterval') {
-        let summary = editor.root.querySelector('[data-cycle-summary]')
-        if (!summary) { summary = document.createElement('span'); summary.dataset.cycleSummary = ''; summary.className = 'schedule-editor-hint'; editor.root.appendChild(summary) }
-        summary.textContent = output
-      }
     }
   }
 
   async function showError (editor, result) {
     const revision = editor.revision
     editor.input.setAttribute('aria-invalid', 'true')
-    const message = await t(result.error === 'intervalConflict' ? 'intervalConflict' : result.error === 'saveFailed' ? 'saveFailed' : `invalid_${editor.key}`)
+    const message = await t(result.error === 'saveFailed' ? 'saveFailed' : `invalid_${editor.key}`)
     if (editor.revision !== revision) return
     editor.error.textContent = message
-    editor.linked.hidden = true
-    if (result.error === 'intervalConflict' && editor.key === 'microbreakInterval' && result.suggestedCycles) {
-      const label = await t('applyLinked', { cycles: result.suggestedCycles, minutes: Number(editor.input.value) * result.suggestedCycles })
-      if (editor.revision !== revision) return
-      editor.linked.textContent = label
-      editor.linked.hidden = false
-      editor.linked.onclick = () => apply(editor, { breakInterval: result.suggestedCycles - 1 })
-    }
   }
-  async function apply (editor, extra = {}) {
+  async function apply (editor) {
     if (busy) return
     const raw = editor.input.value.trim()
     const unchanged = raw === String(displayScheduleValue(editor.key, current[editor.key]))
-    const patch = { [editor.key]: storedScheduleValue(editor.key, raw), ...extra }
+    const patch = { [editor.key]: storedScheduleValue(editor.key, raw) }
     const result = !unchanged && !/^\d+$/.test(raw) ? { ok: false, error: editor.key } : validateSchedulePatch(current, patch)
     if (!result.ok) { await showError(editor, result); return }
-    if (unchanged && !Object.keys(extra).length) { cancel(editor); return }
+    if (unchanged) { cancel(editor); return }
     busy = true
     closePanel()
     editors.forEach(item => item.root.querySelectorAll('input, button').forEach(control => { control.disabled = true }))
@@ -149,7 +129,6 @@ export async function initScheduleEditors (document, initialSettings) {
     const grid = document.createElement('div')
     grid.className = 'schedule-preset-grid'
     for (const value of editor.field.presets) {
-      if (editor.key === 'breakInterval' && current.microbreakInterval * value > 7200000) continue
       const button = document.createElement('button')
       button.type = 'button'
       button.dataset.presetValue = String(value)

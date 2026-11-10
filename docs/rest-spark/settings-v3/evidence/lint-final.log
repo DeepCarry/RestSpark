@@ -1,0 +1,4 @@
+
+> rest-spark@0.1.1 lint
+> cross-env ./node_modules/.bin/standard
+

@@ -52,12 +52,12 @@ app.whenReady().then(async () => {
       await delay(180)
       verify(config()[key] === before, `toggle can restore: ${key}`)
     }
-    for (const [id, value, key, expected] of [['miniBreakEvery', '20', 'microbreakInterval', 1200000], ['miniBreakFor', '80', 'microbreakDuration', 80000], ['longBreakEvery', '4', 'breakInterval', 3], ['longBreakFor', '6', 'breakDuration', 360000], ['trayIconStyle', 'time', 'trayIconStyle', 'time'], ['trayIconStyle', 'progress', 'trayIconStyle', 'progress'], ['themeSource', 'dark', 'themeSource', 'dark'], ['themeSource', 'system', 'themeSource', 'system']]) {
+    for (const [id, value, key, expected] of [['miniBreakEvery', '20', 'microbreakInterval', 1200000], ['miniBreakFor', '80', 'microbreakDuration', 80000], ['longBreakEvery', '60', 'longBreakInterval', 3600000], ['longBreakFor', '6', 'breakDuration', 360000], ['trayIconStyle', 'time', 'trayIconStyle', 'time'], ['trayIconStyle', 'progress', 'trayIconStyle', 'progress'], ['themeSource', 'dark', 'themeSource', 'dark'], ['themeSource', 'system', 'themeSource', 'system']]) {
       await js(`(() => { const input = document.querySelector('#${id}'); input.value = '${value}'; input.dispatchEvent(new Event(input.type === 'number' ? 'input' : 'change')); if (input.type === 'number') input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); })()`)
       await delay(250)
       verify(config()[key] === expected, `real selector persistence: ${key} = ${expected}`)
     }
-    verify(await js("document.querySelector('#longBreakEvery-value').textContent.includes('80')"), 'long interval displays derived minutes')
+    verify(await js("document.querySelector('#longBreakEvery-value').textContent.includes('60')"), 'long interval displays independent minutes')
     for (const audio of ['crystal-glass', 'wind-chime', 'tic-toc', 'reverie']) {
       await js(`document.querySelector('input[value="${audio}"]').click(); document.querySelector('[data-preview-sound="${audio}"]').click()`)
       await delay(150)

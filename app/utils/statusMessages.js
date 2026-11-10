@@ -7,6 +7,7 @@ class StatusMessages {
     this.appExclusionPause = breakPlanner.appExclusionsManager.isSchedulerCleared
     this.timeLeft = breakPlanner.scheduler.timeLeft
     this.timeToNextBreak = breakPlanner.timeToNextBreak
+    this.timeToLongBreak = breakPlanner.timeToLongBreak
     this.isPaused = breakPlanner.isPaused
     this.breakNumber = breakPlanner.breakNumber
     this.settings = settings
@@ -43,9 +44,6 @@ class StatusMessages {
       return message
     }
 
-    const breakInterval = this.settings.get('breakInterval') + 1
-    const breakNumber = this.breakNumber % breakInterval
-
     if (this.reference === 'startBreak' || this.reference === 'startBreakNotification') {
       message += this.i18next.t('statusMessages.nextLongBreak') + ' ' +
         formatTimeIn(this.timeToNextBreak, this.settings.get('language'), this.i18next, this.humanizeDuration)
@@ -57,7 +55,7 @@ class StatusMessages {
         formatTimeIn(this.timeToNextBreak, this.settings.get('language'), this.i18next, this.humanizeDuration)
       if (this.settings.get('break')) {
         message += '\n' + this.i18next.t('statusMessages.nextLongBreak') + ' ' +
-          this.i18next.t('statusMessages.afterMiniBreak', { count: breakInterval - breakNumber })
+          formatTimeIn(this.timeToLongBreak, this.settings.get('language'), this.i18next, this.humanizeDuration)
       }
       return message
     }

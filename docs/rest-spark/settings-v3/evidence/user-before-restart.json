@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-10T12:43:59.881Z",
+  "processes": [
+    12180
+  ],
+  "executable": "/Users/carry/Documents/DeepCarry/Git/dc-restspark/dist/mac-arm64/Rest Spark.app/Contents/MacOS/Rest Spark",
+  "effectiveLongMinutes": 80,
+  "settingsSHA256": "f8a0ae21146a9e9026b1c064c8c59ced6aee6d0268c8a77627197aeb9dabb7f4"
+}

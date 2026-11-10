@@ -1,0 +1,29 @@
+
+> rest-spark@0.1.1 test
+> vitest run test/independentScheduleMigration.js
+
+
+ RUN  v4.1.2 /Users/carry/Documents/DeepCarry/Git/dc-restspark
+      Coverage enabled with istanbul
+
+ ❯ test/independentScheduleMigration.js (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/independentScheduleMigration.js [ test/independentScheduleMigration.js ]
+Error: Cannot find module '../app/utils/independentScheduleMigration.js' imported from /Users/carry/Documents/DeepCarry/Git/dc-restspark/test/independentScheduleMigration.js
+ ❯ test/independentScheduleMigration.js:2:1
+      1| import { describe, it, expect } from 'vitest'
+      2| import { migrateIndependentSchedule } from '../app/utils/independentSc…
+       | ^
+      3| function profile (raw) {
+      4|   let values = { microbreakInterval: 1200000, breakInterval: 2, longBr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  20:31:38
+   Duration  114ms (transform 9ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

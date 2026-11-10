@@ -5,9 +5,9 @@ import { join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import assert from 'node:assert/strict'
 const root = resolve(import.meta.dirname, '..')
-const evidence = join(root, 'docs/rest-spark/settings-v2/evidence')
+const evidence = join(root, 'docs/rest-spark/settings-v3/evidence')
 mkdirSync(evidence, { recursive: true })
-const profile = mkdtempSync(join(tmpdir(), 'restspark-schedule-v2-'))
+const profile = mkdtempSync(join(tmpdir(), 'restspark-schedule-v3-'))
 app.setPath('userData', profile)
 app.setPath('logs', join(profile, 'logs'))
 writeFileSync(join(profile, 'config.json'), JSON.stringify({ isFirstRun: false, language: 'zh-CN', disableAppUpdateFeatures: true, checkNewVersion: false, openAtLogin: false, _migratedOpenAtLogin: true, naturalBreaks: false, monitorDnd: false, microbreakInterval: 1800000, microbreakDuration: 25000, breakInterval: 2, breakDuration: 3600000, manualUserField: 'preserved' }))
@@ -50,7 +50,7 @@ app.whenReady().then(async () => {
   await capture('initial-legacy-schedule')
   const rejected = await js('window.settings.saveSchedule({ microbreakDuration: 35000 })')
   verify(!rejected.ok && config().microbreakDuration === 25000, 'main process rejects off-step values')
-  for (const [id, invalid] of [['miniBreakFor', ''], ['miniBreakFor', '35'], ['miniBreakFor', '310'], ['miniBreakEvery', '61'], ['longBreakFor', '61'], ['longBreakEvery', '7']]) {
+  for (const [id, invalid] of [['miniBreakFor', ''], ['miniBreakFor', '35'], ['miniBreakFor', '310'], ['miniBreakEvery', '61'], ['longBreakFor', '61'], ['longBreakEvery', '181']]) {
     const before = readFileSync(join(profile, 'config.json'), 'utf8')
     await edit(id, invalid)
     verify(await js(`document.querySelector('#${id}').getAttribute('aria-invalid') === 'true'`), `${id}=${invalid}: inline invalid state`)
@@ -70,19 +70,19 @@ app.whenReady().then(async () => {
   verify(config().microbreakDuration === 80000, 'custom entry and Enter commit through actual IPC')
   await edit('miniBreakFor', '70')
   await choose('miniBreakEvery', '20')
-  await choose('longBreakEvery', '4')
-  verify(config().breakInterval === 3, 'four UI cycles map to stored count three')
-  await edit('miniBreakEvery', '45')
-  verify(config().microbreakInterval === 1200000 && config().breakInterval === 3, 'conflict holds original plan')
-  await js("document.querySelector('#miniBreakEvery').scrollIntoView({ block: 'center' })")
-  await capture('linked-frequency-conflict')
-  await js("document.querySelector('[data-editor-for=miniBreakEvery] [data-linked-apply]').click()")
-  await delay(250)
-  verify(config().microbreakInterval === 2700000 && config().breakInterval === 1, 'explicit linked apply persists both values')
+  verify(config().longBreakInterval === 5400000, 'migration preserves original30minute ×3 effective long interval')
+  for (const minutes of [30, 45, 60, 90, 120, 180]) {
+    await choose('longBreakEvery', String(minutes))
+    verify(config().longBreakInterval === minutes * 60000, `long interval preset ${minutes} persists independently`)
+  }
+  await choose('longBreakEvery', '60')
+  await edit('miniBreakEvery', '40')
+  verify(config().microbreakInterval === 2400000 && config().longBreakInterval === 3600000, '40minute mini and60minute long save independently')
+  await capture('independent-40-60')
   await choose('longBreakFor', '10')
   verify(config().breakDuration === 600000, 'custom long duration persists')
   prefs.reload(); await delay(700)
-  verify(await js("document.querySelector('#miniBreakFor').value === '70' && document.querySelector('#longBreakEvery').value === '2'"), 'custom values restore after renderer reload')
+  verify(await js("document.querySelector('#miniBreakFor').value === '70' && document.querySelector('#longBreakEvery').value === '60'"), 'custom values restore after renderer reload')
   const layouts = []
   for (const language of ['zh-CN', 'en']) {
     await js(`window.settings.saveSettings('language', '${language}')`)
@@ -117,7 +117,33 @@ app.whenReady().then(async () => {
       }
     }
   }
+  // Exercise actual scheduler -> production windows with short test-only intervals.
+  prefs.webContents.setZoomFactor(1)
+  const set = async (key, value) => {
+    await js(`window.settings.saveSettings(${JSON.stringify(key)}, ${JSON.stringify(value)})`)
+    await js('window.settings.currentSettings()')
+  }
+  await set('microbreak', false); await set('break', false)
+  for (const [key, value] of Object.entries({ microbreakInterval: 4000, longBreakInterval: 6000, microbreakDuration: 500, breakDuration: 500, microbreakNotification: false, breakNotification: false, naturalBreaks: false, monitorDnd: false, allScreens: false, showBreaksAsRegularWindows: true, silentNotifications: true, miniBreakManualFinish: false, longBreakManualFinish: false })) await set(key, value)
+  await set('microbreak', true); await set('break', true)
+  const actual = []; const seen = new Set(); const started = Date.now()
+  while (Date.now() - started < 13000 && actual.length < 3) {
+    const windows = BrowserWindow.getAllWindows().filter(win => /\/(microbreak|break)\.html$/.test(win.webContents.getURL()))
+    verify(windows.length <= 1, 'real short and long reminder windows never overlap')
+    for (const win of windows) {
+      if (seen.has(win.id) || win.webContents.isLoading()) continue
+      seen.add(win.id)
+      const type = win.webContents.getURL().endsWith('/microbreak.html') ? 'mini' : 'long'
+      actual.push({ type, elapsed: Date.now() - started })
+      writeFileSync(join(evidence, `actual-${actual.length}-${type}.png`), (await win.webContents.capturePage()).toPNG())
+    }
+    await delay(40)
+  }
+  verify(JSON.stringify(actual.map(e => e.type)) === JSON.stringify(['mini', 'long', 'mini']), 'actual production scheduler emits mini then independent long then reset mini')
+  verify(actual[1].elapsed < 8500, 'long deadline is not rounded up to a second four-second mini interval')
+  verify(actual[2].elapsed - actual[1].elapsed >= 4000, 'long break completion restarts mini cadence without immediate catch-up')
+  writeFileSync(join(evidence, 'real-window-cadence.json'), JSON.stringify(actual, null, 2))
   writeFileSync(join(evidence, 'macos-acceptance.json'), JSON.stringify({ profile, checks, layouts, platform: process.platform, versions: process.versions }, null, 2))
-  console.log('MACOS_SCHEDULE_V2_PASSED', checks.length, layouts.length)
+  console.log('MACOS_SCHEDULE_V3_PASSED', checks.length, layouts.length)
   app.exit(0)
 }).catch(error => { writeFileSync(join(evidence, 'macos-failure.json'), JSON.stringify({ checks, error: error.stack }, null, 2)); console.error(error); app.exit(1) })

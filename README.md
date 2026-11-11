@@ -16,7 +16,7 @@
 
 ## 自动发布
 
-在 `trunk` 上更新 `package.json` 和 `package-lock.json` 的版本，提交并推送。给该提交打上对应的 `vX.Y.Z` 标签并推送标签。GitHub Actions 的 **Rest Spark installers** 会构建 Apple 芯片 macOS DMG 和 Windows x64 EXE。在两个 runner 上分别验证安装、启动、版本与主题切换后，自动创建并发布 GitHub Release，附上两个安装包和 SHA-256 清单。
+默认分支是 `main`，功能分支合并到 `main`。发版时在 `main` 上更新 `package.json` 和 `package-lock.json` 的版本，提交并推送。给该提交打上对应的 `vX.Y.Z` 标签并推送标签。GitHub Actions 的 **Rest Spark installers** 会构建 Apple 芯片 macOS DMG 和 Windows x64 EXE。在两个 runner 上分别验证安装、启动、版本与主题切换后，自动创建并发布 GitHub Release，附上两个安装包和 SHA-256 清单。
 
 也可在 Actions 页面手动运行 **Rest Spark installers**。手动运行只生成验收用的构建产物和日志。自动发布需要推送版本标签。
 

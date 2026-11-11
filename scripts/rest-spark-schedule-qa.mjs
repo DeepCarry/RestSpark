@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import assert from 'node:assert/strict'
 const root = resolve(import.meta.dirname, '..')
-const evidence = join(root, 'docs/rest-spark/settings-v3/evidence')
+const evidence = process.env.REST_SCHEDULE_EVIDENCE || join(root, 'docs/rest-spark/settings-v3/evidence')
 mkdirSync(evidence, { recursive: true })
 const profile = mkdtempSync(join(tmpdir(), 'restspark-schedule-v3-'))
 app.setPath('userData', profile)

@@ -1,5 +1,19 @@
-/* Shared Quiet Rest palette and controls; scoped to the three phase-one pages. */
+/* Shared Rest Spark palette for preferences and both break windows. */
 :root {
+  color-scheme: light dark;
+  --rest-day-preview: #d9f0e3;
+  --rest-night-preview: #111f1c;
+  --rest-sidebar: linear-gradient(155deg, #ccebe0, var(--rest-background));
+  --rest-selected: linear-gradient(120deg, #287d68, #19715d);
+  --rest-selected-ink: #fff;
+  --rest-switch: linear-gradient(130deg, #58b99a, #008b70);
+  --rest-switch-off: #a7b9b3;
+  --rest-switch-thumb: #fff;
+  --rest-action: linear-gradient(145deg, #27836b, #17624e);
+  --rest-action-ink: #fff;
+  --rest-action-icon: brightness(0) invert(1);
+  --rest-break-center: #e7f6f2;
+  --rest-break-edge: #cce7e0;
   --rest-ink: #083e32;
   --rest-muted: #52746f;
   --rest-accent: #369b7d;
@@ -11,17 +25,28 @@
   --rest-line: #dceae6;
   --rest-shadow: 0 14px 36px rgba(39, 100, 83, .12), inset 0 1px rgba(255, 255, 255, .9);
   --rest-radius: 22px;
-  --rest-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Regular', sans-serif;
+  --rest-font: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --rest-ink: #e4f6ee;
-    --rest-muted: #afc9bf;
-    --rest-accent: #73cbaa;
-    --rest-mint: #398a70;
-    --rest-track: #34564b;
-    --rest-background: #172e28;
-    --rest-surface: rgba(33, 58, 49, .93);
+    --rest-sidebar: #162923;
+    --rest-selected: #355347;
+    --rest-selected-ink: #eaf6f0;
+    --rest-switch: var(--rest-accent);
+    --rest-switch-off: #4b6b5d;
+    --rest-switch-thumb: #111f1c;
+    --rest-action: #69d5b0;
+    --rest-action-ink: #111f1c;
+    --rest-action-icon: brightness(0);
+    --rest-break-center: #20362e;
+    --rest-break-edge: var(--rest-background);
+    --rest-ink: #eaf6f0;
+    --rest-muted: #a8c9ba;
+    --rest-accent: #69d5b0;
+    --rest-mint: #85d4b4;
+    --rest-track: #355347;
+    --rest-background: #111f1c;
+    --rest-surface: #20362e;
     --rest-border: rgba(173, 217, 196, .18);
     --rest-line: #365349;
     --rest-shadow: 0 14px 36px rgba(0, 0, 0, .18), inset 0 1px rgba(255, 255, 255, .05);
@@ -48,8 +73,8 @@
 .quiet-rest button:hover { filter: brightness(.97); }
 .quiet-rest button:active { transform: translateY(1px); }
 .quiet-rest .push {
-  color: #fff;
-  background: linear-gradient(145deg, #72cba7, #23816a);
+  color: var(--rest-action-ink);
+  background: var(--rest-action);
 }
 .quiet-rest a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {

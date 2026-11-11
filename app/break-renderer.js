@@ -1,16 +1,15 @@
 import HtmlTranslate from './utils/htmlTranslate.js'
+import { MINT_COLOR } from './utils/settingsTheme.js'
 import applyBreakHealthEffect from './utils/breakHealthEffect.js'
 import './platform.js'
 import { showBreakProgress } from './utils/quietRestProgress.js'
 
 window.onload = async (event) => {
   const [idea, started, duration, strictMode, postpone,
-    postponePercent, backgroundColor, danger, breakHealthMode] = await window.breaks.sendBreakData()
-
-  const mainColor = await window.settings.get('mainColor')
+    postponePercent, danger, breakHealthMode] = await window.breaks.sendBreakData()
 
   new HtmlTranslate(document).translate()
-  applyBreakHealthEffect(danger, breakHealthMode, mainColor)
+  applyBreakHealthEffect(danger, breakHealthMode, MINT_COLOR)
 
   document.ondragover = event =>
     event.preventDefault()
@@ -49,9 +48,6 @@ window.onload = async (event) => {
   const postponeElement = document.querySelector('#postpone')
   const closeElement = document.querySelector('#close')
   const manualFinishElement = document.querySelector('#finish')
-  document.body.classList.add(mainColor.substring(1))
-  document.body.style.backgroundColor = backgroundColor
-  document.body.style.setProperty('--rest-configured-color', backgroundColor)
   const opacity = await window.settings.get('transparentMode') ? await window.settings.get('opacity') : 1
   document.body.style.setProperty('--rest-opacity', opacity)
 

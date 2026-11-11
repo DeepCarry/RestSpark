@@ -22,7 +22,7 @@ for (const [file, which, idea] of [
       window.i18next = { t: async key => key, dir: async () => 'ltr' }
       window.utils = { canPostpone, canSkip, formatKeyboardShortcut: x => x, formatTimeRemaining: async x => `${x} remaining`, formatElapsedDuration: async x => `${x} elapsed` }
       window.breaks = {
-        sendBreakData: async () => [file === 'microbreak' ? [idea] : idea, Date.now(), duration, strict, allowed, 30, '#478484', 0, false],
+        sendBreakData: async () => [file === 'microbreak' ? [idea] : idea, Date.now(), duration, strict, allowed, 30, 0, false],
         finishBreak: finish,
         postponeBreak: postpone,
         sanitizeIdea: x => typeof x === 'string' ? x : '',
@@ -39,6 +39,12 @@ for (const [file, which, idea] of [
       dom?.window.close()
       delete global.window
       delete global.document
+    })
+    it('loads both approved portraits for live CSS appearance changes', () => {
+      const markup = readFileSync(new URL(`../app/${file}.html`, import.meta.url), 'utf8')
+      const { document } = new JSDOM(markup).window
+      expect(document.querySelector('.rest-illustration-night').getAttribute('src')).toBe('images/quiet-rest/stretch-night.png')
+      expect(document.querySelector('.rest-illustration-day').getAttribute('src')).toBe('images/quiet-rest/stretch.png')
     })
     it('shows the configured duration immediately and updates clock and ring', async () => {
       await load()

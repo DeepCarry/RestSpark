@@ -29,7 +29,7 @@ import { registerBreakShortcuts } from './utils/breakShortcuts.js'
 import defaultSettings from './utils/defaultSettings.js'
 import { readScheduleSettings, migrateIndependentSchedule } from './utils/independentScheduleMigration.js'
 import { saveSchedulePatch } from './utils/scheduleControls.js'
-import { migrateMintTheme } from './utils/settingsTheme.js'
+import { migrateMintTheme, normalizeThemeSource } from './utils/settingsTheme.js'
 import StatusMessages from './utils/statusMessages.js'
 import DisplayManager from './utils/displayManager.js'
 import { BRAND } from './utils/brand.js'
@@ -333,6 +333,9 @@ async function initialize (isAppStart = true) {
       watch: true
     })
     migrateMintTheme(settings)
+    settings.onDidChange('themeSource', value => {
+      nativeTheme.themeSource = normalizeThemeSource(value)
+    })
     migrateIndependentSchedule(settings, savedScheduleSettings)
     log.info('Stretchly: loading preferences')
     Store.initRenderer()
@@ -415,8 +418,8 @@ async function initialize (isAppStart = true) {
 
   startI18next()
   startProcessWin()
+  nativeTheme.themeSource = normalizeThemeSource(settings.get('themeSource'))
   createWelcomeWindow()
-  nativeTheme.themeSource = settings.get('themeSource')
 
   readFile(join(app.getPath('userData'), 'stamp'), 'utf8', (err, data) => {
     if (err) {
@@ -784,7 +787,7 @@ function startMicrobreak () {
     }
     return [idea, startTime, breakDuration, strictMode,
       postponable, postponableDurationPercent,
-      calculateBackgroundColor(settings.get('miniBreakColor')), danger, settings.get('breakHealthMode')]
+      danger, settings.get('breakHealthMode')]
   })
 
   for (let localDisplayId = 0; localDisplayId < displayManager.getDisplayCount(); localDisplayId++) {
@@ -799,7 +802,6 @@ function startMicrobreak () {
       backgroundThrottling: false,
       transparent: !showBreaksAsRegularWindows,
       ...getBlurredBackgroundWindowOptions(),
-      backgroundColor: calculateBackgroundColor(settings.get('miniBreakColor')),
       skipTaskbar: !showBreaksAsRegularWindows,
       focusable: showBreaksAsRegularWindows,
       alwaysOnTop: !showBreaksAsRegularWindows,
@@ -940,7 +942,7 @@ function startBreak () {
     }
     return [idea, startTime, breakDuration, strictMode,
       postponable, postponableDurationPercent,
-      calculateBackgroundColor(settings.get('mainColor')), danger, settings.get('breakHealthMode')]
+      danger, settings.get('breakHealthMode')]
   })
 
   for (let localDisplayId = 0; localDisplayId < displayManager.getDisplayCount(); localDisplayId++) {
@@ -955,7 +957,6 @@ function startBreak () {
       backgroundThrottling: false,
       transparent: !showBreaksAsRegularWindows,
       ...getBlurredBackgroundWindowOptions(),
-      backgroundColor: calculateBackgroundColor(settings.get('mainColor')),
       skipTaskbar: !showBreaksAsRegularWindows,
       focusable: showBreaksAsRegularWindows,
       alwaysOnTop: !showBreaksAsRegularWindows,
@@ -1189,14 +1190,6 @@ function resetBreaks () {
   breakPlanner.reset()
   log.info('Stretchly: resetting breaks')
   updateTray()
-}
-
-function calculateBackgroundColor (color) {
-  let opacityMultiplier = 1
-  if (settings.get('transparentMode')) {
-    opacityMultiplier = settings.get('opacity')
-  }
-  return color + Math.round(opacityMultiplier * 255).toString(16).padStart(2, '0')
 }
 
 function loadIdeas () {
@@ -1550,6 +1543,8 @@ ipcMain.handle('save-schedule', (event, patch) => {
 })
 
 ipcMain.on('save-setting', function (event, key, value) {
+  if (key === 'themeSource' && normalizeThemeSource(value) !== value) return
+
   if (key === 'naturalBreaks') {
     breakPlanner.naturalBreaks(value)
   }
@@ -1562,16 +1557,8 @@ ipcMain.on('save-setting', function (event, key, value) {
     i18next.changeLanguage(value)
   }
 
-  if (key === 'themeSource') {
-    nativeTheme.themeSource = value
-  }
-
   if (key === 'longBreakAudio') {
     settings.set('miniBreakAudio', value)
-  }
-
-  if (key === 'mainColor') {
-    settings.set('miniBreakColor', value)
   }
 
   if (key === 'showTrayIcon') {

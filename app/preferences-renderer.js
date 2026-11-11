@@ -1,3 +1,4 @@
+import { normalizeThemeSource } from './utils/settingsTheme.js'
 import { initScheduleEditors } from './schedule-editors.js'
 import VersionChecker from './utils/versionChecker.js'
 import { setSameWidths } from './utils/sameWidths.js'
@@ -201,7 +202,8 @@ window.onload = async (e) => {
       default:
         value = radio.value
     }
-    radio.checked = settings[radio.name] === value
+    const savedValue = radio.name === 'themeSource' ? normalizeThemeSource(settings.themeSource) : settings[radio.name]
+    radio.checked = savedValue === value
     radio.onchange = (event) => {
       window.settings.saveSettings(radio.name, value)
     }
@@ -284,10 +286,6 @@ window.onload = async (e) => {
     }
   }
   document.querySelector('#check-updates').onclick = checkUpdates
-  document.querySelector('#themeSource').value = settings.themeSource
-  document.querySelector('#themeSource').onchange = event => {
-    window.settings.saveSettings('themeSource', event.target.value)
-  }
   if (!settings.disableAppUpdateFeatures) checkUpdates()
 
   function setWindowHeight () {

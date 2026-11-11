@@ -70,6 +70,31 @@ try {
   await delay(500)
   const aboutShot = await send('Page.captureScreenshot', { format: 'png' })
   writeFileSync(join(evidence, 'packaged-about.png'), Buffer.from(aboutShot.result.data, 'base64'))
+  const evaluate = async expression => (await send('Runtime.evaluate', { expression, returnByValue: true })).result.result.value
+  for (const mode of ['light', 'dark']) {
+    await evaluate(`document.querySelector('label[for=appearance-${mode}]').click()`)
+    for (let n = 0; n < 40; n++) {
+      if (await evaluate("matchMedia('(prefers-color-scheme: dark)').matches") === (mode === 'dark')) break
+      await delay(75)
+    }
+    assert.equal(await evaluate("matchMedia('(prefers-color-scheme: dark)').matches"), mode === 'dark')
+    assert.equal(JSON.parse(readFileSync(join(profile, 'config.json'), 'utf8')).themeSource, mode)
+    assert.equal(await evaluate("Array.from(document.querySelectorAll('.appearance-preview img')).every(img => img.complete && img.naturalWidth > 0)"), true)
+    for (const page of ['settings', 'schedule', 'theme', 'about']) {
+      await evaluate(`document.querySelector('[data-section=${page}]').click(); document.querySelector('.${page}').scrollTop = 0`)
+      await delay(250)
+      const capture = async suffix => {
+        const shot = await send('Page.captureScreenshot', { format: 'png' })
+        writeFileSync(join(evidence, `packaged-${page}-${mode}${suffix}.png`), Buffer.from(shot.result.data, 'base64'))
+      }
+      await capture('')
+      if (page === 'theme') {
+        await evaluate("document.querySelector('.theme').scrollTop = document.querySelector('.theme').scrollHeight")
+        await delay(150)
+        await capture('-lower')
+      }
+    }
+  }
   writeFileSync(join(evidence, 'packaged-smoke.json'), JSON.stringify({ passed: true, profile, state }, null, 2))
   console.log('PACKAGED_MACOS_SMOKE_PASSED', state)
 } finally {

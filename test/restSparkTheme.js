@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { migrateMintTheme, MINT_COLOR } from '../app/utils/settingsTheme.js'
+import { migrateMintTheme, MINT_COLOR, normalizeThemeSource } from '../app/utils/settingsTheme.js'
 
 describe('mint theme compatibility', () => {
   for (const color of ['#478484', '#633738', '#ffffff', '#1D1F21', '#A49898', '#567890', '#123456']) {
@@ -18,4 +18,14 @@ describe('mint theme compatibility', () => {
       expect(values).toEqual(first)
     })
   }
+})
+
+describe('appearance settings compatibility', () => {
+  it.each(['light', 'dark', 'system'])('keeps the saved %s choice', mode => {
+    expect(normalizeThemeSource(mode)).toBe(mode)
+  })
+
+  it.each([undefined, null, '', '#633738', 'automatic'])('uses the default for %s', mode => {
+    expect(normalizeThemeSource(mode)).toBe('system')
+  })
 })

@@ -243,7 +243,9 @@ async function layoutMatrix (win, kind) {
     win.webContents.enableDeviceEmulation({ screenPosition: 'desktop', screenSize: { width, height }, viewPosition: { x: 0, y: 0 }, deviceScaleFactor: 1, viewSize: { width, height }, scale: Math.min(1, win.getContentSize()[0] / width, win.getContentSize()[1] / height) })
     await delay(200)
     const geometry = await win.webContents.executeJavaScript(`(() => {
-      const img = document.querySelector('.rest-illustration')
+      const img = document.querySelector('.rest-illustration-night') && matchMedia('(prefers-color-scheme: dark)').matches
+        ? document.querySelector('.rest-illustration-night')
+        : document.querySelector('.rest-illustration')
       const box = img.getBoundingClientRect()
       const content = document.querySelector('.breaks').getBoundingClientRect()
       return { width: innerWidth, height: innerHeight, image: { x: box.x, right: box.right, width: box.width, height: box.height }, contentRight: content.right, hidden: getComputedStyle(img).display === 'none', overflow: document.documentElement.scrollWidth > innerWidth }

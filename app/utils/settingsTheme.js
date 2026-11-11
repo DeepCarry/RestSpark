@@ -1,6 +1,9 @@
-// The approved mint UI is independent of system light/dark appearance.
-// Keep the historic renderer color token so break layout/health effects do not change.
+// Preserve the historic mint value for the compatibility migration and health effect.
 export const MINT_COLOR = '#478484'
+
+export function normalizeThemeSource (value) {
+  return value === 'light' || value === 'dark' ? value : 'system'
+}
 
 export function migrateMintTheme (store) {
   if (store.get('settingsThemeVersion') === 1) return

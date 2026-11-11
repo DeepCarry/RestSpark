@@ -484,24 +484,34 @@
           <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 4h18v13H3z M8 21h8 M12 17v4"/>
           </svg>
-          <span data-i18next="settingsV1.appearance" >
+          <span id="appearance-heading" data-i18next="settingsV1.appearance" >
           </span>
         </h2>
-        <div class="settings-row" >
-          <div class="settings-row__label">
-            <label data-i18next="settingsV1.appAppearance" for="themeSource">
-            </label>
-          </div>
-          <div class="settings-row__control">
-            <select id="themeSource" class="settings-select" name="themeSource">
-              <option value="system" data-i18next="settingsV1.system">
-              </option>
-              <option value="light" data-i18next="settingsV1.light">
-              </option>
-              <option value="dark" data-i18next="settingsV1.dark">
-              </option>
-            </select>
-          </div>
+        <div class="appearance-options" role="radiogroup" aria-labelledby="appearance-heading">
+          <input type="radio" name="themeSource" id="appearance-light" value="light">
+          <label for="appearance-light">
+            <span class="appearance-preview appearance-day" aria-hidden="true">
+              <img src="images/quiet-rest/stretch.png" alt="">
+            </span>
+            <span data-i18next="settingsV1.light"></span>
+            <span class="appearance-name" data-i18next="settingsV1.mint"></span>
+          </label>
+          <input type="radio" name="themeSource" id="appearance-dark" value="dark">
+          <label for="appearance-dark">
+            <span class="appearance-preview appearance-night" aria-hidden="true">
+              <img src="images/quiet-rest/stretch-night.png" alt="">
+            </span>
+            <span data-i18next="settingsV1.dark"></span>
+            <span class="appearance-name" data-i18next="settingsV1.nightMint"></span>
+          </label>
+          <input type="radio" name="themeSource" id="appearance-system" value="system">
+          <label for="appearance-system">
+            <span class="appearance-preview appearance-split" aria-hidden="true">
+              <span class="appearance-day"><img src="images/quiet-rest/stretch.png" alt=""></span>
+              <span class="appearance-night"><img src="images/quiet-rest/stretch-night.png" alt=""></span>
+            </span>
+            <span data-i18next="settingsV1.system"></span>
+          </label>
         </div>
         <div class="settings-row settings-switch">
           <input type="checkbox" id="enableTransparency" value="transparentMode">
@@ -511,31 +521,6 @@
             <span class="switch-track" aria-hidden="true">
             </span>
           </label>
-        </div>
-      </section>
-      <section class="settings-card" >
-        <h2>
-          <svg class="section-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 4h13v8a6 6 0 0 1-12 0V4 M18 5h2a3 3 0 0 1 0 6h-2 M3 20h18"/>
-          </svg>
-          <span data-i18next="settingsV1.currentTheme" >
-          </span>
-        </h2>
-        <div class="theme-current">
-          <div class="theme-preview">
-            <img src="images/quiet-rest/stretch.png" alt="">
-            <span aria-hidden="true">✓</span>
-          </div>
-          <div>
-            <h3>
-              <span data-i18next="settingsV1.mint" >
-              </span>
-            </h3>
-            <p data-i18next="settingsV1.mintHelp" >
-            </p>
-            <span data-i18next="settingsV1.inUse" class="status-badge">
-            </span>
-          </div>
         </div>
       </section>
       <section class="settings-card" >

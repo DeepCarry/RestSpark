@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import assert from 'node:assert/strict'
 const root = resolve(import.meta.dirname, '..')
-const evidence = join(root, 'docs/rest-spark/settings-v1/evidence')
+const evidence = process.env.REST_SETTINGS_EVIDENCE || join(root, 'docs/rest-spark/settings-v1/evidence')
 const baseline = process.argv.includes('--baseline')
 const profile = mkdtempSync(join(tmpdir(), 'restspark-settings-'))
 mkdirSync(evidence, { recursive: true })
@@ -52,7 +52,7 @@ app.whenReady().then(async () => {
       await delay(180)
       verify(config()[key] === before, `toggle can restore: ${key}`)
     }
-    for (const [id, value, key, expected] of [['miniBreakEvery', '20', 'microbreakInterval', 1200000], ['miniBreakFor', '80', 'microbreakDuration', 80000], ['longBreakEvery', '60', 'longBreakInterval', 3600000], ['longBreakFor', '6', 'breakDuration', 360000], ['trayIconStyle', 'time', 'trayIconStyle', 'time'], ['trayIconStyle', 'progress', 'trayIconStyle', 'progress'], ['themeSource', 'dark', 'themeSource', 'dark'], ['themeSource', 'system', 'themeSource', 'system']]) {
+    for (const [id, value, key, expected] of [['miniBreakEvery', '20', 'microbreakInterval', 1200000], ['miniBreakFor', '80', 'microbreakDuration', 80000], ['longBreakEvery', '60', 'longBreakInterval', 3600000], ['longBreakFor', '6', 'breakDuration', 360000], ['trayIconStyle', 'time', 'trayIconStyle', 'time'], ['trayIconStyle', 'progress', 'trayIconStyle', 'progress']]) {
       await js(`(() => { const input = document.querySelector('#${id}'); input.value = '${value}'; input.dispatchEvent(new Event(input.type === 'number' ? 'input' : 'change')); if (input.type === 'number') input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); })()`)
       await delay(250)
       verify(config()[key] === expected, `real selector persistence: ${key} = ${expected}`)

@@ -2,7 +2,7 @@
 
 <img src="app/images/brand/restspark-app-icon-master.svg" width="128" align="right" alt="元气 Rest Spark">
 
-休息一下，恢复元气。Rest Spark 是面向 macOS 的休息提醒工具，采用浅薄荷绿界面，保留短休息、长休息、严格模式、推迟、提前提醒、空闲/勿扰检测和原有设置行为。
+休息一下，恢复元气。Rest Spark 是面向 macOS 的休息提醒工具，可在「外观与声音」选择浅色「元气薄荷」、深色「元气夜绿」或「跟随系统」，支持短休息、长休息、严格模式、推迟、提前提醒、空闲/勿扰检测和原有设置行为。
 
 本项目基于 [Jan Hovancik 的 Stretchly](https://github.com/hovancik/stretchly) 二次开发，感谢原作者及所有贡献者。保留完整提交历史、[BSD-2-Clause 许可证](LICENSE) 与 `Copyright (c) 2016-, Jan Hovancik` 署名。新的产品名称为 **元气 / Rest Spark**，与上游 Stretchly 独立维护。
 
@@ -16,7 +16,7 @@ macOS 应用 ID 为 `io.github.deepcarry.restspark`，应用包为 `Rest Spark.a
 
 版本检查只查询本仓库发行版，不会下载或安装上游 Stretchly 更新。当前仓库私有且没有配置公开更新通道；匿名查询不可用时不提示更新，不在客户端嵌入 GitHub 令牌。自动下载、签名、公证和正式分发均未启用。
 
-品牌集成与验证记录见 [品牌交付报告](docs/rest-spark/DELIVERY.md)；此前 UI 记录见 [Quiet Rest 交付报告](docs/quiet-rest/DELIVERY.md)。
+主题实现与验收见[双外观开发记录](docs/rest-spark/appearance.md)。品牌集成与验证记录见 [品牌交付报告](docs/rest-spark/DELIVERY.md)；此前 UI 记录见 [Quiet Rest 交付报告](docs/quiet-rest/DELIVERY.md)。
 
 ---
 

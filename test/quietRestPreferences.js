@@ -122,9 +122,18 @@ describe('Quiet Rest preferences', () => {
       expect(document.querySelector(`output[for=${range.id}]`)).not.toBeNull()
     }
   })
-  it('exposes one real theme and accessible sound preview controls', () => {
+  it('exposes three appearance choices with the approved portraits and keeps sound previews', () => {
     expect(document.querySelectorAll('[name=mainColor]')).toHaveLength(0)
-    expect(document.querySelector('.theme-preview img').getAttribute('src')).toBe('images/quiet-rest/stretch.png')
+    const modes = [...document.querySelectorAll('input[name=themeSource]')]
+    expect(modes.map(mode => mode.value)).toEqual(['light', 'dark', 'system'])
+    for (const [mode, portraits] of [
+      ['light', ['stretch.png']],
+      ['dark', ['stretch-night.png']],
+      ['system', ['stretch.png', 'stretch-night.png']]
+    ]) {
+      const label = document.querySelector(`label[for=appearance-${mode}]`)
+      expect([...label.querySelectorAll('img')].map(image => image.getAttribute('src'))).toEqual(portraits.map(file => `images/quiet-rest/${file}`))
+    }
     expect(document.querySelectorAll('button[data-preview-sound]')).toHaveLength(4)
   })
   it('opens nested project link content using the anchor URL', () => {
@@ -151,19 +160,18 @@ describe('Quiet Rest preferences', () => {
   it('initializes appearance and saves changes while update lookup is pending', async () => {
     saved.disableAppUpdateFeatures = false
     saved.themeSource = 'dark'
-    const control = document.querySelector('#themeSource')
-    control.value = 'system'
-    control.onchange = null
+    const dark = document.querySelector('#appearance-dark')
+    const light = document.querySelector('#appearance-light')
     const checker = (await import('../app/utils/versionChecker.js')).default
     let finish
     vi.spyOn(checker.prototype, 'latest').mockImplementation(() => new Promise(resolve => { finish = resolve }))
     const loaded = window.onload({})
     await vi.advanceTimersByTimeAsync(0)
     try {
-      expect(control.value).toBe('dark')
-      control.value = 'light'
-      control.dispatchEvent(new window.Event('change'))
+      expect(dark.checked).toBe(true)
+      light.click()
       expect(saved.themeSource).toBe('light')
+      expect(dark.checked).toBe(false)
     } finally {
       finish(undefined)
       await loaded

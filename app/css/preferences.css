@@ -1,6 +1,5 @@
 /* Rest Spark Settings Design System V1. Settings-only primitives; no upstream grid. */
 :root {
-  --settings-font: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', system-ui, sans-serif;
   --settings-space-1: 4px;
   --settings-space-2: 8px;
   --settings-space-3: 12px;
@@ -16,7 +15,6 @@
   --settings-heading-size: 17px;
   --settings-text-size: 14px;
   --settings-caption-size: 12px;
-  color-scheme: light dark;
 }
 * { box-sizing: border-box; }
 body.quiet-preferences {
@@ -25,7 +23,7 @@ body.quiet-preferences {
   display: grid;
   grid-template-columns: var(--settings-sidebar) minmax(0, 1fr);
   overflow: hidden;
-  font: 500 var(--settings-text-size)/22px var(--settings-font);
+  font: 500 var(--settings-text-size)/22px var(--rest-font);
   background: var(--rest-background);
   color: var(--rest-ink);
   font-variant-numeric: tabular-nums;
@@ -60,8 +58,8 @@ h1, h2, h3, p { margin: 0; }
 .settings-row + .settings-row { border-top: 1px solid var(--rest-line); }
 .settings-row__label { min-width: 0; flex: 1; overflow-wrap: anywhere; }
 .settings-row__control { display: flex; align-items: center; justify-content: flex-end; flex: 0 0 auto; max-width: 60%; }
-.settings-row p, .settings-card > p, .settings-card details p, .theme-current p, .settings-link p, .interval-help { font-size: var(--settings-caption-size); line-height: 18px; font-weight: 400; color: var(--rest-muted); margin-top: 3px; }
-.quiet-preferences :is(button, select, input) { font-family: var(--settings-font); font-size: var(--settings-text-size); }
+.settings-row p, .settings-card > p, .settings-card details p, .settings-link p, .interval-help { font-size: var(--settings-caption-size); line-height: 18px; font-weight: 400; color: var(--rest-muted); margin-top: 3px; }
+.quiet-preferences :is(button, select, input) { font-family: var(--rest-font); font-size: var(--settings-text-size); }
 .quiet-preferences :is(button, select) { color: var(--rest-ink); background: var(--rest-surface); border: 1px solid var(--rest-line); border-radius: var(--settings-control-radius); min-height: var(--settings-control-height); box-shadow: 0 1px 2px #083e3210; }
 .quiet-preferences button { padding: 8px 14px; cursor: pointer; font-weight: 500; }
 .quiet-preferences select { padding: 8px 30px 8px 12px; max-width: 100%; min-width: 112px; width: auto; appearance: auto; cursor: pointer; }
@@ -72,9 +70,9 @@ h1, h2, h3, p { margin: 0; }
 .settings-switch { position: relative; }
 .settings-switch input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .settings-switch label { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; }
-.switch-track { position: relative; width: 40px; height: 24px; border-radius: 20px; flex: 0 0 40px; background: #a7b9b3; box-shadow: inset 0 0 0 1px #083e3210; transition: background .15s; }
-.switch-track::after { content: ''; position: absolute; top: 2px; inset-inline-start: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px #0002; transition: inset-inline-start .15s; }
-.settings-switch input:checked + label .switch-track { background: linear-gradient(130deg, #58b99a, #008b70); }
+.switch-track { position: relative; width: 40px; height: 24px; border-radius: 20px; flex: 0 0 40px; background: var(--rest-switch-off); box-shadow: inset 0 0 0 1px #083e3210; transition: background .15s; }
+.switch-track::after { content: ''; position: absolute; top: 2px; inset-inline-start: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--rest-switch-thumb); box-shadow: 0 1px 3px #0002; transition: inset-inline-start .15s; }
+.settings-switch input:checked + label .switch-track { background: var(--rest-switch); }
 .settings-switch input:checked + label .switch-track::after { inset-inline-start: 18px; }
 .settings-switch input:focus-visible + label .switch-track { outline: 3px solid var(--rest-accent); outline-offset: 3px; }
 .settings-switch input:disabled + label { opacity: .5; cursor: default; }
@@ -93,7 +91,7 @@ h1, h2, h3, p { margin: 0; }
 .settings-card summary::after { content: '›'; font-size: 24px; }
 .settings-card details[open] summary::after { transform: rotate(90deg); }
 .license-content { margin-top: 16px; border-top: 1px solid var(--rest-line); padding-top: 12px; }
-.license-content pre, .debug { white-space: pre-wrap; overflow-wrap: anywhere; font: 400 12px/18px var(--settings-font); }
+.license-content pre, .debug { white-space: pre-wrap; overflow-wrap: anywhere; font: 400 12px/18px var(--rest-font); }
 .license-content pre { user-select: text; }
 .custom-message { grid-column: 2; padding: 8px 24px; background: var(--rest-surface); }
 body:has(.custom-message) { grid-template-rows: auto minmax(0, 1fr); }
@@ -109,6 +107,6 @@ footer { text-align: center; color: var(--rest-muted); font-size: 12px; font-wei
 }
 @media (max-width: 540px) {
   :root { --settings-sidebar: 140px; }
-  .settings-row:not(.settings-switch), .theme-current { flex-wrap: wrap; }
+  .settings-row:not(.settings-switch) { flex-wrap: wrap; }
   .settings-row__control { max-width: 100%; }
 }

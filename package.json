@@ -124,6 +124,8 @@
     },
     "files": [
       "**/*",
+      "!dist/**",
+      "!coverage/**",
       "!docs/quiet-rest/**",
       "!scripts/quiet-rest-*.mjs",
       "!test/quietRest*.js",

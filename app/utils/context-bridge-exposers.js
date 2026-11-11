@@ -78,7 +78,7 @@ function exposeStretchly () {
     onTranslate: (callback) => ipcRenderer.on('translate',
       () => callback()),
     onPlaySound: (callback) => ipcRenderer.on('play-sound',
-      (_event, file, volume) => callback(file, volume)),
+      (_event, file, volume, preview) => callback(file, volume, preview)),
     onGentlePreview: callback => ipcRenderer.on('show-gentle-preview', (_event, title, body, silent) => callback(title, body, silent)),
     onCloseGentlePreview: callback => ipcRenderer.on('close-gentle-preview', () => callback()),
     focusStatus: () => ipcRenderer.invoke('focus-status'),

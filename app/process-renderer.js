@@ -1,13 +1,15 @@
 import { BRAND, displayName } from './utils/brand.js'
+import { createSoundPlayer } from './utils/restSparkSounds.js'
 import VersionChecker from './utils/versionChecker.js'
 
 window.onload = async (e) => {
-  window.stretchly.onPlaySound((file, volume) => {
-    __electronLog.info(`Stretchly: playing audio/${file}.wav (volume: ${volume})`)
-    const audio = new Audio(`audio/${file}.wav`)
-    audio.volume = volume
-    audio.play()
-  })
+  window.stretchly.onPlaySound(createSoundPlayer(
+    path => {
+      __electronLog.info(`Rest Spark: playing ${path}`)
+      return new Audio(path)
+    },
+    (id, error) => __electronLog.error(`Rest Spark: could not play sound "${id}"`, error)
+  ))
 
   let preview
   let previewTimeout

@@ -31,6 +31,7 @@ import { registerBreakShortcuts } from './utils/breakShortcuts.js'
 import defaultSettings from './utils/defaultSettings.js'
 import { readScheduleSettings, migrateIndependentSchedule } from './utils/independentScheduleMigration.js'
 import { saveSchedulePatch } from './utils/scheduleControls.js'
+import { migrateSoundSettings } from './utils/restSparkSounds.js'
 import { migrateMintTheme, normalizeThemeSource } from './utils/settingsTheme.js'
 import StatusMessages from './utils/statusMessages.js'
 import DisplayManager from './utils/displayManager.js'
@@ -342,6 +343,9 @@ async function initialize (isAppStart = true) {
       watch: true
     })
     if (!savedScheduleSettings && app.getLocale().toLowerCase().startsWith('zh')) settings.set('language', 'zh-CN')
+    const savedSettings = settings.store
+    const migratedSounds = migrateSoundSettings(savedSettings)
+    if (migratedSounds !== savedSettings) settings.store = migratedSounds
     migrateMintTheme(settings)
     settings.onDidChange('themeSource', value => {
       nativeTheme.themeSource = normalizeThemeSource(value)
@@ -1774,7 +1778,7 @@ ipcMain.on('restore-defaults', (event) => {
 })
 
 ipcMain.on('play-sound', (event, sound) => {
-  processWin.webContents.send('play-sound', sound, settings.get('volume'))
+  processWin?.webContents.send('play-sound', sound, settings.get('volume'), true)
 })
 
 ipcMain.handle('show-debug', (event) => {
@@ -1868,7 +1872,7 @@ ipcMain.handle('current-settings', (event) => {
 
 ipcMain.handle('restore-remote-settings', (event, remoteSettings) => {
   log.info('Stretchly: restoring remote settings')
-  settings.store = { ...remoteSettings, manualPauseUntil: settings.get('manualPauseUntil') }
+  settings.store = migrateSoundSettings({ ...remoteSettings, manualPauseUntil: settings.get('manualPauseUntil') })
   initialize(false)
 })
 

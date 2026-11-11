@@ -105,6 +105,8 @@ npm run lint
 
 本项目代码基于 [BSD-2-Clause](LICENSE) 许可证发布。相关版权声明及免责条款以仓库中的 [LICENSE](LICENSE) 文件为准。品牌名称与图形的独立使用授权请以维护者发布的条款为准。
 
+[休息提醒音效来源与许可 / Sound credits and licenses](docs/rest-spark/audio/SOURCES.md)
+
 ## 致谢 / Credits
 
 **元气 / Rest Spark** 基于 **[Stretchly](https://github.com/hovancik/stretchly)** 进行二次开发，并由 DeepCarry 以独立项目持续维护。

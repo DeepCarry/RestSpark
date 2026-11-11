@@ -58,7 +58,7 @@ app.whenReady().then(async () => {
       verify(config()[key] === expected, `real selector persistence: ${key} = ${expected}`)
     }
     verify(await js("document.querySelector('#longBreakEvery-value').textContent.includes('60')"), 'long interval displays independent minutes')
-    for (const audio of ['crystal-glass', 'wind-chime', 'tic-toc', 'reverie']) {
+    for (const audio of ['gentle', 'warm-chime', 'tic-toc', 'reverie']) {
       await js(`document.querySelector('input[value="${audio}"]').click(); document.querySelector('[data-preview-sound="${audio}"]').click()`)
       await delay(150)
       verify(config().longBreakAudio === audio && config().miniBreakAudio === audio, `real audio selection: ${audio}`)

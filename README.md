@@ -6,7 +6,9 @@
 
 本项目基于 [Jan Hovancik 的 Stretchly](https://github.com/hovancik/stretchly) 二次开发，感谢原作者及所有贡献者。保留完整提交历史、[BSD-2-Clause 许可证](LICENSE) 与 `Copyright (c) 2016-, Jan Hovancik` 署名。新的产品名称为 **元气 / Rest Spark**，与上游 Stretchly 独立维护。
 
-当前仓库为 `DeepCarry/RestSpark` 独立私有开发仓库；后续是否公开由维护者决定，当前不正式发布。品牌图形的独立授权条款尚待维护者明确，不能据此推定获得商标授权；原源代码许可证保持不变。
+从 [GitHub Releases](https://github.com/DeepCarry/RestSpark/releases/latest) 下载对应 Apple 芯片或 Intel 芯片的 macOS DMG。打开磁盘映像，将「Rest Spark.app」拖到「应用程序」。首次打开的说明和文件校验值见 Release 页面。
+
+品牌图形的独立授权条款尚待维护者明确，不能据此推定获得商标授权；原源代码许可证保持不变。
 
 ## 开发
 
@@ -14,7 +16,7 @@
 
 macOS 应用 ID 为 `io.github.deepcarry.restspark`，应用包为 `Rest Spark.app`，中文显示名为「元气」。默认配置位于 `~/Library/Application Support/Rest Spark`。首次正常启动会复制旧 `Stretchly` 目录内的配置、自定义图片及已有贡献者状态，保留原文件；已有 Rest Spark 配置优先。显式选择的配置目录和便携目录保持原样。
 
-版本检查只查询本仓库发行版，不会下载或安装上游 Stretchly 更新。当前仓库私有且没有配置公开更新通道；匿名查询不可用时不提示更新，不在客户端嵌入 GitHub 令牌。自动下载、签名、公证和正式分发均未启用。
+版本检查查询本仓库的 GitHub Releases。更新需要手动下载安装包。
 
 主题实现与验收见[双外观开发记录](docs/rest-spark/appearance.md)。品牌集成与验证记录见 [品牌交付报告](docs/rest-spark/DELIVERY.md)；此前 UI 记录见 [Quiet Rest 交付报告](docs/quiet-rest/DELIVERY.md)。
 

@@ -62,7 +62,7 @@ try {
       expression: "Boolean(document.querySelector('.version')?.textContent.trim() && document.querySelector('[name=themeSource]:checked'))",
       returnByValue: true
     })
-    if (result.result?.value === true) {
+    if (result.result?.result?.value === true) {
       ready = true
       break
     }

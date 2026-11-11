@@ -35,14 +35,14 @@ jobs:
             installer: dist/Rest-Spark-*-windows-x64.exe
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version-file: .nvmrc
           cache: npm
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Check release version
@@ -111,7 +111,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Upload verified installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: installer-${{ matrix.artifact }}
           path: ${{ matrix.installer }}
@@ -121,7 +121,7 @@ jobs:
 
       - name: Keep smoke test evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: smoke-${{ matrix.artifact }}
           path: ${{ runner.temp }}/restspark-smoke/
@@ -135,7 +135,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         with:
           pattern: installer-*
           merge-multiple: true

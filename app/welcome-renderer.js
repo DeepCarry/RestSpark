@@ -1,96 +1,46 @@
 import HtmlTranslate from './utils/htmlTranslate.js'
-import { setSameWidths } from './utils/sameWidths.js'
-import './platform.js'
 
-let eventsAttached = false
+const element = id => document.getElementById(id)
+const selected = () => document.querySelector('[name="preset"]:checked').value
 
-window.onload = async (event) => {
-  const settings = await window.settings.currentSettings()
-  await new HtmlTranslate(document).translate()
-
-  document.ondragover = event =>
-    event.preventDefault()
-
-  document.ondrop = event =>
-    event.preventDefault()
-
-  setTimeout(() => { eventsAttached = true }, 500)
-
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    const imagesWithDarkVersion = document.querySelectorAll('[data-has-dark-version]')
-    imagesWithDarkVersion.forEach(image => {
-      // replace last occurance https://github.com/electron-userland/electron-builder/issues/5152
-      const newSource = image.src.replace(/.([^.]*)$/, '-dark.' + '$1')
-      image.src = newSource
-    })
-  }
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-    const imagesWithDarkVersion = document.querySelectorAll('[data-has-dark-version]')
-    if (event.matches) {
-      imagesWithDarkVersion.forEach(image => {
-        const newSource = image.src.replace(/.([^.]*)$/, '-dark.' + '$1')
-        image.src = newSource
-      })
-    } else {
-      imagesWithDarkVersion.forEach(image => {
-        const newSource = image.src.replace('-dark.', '.')
-        image.src = newSource
-      })
-    }
-  })
-
-  window.stretchly.onTranslate(async () => {
-    await new HtmlTranslate(document).translate()
-    setTimeout(() => setSameWidths(), 100)
-  })
-
-  document.querySelectorAll('input[type="radio"]').forEach(radio => {
-    let value
-    switch (radio.value) {
-      case 'true':
-        value = true
-        break
-      case 'false':
-        value = false
-        break
-      default:
-        value = radio.value
-    }
-    radio.checked = settings[radio.name] === value
-    if (!eventsAttached) {
-      radio.onchange = (event) => {
-        window.settings.saveSettings(radio.name, value)
-      }
-    }
-  })
-
-  document.querySelector('#language').value = settings.language
-  document.querySelector('#language').focus()
-  if (!eventsAttached) {
-    document.querySelector('#language').onchange = (event) => {
-      window.settings.saveSettings('language', event.target.value)
-    }
-  }
-
-  setTimeout(() => setSameWidths(), 100)
-
-  document.querySelectorAll('button').forEach(button => {
-    if (!eventsAttached) {
-      button.onclick = () => {
-        window.settings.saveSettings('isFirstRun', false)
-        switch (button.getAttribute('data-location')) {
-          case 'tutorial':
-            window.electronApi.openExternal('https://hovancik.net/stretchly/about')
-            break
-          case 'preferences':
-            window.stretchly.openPreferences()
-            break
-          default:
-            break
-        }
-        window.stretchly.closeWindow()
-      }
-    }
-  })
+async function showStep (preferences) {
+  element('mode').hidden = preferences
+  element('prefs').hidden = !preferences
+  element(preferences ? 'mode-step' : 'prefs-step').removeAttribute('aria-current')
+  element(preferences ? 'prefs-step' : 'mode-step').setAttribute('aria-current', 'step')
+  if (preferences) element('chosen-preset').textContent = await window.i18next.t(`prd11.${selected()}Detail`)
+  document.querySelector('section:not([hidden]) h1').focus()
 }
+
+async function save (preset) {
+  const buttons = [...document.querySelectorAll('#prefs button')]
+  buttons.forEach(button => { button.disabled = true })
+  element('setup-error').hidden = true
+  try {
+    const saved = await window.onboarding.complete(preset, {
+      openAtLogin: element('login').checked,
+      monitorDnd: element('focus').checked,
+      notify: element('notify').checked
+    })
+    if (saved) return
+  } catch {
+    // Show the same retry message for IPC and settings write failures.
+  }
+  element('setup-error').hidden = false
+  buttons.forEach(button => { button.disabled = false })
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  document.documentElement.lang = await window.settings.get('language')
+  if (await window.onboarding.isPreview()) {
+    element('preview-note').hidden = false
+    element('skip').hidden = true
+    element('complete').dataset.i18next = 'prd11.finishPreview'
+  }
+  await new HtmlTranslate(document).translate()
+  element('next').onclick = () => showStep(true)
+  element('back').onclick = () => showStep(false)
+  element('skip').onclick = () => save(null)
+  element('complete').onclick = () => save(selected())
+  document.querySelector('[name="preset"]:checked').focus()
+})

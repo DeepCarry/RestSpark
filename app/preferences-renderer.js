@@ -219,6 +219,21 @@ window.onload = async (e) => {
     window.settings.saveSettings('trayIconStyle', event.target.value)
   }
 
+  const morning = document.querySelector('#morningHour')
+  const formatHour = new Intl.DateTimeFormat(settings.language, { hour: 'numeric', minute: '2-digit' })
+  for (let hour = 0; hour < 24; hour++) {
+    morning.add(new window.Option(formatHour.format(new Date(2026, 0, 1, hour)), String(hour)))
+  }
+  morning.add(new window.Option(await window.i18next.t('prd11.sunrise'), 'sunrise'))
+  morning.value = String(settings.morningHour)
+  morning.onchange = () => window.settings.saveSettings('morningHour', morning.value === 'sunrise' ? 'sunrise' : Number(morning.value))
+
+  const focusStatus = status => { document.querySelector('#focus-compatibility').hidden = status !== 'unknown' || window.runtime.platform() !== 'darwin' }
+  window.stretchly.onFocusStatus?.(focusStatus)
+  if (window.stretchly.focusStatus) focusStatus(await window.stretchly.focusStatus())
+
+  document.querySelector('#view-onboarding').onclick = () => window.stretchly.openOnboarding()
+
   scheduleEditors?.destroy()
   scheduleEditors = await initScheduleEditors(document, settings)
 

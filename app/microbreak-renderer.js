@@ -1,3 +1,4 @@
+import { breakActions } from './utils/breakActions.js'
 import HtmlTranslate from './utils/htmlTranslate.js'
 import { MINT_COLOR } from './utils/settingsTheme.js'
 import applyBreakHealthEffect from './utils/breakHealthEffect.js'
@@ -6,7 +7,7 @@ import { showBreakProgress } from './utils/quietRestProgress.js'
 
 window.onload = async (event) => {
   const [idea, started, duration, strictMode, postpone,
-    postponePercent, danger, breakHealthMode] = await window.breaks.sendBreakData()
+    postponePercent, danger, breakHealthMode, postponeTime] = await window.breaks.sendBreakData()
 
   new HtmlTranslate(document).translate()
   applyBreakHealthEffect(danger, breakHealthMode, MINT_COLOR)
@@ -55,6 +56,20 @@ window.onload = async (event) => {
     tt.innerHTML = window.utils.formatKeyboardShortcut(keyboardShortcut)
   })
 
+  const restriction = document.querySelector('#break-restriction')
+  const messages = Object.fromEntries(await Promise.all(['strict', 'postponeUnavailable'].map(async key => [
+    key, await window.i18next.t(`prd11.${key}`)
+  ])))
+  if (postponeTime > 0) {
+    const language = await window.settings.get('language')
+    const unit = postponeTime < 60000 ? 'second' : 'minute'
+    const time = new Intl.NumberFormat(language, { style: 'unit', unit, maximumFractionDigits: 1 })
+      .format(postponeTime / (unit === 'minute' ? 60000 : 1000))
+    postponeElement.querySelector('[data-i18next]').textContent = await window.i18next.t('prd11.postponeFor', { time })
+  }
+  postponeElement.classList.remove('hidden')
+  closeElement.classList.remove('hidden')
+
   let manualAwaiting = false
 
   const locale = await window.settings.get('language')
@@ -73,16 +88,11 @@ window.onload = async (event) => {
     if (!manualAwaiting) {
       if (passed < duration) {
         const passedPercent = passed / duration * 100
-        if (window.utils.canPostpone(postpone, passedPercent, postponePercent)) {
-          postponeElement.classList.remove('hidden')
-        } else {
-          postponeElement.classList.add('hidden')
-        }
-        if (window.utils.canSkip(strictMode, postpone, passedPercent, postponePercent)) {
-          closeElement.classList.remove('hidden')
-        } else {
-          closeElement.classList.add('hidden')
-        }
+        const allowed = breakActions(strictMode, postpone, passedPercent, postponePercent)
+        postponeElement.disabled = !allowed.postpone
+        closeElement.disabled = !allowed.skip
+        const reason = strictMode ? 'strict' : (!postpone ? 'postponeUnavailable' : null)
+        restriction.textContent = reason ? messages[reason] : ''
         progress.value = (100 - passedPercent) * progress.max / 100
         showBreakProgress(progress, progressTime, duration - passed)
         progressTime.setAttribute('aria-label', await window.utils.formatTimeRemaining(duration - passed, locale))
@@ -98,6 +108,7 @@ window.onload = async (event) => {
   window.breaks.onEnterManualAwait(async (which) => {
     if (which !== 'microbreak' || manualAwaiting) return
     manualAwaiting = true
+    restriction.textContent = ''
     progress.value = 0
     progressTime.classList.remove('hidden')
     postponeElement.classList.add('hidden')

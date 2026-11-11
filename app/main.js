@@ -16,13 +16,15 @@ import humanizeDuration from 'humanize-duration'
 import { DateTime } from 'luxon'
 
 import {
-  canPostpone, canSkip, formatTimeRemaining,
+  formatTimeRemaining,
   minutesRemaining, insideWindowsStore, insideFlatpak, insideSnap, insideWindowsPortable
 } from './utils/utils.js'
 import IdeasLoader from './utils/ideasLoader.js'
+import { pauseChoices, popoverBounds } from './utils/restSparkPopover.js'
+import { onboardingPatch, presetForSchedule, shouldShowOnboarding } from './utils/restSparkOnboarding.js'
+import { breakActions } from './utils/breakActions.js'
 import BreaksPlanner from './breaksPlanner.js'
 import AppIcon from './utils/appIcon.js'
-import { UntilMorning } from './utils/untilMorning.js'
 import AutostartManager from './utils/autostartManager.js'
 import Command from './utils/commands.js'
 import { registerBreakShortcuts } from './utils/breakShortcuts.js'
@@ -72,18 +74,24 @@ let displayManager = null
 let processWin = null
 let microbreakWins = null
 let breakWins = null
+let activeBreak = null
 let preferencesWin = null
 let welcomeWin = null
+let showOnboarding = false
+let welcomePreview = false
 let contributorPreferencesWin = null
 let syncPreferencesWin = null
 let myStretchlyWin = null
 let settings
-let pausedForSuspendOrLock = false
 let nextIdea = null
 let danger = 0
 let updateChecker
 let currentTrayIconPath = null
 let currentTrayMenuTemplate = null
+let trayPanel = null
+let trayPanelOptions = false
+let powerMonitoringStarted = false
+let gentlePreviewType = null
 let trayUpdateIntervalObj = null
 
 if (insideWindowsPortable()) {
@@ -250,6 +258,7 @@ async function initialize (isAppStart = true) {
 
   EventEmitter.setMaxListeners(200) // for watching Store changes
   if (!settings) {
+    showOnboarding = shouldShowOnboarding(savedScheduleSettings)
     settings = new Store({
       defaults: defaultSettings,
       beforeEachMigration: (store, context) => {
@@ -332,6 +341,7 @@ async function initialize (isAppStart = true) {
       },
       watch: true
     })
+    if (!savedScheduleSettings && app.getLocale().toLowerCase().startsWith('zh')) settings.set('language', 'zh-CN')
     migrateMintTheme(settings)
     settings.onDidChange('themeSource', value => {
       nativeTheme.themeSource = normalizeThemeSource(value)
@@ -348,11 +358,11 @@ async function initialize (isAppStart = true) {
   if (!breakPlanner) {
     breakPlanner = new BreaksPlanner(settings)
     breakPlanner.nextBreak()
-    breakPlanner.on('startMicrobreakNotification', () => { startMicrobreakNotification() })
-    breakPlanner.on('startBreakNotification', () => { startBreakNotification() })
+    breakPlanner.on('startMicrobreakNotification', () => { startGentlePreview('microbreak') })
+    breakPlanner.on('startBreakNotification', () => { startGentlePreview('break') })
     breakPlanner.on('startMicrobreak', () => { startMicrobreak() })
     breakPlanner.on('finishMicrobreak', (shouldPlaySound, shouldPlanNext) => {
-      if (settings.get('miniBreakManualFinish')) {
+      if (shouldPlanNext && settings.get('miniBreakManualFinish')) {
         enterMiniBreakManualContinuation(shouldPlaySound)
         return
       }
@@ -361,19 +371,27 @@ async function initialize (isAppStart = true) {
     })
     breakPlanner.on('startBreak', () => { startBreak() })
     breakPlanner.on('finishBreak', (shouldPlaySound, shouldPlanNext) => {
-      if (settings.get('longBreakManualFinish')) {
+      if (shouldPlanNext && settings.get('longBreakManualFinish')) {
         enterLongBreakManualContinuation(shouldPlaySound)
         return
       }
       decreaseDanger(2)
       finishBreak(shouldPlaySound, shouldPlanNext)
     })
-    breakPlanner.on('resumeBreaks', () => { resumeBreaks() })
+    breakPlanner.on('interruptBreak', () => {
+      if (microbreakWins) finishMicrobreak(false, false)
+      if (breakWins) finishBreak(false, false)
+    })
     breakPlanner.on('updateToolTip', function () {
+      preferencesWin?.webContents.send('focus-status', breakPlanner.dndManager.status)
       updateTray()
     })
   } else {
+    if (microbreakWins) finishMicrobreak(false, false)
+    if (breakWins) finishBreak(false, false)
+    cancelGentlePreview()
     breakPlanner.clear()
+    breakPlanner.restoreManualPause()
     breakPlanner.appExclusionsManager.reinitialize(settings)
     breakPlanner.doNotDisturb(settings.get('monitorDnd'))
     breakPlanner.naturalBreaks(settings.get('naturalBreaks'))
@@ -419,7 +437,7 @@ async function initialize (isAppStart = true) {
   startI18next()
   startProcessWin()
   nativeTheme.themeSource = normalizeThemeSource(settings.get('themeSource'))
-  createWelcomeWindow()
+  if (isAppStart) createWelcomeWindow()
 
   readFile(join(app.getPath('userData'), 'stamp'), 'utf8', (err, data) => {
     if (err) {
@@ -437,9 +455,6 @@ async function initialize (isAppStart = true) {
   startPowerMonitoring()
   if (preferencesWin) {
     preferencesWin.webContents.send('renderSettings', settings.store)
-  }
-  if (welcomeWin) {
-    welcomeWin.webContents.send('renderSettings', settings.store)
   }
   if (contributorPreferencesWin) {
     contributorPreferencesWin.webContents.send('renderSettings', settings.store)
@@ -476,9 +491,6 @@ function startI18next () {
 }
 
 i18next.on('languageChanged', () => {
-  if (welcomeWin) {
-    welcomeWin.webContents.send('translate')
-  }
   if (preferencesWin) {
     preferencesWin.webContents.send('translate')
   }
@@ -486,40 +498,24 @@ i18next.on('languageChanged', () => {
   loadIdeas()
 })
 
-function onSuspendOrLock () {
-  log.info('System: suspend or lock')
-  if (settings.get('pauseForSuspendOrLock')) {
-    if (breakPlanner.isPaused || breakPlanner.dndManager.isOnDnd ||
-      breakPlanner.naturalBreaksManager.isSchedulerCleared ||
-      breakPlanner.appExclusionsManager.isSchedulerCleared) {
-      log.info('Stretchly: not pausing for suspendOrLock because paused already')
-    } else {
-      pausedForSuspendOrLock = true
-      pauseBreaks(1)
-      updateTray()
-    }
-  } else {
-    log.info('Stretchly: not pausing for suspendOrLock because setting is disabled')
-  }
-}
-
-function onResumeOrUnlock () {
-  log.info('System: resume or unlock')
-  if (pausedForSuspendOrLock) {
-    pausedForSuspendOrLock = false
-    resumeBreaks(false)
-  } else {
-    // corrrect the planner for the time spent in suspend
-    breakPlanner.correctScheduler()
-  }
-  updateTray()
-}
-
 function startPowerMonitoring () {
-  powerMonitor.on('suspend', onSuspendOrLock)
-  powerMonitor.on('lock-screen', onSuspendOrLock)
-  powerMonitor.on('resume', onResumeOrUnlock)
-  powerMonitor.on('unlock-screen', onResumeOrUnlock)
+  if (powerMonitoringStarted) return
+  powerMonitoringStarted = true
+  for (const [reason, start, stop] of [['suspend', 'suspend', 'resume'], ['lock', 'lock-screen', 'unlock-screen']]) {
+    let transition = 0
+    powerMonitor.on(start, () => {
+      transition += 1
+      if (settings.get('pauseForSuspendOrLock')) breakPlanner.setPowerBlock(reason, true)
+    })
+    powerMonitor.on(stop, async () => {
+      const current = ++transition
+      await breakPlanner.dndManager.refresh()
+      if (transition !== current) return
+      breakPlanner.setPowerBlock(reason, false)
+      breakPlanner.correctScheduler()
+      updateTray()
+    })
+  }
 }
 
 function closeWindows (windowArray) {
@@ -529,11 +525,6 @@ function closeWindows (windowArray) {
     }
 
     window.hide()
-    if (windowArray[0] === window) {
-      ipcMain.removeHandler('send-long-break-data')
-      ipcMain.removeHandler('send-mini-break-data')
-    }
-
     // Use destroy() for immediate, guaranteed cleanup on all platforms
     window.destroy()
   }
@@ -549,11 +540,7 @@ function trayIconPath () {
 
 function trayIconParams () {
   return {
-    paused:
-      breakPlanner.isPaused ||
-      breakPlanner.dndManager.isOnDnd ||
-      breakPlanner.naturalBreaksManager.isSchedulerCleared ||
-      breakPlanner.appExclusionsManager.isSchedulerCleared,
+    paused: breakPlanner.autoBlocked,
     monochrome: settings.get('useMonochromeTrayIcon'),
     inverted: settings.get('useMonochromeInvertedTrayIcon'),
     darkMode: nativeTheme.shouldUseDarkColors,
@@ -597,33 +584,60 @@ function startProcessWin () {
   })
 }
 
-function createWelcomeWindow (isAppStart = true) {
-  if (settings.get('isFirstRun') && isAppStart) {
-    const modalPath = 'file://' + join(__dirname, '/welcome.html')
-    welcomeWin = new BrowserWindow({
-      x: displayManager.getDisplayX(-1, 1000),
-      y: displayManager.getDisplayY(-1, 750),
-      width: 1000,
-      height: 750,
-      show: false,
-      autoHideMenuBar: true,
-      icon: windowIconPath(),
-      backgroundColor: 'EDEDED',
-      webPreferences: {
-        preload: join(__dirname, './welcome-preload.mjs'),
-        sandbox: false
-      }
-    })
-    welcomeWin.webContents.loadURL(modalPath)
-    welcomeWin.once('ready-to-show', () => {
-      welcomeWin.center()
-      welcomeWin.show()
-    })
-    welcomeWin.once('closed', () => {
-      welcomeWin = null
-    })
+function createWelcomeWindow (preview = false) {
+  if (welcomeWin) {
+    welcomeWin.show()
+    welcomeWin.focus()
+    return
   }
+  if (!showOnboarding && !preview) return
+  welcomePreview = preview
+  const { workArea } = screen.getPrimaryDisplay()
+  welcomeWin = new BrowserWindow({
+    width: Math.min(1000, workArea.width - 32),
+    height: Math.min(590, workArea.height - 32),
+    show: false,
+    autoHideMenuBar: true,
+    icon: windowIconPath(),
+    webPreferences: { preload: join(__dirname, 'welcome-preload.mjs'), sandbox: false }
+  })
+  welcomeWin.loadFile(join(__dirname, 'welcome.html'))
+  welcomeWin.once('ready-to-show', () => {
+    welcomeWin.center()
+    welcomeWin.show()
+  })
+  welcomeWin.once('closed', () => { welcomeWin = null })
 }
+
+ipcMain.on('open-onboarding', event => {
+  if (event.sender === preferencesWin?.webContents) createWelcomeWindow(true)
+})
+
+ipcMain.handle('onboarding-is-preview', event => event.sender === welcomeWin?.webContents && welcomePreview)
+
+ipcMain.handle('complete-onboarding', (event, preset, preferences) => {
+  if (event.sender !== welcomeWin?.webContents) return false
+  if (welcomePreview) {
+    setImmediate(() => welcomeWin?.close())
+    return true
+  }
+  if (!showOnboarding) return false
+  const patch = onboardingPatch(preset, preferences)
+  if (!patch) return false
+  const previousLogin = settings.get('openAtLogin')
+  settings.set(patch)
+  showOnboarding = false
+  if (preset !== null) {
+    if (patch.openAtLogin !== previousLogin) {
+      autostartManager.setAutostartEnabled(patch.openAtLogin).catch(error => log.error('Rest Spark: setting login item', error))
+    }
+    breakPlanner.doNotDisturb(patch.monitorDnd)
+    breakPlanner.replan()
+  }
+  updateTray()
+  setImmediate(() => welcomeWin?.close())
+  return true
+})
 
 function createContributorSettingsWindow () {
   if (contributorPreferencesWin) {
@@ -708,18 +722,28 @@ function checkVersion () {
   }
 }
 
-function startMicrobreakNotification () {
-  showNotification(i18next.t('main.microbreakIn', { seconds: breakPlanner.notificationLead / 1000 }))
-  log.info('Stretchly: showing Mini break notification')
+function startGentlePreview (type) {
+  if (breakPlanner.autoBlocked || !settings.get(`${type}Notification`)) {
+    breakPlanner.nextBreakAfterNotification()
+    return
+  }
+  const seconds = Math.ceil(breakPlanner.notificationLead / 1000)
+  const duration = settings.get(`${type}Duration`)
+  const unit = duration < 60000 ? 'second' : 'minute'
+  const time = new Intl.NumberFormat(i18next.language || settings.get('language'), { style: 'unit', unit })
+    .format(duration / (unit === 'minute' ? 60000 : 1000))
+  const title = i18next.t(type === 'microbreak' ? 'prd11.shortPreview' : 'prd11.longPreview', { seconds })
+  const body = i18next.t(type === 'microbreak' ? 'prd11.shortPreviewBody' : 'prd11.longPreviewBody', { time })
+  gentlePreviewType = type
+  processWin?.webContents.send('show-gentle-preview', title, body, settings.get('silentNotifications'))
   breakPlanner.nextBreakAfterNotification()
   updateTray()
 }
 
-function startBreakNotification () {
-  showNotification(i18next.t('main.breakIn', { seconds: breakPlanner.notificationLead / 1000 }))
-  log.info('Stretchly: showing Long break notification')
-  breakPlanner.nextBreakAfterNotification()
-  updateTray()
+function cancelGentlePreview () {
+  if (!gentlePreviewType) return
+  gentlePreviewType = null
+  processWin?.webContents.send('close-gentle-preview')
 }
 
 function getBlurredBackgroundWindowOptions () {
@@ -738,6 +762,28 @@ function getBlurredBackgroundWindowOptions () {
   }
 }
 
+function loadBreakWindow (session, window, url) {
+  const fail = (error) => {
+    if (session !== activeBreak || window.isDestroyed()) return
+    log.error('Rest Spark: break window failed to load', error)
+    window.destroy()
+  }
+  const timer = setTimeout(() => fail(new Error('Break renderer did not become ready')), 12000)
+  window.webContents.once('render-process-gone', (_event, details) => fail(details.reason))
+  window.once('closed', () => {
+    clearTimeout(timer)
+    setImmediate(() => {
+      if (session !== activeBreak) return
+      const windows = session.type === 'microbreak' ? microbreakWins : breakWins
+      if (windows?.some(candidate => !candidate.isDestroyed())) return
+      if (session.type === 'microbreak') finishMicrobreak(false)
+      else finishBreak(false)
+    })
+  })
+  window.loadURL(url).catch(fail)
+  return () => clearTimeout(timer)
+}
+
 function startMicrobreak () {
   // don't start another break if break running
   if (microbreakWins || breakWins) {
@@ -745,6 +791,7 @@ function startMicrobreak () {
     return
   }
 
+  cancelGentlePreview()
   const breakDuration = settings.get('microbreakDuration')
   const strictMode = settings.get('microbreakStrictMode')
   const postponesLimit = settings.get('microbreakPostponesLimit')
@@ -755,6 +802,8 @@ function startMicrobreak () {
 
   const modalPath = 'file://' + join(__dirname, '/microbreak.html')
   microbreakWins = []
+  const session = { type: 'microbreak', started: Date.now(), breakDuration, strictMode, postponable, postponableDurationPercent, ready: false }
+  activeBreak = session
 
   const idea = nextIdea || (settings.get('ideas') ? microbreakIdeas.randomElement : [''])
   nextIdea = null
@@ -766,28 +815,10 @@ function startMicrobreak () {
     }
   }
 
-  ipcMain.handle('send-mini-break-data', (event) => {
-    const startTime = Date.now()
-    const shortcut = settings.get('endBreakShortcut')
-    if (shortcut) {
-      globalShortcut.register(shortcut, () => {
-        const passedPercent = (Date.now() - startTime) / breakDuration * 100
-        if (passedPercent >= 100) {
-          decreaseDanger(1)
-          finishMicrobreak(false)
-          return
-        }
-        if (canPostpone(postponable, passedPercent, postponableDurationPercent)) {
-          postponeMicrobreak()
-        } else if (canSkip(strictMode, postponable, passedPercent, postponableDurationPercent)) {
-          increaseDanger(1)
-          finishMicrobreak(false)
-        }
-      })
-    }
-    return [idea, startTime, breakDuration, strictMode,
-      postponable, postponableDurationPercent,
-      danger, settings.get('breakHealthMode')]
+  ipcMain.handle('send-mini-break-data', event => {
+    if (!isCurrentBreakSender('microbreak', event.sender)) return []
+    return [idea, session.started, breakDuration, strictMode, postponable, postponableDurationPercent,
+      danger, settings.get('breakHealthMode'), settings.get('microbreakPostponeTime')]
   })
 
   for (let localDisplayId = 0; localDisplayId < displayManager.getDisplayCount(); localDisplayId++) {
@@ -833,7 +864,10 @@ function startMicrobreak () {
       log.info('Stretchly: ready-to-show fired')
     })
 
-    ipcMain.once('mini-break-loaded', () => {
+    const onLoaded = event => {
+      if (activeBreak !== session || event.sender !== microbreakWinLocal.webContents) return
+      ipcMain.off('mini-break-loaded', onLoaded)
+      markLoaded()
       log.info('Stretchly: Mini break window loaded')
       if (showBreaksAsRegularWindows) {
         microbreakWinLocal.show()
@@ -851,27 +885,33 @@ function startMicrobreak () {
           microbreakWinLocal.setKiosk(settings.get('fullscreen'))
         }
       }
-      if (localDisplayId === 0) {
-        breakPlanner.emit('microbreakStarted', true)
+      if (session.awaitingFinish) microbreakWinLocal.webContents.send('enter-manual-await', 'microbreak')
+      if (!session.ready) {
+        session.ready = true
+        breakPlanner.emit('microbreakStarted', true, session.started, session.breakDuration)
+        const shortcut = settings.get('endBreakShortcut')
+        if (shortcut && globalShortcut.register(shortcut, () => handleBreakAction(session, 'shortcut'))) {
+          session.shortcut = shortcut
+        }
         log.info('Stretchly: starting Mini break')
       }
       if (!settings.get('fullscreen') && process.platform !== 'darwin') {
         setTimeout(() => {
-          microbreakWinLocal.center()
+          microbreakWinLocal?.center()
         }, 0)
       }
       updateTray()
-    })
+    }
+    ipcMain.on('mini-break-loaded', onLoaded)
+    microbreakWinLocal.once('closed', () => ipcMain.off('mini-break-loaded', onLoaded))
 
-    microbreakWinLocal.loadURL(modalPath)
+    const markLoaded = loadBreakWindow(session, microbreakWinLocal, modalPath)
     microbreakWinLocal.setVisibleOnAllWorkspaces(true)
     microbreakWinLocal.setAlwaysOnTop(!showBreaksAsRegularWindows, 'pop-up-menu')
     if (microbreakWinLocal) {
       microbreakWinLocal.on('close', (e) => {
-        if (breakPlanner.scheduler.timeLeft > 0 && settings.get('microbreakStrictMode')) {
-          log.info('Stretchly: preventing closing break window as in strict mode')
-          e.preventDefault()
-        }
+        e.preventDefault()
+        handleBreakAction(session, 'skip')
       })
       microbreakWinLocal.once('closed', () => {
         microbreakWinLocal = null
@@ -899,6 +939,7 @@ function startBreak () {
     return
   }
 
+  cancelGentlePreview()
   const breakDuration = settings.get('breakDuration')
   const strictMode = settings.get('breakStrictMode')
   const postponesLimit = settings.get('breakPostponesLimit')
@@ -909,6 +950,8 @@ function startBreak () {
 
   const modalPath = 'file://' + join(__dirname, '/break.html')
   breakWins = []
+  const session = { type: 'break', started: Date.now(), breakDuration, strictMode, postponable, postponableDurationPercent, ready: false }
+  activeBreak = session
 
   const defaultNextIdea = settings.get('ideas') ? breakIdeas.randomElement : ['', '']
   const idea = nextIdea ? (nextIdea.map((val, index) => val || defaultNextIdea[index])) : defaultNextIdea
@@ -921,28 +964,10 @@ function startBreak () {
     }
   }
 
-  ipcMain.handle('send-long-break-data', (event) => {
-    const startTime = Date.now()
-    const shortcut = settings.get('endBreakShortcut')
-    if (shortcut) {
-      globalShortcut.register(shortcut, () => {
-        const passedPercent = (Date.now() - startTime) / breakDuration * 100
-        if (passedPercent >= 100) {
-          decreaseDanger(2)
-          finishBreak(false)
-          return
-        }
-        if (canPostpone(postponable, passedPercent, postponableDurationPercent)) {
-          postponeBreak()
-        } else if (canSkip(strictMode, postponable, passedPercent, postponableDurationPercent)) {
-          increaseDanger(2)
-          finishBreak(false)
-        }
-      })
-    }
-    return [idea, startTime, breakDuration, strictMode,
-      postponable, postponableDurationPercent,
-      danger, settings.get('breakHealthMode')]
+  ipcMain.handle('send-long-break-data', event => {
+    if (!isCurrentBreakSender('break', event.sender)) return []
+    return [idea, session.started, breakDuration, strictMode, postponable, postponableDurationPercent,
+      danger, settings.get('breakHealthMode'), settings.get('breakPostponeTime')]
   })
 
   for (let localDisplayId = 0; localDisplayId < displayManager.getDisplayCount(); localDisplayId++) {
@@ -988,7 +1013,10 @@ function startBreak () {
       log.info('Stretchly: ready-to-show fired')
     })
 
-    ipcMain.once('long-break-loaded', () => {
+    const onLoaded = event => {
+      if (activeBreak !== session || event.sender !== breakWinLocal.webContents) return
+      ipcMain.off('long-break-loaded', onLoaded)
+      markLoaded()
       log.info('Stretchly: Long break window loaded')
       if (showBreaksAsRegularWindows) {
         breakWinLocal.show()
@@ -1006,28 +1034,34 @@ function startBreak () {
           breakWinLocal.setKiosk(settings.get('fullscreen'))
         }
       }
-      if (localDisplayId === 0) {
-        breakPlanner.emit('breakStarted', true)
+      if (session.awaitingFinish) breakWinLocal.webContents.send('enter-manual-await', 'break')
+      if (!session.ready) {
+        session.ready = true
+        breakPlanner.emit('breakStarted', true, session.started, session.breakDuration)
+        const shortcut = settings.get('endBreakShortcut')
+        if (shortcut && globalShortcut.register(shortcut, () => handleBreakAction(session, 'shortcut'))) {
+          session.shortcut = shortcut
+        }
         log.info('Stretchly: starting Long break')
       }
 
       if (!settings.get('fullscreen') && process.platform !== 'darwin') {
         setTimeout(() => {
-          breakWinLocal.center()
+          breakWinLocal?.center()
         }, 0)
       }
       updateTray()
-    })
+    }
+    ipcMain.on('long-break-loaded', onLoaded)
+    breakWinLocal.once('closed', () => ipcMain.off('long-break-loaded', onLoaded))
 
-    breakWinLocal.loadURL(modalPath)
+    const markLoaded = loadBreakWindow(session, breakWinLocal, modalPath)
     breakWinLocal.setVisibleOnAllWorkspaces(true)
     breakWinLocal.setAlwaysOnTop(!showBreaksAsRegularWindows, 'pop-up-menu')
     if (breakWinLocal) {
       breakWinLocal.on('close', (e) => {
-        if (breakPlanner.scheduler.timeLeft > 0 && settings.get('breakStrictMode')) {
-          log.info('Stretchly: preventing closing break window as in strict mode')
-          e.preventDefault()
-        }
+        e.preventDefault()
+        handleBreakAction(session, 'skip')
       })
       breakWinLocal.once('closed', () => {
         breakWinLocal = null
@@ -1050,15 +1084,16 @@ function startBreak () {
 }
 
 function breakComplete (shouldPlaySound, windows, breakType) {
-  if (settings.get('endBreakShortcut') && globalShortcut.isRegistered(settings.get('endBreakShortcut'))) {
-    globalShortcut.unregister(settings.get('endBreakShortcut'))
-  }
+  if (activeBreak?.shortcut) globalShortcut.unregister(activeBreak.shortcut)
+  if (activeBreak) ipcMain.removeHandler(activeBreak.type === 'microbreak' ? 'send-mini-break-data' : 'send-long-break-data')
+  activeBreak = null
+  if (!windows) return null
   if (shouldPlaySound && !settings.get('silentNotifications')) {
     const audio = breakType === 'mini' ? 'miniBreakAudio' : 'longBreakAudio'
     processWin.webContents.send('play-sound', settings.get(audio), settings.get('volume'))
   }
-  if (process.platform === 'darwin') {
-    // get focus on the last app
+  if (process.platform === 'darwin' && settings.get('showBreaksAsRegularWindows')) {
+    // Regular reminder windows may have taken focus from the prior app.
     Menu.sendActionToFirstResponder('hide:')
   }
   return closeWindows(windows)
@@ -1083,7 +1118,8 @@ function decreaseDanger (amount) {
 function enterManualAwaitPhase (type, shouldPlaySound) {
   const isMini = type === 'mini'
   const manualSettingKey = isMini ? 'miniBreakManualFinish' : 'longBreakManualFinish'
-  if (!settings.get(manualSettingKey)) return
+  if (!settings.get(manualSettingKey) || !activeBreak) return
+  activeBreak.awaitingFinish = true
   if (shouldPlaySound && !settings.get('silentNotifications')) {
     const audioKey = isMini ? 'miniBreakAudio' : 'longBreakAudio'
     processWin.webContents.send('play-sound', settings.get(audioKey), settings.get('volume'))
@@ -1141,6 +1177,7 @@ function postponeBreak () {
 }
 
 function skipToMicrobreak (delay) {
+  if (activeBreak?.strictMode) return
   if (microbreakWins) {
     increaseDanger(1)
     microbreakWins = breakComplete(false, microbreakWins)
@@ -1160,6 +1197,7 @@ function skipToMicrobreak (delay) {
 }
 
 function skipToBreak (delay) {
+  if (activeBreak?.strictMode) return
   if (microbreakWins) {
     increaseDanger(1)
     microbreakWins = breakComplete(false, microbreakWins)
@@ -1179,6 +1217,7 @@ function skipToBreak (delay) {
 }
 
 function resetBreaks () {
+  if (activeBreak?.strictMode) return
   if (microbreakWins) {
     microbreakWins = breakComplete(false, microbreakWins)
   }
@@ -1220,29 +1259,16 @@ function loadIdeas () {
 }
 
 function pauseBreaks (milliseconds) {
-  if (microbreakWins) {
-    increaseDanger(1)
-    finishMicrobreak(false)
-  }
-  if (breakWins) {
-    increaseDanger(2)
-    finishBreak(false)
-  }
+  if (activeBreak?.strictMode && !settings.get('showTrayMenuInStrictMode')) return
+  if (!Number.isFinite(milliseconds) || milliseconds <= 0) return
   breakPlanner.pause(milliseconds)
-  log.info(`Stretchly: pausing breaks for ${milliseconds}ms`)
+  if (microbreakWins) finishMicrobreak(false, false)
+  if (breakWins) finishBreak(false, false)
   updateTray()
 }
 
-function resumeBreaks (notify = true) {
-  if (breakPlanner.dndManager.isOnDnd) {
-    log.info('Stretchly: not resuming breaks because in Do Not Disturb')
-  } else {
-    breakPlanner.resume()
-    log.info('Stretchly: resuming breaks')
-    if (notify) {
-      showNotification(i18next.t('main.resumingBreaks'))
-    }
-  }
+function resumeBreaks () {
+  breakPlanner.resume()
   updateTray()
 }
 
@@ -1281,7 +1307,137 @@ function createPreferencesWindow () {
   })
 }
 
+function traySnapshot () {
+  const type = breakPlanner._scheduledBreakType
+  const blockers = []
+  if (breakPlanner.dndManager.isOnDnd) blockers.push('focusActive')
+  if (breakPlanner.naturalBreaksManager.isSchedulerCleared) blockers.push('idle')
+  if (breakPlanner.powerBlocks.size > 0) blockers.push('power')
+  if (breakPlanner.appExclusionsManager.isSchedulerCleared) blockers.push('exclusion')
+  const remaining = breakPlanner.timeToNextBreak
+  const locked = Boolean(activeBreak?.strictMode)
+  const view = trayPanelOptions ? 'options' : breakPlanner.isPaused ? 'paused' : blockers.length ? 'protected' : 'running'
+  return {
+    view,
+    type,
+    blockers,
+    locked,
+    active: breakPlanner.breakInProgress,
+    pauseUntil: breakPlanner.manualPauseUntil,
+    nextAt: Number.isFinite(remaining) ? Date.now() + Math.max(0, remaining) : null,
+    progress: breakPlanner.progressPercentage,
+    duration: settings.get(`${type}Duration`),
+    focus: breakPlanner.dndManager.status,
+    canRest: !breakPlanner.breakInProgress && !breakPlanner.powerBlocks.size && (settings.get('microbreak') || settings.get('break')),
+    language: settings.get('language'),
+    preset: presetForSchedule(settings.store),
+    choices: trayPanelOptions ? pauseChoices(key => settings.get(key)) : [],
+    cadence: ['microbreak', 'break'].map(key => ({
+      enabled: settings.get(key),
+      interval: settings.get(key === 'break' ? 'longBreakInterval' : 'microbreakInterval'),
+      duration: settings.get(`${key}Duration`)
+    }))
+  }
+}
+
+function placeTrayPanel (view) {
+  const anchor = appIcon.getBounds()
+  const { workArea } = screen.getDisplayMatching(anchor)
+  const bounds = popoverBounds(anchor, workArea, view)
+  const current = trayPanel.getBounds()
+  if (Object.keys(bounds).some(key => bounds[key] !== current[key])) trayPanel.setBounds(bounds)
+  trayPanel.view = view
+}
+
+async function toggleTrayPanel () {
+  if (activeBreak?.strictMode && !settings.get('showTrayMenuInStrictMode')) return
+  if (trayPanel?.isVisible()) {
+    trayPanel.hide()
+    return
+  }
+  if (trayPanel?.webContents.isLoading()) return
+  trayPanelOptions = false
+  if (!trayPanel) {
+    trayPanel = new BrowserWindow({
+      width: 360,
+      height: 420,
+      show: false,
+      frame: false,
+      transparent: true,
+      resizable: false,
+      minimizable: false,
+      maximizable: false,
+      fullscreenable: false,
+      alwaysOnTop: true,
+      skipTaskbar: true,
+      hasShadow: true,
+      webPreferences: { preload: join(__dirname, 'tray-popover-preload.mjs'), sandbox: false }
+    })
+    trayPanel.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
+    trayPanel.on('blur', () => trayPanel?.hide())
+    trayPanel.on('hide', () => trayPanel?.webContents.send('popover-visibility', false))
+    trayPanel.on('closed', () => { trayPanel = null })
+    await trayPanel.loadFile(join(__dirname, 'tray-popover.html'))
+  }
+  if (!appIcon || !trayPanel) return
+  placeTrayPanel(traySnapshot().view)
+  trayPanel.show()
+  trayPanel.webContents.send('popover-visibility', true)
+}
+
+ipcMain.handle('focus-status', () => breakPlanner?.dndManager.status ?? 'unknown')
+
+ipcMain.handle('popover-read', event => {
+  if (event.sender !== trayPanel?.webContents || !trayPanel.isVisible()) return null
+  breakPlanner.checkManualPause()
+  const state = traySnapshot()
+  if (state.view !== trayPanel.view) placeTrayPanel(state.view)
+  return state
+})
+
+ipcMain.handle('popover-action', (event, action, choice) => {
+  if (event.sender !== trayPanel?.webContents || !trayPanel.isVisible()) return false
+  const state = traySnapshot()
+  switch (action) {
+    case 'options':
+      if (!state.locked) trayPanelOptions = true
+      break
+    case 'back':
+      trayPanelOptions = false
+      break
+    case 'select': {
+      if (!trayPanelOptions || state.locked) return false
+      const option = state.choices.find(item => item.id === choice)
+      if (!option) return false
+      pauseBreaks(option.until - Date.now())
+      trayPanelOptions = false
+      break
+    }
+    case 'resume':
+      if (state.view !== 'paused') return false
+      resumeBreaks()
+      break
+    case 'rest':
+      if (!state.canRest) return false
+      trayPanel.hide()
+      if (settings.get('microbreak')) skipToMicrobreak()
+      else skipToBreak()
+      break
+    case 'settings':
+      trayPanel.hide()
+      createPreferencesWindow()
+      break
+    case 'dismiss':
+      trayPanel.hide()
+      break
+    default:
+      return false
+  }
+  return true
+})
+
 function updateTray () {
+  if (gentlePreviewType && (breakPlanner?.autoBlocked || !settings?.get(`${gentlePreviewType}Notification`))) cancelGentlePreview()
   if (process.platform === 'darwin') {
     if (app.dock.isVisible) {
       app.dock.hide()
@@ -1298,9 +1454,15 @@ function updateTray () {
       appIcon.on('double-click', () => {
         createPreferencesWindow()
       })
-      appIcon.on('click', () => {
-        appIcon.popUpContextMenu(Menu.buildFromTemplate(currentTrayMenuTemplate))
-      })
+      if (process.platform === 'darwin') {
+        appIcon.on('click', () => toggleTrayPanel().catch(error => log.error('Rest Spark: opening tray panel', error)))
+        appIcon.on('right-click', () => {
+          trayPanel?.hide()
+          appIcon.popUpContextMenu(Menu.buildFromTemplate(currentTrayMenuTemplate))
+        })
+      } else {
+        appIcon.on('click', () => appIcon.popUpContextMenu(Menu.buildFromTemplate(currentTrayMenuTemplate)))
+      }
     }
     if (!trayUpdateIntervalObj) {
       trayUpdateIntervalObj = setInterval(updateTray, 10000)
@@ -1318,7 +1480,7 @@ function updateTray () {
     const newTrayMenuTemplate = getTrayMenuTemplate()
     if (JSON.stringify(newTrayMenuTemplate) !== JSON.stringify(currentTrayMenuTemplate)) {
       const trayMenu = Menu.buildFromTemplate(newTrayMenuTemplate)
-      appIcon.setContextMenu(trayMenu)
+      if (process.platform !== 'darwin') appIcon.setContextMenu(trayMenu)
       currentTrayMenuTemplate = newTrayMenuTemplate
     }
   }
@@ -1398,17 +1560,11 @@ function getTrayMenuTemplate () {
         updateTray()
       }
     })
-  } else if (!(breakPlanner.dndManager.isOnDnd || breakPlanner.appExclusionsManager.isSchedulerCleared)) {
+  } else {
     trayMenu.push({
       label: i18next.t('main.pause'),
       submenu: [
         {
-          label: i18next.t('utils.minutes', { count: 30 }),
-          accelerator: settings.get('pauseBreaksFor30MinutesShortcut') || null,
-          click: function () {
-            pauseBreaks(1800 * 1000)
-          }
-        }, {
           label: i18next.t('main.forHour'),
           accelerator: settings.get('pauseBreaksFor1HourShortcut') || null,
           click: function () {
@@ -1421,6 +1577,9 @@ function getTrayMenuTemplate () {
             pauseBreaks(3600 * 2 * 1000)
           }
         }, {
+          label: i18next.t('prd11.for3Hours'),
+          click: () => pauseBreaks(3600 * 3 * 1000)
+        }, {
           label: i18next.t('main.for5Hours'),
           accelerator: settings.get('pauseBreaksFor5HoursShortcut') || null,
           click: function () {
@@ -1430,15 +1589,8 @@ function getTrayMenuTemplate () {
           label: i18next.t('main.untilMorning'),
           accelerator: settings.get('pauseBreaksUntilMorningShortcut') || null,
           click: function () {
-            const untilMorning = new UntilMorning(settings).msToSunrise()
-            pauseBreaks(untilMorning)
-          }
-        }, {
-          type: 'separator'
-        }, {
-          label: i18next.t('main.indefinitely'),
-          click: function () {
-            pauseBreaks(1)
+            const morning = pauseChoices(key => settings.get(key)).at(-1)
+            pauseBreaks(morning.until - Date.now())
           }
         }
       ]
@@ -1500,38 +1652,43 @@ function updateToolTip () {
   }
 }
 
-function showNotification (text) {
-  processWin.webContents.send('show-notification',
-    text,
-    settings.get('silentNotifications')
-  )
+function isCurrentBreakSender (type, sender) {
+  const windows = type === 'microbreak' ? microbreakWins : breakWins
+  return activeBreak?.type === type && windows?.some(window => window && !window.isDestroyed() && window.webContents === sender)
 }
 
-ipcMain.on('postpone-mini-break', function (event) {
-  postponeMicrobreak()
-})
-
-ipcMain.on('postpone-long-break', function (event) {
-  postponeBreak()
-})
-
-ipcMain.on('finish-mini-break', function (event, shouldPlaySound, manualAwaiting) {
-  if (manualAwaiting) {
-    decreaseDanger(1)
-  } else {
-    increaseDanger(1)
+function handleBreakAction (session, action) {
+  if (session !== activeBreak || !session.ready) return
+  const { type, started, breakDuration, strictMode, postponable, postponableDurationPercent } = session
+  const mini = type === 'microbreak'
+  const amount = mini ? 1 : 2
+  const finish = mini ? finishMicrobreak : finishBreak
+  const passedPercent = (Date.now() - started) / breakDuration * 100
+  if (passedPercent >= 100) {
+    if (!session.awaitingFinish || action === 'postpone') return
+    decreaseDanger(amount)
+    finish(false)
+    return
   }
-  finishMicrobreak(shouldPlaySound)
-})
 
-ipcMain.on('finish-long-break', function (event, shouldPlaySound, manualAwaiting) {
-  if (manualAwaiting) {
-    decreaseDanger(2)
-  } else {
-    increaseDanger(2)
+  const allowed = breakActions(strictMode, postponable, passedPercent, postponableDurationPercent)
+  if (allowed.postpone && (action === 'postpone' || action === 'shortcut')) {
+    if (mini) postponeMicrobreak()
+    else postponeBreak()
+  } else if (allowed.skip && (action === 'skip' || action === 'shortcut')) {
+    increaseDanger(amount)
+    finish(false)
   }
-  finishBreak(shouldPlaySound)
-})
+}
+
+for (const [channelType, type] of [['mini', 'microbreak'], ['long', 'break']]) {
+  ipcMain.on(`postpone-${channelType}-break`, event => {
+    if (isCurrentBreakSender(type, event.sender)) handleBreakAction(activeBreak, 'postpone')
+  })
+  ipcMain.on(`finish-${channelType}-break`, event => {
+    if (isCurrentBreakSender(type, event.sender)) handleBreakAction(activeBreak, 'skip')
+  })
+}
 
 ipcMain.handle('save-schedule', (event, patch) => {
   const result = saveSchedulePatch(settings, patch)
@@ -1544,6 +1701,9 @@ ipcMain.handle('save-schedule', (event, patch) => {
 
 ipcMain.on('save-setting', function (event, key, value) {
   if (key === 'themeSource' && normalizeThemeSource(value) !== value) return
+  if (key === 'morningHour' && value !== 'sunrise' && (!Number.isInteger(value) || value < 0 || value > 23)) return
+
+  if (key === 'isFirstRun' && value === true) settings.set('onboardingVersion', 0)
 
   if (key === 'naturalBreaks') {
     breakPlanner.naturalBreaks(value)
@@ -1568,6 +1728,7 @@ ipcMain.on('save-setting', function (event, key, value) {
     } else {
       clearInterval(trayUpdateIntervalObj)
       trayUpdateIntervalObj = null
+      trayPanel?.hide()
       appIcon.destroy()
       appIcon = null
     }
@@ -1584,6 +1745,9 @@ ipcMain.on('save-setting', function (event, key, value) {
 
   settings.set(key, value)
   if (['microbreakInterval', 'longBreakInterval', 'microbreak', 'break'].includes(key)) breakPlanner.replan()
+  for (const type of ['microbreak', 'break']) {
+    if (key === `${type}Notification` || key === `${type}NotificationInterval`) breakPlanner.updateNotificationSchedule(type)
+  }
 
   updateTray()
 })
@@ -1602,7 +1766,7 @@ ipcMain.on('restore-defaults', (event) => {
   dialog.showMessageBox(dialogOpts).then(async (returnValue) => {
     if (returnValue.response === 0) {
       log.info('Stretchly: restoring default settings')
-      settings.store = Object.assign(defaultSettings, { isFirstRun: false, __internal__: settings.get('__internal__') })
+      settings.store = { ...defaultSettings, isFirstRun: false, __internal__: settings.get('__internal__') }
       initialize(false)
       event.sender.reload()
     }
@@ -1704,7 +1868,7 @@ ipcMain.handle('current-settings', (event) => {
 
 ipcMain.handle('restore-remote-settings', (event, remoteSettings) => {
   log.info('Stretchly: restoring remote settings')
-  settings.store = remoteSettings
+  settings.store = { ...remoteSettings, manualPauseUntil: settings.get('manualPauseUntil') }
   initialize(false)
 })
 

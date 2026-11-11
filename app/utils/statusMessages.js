@@ -5,7 +5,7 @@ class StatusMessages {
     this.reference = breakPlanner.scheduler.reference
     this.doNotDisturb = breakPlanner.dndManager.isOnDnd
     this.appExclusionPause = breakPlanner.appExclusionsManager.isSchedulerCleared
-    this.timeLeft = breakPlanner.scheduler.timeLeft
+    this.timeLeft = breakPlanner.manualPauseUntil ? Math.max(0, breakPlanner.manualPauseUntil - Date.now()) : null
     this.timeToNextBreak = breakPlanner.timeToNextBreak
     this.timeToLongBreak = breakPlanner.timeToLongBreak
     this.isPaused = breakPlanner.isPaused

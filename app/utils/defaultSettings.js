@@ -17,6 +17,7 @@ export default {
   microbreakStrictMode: false,
   breakStrictMode: false,
   morningHour: 6,
+  manualPauseUntil: 0,
   microbreakPostpone: true,
   breakPostpone: true,
   microbreakPostponeTime: 120000,

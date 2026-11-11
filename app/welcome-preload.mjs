@@ -1,13 +1,9 @@
-import {
-  exposeElectronApi,
-  exposeI18next,
-  exposeRuntime,
-  exposeSettings,
-  exposeStretchly
-} from './utils/context-bridge-exposers.js'
+import { contextBridge, ipcRenderer } from 'electron'
+import { exposeI18next, exposeSettings } from './utils/context-bridge-exposers.js'
 
-exposeElectronApi()
 exposeI18next()
-exposeRuntime()
 exposeSettings()
-exposeStretchly()
+contextBridge.exposeInMainWorld('onboarding', {
+  isPreview: () => ipcRenderer.invoke('onboarding-is-preview'),
+  complete: (preset, preferences) => ipcRenderer.invoke('complete-onboarding', preset, preferences)
+})

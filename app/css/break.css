@@ -115,3 +115,7 @@ body.break-health-mode::after { content: ''; position: fixed; inset: 0; z-index:
   .timer-leaf,
   .rest-footer img { filter: brightness(0) invert(1); }
 }
+
+.break-actions button:disabled { opacity: .58; cursor: default; }
+#break-restriction { margin: 0; text-align: center; font-size: 14px; }
+#break-restriction:empty { display: none; }

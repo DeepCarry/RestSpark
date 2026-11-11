@@ -5,6 +5,9 @@ import dbus from '@particle/dbus-next'
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 import { readFile } from 'node:fs/promises'
+import { homedir } from 'node:os'
+import { join } from 'node:path'
+import { parseFocusAssertions } from './focusAssertions.js'
 
 class DndManager extends EventEmitter {
   constructor (settings) {
@@ -13,6 +16,9 @@ class DndManager extends EventEmitter {
     this.monitorDnd = settings.get('monitorDnd')
     this.timer = null
     this.isOnDnd = false
+    this.status = this.monitorDnd ? 'unknown' : 'disabled'
+    this.generation = 0
+    this.pendingCheck = null
 
     this._unsupDEErrorShown = false
     this._errorLogged = {}
@@ -23,8 +29,10 @@ class DndManager extends EventEmitter {
   }
 
   start () {
+    if (this.timer) return
     this.monitorDnd = true
-    this._checkDnd()
+    this.refresh()
+    this.timer = setInterval(() => this.refresh(), 1000)
     log.info('Stretchly: starting Do Not Disturb monitoring')
     if (process.platform === 'linux') {
       log.info(`System: Your Desktop seems to be ${this._desktopEnviroment}.`)
@@ -33,7 +41,9 @@ class DndManager extends EventEmitter {
 
   stop () {
     this.monitorDnd = false
-    this.isOnDnd = false
+    this.generation += 1
+    this.pendingCheck = null
+    this._publish('disabled')
     clearTimeout(this.timer)
     this.timer = null
     if (this.__sessionBus) {
@@ -141,25 +151,15 @@ class DndManager extends EventEmitter {
         } catch (e) { wfa = -1 } // getFocusAssist() throw an error if OS isn't windows
         return wfa !== -1 && wfa !== 0
       } else if (process.platform === 'darwin') {
-        const macOSMajorVersion = parseInt(process.getSystemVersion().split('.')[0])
-        let cmd = ''
-        if (macOSMajorVersion >= 26) {
-          cmd = 'defaults read com.apple.controlcenter "NSStatusItem VisibleCC FocusModes"'
-        } else {
-          cmd = 'defaults read com.apple.controlcenter "NSStatusItem Visible FocusModes"'
-        }
         try {
-          const asyncExec = this._getOrCreateAsyncExec()
-          const { stdout } = await asyncExec(cmd)
-          if (stdout.replace(/[^0-9a-zA-Z]/g, '') === '1') {
-            return true
-          }
-        } catch (e) {
-          if (!e.message.includes('The domain/default pair of (com.apple.controlcenter, NSStatusItem VisibleCC FocusModes) does not exist')) {
-            // On macOS Tahoe 26.0, this entry would not exist if no focus mode is enabled
-            this._logErrorOnce('macos', e)
-          }
+          const raw = await readFile(join(homedir(), 'Library/DoNotDisturb/DB/Assertions.json'), 'utf8')
+          const state = parseFocusAssertions(JSON.parse(raw))
+          if (state !== null) return state
+          this._logErrorOnce('macos', new Error('Unsupported Focus assertions schema'))
+        } catch (error) {
+          this._logErrorOnce('macos', new Error(`Focus assertions unavailable (${error.code || 'invalid data'})`))
         }
+        return null
       } else if (process.platform === 'linux') {
         return await this._isDndEnabledLinux()
       }
@@ -200,18 +200,32 @@ class DndManager extends EventEmitter {
     }
   }
 
-  _checkDnd () {
-    this.timer = setInterval(async () => {
-      const doNotDisturb = await this._doNotDisturb()
-      if (!this.isOnDnd && doNotDisturb) {
-        this.isOnDnd = true
-        this.emit('dndStarted')
-      }
-      if (this.isOnDnd && !doNotDisturb) {
-        this.isOnDnd = false
-        this.emit('dndFinished')
-      }
-    }, 1000)
+  refresh () {
+    if (!this.monitorDnd) return Promise.resolve()
+    if (this.pendingCheck) return this.pendingCheck
+    const generation = this.generation
+    this.pendingCheck = this._doNotDisturb()
+      .then(value => {
+        if (generation !== this.generation) return
+        this._publish(value === true ? 'active' : value === false ? 'inactive' : 'unknown')
+      })
+      .catch(error => {
+        this._logErrorOnce(process.platform, error)
+        if (generation === this.generation) this._publish('unknown')
+      })
+      .finally(() => {
+        if (generation === this.generation) this.pendingCheck = null
+      })
+    return this.pendingCheck
+  }
+
+  _publish (status) {
+    if (status === this.status) return
+    const previous = this.isOnDnd
+    this.status = status
+    this.isOnDnd = status === 'active'
+    if (previous !== this.isOnDnd) this.emit(this.isOnDnd ? 'dndStarted' : 'dndFinished')
+    this.emit('statusChanged')
   }
 }
 

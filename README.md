@@ -26,6 +26,14 @@
 - **智能适应工作状态**：沿用空闲检测、勿扰模式监测等能力，尽量减少不合时宜的打扰（具体表现依系统环境而定）。
 - **熟悉的 macOS 体验**：常驻菜单栏，提供中文与英文界面，可调整声音、提醒行为及其他偏好。
 
+### 快捷操作
+
+- 左键点菜单栏图标可立即休息，或暂停 1、2、3、5 小时及至次日早晨。暂停期限在重启后保留。
+- 新用户可用两步引导选择休息节奏。已有用户可从「通用设置 → 新手引导 → 查看引导」预览，原有设置保留。
+- 系统勿扰状态不可读时，面板会明确提示。会议或演示时可使用定时暂停。
+
+[PRD v1.1 开发与验证记录](docs/rest-spark/prd-v1.1/DELIVERY.md)
+
 ## 界面预览 / Screenshots
 
 以下为项目实际运行与界面验收截图，展示休息提醒、休息计划及外观设置。
@@ -43,15 +51,15 @@
 
 ## 下载与安装
 
-**当前版本：v0.1.2** · [发布说明](https://github.com/DeepCarry/RestSpark/releases/tag/v0.1.2)
+**当前版本：v0.2.0** · [发布说明](https://github.com/DeepCarry/RestSpark/releases/tag/v0.2.0)
 
 **系统要求**：macOS 12 Monterey 或更新版本，Apple 芯片（M 系列）。
 
-1. [下载 macOS 安装包（DMG）](https://github.com/DeepCarry/RestSpark/releases/download/v0.1.2/Rest-Spark-0.1.2-mac-arm64.dmg)。
+1. [下载 macOS 安装包（DMG）](https://github.com/DeepCarry/RestSpark/releases/download/v0.2.0/Rest-Spark-0.2.0-mac-arm64.dmg)。
 2. 打开 DMG，将 `Rest Spark.app` 拖入「应用程序」文件夹。
 3. 从「应用程序」启动「元气」，按需调整休息计划与主题。
 
-> 当前 v0.1.2 提供 Apple Silicon macOS 安装包。该构建采用 ad-hoc 签名，尚未经过 Apple 公证。如果 macOS 拦截首次打开，请先确认文件来自本仓库、核对 [SHA-256 校验文件](https://github.com/DeepCarry/RestSpark/releases/download/v0.1.2/SHA256SUMS.txt)，再按照 [Apple 官方说明](https://support.apple.com/zh-cn/102445) 在「系统设置 → 隐私与安全性」允许打开。
+> v0.2.0 提供 Apple Silicon macOS DMG 和 Windows x64 EXE。该构建采用 ad-hoc 签名，尚未经过 Apple 公证。如果 macOS 拦截首次打开，请先确认文件来自本仓库、核对 [SHA-256 校验文件](https://github.com/DeepCarry/RestSpark/releases/download/v0.2.0/SHA256SUMS.txt)，再按照 [Apple 官方说明](https://support.apple.com/zh-cn/102445) 在「系统设置 → 隐私与安全性」允许打开。
 
 后续版本请以 [Releases](https://github.com/DeepCarry/RestSpark/releases) 页面实际提供的安装包为准。
 
@@ -61,7 +69,7 @@
 
 **Highlights:** independent mini-break and long-break schedules; customizable intervals and durations; light, dark, and system-following themes; advance notifications, postponement, skipping, strict mode, and idle/Do Not Disturb awareness.
 
-**Download:** [GitHub Releases](https://github.com/DeepCarry/RestSpark/releases/latest). Version **0.1.2** currently provides a DMG for **Apple Silicon Macs running macOS 12 or later**. Drag `Rest Spark.app` to Applications. The build is ad-hoc signed and not Apple-notarized; see the [release notes](https://github.com/DeepCarry/RestSpark/releases/tag/v0.1.2) for first-launch guidance and checksum verification.
+**Download:** [GitHub Releases](https://github.com/DeepCarry/RestSpark/releases/latest). Version **0.2.0** currently provides a DMG for **Apple Silicon Macs running macOS 12 or later**. Drag `Rest Spark.app` to Applications. The build is ad-hoc signed and not Apple-notarized; see the [release notes](https://github.com/DeepCarry/RestSpark/releases/tag/v0.2.0) for first-launch guidance and checksum verification.
 
 **Feedback:** [Report an issue or suggest an improvement](https://github.com/DeepCarry/RestSpark/issues).
 

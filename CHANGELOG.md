@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.0] - 2026-11-12
+- Added a macOS menu bar panel with break countdowns, timed pauses and early resume. Timed pause deadlines persist across restarts.
+- Added two-step onboarding and a read-only guide for existing users.
+- Made postpone and skip available side by side during ordinary breaks, with existing strict-mode restrictions.
+- Updated appearance previews and advance notifications. macOS Focus protection depends on system access, and the app reports when detection is unavailable.
+
 ## [Unreleased]
 ### Added
 - advanced option for Break Health Mode

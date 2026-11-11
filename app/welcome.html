@@ -1,96 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
 <head>
-  <meta charset="UTF-8">
-  <title data-i18next="welcome.title"></title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/color-scheme.css">
-  <link rel="stylesheet" type="text/css" href="css/commons.css">
-  <link rel="stylesheet" type="text/css" href="css/welcome.css">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+  <title>Rest Spark</title>
+  <link rel="stylesheet" href="css/quiet-rest.css">
+  <link rel="stylesheet" href="css/prd-v1.1.css">
 </head>
-
-<body>
-  <div class="welcome">
-    <div>
-      <div>
-        <img src="images/brand/restspark-app-icon-master.svg" alt="元气 / Rest Spark">
-        <span data-i18next="brand.name">Rest Spark</span>
+<body class="quiet-rest onboarding">
+  <aside class="welcome-brand">
+    <div class="brand"><img src="images/brand/restspark-icon-256.png" alt=""><strong data-i18next="prd11.brand"></strong></div>
+    <p data-i18next="prd11.brandLine"></p>
+  </aside>
+  <main class="welcome-main">
+    <nav class="steps" aria-label="Setup">
+      <span id="mode-step" aria-current="step" data-i18next="prd11.modeStep"></span>
+      <span id="prefs-step" data-i18next="prd11.prefsStep"></span>
+    </nav>
+    <p id="preview-note" hidden data-i18next="prd11.previewOnly"></p>
+    <section id="mode">
+      <h1 tabindex="-1" data-i18next="prd11.modeHeading"></h1>
+      <fieldset class="presets">
+        <legend class="sr-only" data-i18next="prd11.modeHeading"></legend>
+        <label><input type="radio" name="preset" value="eyes"><strong data-i18next="prd11.eyes"></strong><span data-i18next="prd11.eyesDetail"></span></label>
+        <label><input type="radio" name="preset" value="balanced" checked><strong data-i18next="prd11.balanced"></strong><span data-i18next="prd11.balancedDetail"></span></label>
+        <label><input type="radio" name="preset" value="deep"><strong data-i18next="prd11.deep"></strong><span data-i18next="prd11.deepDetail"></span></label>
+      </fieldset>
+      <div class="welcome-actions"><button class="primary" id="next" data-i18next="prd11.next"></button></div>
+    </section>
+    <section id="prefs" hidden>
+      <h1 tabindex="-1" data-i18next="prd11.prefsHeading"></h1>
+      <div class="setup-settings">
+        <label><span data-i18next="settingsV1.login"></span><input type="checkbox" id="login" role="switch"></label>
+        <label><span data-i18next="prd11.followFocus"></span><input type="checkbox" id="focus" role="switch" checked></label>
+        <label><span data-i18next="prd11.gentle"></span><input type="checkbox" id="notify" role="switch" checked></label>
       </div>
-      <span data-i18next="welcome.breakTimeReminderApp"></span>
-    </div>
-    <div>
-      <select name="language" id="language" size="20">
-        <!--Keep languages in the alphabet order-->
-        <option value="ajp">اللهجة الأردنية</option>
-        <option value="bg">Български</option>
-        <option value="be">Беларуская мова</option>
-        <option value="bn">বাংলা</option>
-        <option value="ca">Català</option>
-        <option value="cs">Čeština</option>
-        <option value="da">Dansk</option>
-        <option value="de">Deutsch</option>
-        <option value="el">Ελληνικά</option>
-        <option value="en">English</option>
-        <option value="eo">Esperanto</option>
-        <option value="es">Español</option>
-        <option value="et">Eesti keel</option>
-        <option value="fa">فارسی</option>
-        <option value="fi">Suomi</option>
-        <option value="fil">Wikang Filipino</option>
-        <option value="fr">Français</option>
-        <option value="gl">Galego</option>
-        <option value="gu">ગુજરાતી</option>
-        <option value="he">עברית</option>
-        <option value="hi">हिन्दी</option>
-        <option value="hu">Magyar</option>
-        <option value="id">Bahasa Indonesia</option>
-        <option value="it">Italiano</option>
-        <option value="ja">日本語</option>
-        <option value="ko">한국어</option>
-        <option value="lt">Lietuvių</option>
-        <option value="lv">Latviešu</option>
-        <option value="mk">Македонски</option>
-        <option value="nb-NO">Bokmål</option>
-        <option value="nl">Nederlands</option>
-        <option value="np">नेपाली</option>
-        <option value="pl">Polski</option>
-        <option value="pt">Português</option>
-        <option value="pt-BR">Brasileiro</option>
-        <option value="pu">ਪੰਜਾਬੀ</option>
-        <option value="ro">Română</option>
-        <option value="ru">Русский</option>
-        <option value="si">සිංහල</option>
-        <option value="sk">Slovenčina</option>
-        <option value="sl">Slovenščina</option>
-        <option value="sr">српски језик</option>
-        <option value="sv">Svenska</option>
-        <option value="ta">தமிழ்</option>
-        <option value="th">ภาษาไทย</option>
-        <option value="tr">Türkçe</option>
-        <option value="uk">Українська</option>
-        <option value="vi">Tiếng Việt</option>
-        <option value="yi">ייִדיש</option>
-        <option value="zh-CN">简体中文</option>
-        <option value="zh-TW">正體中文</option>
-      </select>
-    </div>
-    <div>
-      <div>
-        <button type="button" data-location="tutorial" data-same-width-button
-          data-i18next="welcome.viewTutorial"></button>
+      <p id="chosen-preset"></p>
+      <div class="welcome-actions">
+        <button id="back" data-i18next="prd11.back"></button>
+        <button id="skip" data-i18next="prd11.useDefaults"></button>
+        <button class="primary" id="complete" data-i18next="prd11.start"></button>
       </div>
-      <div>
-        <button type="button" data-location="preferences" data-same-width-button
-          data-i18next="welcome.openPreferences"></button>
-        <p></p>
-        <button class="push" type="button" data-same-width-button data-i18next="welcome.getStarted" autofocus></button>
-      </div>
-    </div>
-  </div>
+      <p id="setup-error" role="alert" hidden data-i18next="prd11.saveError"></p>
+    </section>
+  </main>
+  <script type="module" src="welcome-renderer.js"></script>
 </body>
-<script type="module" src="./welcome-renderer.js"></script>
-
 </html>

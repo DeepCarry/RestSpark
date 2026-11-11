@@ -4,7 +4,6 @@ import EventEmitter from 'events'
 import NaturalBreaksManager from './utils/naturalBreaksManager.js'
 import DndManager from './utils/dndManager.js'
 import AppExclusionsManager from './utils/appExclusionsManager.js'
-import log from 'electron-log/main.js'
 
 class BreaksPlanner extends EventEmitter {
   constructor (settings) {
@@ -12,8 +11,12 @@ class BreaksPlanner extends EventEmitter {
     this.settings = settings
     this.breakNumber = 0
     this.postponesNumber = 0
-    this.scheduler = null
-    this.isPaused = false
+    this.scheduler = new Scheduler(() => {}, 0)
+    this.manualPauseUntil = 0
+    this.indefinitelyPaused = false
+    this.manualPauseTimer = null
+    this.powerBlocks = new Set()
+    this.manualBreak = false
     this.workSchedule = new WorkSchedule()
     this.scheduledType = 'microbreak'
     this.startingType = null
@@ -21,102 +24,67 @@ class BreaksPlanner extends EventEmitter {
     this.dndManager = new DndManager(settings)
     this.appExclusionsManager = new AppExclusionsManager(settings)
 
-    this.on('microbreakStarted', (shouldPlaySound) => {
+    this.on('microbreakStarted', (shouldPlaySound, started = Date.now(), duration = this.settings.get('microbreakDuration')) => {
       this.startingType = null
       this.workSchedule.stop()
       this.scheduledType = 'microbreak'
-      const interval = this.settings.get('microbreakDuration')
+      const interval = Math.max(0, duration - (Date.now() - started))
       this.scheduler = new Scheduler(() => this.emit('finishMicrobreak', shouldPlaySound, true), interval, 'finishMicrobreak')
       this.scheduler.plan()
     })
 
-    this.on('breakStarted', (shouldPlaySound) => {
+    this.on('breakStarted', (shouldPlaySound, started = Date.now(), duration = this.settings.get('breakDuration')) => {
       this.startingType = null
       this.workSchedule.stop()
       this.scheduledType = 'break'
-      const interval = this.settings.get('breakDuration')
+      const interval = Math.max(0, duration - (Date.now() - started))
       this.scheduler = new Scheduler(() => this.emit('finishBreak', shouldPlaySound, true), interval, 'finishBreak')
       this.scheduler.plan()
     })
 
-    this.naturalBreaksManager.on('clearBreakScheduler', () => {
-      if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak' && this.scheduler.reference !== null) {
+    this.naturalBreaksManager.on('clearBreakScheduler', () => this.reconcileProtection())
+    this.naturalBreaksManager.on('naturalBreakFinished', () => this.reconcileProtection())
+    this.dndManager.on('dndStarted', () => this.reconcileProtection('focus'))
+    this.dndManager.on('dndFinished', () => this.reconcileProtection())
+    this.dndManager.on('statusChanged', () => this.emit('updateToolTip'))
+    this.appExclusionsManager.on('appExclusionStarted', rule => this.reconcileProtection(rule === 'pause' ? 'exclusion' : null))
+    this.appExclusionsManager.on('appExclusionFinished', () => this.reconcileProtection())
+    this.restoreManualPause()
+  }
+
+  get isPaused () {
+    return this.indefinitelyPaused || this.manualPauseUntil > 0
+  }
+
+  get autoBlocked () {
+    return this.isPaused || this.powerBlocks.size > 0 || this.dndManager.isOnDnd ||
+      this.naturalBreaksManager.isSchedulerCleared || this.appExclusionsManager.isSchedulerCleared
+  }
+
+  get breakInProgress () {
+    return Boolean(this.startingType || this.scheduler.reference?.startsWith('finish'))
+  }
+
+  reconcileProtection (cause) {
+    if (this.autoBlocked) {
+      if (this.breakInProgress) {
+        if (cause === 'power' || cause === 'exclusion' || (cause === 'focus' && !this.manualBreak)) {
+          this.emit('interruptBreak')
+          this.clear()
+        }
+      } else if (!this.manualBreak || this.powerBlocks.size > 0) {
         this.clear()
-        log.info('Stretchly: pausing breaks because of idle time')
       }
-    })
+    } else if (!this.scheduler.reference) {
+      this.planNextWorkBreak()
+    }
+    this.emit('updateToolTip')
+  }
 
-    this.naturalBreaksManager.on('naturalBreakFinished', () => {
-      if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak' && !this.dndManager.isOnDnd) {
-        this.reset()
-        log.info('Stretchly: resuming breaks after idle time')
-        this.emit('updateToolTip')
-      }
-    })
-
-    this.dndManager.on('dndStarted', () => {
-      if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak' && this.scheduler.reference !== null) {
-        this.clear()
-        log.info('Stretchly: pausing breaks for Do Not Distrub')
-        this.emit('updateToolTip')
-      } else {
-        this.dndManager.isOnDnd = false
-      }
-    })
-
-    this.dndManager.on('dndFinished', () => {
-      if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak') {
-        this.reset()
-        log.info('Stretchly: resuming breaks for Do Not Distrub')
-        this.emit('updateToolTip')
-      }
-    })
-
-    this.appExclusionsManager.on('appExclusionStarted', (rule, exclusion) => {
-      if (rule === 'pause') {
-        if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak' && this.scheduler.reference !== null) {
-          this.clear()
-          log.info(`Stretchly: pausing breaks as 'pause' exclusion found running: '${exclusion}'`)
-          this.emit('updateToolTip')
-        } else if (!this.isPaused && this.scheduler.reference === 'finishBreak') {
-          this.emit('finishBreak', false, false)
-          this.clear()
-          log.info(`Stretchly: closing current and pausing breaks as 'pause' exclusion found running: '${exclusion}'`)
-          this.emit('updateToolTip')
-        } else if (!this.isPaused && this.scheduler.reference === 'finishMicrobreak') {
-          this.emit('finishMicrobreak', false, false)
-          this.clear()
-          log.info(`Stretchly: closing current and pausing breaks as 'pause' exclusion found running: '${exclusion}'`)
-          this.emit('updateToolTip')
-        } else {
-          this.appExclusionsManager.inOnException = false
-        }
-      } else if (rule === 'resume') {
-        if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak') {
-          this.reset()
-          log.info(`Stretchly: resuming breaks as 'resume' exclusion found running: '${exclusion}'`)
-          this.emit('updateToolTip')
-        }
-      }
-    })
-
-    this.appExclusionsManager.on('appExclusionFinished', (rule) => {
-      if (rule === 'pause') {
-        if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak') {
-          this.reset()
-          log.info("Stretchly: resuming breaks as no 'pause' exclusion found running")
-          this.emit('updateToolTip')
-        }
-      } else if (rule === 'resume') {
-        if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak' && this.scheduler.reference !== null) {
-          this.clear()
-          log.info("Stretchly: pausing breaks as no 'resume' exclusion found running")
-          this.emit('updateToolTip')
-        } else {
-          this.appExclusionsManager.inOnException = true
-        }
-      }
-    })
+  setPowerBlock (reason, blocked) {
+    if (blocked) this.powerBlocks.add(reason)
+    else this.powerBlocks.delete(reason)
+    this.reconcileProtection(blocked ? 'power' : null)
   }
 
   nextBreak () {
@@ -124,6 +92,7 @@ class BreaksPlanner extends EventEmitter {
       ? `finish${this.startingType.charAt(0).toUpperCase() + this.startingType.slice(1)}`
       : this.scheduler?.reference
     this.startingType = null
+    this.manualBreak = false
     if (completed === 'finishMicrobreak') this.workSchedule.complete('microbreak')
     if (completed === 'finishBreak') this.workSchedule.complete('break')
     this.postponesNumber = 0
@@ -133,6 +102,10 @@ class BreaksPlanner extends EventEmitter {
 
   planNextWorkBreak () {
     this.scheduler?.cancel()
+    if (this.autoBlocked) {
+      this.workSchedule.stop()
+      return
+    }
     this.workSchedule.start(this.settings)
     const mini = this.settings.get('microbreak') ? this.workSchedule.remaining('microbreak', this.settings) : Infinity
     const long = this.settings.get('break') ? this.workSchedule.remaining('break', this.settings) : Infinity
@@ -141,32 +114,58 @@ class BreaksPlanner extends EventEmitter {
       this.scheduler = new Scheduler(() => {}, 0)
       return
     }
+    if (this.scheduledType === 'break' && this.postponesNumber > 0 && long !== Infinity) {
+      this.scheduleWait('break', long)
+      return
+    }
     const type = long <= mini ? 'break' : 'microbreak'
     if (this.scheduledType !== type) this.postponesNumber = 0
     this.scheduleWait(type, Math.min(mini, long))
   }
 
   scheduleWait (type, delay, notify = true) {
+    this.previewHandled = false
     this.scheduledType = type
     this.pendingStartAt = Date.now() + delay
     const lead = Math.min(delay, Math.max(0, Number(this.settings.get(`${type}NotificationInterval`)) || 0))
     this.notificationLead = lead
     const notification = notify && this.settings.get(`${type}Notification`) && delay > 0 && lead > 0
     const name = `start${type.charAt(0).toUpperCase() + type.slice(1)}${notification ? 'Notification' : ''}`
-    this.scheduler = new Scheduler(() => {
+    const fire = () => {
+      if (this.scheduler !== pending || pending.reference === null) return
+      if (this.powerBlocks.size > 0 || (this.autoBlocked && !this.manualBreak)) {
+        this.reconcileProtection()
+        return
+      }
       if (!notification) {
         this.startingType = type
         this.workSchedule.stop()
       }
       this.emit(name)
+    }
+    const pending = new Scheduler(() => {
+      if (!this.manualBreak && process.platform === 'darwin' && this.dndManager.monitorDnd) {
+        this.dndManager.refresh().then(fire)
+      } else {
+        fire()
+      }
     }, Math.max(0, delay - (notification ? lead : 0)), name)
-    this.scheduler.plan()
+    this.scheduler = pending
+    pending.plan()
   }
 
   nextBreakAfterNotification () {
     this.scheduler.cancel()
     const remaining = Math.max(0, this.pendingStartAt - Date.now())
     this.scheduleWait(this.scheduledType, remaining, false)
+    this.previewHandled = true
+  }
+
+  updateNotificationSchedule (type) {
+    if (this.scheduledType !== type || this.autoBlocked || this.breakInProgress || this.manualBreak ||
+        this.previewHandled || !this.scheduler.reference?.startsWith('start')) return
+    this.scheduler.cancel()
+    this.scheduleWait(type, Math.max(0, this.pendingStartAt - Date.now()))
   }
 
   postponeCurrentBreak () {
@@ -175,6 +174,12 @@ class BreaksPlanner extends EventEmitter {
     this.postponesNumber += 1
     const type = this.scheduledType
     const delay = this.settings.get(`${type}PostponeTime`)
+    if (this.autoBlocked) {
+      this.clear()
+      this.emit('updateToolTip')
+      return
+    }
+    this.manualBreak = false
     this.workSchedule.start(this.settings)
     this.workSchedule.defer(type, delay, this.settings)
     // A postponed mini must not push back the independent long deadline.
@@ -189,6 +194,7 @@ class BreaksPlanner extends EventEmitter {
     this.scheduler?.cancel()
     this.postponesNumber = 0
     this.workSchedule.start(this.settings)
+    this.manualBreak = true
     this.scheduleWait('microbreak', delay, false)
     this.emit('updateToolTip')
   }
@@ -198,14 +204,13 @@ class BreaksPlanner extends EventEmitter {
     this.scheduler?.cancel()
     this.postponesNumber = 0
     this.workSchedule.start(this.settings)
+    this.manualBreak = true
     this.scheduleWait('break', delay, false)
     this.emit('updateToolTip')
   }
 
   replan () {
-    if (this.isPaused || this.startingType || this.scheduler?.reference?.startsWith('finish') ||
-      this.dndManager.isOnDnd || this.naturalBreaksManager.isSchedulerCleared ||
-      this.appExclusionsManager.isSchedulerCleared) return
+    if (this.autoBlocked || this.breakInProgress || this.manualBreak) return
     this.planNextWorkBreak()
   }
 
@@ -215,6 +220,7 @@ class BreaksPlanner extends EventEmitter {
   }
 
   clear () {
+    this.manualBreak = false
     this.startingType = null
     this.scheduler?.cancel()
     this.workSchedule.reset()
@@ -222,31 +228,58 @@ class BreaksPlanner extends EventEmitter {
     this.postponesNumber = 0
   }
 
+  restoreManualPause () {
+    const deadline = this.settings.get('manualPauseUntil')
+    this.indefinitelyPaused = false
+    this.manualPauseUntil = Number.isSafeInteger(deadline) && deadline > Date.now() ? deadline : 0
+    if (!this.manualPauseUntil && deadline) this.settings.set('manualPauseUntil', 0)
+    this.armManualPause()
+  }
+
   pause (milliseconds) {
+    if (!Number.isFinite(milliseconds) || milliseconds <= 0) return
+    const deadline = milliseconds === 1 ? 0 : Math.round(Date.now() + milliseconds)
+    if (!Number.isSafeInteger(deadline)) return
+    this.settings.set('manualPauseUntil', deadline)
+    this.manualPauseUntil = deadline
+    this.indefinitelyPaused = milliseconds === 1
     this.clear()
-    this.isPaused = true
-    if (milliseconds !== 1) {
-      this.scheduler = new Scheduler(() => this.emit('resumeBreaks'), milliseconds, 'resumeBreaks')
-      this.scheduler.plan()
-    }
+    this.armManualPause()
+  }
+
+  armManualPause () {
+    clearTimeout(this.manualPauseTimer)
+    this.manualPauseTimer = null
+    if (!this.manualPauseUntil) return
+    // Recheck wall-clock changes and avoid the setTimeout upper limit.
+    const delay = Math.min(60000, Math.max(0, this.manualPauseUntil - Date.now()))
+    this.manualPauseTimer = setTimeout(() => this.checkManualPause(), delay)
+  }
+
+  checkManualPause () {
+    if (this.manualPauseUntil && this.manualPauseUntil <= Date.now()) this.resume()
+    else this.armManualPause()
   }
 
   resume () {
-    this.scheduler.cancel()
-    this.isPaused = false
-    this.appExclusionsManager.reset()
-    this.nextBreak()
+    if (!this.isPaused) return
+    this.settings.set('manualPauseUntil', 0)
+    this.manualPauseUntil = 0
+    this.indefinitelyPaused = false
+    this.armManualPause()
+    this.reconcileProtection()
   }
 
   correctScheduler () {
-    if (this.startingType) return
-    if (this.scheduler?.reference?.startsWith('start')) this.replan()
-    else if (this.scheduler) this.scheduler.correct()
+    this.checkManualPause()
+    if (this.breakInProgress || this.manualBreak) this.scheduler.correct()
+    else if (this.scheduler.reference?.startsWith('start')) this.replan()
   }
 
   reset () {
     this.clear()
-    this.resume()
+    if (this.isPaused) this.resume()
+    else this.reconcileProtection()
   }
 
   get _scheduledBreakType () {
@@ -258,6 +291,7 @@ class BreaksPlanner extends EventEmitter {
       this.naturalBreaksManager.start()
     } else {
       this.naturalBreaksManager.stop()
+      this.reconcileProtection()
     }
   }
 
@@ -266,9 +300,7 @@ class BreaksPlanner extends EventEmitter {
       this.dndManager.start()
     } else {
       this.dndManager.stop()
-      if (!this.isPaused && this.scheduler.reference === null) {
-        this.reset()
-      }
+      this.reconcileProtection()
     }
   }
 

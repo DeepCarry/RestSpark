@@ -8,7 +8,7 @@ const M = 60000
 let planner, values, events
 function setup (overrides = {}, automaticFinish = true, startDelay = 0) {
   values = { microbreak: true, break: true, microbreakInterval: 40 * M, longBreakInterval: 60 * M, microbreakDuration: M, breakDuration: 5 * M, microbreakNotification: false, breakNotification: false, microbreakNotificationInterval: 10000, breakNotificationInterval: 30000, microbreakPostponeTime: 2 * M, breakPostponeTime: 5 * M, breakInterval: 2, ...overrides }
-  planner = new BreaksPlanner({ get: key => values[key] })
+  planner = new BreaksPlanner({ get: key => values[key], set: (key, value) => { values[key] = value } })
   events = []
   for (const [type, event, started] of [['mini', 'startMicrobreak', 'microbreakStarted'], ['long', 'startBreak', 'breakStarted']]) {
     planner.on(event, () => {
@@ -88,6 +88,56 @@ describe('independent break schedule', () => {
     expect(events).toHaveLength(0)
     vi.advanceTimersByTime(M)
     expect(events[0]).toEqual({ type: 'mini', at: 180 * M })
+  })
+  it('persists the absolute deadline and restores it in a new planner', () => {
+    setup()
+    vi.setSystemTime(3 * M)
+    planner.pause(60 * M)
+    expect(values.manualPauseUntil).toBe(63 * M)
+    const restarted = new BreaksPlanner({ get: key => values[key], set: (key, value) => { values[key] = value } })
+    restarted.nextBreak()
+    expect(restarted.isPaused).toBe(true)
+    vi.setSystemTime(64 * M)
+    restarted.correctScheduler()
+    expect(restarted.isPaused).toBe(false)
+    expect(values.manualPauseUntil).toBe(0)
+    expect(restarted.timeToNextBreak).toBe(40 * M)
+  })
+  it('waits for both Focus and idle to clear after a timed pause expires', () => {
+    setup()
+    planner.pause(M)
+    planner.dndManager.isOnDnd = true
+    planner.dndManager.emit('dndStarted')
+    planner.naturalBreaksManager.isSchedulerCleared = true
+    planner.naturalBreaksManager.emit('clearBreakScheduler')
+    vi.advanceTimersByTime(M)
+    expect(planner.isPaused).toBe(false)
+    expect(planner.timeToNextBreak).toBeNull()
+    planner.dndManager.isOnDnd = false
+    planner.dndManager.emit('dndFinished')
+    expect(planner.timeToNextBreak).toBeNull()
+    planner.naturalBreaksManager.isSchedulerCleared = false
+    planner.naturalBreaksManager.emit('naturalBreakFinished')
+    expect(planner.timeToNextBreak).toBe(40 * M)
+  })
+  it('leaves a manually started break open when Focus activates', () => {
+    setup({}, false)
+    planner.skipToMicrobreak()
+    vi.advanceTimersByTime(100)
+    planner.dndManager.isOnDnd = true
+    planner.dndManager.emit('dndStarted')
+    expect(planner.scheduler.reference).toBe('finishMicrobreak')
+    planner.nextBreak()
+    expect(planner.timeToNextBreak).toBeNull()
+  })
+  it('cancels a delayed manual break on lock and starts fresh after unlock', () => {
+    setup()
+    planner.skipToMicrobreak(M)
+    planner.setPowerBlock('lock', true)
+    vi.advanceTimersByTime(M)
+    expect(events).toHaveLength(0)
+    planner.setPowerBlock('lock', false)
+    expect(planner.timeToNextBreak).toBe(40 * M)
   })
   it('replans a new long interval using work already elapsed, without interrupting an active break', () => {
     setup()

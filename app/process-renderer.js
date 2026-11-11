@@ -9,22 +9,23 @@ window.onload = async (e) => {
     audio.play()
   })
 
-  window.stretchly.onShowNotification(async (text, silent) => {
-    __electronLog.info(`Stretchly: showing notification "${text}" (silent: ${silent})`)
-    const title = await window.utils.shouldShowNotificationTitle(
-      await window.runtime.platform(),
-      await window.runtime.getSystemVersion()
-    )
-      ? displayName(await window.settings.get('language'))
-      : ''
-    const notification = new Notification(title, {
-      body: text,
-      requireInteraction: true,
-      silent,
-      icon: 'images/brand/restspark-icon-256.png'
-    })
-    setTimeout(() => notification.close(), 7000)
+  let preview
+  let previewTimeout
+  const closePreview = () => {
+    clearTimeout(previewTimeout)
+    preview?.close()
+    preview = null
+  }
+  window.stretchly.onGentlePreview((title, body, silent) => {
+    closePreview()
+    if (Notification.permission !== 'granted') {
+      __electronLog.info('Rest Spark: gentle preview unavailable without notification permission')
+      return
+    }
+    preview = new Notification(title, { body, silent, icon: 'images/brand/restspark-icon-256.png' })
+    previewTimeout = setTimeout(closePreview, 7000)
   })
+  window.stretchly.onCloseGentlePreview(closePreview)
 
   window.stretchly.onCheckVersion(async (oldVersion, notify, silent) => {
     if (await window.global.getValue('isNewVersion') && notify) {

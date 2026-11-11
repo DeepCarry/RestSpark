@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.1] - 2026-11-12
+- Added Gentle and Warm Chime, retained the original Tic Toc and Reverie audio, and matched playback loudness.
+- Migrated saved sound choices and prevented overlapping previews.
+
 ## [0.2.0] - 2026-11-12
 - Added a macOS menu bar panel with break countdowns, timed pauses and early resume. Timed pause deadlines persist across restarts.
 - Added two-step onboarding and a read-only guide for existing users.

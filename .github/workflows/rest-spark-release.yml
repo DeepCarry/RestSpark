@@ -1,0 +1,181 @@
+name: Rest Spark installers
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: restspark-installers-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUSKY: '0'
+
+jobs:
+  build:
+    name: ${{ matrix.platform }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macOS Apple Silicon
+            runner: macos-15
+            artifact: mac-arm64
+            installer: dist/Rest-Spark-*-mac-arm64.dmg
+          - platform: Windows x64
+            runner: windows-2022
+            artifact: windows-x64
+            installer: dist/Rest-Spark-*-windows-x64.exe
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check release version
+        if: github.ref_type == 'tag'
+        shell: bash
+        run: |
+          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] ||
+             [[ "$GITHUB_REF_NAME" != "v$(node -p "require('./package.json').version")" ]]; then
+            echo "::error::Use a tag vX.Y.Z matching package.json."
+            exit 1
+          fi
+      - run: python -m pip install setuptools
+      - run: npm ci
+
+      - name: Lint and test
+        if: runner.os == 'macOS'
+        run: |
+          npm run lint
+          npm test
+
+      - name: Build Apple Silicon DMG
+        if: runner.os == 'macOS'
+        run: |
+          test "$RUNNER_ARCH" = ARM64
+          npm run dist -- --mac dmg --arm64 --publish never
+
+      - name: Verify macOS installation and launch
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          version=$(node -p "require('./package.json').version")
+          dmg="dist/Rest-Spark-${version}-mac-arm64.dmg"
+          mount_dir="$RUNNER_TEMP/restspark-dmg"
+          install_dir="$RUNNER_TEMP/restspark-installed"
+          mkdir -p "$mount_dir" "$install_dir"
+          hdiutil verify "$dmg"
+          hdiutil attach -nobrowse -readonly -mountpoint "$mount_dir" "$dmg"
+          trap 'hdiutil detach "$mount_dir"' EXIT
+          test "$(readlink "$mount_dir/Applications")" = /Applications
+          ditto "$mount_dir/Rest Spark.app" "$install_dir/Rest Spark.app"
+          app="$install_dir/Rest Spark.app"
+          codesign --verify --deep --strict "$app"
+          test "$(lipo -archs "$app/Contents/MacOS/Rest Spark")" = arm64
+          node scripts/rest-spark-packaged-smoke.mjs "$app/Contents/MacOS/Rest Spark" "$RUNNER_TEMP/restspark-smoke"
+
+      - name: Build Windows x64 installer
+        if: runner.os == 'Windows'
+        run: npm run dist -- --win nsis --x64 --publish never
+
+      - name: Verify Windows installation and launch
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $version = node -p "require('./package.json').version"
+          $installer = (Resolve-Path "dist/Rest-Spark-${version}-windows-x64.exe").Path
+          $installDir = Join-Path $env:RUNNER_TEMP 'restspark-installed'
+          $process = Start-Process -FilePath $installer -ArgumentList @('/S', "/D=$installDir") -PassThru
+          if (-not $process.WaitForExit(120000)) {
+            $process.Kill()
+            throw 'Windows installer timed out'
+          }
+          if ($process.ExitCode -ne 0) { throw "Windows installer exited with $($process.ExitCode)" }
+          $app = Join-Path $installDir 'Rest Spark.exe'
+          if (-not (Test-Path $app -PathType Leaf)) { throw "Installed application missing: $app" }
+          node scripts/rest-spark-packaged-smoke.mjs "$app" "$env:RUNNER_TEMP/restspark-smoke"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload verified installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-${{ matrix.artifact }}
+          path: ${{ matrix.installer }}
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
+      - name: Keep smoke test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-${{ matrix.artifact }}
+          path: ${{ runner.temp }}/restspark-smoke/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  publish:
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: installer-*
+          merge-multiple: true
+          path: installers
+      - name: Publish verified installers
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        working-directory: installers
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          mac="Rest-Spark-${version}-mac-arm64.dmg"
+          windows="Rest-Spark-${version}-windows-x64.exe"
+          test -s "$mac"
+          test -s "$windows"
+          sha256sum "$mac" "$windows" > SHA256SUMS.txt
+
+          cat > "$RUNNER_TEMP/release-notes.md" <<'NOTES'
+          ## 安装
+
+          - **macOS（Apple 芯片）**：打开 DMG，把 Rest Spark.app 拖到「应用程序」。应用使用 ad-hoc 签名，未经过 Apple 公证。若首次启动被拦截，请先核对 SHA256SUMS.txt，再按 [Apple 的说明](https://support.apple.com/zh-cn/102445)操作。
+          - **Windows（x64）**：运行 EXE 安装程序。安装程序没有 Authenticode 签名，SmartScreen 可能提示发布者未知。运行前可用 SHA256SUMS.txt 核对文件。
+          NOTES
+
+          if status=$(gh release view "$GITHUB_REF_NAME" --json isDraft --jq .isDraft); then
+            if [[ "$status" != true ]]; then
+              echo "::error::Release $GITHUB_REF_NAME is already public."
+              exit 1
+            fi
+          else
+            gh release create "$GITHUB_REF_NAME" --verify-tag --draft \
+              --title "元气 · Rest Spark $version" \
+              --notes-file "$RUNNER_TEMP/release-notes.md" --generate-notes
+          fi
+
+          gh release upload "$GITHUB_REF_NAME" --clobber "$mac" "$windows" SHA256SUMS.txt
+          for file in "$mac" "$windows" SHA256SUMS.txt; do
+            expected="sha256:$(sha256sum "$file" | cut -d ' ' -f 1)"
+            actual=$(gh release view "$GITHUB_REF_NAME" --json assets --jq ".assets[] | select(.name == \"$file\" and .state == \"uploaded\") | .digest")
+            test "$actual" = "$expected"
+          done
+          gh release edit "$GITHUB_REF_NAME" --draft=false --latest

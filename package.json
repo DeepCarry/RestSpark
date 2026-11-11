@@ -39,6 +39,7 @@
     "appId": "io.github.deepcarry.restspark",
     "productName": "Rest Spark",
     "dmg": {
+      "artifactName": "Rest-Spark-${version}-mac-${arch}.${ext}",
       "icon": "build/icon.icns",
       "iconSize": 128,
       "contents": [
@@ -61,7 +62,6 @@
         {
           "target": "dmg",
           "arch": [
-            "x64",
             "arm64"
           ]
         }
@@ -100,11 +100,14 @@
       "displayName": "Stretchly"
     },
     "win": {
+      "icon": "app/images/brand/restspark-icon-256.png",
       "target": [
-        "nsis",
-        "7z",
-        "appx",
-        "portable"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
       "asarUnpack": [
         "node_modules/windows-notification-state/**",
@@ -115,6 +118,7 @@
       "artifactName": "${productName} Portable ${version}.${ext}"
     },
     "nsis": {
+      "artifactName": "Rest-Spark-${version}-windows-${arch}.${ext}",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },

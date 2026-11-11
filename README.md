@@ -6,13 +6,19 @@
 
 本项目基于 [Jan Hovancik 的 Stretchly](https://github.com/hovancik/stretchly) 二次开发，感谢原作者及所有贡献者。保留完整提交历史、[BSD-2-Clause 许可证](LICENSE) 与 `Copyright (c) 2016-, Jan Hovancik` 署名。新的产品名称为 **元气 / Rest Spark**，与上游 Stretchly 独立维护。
 
-从 [GitHub Releases](https://github.com/DeepCarry/RestSpark/releases/latest) 下载对应 Apple 芯片或 Intel 芯片的 macOS DMG。打开磁盘映像，将「Rest Spark.app」拖到「应用程序」。首次打开的说明和文件校验值见 Release 页面。
+从 [GitHub Releases](https://github.com/DeepCarry/RestSpark/releases/latest) 下载 Apple 芯片 Mac 的 DMG。打开磁盘映像，将「Rest Spark.app」拖到「应用程序」。提供 Windows x64 版本的 Release 会附带 EXE 安装程序。首次打开的说明和文件校验值见 Release 页面。
 
 品牌图形的独立授权条款尚待维护者明确，不能据此推定获得商标授权；原源代码许可证保持不变。
 
 ## 开发
 
-使用 Node 24，执行 `npm ci`、`npm start`；检查 `npm test`、`npm run lint`、`npm run pack`。当前只验收 macOS 构建，Windows/Linux 发布身份和图标需另行审阅。正常运行不改变已安装的 Stretchly 应用。
+使用 Node 24，执行 `npm ci`、`npm start`；检查 `npm test`、`npm run lint`、`npm run pack`。正常运行不改变已安装的 Stretchly 应用。
+
+## 自动发布
+
+在 `trunk` 上更新 `package.json` 和 `package-lock.json` 的版本，提交并推送。给该提交打上对应的 `vX.Y.Z` 标签并推送标签。GitHub Actions 的 **Rest Spark installers** 会构建 Apple 芯片 macOS DMG 和 Windows x64 EXE。在两个 runner 上分别验证安装、启动、版本与主题切换后，自动创建并发布 GitHub Release，附上两个安装包和 SHA-256 清单。
+
+也可在 Actions 页面手动运行 **Rest Spark installers**。手动运行只生成验收用的构建产物和日志。自动发布需要推送版本标签。
 
 macOS 应用 ID 为 `io.github.deepcarry.restspark`，应用包为 `Rest Spark.app`，中文显示名为「元气」。默认配置位于 `~/Library/Application Support/Rest Spark`。首次正常启动会复制旧 `Stretchly` 目录内的配置、自定义图片及已有贡献者状态，保留原文件；已有 Rest Spark 配置优先。显式选择的配置目录和便携目录保持原样。
 

@@ -1,5 +1,5 @@
 /* global WebSocket */
-// Smoke the built macOS app with a disposable profile and loopback-only CDP.
+// Smoke an installed Rest Spark build with a disposable profile and loopback-only CDP.
 import { spawn } from 'node:child_process'
 import { mkdirSync, writeFileSync, openSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -56,7 +56,19 @@ try {
     pending.set(++id, resolve)
     socket.send(JSON.stringify({ id, method, params }))
   })
-  await delay(1000)
+  let ready = false
+  for (let n = 0; n < 300; n++) {
+    const result = await send('Runtime.evaluate', {
+      expression: "Boolean(document.querySelector('.version')?.textContent.trim() && document.querySelector('[name=themeSource]:checked'))",
+      returnByValue: true
+    })
+    if (result.result?.value === true) {
+      ready = true
+      break
+    }
+    await delay(100)
+  }
+  assert.ok(ready, 'packaged preferences renderer initializes')
   const result = await send('Runtime.evaluate', { expression: '({ supportHidden: getComputedStyle(document.querySelector("[data-section=heart]")).display === "none", brand: document.querySelector(".rest-brand strong").textContent, heading: document.querySelector(".schedule h1").textContent, selected: document.querySelector("#miniBreakFor").value, version: document.querySelector(".version").textContent, controls: document.querySelectorAll(".schedule input[type=number]").length })', returnByValue: true })
   const state = result.result.result.value
   assert.equal(state.supportHidden, true)
@@ -96,7 +108,7 @@ try {
     }
   }
   writeFileSync(join(evidence, 'packaged-smoke.json'), JSON.stringify({ passed: true, profile, state }, null, 2))
-  console.log('PACKAGED_MACOS_SMOKE_PASSED', state)
+  console.log('PACKAGED_SMOKE_PASSED', process.platform, state)
 } finally {
   socket?.close()
   child.kill('SIGTERM')

@@ -102,6 +102,7 @@ window.onload = async (e) => {
 
   window.stretchly.onTranslate(async () => {
     document.documentElement.lang = await window.settings.get('language')
+    updateLocaleLabels(document.documentElement.lang)
     new HtmlTranslate(document).translate()
     await scheduleEditors?.refresh(await window.settings.currentSettings())
     await renderUpdateStatus()
@@ -220,11 +221,11 @@ window.onload = async (e) => {
   }
 
   const morning = document.querySelector('#morningHour')
-  const formatHour = new Intl.DateTimeFormat(settings.language, { hour: 'numeric', minute: '2-digit' })
-  for (let hour = 0; hour < 24; hour++) {
-    morning.add(new window.Option(formatHour.format(new Date(2026, 0, 1, hour)), String(hour)))
-  }
-  morning.add(new window.Option(await window.i18next.t('prd11.sunrise'), 'sunrise'))
+  morning.replaceChildren(...Array.from({ length: 24 }, (_, hour) => new window.Option('', String(hour))))
+  const sunrise = new window.Option(await window.i18next.t('prd11.sunrise'), 'sunrise')
+  sunrise.dataset.i18next = 'prd11.sunrise'
+  morning.add(sunrise)
+  updateLocaleLabels(settings.language)
   morning.value = String(settings.morningHour)
   morning.onchange = () => window.settings.saveSettings('morningHour', morning.value === 'sunrise' ? 'sunrise' : Number(morning.value))
 
@@ -310,4 +311,27 @@ window.onload = async (e) => {
     const height = Math.min(Math.max(bounds.height, 700), window.screen.availHeight * 0.9)
     window.stretchly.setWindowSize(Math.round(width), Math.round(height))
   }
+}
+
+function updateLocaleLabels (language) {
+  const englishNames = language === 'en' ? new Intl.DisplayNames('en', { type: 'language', fallback: 'none' }) : null
+  const englishNamesByCode = {
+    ajp: 'Jordanian Arabic',
+    np: 'Nepali',
+    pu: 'Punjabi',
+    'zh-CN': 'Simplified Chinese',
+    'zh-TW': 'Traditional Chinese'
+  }
+  for (const option of document.querySelectorAll('#language option')) {
+    if (englishNames) {
+      option.label = englishNamesByCode[option.value] ?? englishNames.of(option.value) ?? option.textContent
+    } else {
+      option.removeAttribute('label')
+    }
+  }
+
+  const formatHour = new Intl.DateTimeFormat(language, { hour: 'numeric', minute: '2-digit' })
+  document.querySelectorAll('#morningHour option:not([value="sunrise"])').forEach(option => {
+    option.textContent = formatHour.format(new Date(2026, 0, 1, Number(option.value)))
+  })
 }

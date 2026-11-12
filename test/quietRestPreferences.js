@@ -51,6 +51,30 @@ describe('Quiet Rest preferences', () => {
       expect(document.querySelectorAll('.navigation [aria-current=page]')).toHaveLength(1)
     }
   })
+  it('switches the settings and About branding entirely to English', async () => {
+    const dictionaries = Object.fromEntries(['zh-CN', 'en'].map(language => [
+      language, JSON.parse(readFileSync(new URL(`../app/locales/${language}.json`, import.meta.url), 'utf8'))
+    ]))
+    window.i18next.t = async key => key.split('.').reduce((value, part) => value?.[part], dictionaries[saved.language]) ?? key
+    saved.language = 'zh-CN'
+    await translate()
+    expect(document.querySelector('.rest-brand').textContent).toContain('元气')
+
+    const language = document.querySelector('select[name=language], #language')
+    language.value = 'en'
+    language.dispatchEvent(new window.Event('change'))
+    await translate()
+    await vi.advanceTimersByTimeAsync(0)
+
+    expect(document.documentElement.lang).toBe('en')
+    expect([...language.options].map(option => option.label).join(' ')).not.toMatch(/\p{Script=Han}/u)
+    expect(document.querySelector('#morningHour option[value=sunrise]').textContent).toBe(dictionaries.en.prd11.sunrise)
+    expect(document.querySelector('#morningHour option[value="0"]').textContent).not.toMatch(/\p{Script=Han}/u)
+    for (const selector of ['.rest-brand', '.product-card', 'footer']) {
+      expect(document.querySelector(selector).textContent).toContain('Rest Spark')
+      expect(document.querySelector(selector).textContent).not.toMatch(/\p{Script=Han}/u)
+    }
+  })
   it('preserves an existing duration outside the master example and converts units on save', async () => {
     const duration = document.querySelector('#miniBreakFor')
     expect(duration.tagName).toBe('INPUT')

@@ -22,3 +22,14 @@ describe('Translations files', () => {
     })
   })
 })
+
+it('provides Traditional Chinese strings for Rest Spark settings, onboarding and break actions', () => {
+  const english = JSON.parse(readFileSync(join(jsonDirectory, 'en.json'), 'utf8'))
+  const traditional = JSON.parse(readFileSync(join(jsonDirectory, 'zh-TW.json'), 'utf8'))
+  for (const section of ['settingsV1', 'scheduleV2', 'prd11']) {
+    expect(Object.keys(traditional[section] ?? {}).sort()).toEqual(Object.keys(english[section]).sort())
+    for (const [key, text] of Object.entries(english[section])) {
+      expect(traditional[section][key].match(/{{[^}]+}}/g) ?? []).toEqual(text.match(/{{[^}]+}}/g) ?? [])
+    }
+  }
+})

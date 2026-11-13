@@ -1,9 +1,12 @@
 html, body { min-height: 100%; margin: 0; }
 body.quiet-break {
   --rest-opacity: 1;
+  --rest-break-padding: clamp(18px, 4vh, 48px);
+  --rest-portrait-width: calc(100vh * 442 / 765);
   min-height: 100vh;
   box-sizing: border-box;
-  padding: clamp(18px, 4vh, 48px);
+  padding: var(--rest-break-padding);
+  padding-right: calc(var(--rest-break-padding) + var(--rest-portrait-width));
   background-color: transparent;
   background-image: radial-gradient(ellipse at 30% 20%,
     color-mix(in srgb, var(--rest-break-center) calc(var(--rest-opacity) * 100%), transparent),
@@ -14,7 +17,7 @@ body.quiet-break {
   overflow-x: hidden;
 }
 .breaks {
-  width: 58%;
+  width: 100%;
   max-width: 700px;
   text-align: center;
   position: relative;
@@ -23,7 +26,7 @@ body.quiet-break {
   flex-direction: column;
   align-items: center;
   gap: clamp(16px, 3vh, 32px);
-  margin-inline: 2% auto;
+  margin-inline: auto;
 }
 .break-content { width: 100%; }
 .rest-badge {
@@ -72,9 +75,8 @@ body.quiet-break {
   right: 0;
   bottom: 0;
   height: 100vh;
-  /* The approved 442 x 765 portrait artwork scales by height, without
-     a viewport-relative box that leaves unused space beside the image. */
-  width: auto;
+  /* Reserve the same width for the image and the right side of the layout. */
+  width: var(--rest-portrait-width);
   max-width: none;
   object-fit: contain;
   object-position: right bottom;
@@ -86,18 +88,19 @@ body.break-health-mode { box-shadow: var(--break-health-shadow, none); transitio
 body.break-health-mode::after { content: ''; position: fixed; inset: 0; z-index: 2; pointer-events: none; box-shadow: var(--break-health-shadow, none); }
 .rest-illustration-night { display: none; }
 @media (prefers-color-scheme: dark) {
+  body.quiet-break { --rest-portrait-width: calc(100vh * 953 / 1650); }
   .rest-illustration-day { display: none; }
   .rest-illustration-night { display: block; mask-image: linear-gradient(to right, transparent, #000 17%); }
 }
 /* Height-scaled portrait needs a landscape viewport to leave room for controls. */
 @media (max-width: 680px), (max-aspect-ratio: 3/2) {
+  body.quiet-break { --rest-portrait-width: 0px; }
   .rest-illustration { display: none; }
-  .breaks { width: 100%; margin-inline: auto; }
   .break-actions button { font-size: 16px; padding: 12px 18px; }
   .microbreak-idea, .break-idea { font-size: 26px; }
 }
 @media (max-height: 520px) {
-  body.quiet-break { padding: 16px; }
+  body.quiet-break { --rest-break-padding: 16px; }
   .breaks { gap: 12px; }
   .timer { width: 136px; margin: 12px auto; }
   #progress-time { font-size: 36px; }

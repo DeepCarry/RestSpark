@@ -6,12 +6,19 @@
 
 设置页保留已有的卡片结构、数字输入、声音预听、菜单栏和许可证入口。应用外观的三张原生单选卡可用键盘切换，系统卡并列显示批准的两张照片。预览采用局部取景。休息弹窗内，原图保持比例贴右并只在左侧背景边缘渐隐。窄或偏竖的休息窗口沿用隐藏人物的布局，以保留操作空间。正式 Logo 与白天人物原图沿用现有文件，夜景 PNG 与交接包逐字节一致。
 
+长、短休息弹窗按当前外观的原图比例和窗口高度预留右侧空间，倒计时、提示和按钮在左侧剩余区域居中。窗口宽度不超过 680 CSS 像素或宽高比不超过 3:2 时，隐藏插图，内容在全窗居中。
+
+2026-11-13 宽屏回归在 1632 × 918 复现了旧布局的问题。插图从 x=1102 开始，控件中心却在 x=418，原因是控件宽度达到上限后仍锚在左侧。旧检查覆盖原图比例、贴右和不重叠，漏掉了控件中心。新检查使用两种休息窗口、两种外观和 10 种 Electron 模拟尺寸，断言控件中心与可用空间的中心一致，并检查断点两侧的布局。
+
+同次验证通过 452 项项目测试、269 项 macOS Electron 布局与交互检查，以及本地 arm64 打包和启动检查。已查看浅色宽屏、深色超宽屏和窄高窗口截图。外接显示器使用模拟视口验证。
+
 ## 复验
 
 ```sh
 npm run lint
 npm test
 npm run pack -- --mac --arm64 --publish never
+REST_LAYOUT_EVIDENCE=/tmp/restspark-layout ./node_modules/.bin/electron scripts/quiet-rest-qa.mjs --layout-only
 REST_APPEARANCE_EVIDENCE=/tmp/restspark-appearance ./node_modules/.bin/electron scripts/rest-spark-appearance-qa.mjs --system-appearance
 REST_APPEARANCE_EVIDENCE=/tmp/restspark-appearance ./node_modules/.bin/electron scripts/rest-spark-appearance-qa.mjs --restart
 node scripts/rest-spark-packaged-smoke.mjs "dist/mac-arm64/Rest Spark.app/Contents/MacOS/Rest Spark" /tmp/restspark-packaged

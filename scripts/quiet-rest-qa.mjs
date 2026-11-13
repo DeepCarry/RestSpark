@@ -102,6 +102,7 @@ app.whenReady().then(async () => {
 async function acceptance (prefs, long) {
   const js = (win, code) => win.webContents.executeJavaScript(code)
   const hidden = (win, id) => js(win, `document.querySelector('#${id}').classList.contains('hidden')`)
+  const disabled = (win, id) => js(win, `document.querySelector('#${id}').disabled`)
   const save = async (key, value) => {
     await js(prefs, `window.settings.saveSettings(${JSON.stringify(key)}, ${JSON.stringify(value)})`)
     await delay(700)
@@ -110,7 +111,7 @@ async function acceptance (prefs, long) {
   const first = await js(long, "document.querySelector('#progress').value")
   await delay(400)
   verify(await js(long, "document.querySelector('#progress').value") < first, 'real IPC-started countdown advances')
-  verify(!(await hidden(long, 'postpone')), 'long postpone is available in configured window')
+  verify(!(await hidden(long, 'postpone')) && !(await disabled(long, 'postpone')), 'long postpone is available in configured window')
   await js(long, "document.querySelector('#postpone').click()")
   await delay(700)
   verify(long.isDestroyed(), 'long postpone closes actual window and reschedules')
@@ -127,10 +128,11 @@ async function acceptance (prefs, long) {
   await js(prefs, "document.querySelector('#showNotificationBeforeMiniBreak').click()")
   await delay(700)
   verify(JSON.parse(readFileSync(join(profile, 'config.json'))).microbreakNotification === false, 'notification toggle persists')
-  for (const section of ['settings', 'theme', 'about', 'heart', 'schedule']) {
+  for (const section of ['settings', 'theme', 'about', 'schedule']) {
     await js(prefs, `document.querySelector('[data-section=${section}]').click()`)
     verify(await js(prefs, `!document.querySelector('body > .${section}').classList.contains('hidden')`), `original section remains accessible: ${section}`)
   }
+  verify(await js(prefs, "document.querySelector('[data-section=heart]').hidden"), 'upstream support remains hidden from settings navigation')
   // Reload reads stored settings through the actual preload again.
   prefs.reload()
   await delay(1000)
@@ -154,7 +156,7 @@ async function acceptance (prefs, long) {
   command('mini', '-T', 'Rest your eyes')
   let mini = await page('microbreak')
   verify(await js(mini, "document.querySelector('.microbreak-idea').textContent === 'Rest your eyes'"), 'mini array payload produces visible sanitized text')
-  verify(await hidden(mini, 'close'), 'strict mini never exposes early skip')
+  verify(await disabled(mini, 'close'), 'strict mini disables early skip')
   verify(await hidden(mini, 'finish'), 'manual finish hidden until duration completes')
   await delay(2400)
   verify(!(await hidden(mini, 'finish')), 'real scheduler enters manual-await on completion')
@@ -168,7 +170,7 @@ async function acceptance (prefs, long) {
   await save('microbreakStrictMode', false)
   command('mini', '-T', 'Rest your eyes')
   mini = await page('microbreak')
-  verify(!(await hidden(mini, 'close')), 'non-strict mini exposes skip when postponing disabled')
+  verify(!(await hidden(mini, 'close')) && !(await disabled(mini, 'close')), 'non-strict mini exposes skip when postponing disabled')
   await js(mini, "document.querySelector('#close').focus()")
   verify(await js(mini, "document.activeElement.id === 'close'"), 'native skip button is keyboard focusable')
   await capture(mini, 'after-microbreak-en-light')
@@ -198,7 +200,7 @@ async function acceptance (prefs, long) {
   await save('longBreakManualFinish', false)
   command('long', '-T', 'Take a breath', '-t', 'Let your shoulders relax.')
   long = await page('break')
-  verify(await hidden(long, 'close'), 'strict long never exposes early skip')
+  verify(await disabled(long, 'close'), 'strict long disables early skip')
   await delay(2500)
   verify(long.isDestroyed(), 'long automatically completes through the real scheduler')
   await save('longBreakManualFinish', true)
@@ -214,7 +216,7 @@ async function acceptance (prefs, long) {
   await save('breakStrictMode', false)
   command('long', '-T', 'Take a breath', '-t', 'Let your shoulders relax.')
   long = await page('break')
-  verify(!(await hidden(long, 'close')), 'non-strict long exposes skip')
+  verify(!(await hidden(long, 'close')) && !(await disabled(long, 'close')), 'non-strict long exposes skip')
   await capture(long, 'after-long-break-en-light')
   nativeTheme.themeSource = 'dark'
   long.setSize(600, 620)
@@ -238,27 +240,50 @@ async function acceptance (prefs, long) {
 
 async function layoutMatrix (win, kind) {
   const original = win.getSize()
-  for (const [width, height] of [[1920, 1080], [2560, 1440], [3440, 1440], [3840, 2160], [700, 1000], [600, 620]]) {
-    // Device emulation permits viewports larger than the attached display.
-    win.webContents.enableDeviceEmulation({ screenPosition: 'desktop', screenSize: { width, height }, viewPosition: { x: 0, y: 0 }, deviceScaleFactor: 1, viewSize: { width, height }, scale: Math.min(1, win.getContentSize()[0] / width, win.getContentSize()[1] / height) })
-    await delay(200)
-    const geometry = await win.webContents.executeJavaScript(`(() => {
-      const img = document.querySelector('.rest-illustration-night') && matchMedia('(prefers-color-scheme: dark)').matches
-        ? document.querySelector('.rest-illustration-night')
-        : document.querySelector('.rest-illustration')
-      const box = img.getBoundingClientRect()
-      const content = document.querySelector('.breaks').getBoundingClientRect()
-      return { width: innerWidth, height: innerHeight, image: { x: box.x, right: box.right, width: box.width, height: box.height }, contentRight: content.right, hidden: getComputedStyle(img).display === 'none', overflow: document.documentElement.scrollWidth > innerWidth }
-    })()`)
-    writeFileSync(join(evidence, `${kind}-${width}x${height}.json`), JSON.stringify(geometry, null, 2))
-    verify(!geometry.overflow, `${kind} ${width}x${height}: no horizontal overflow`)
-    if (!geometry.hidden) {
-      verify(Math.abs(geometry.image.right - width) < 1, `${kind} ${width}x${height}: right anchored`)
-      verify(Math.abs(geometry.image.width / geometry.image.height - 442 / 765) < 0.001, `${kind} ${width}x${height}: original aspect ratio`)
-      verify(geometry.contentRight <= geometry.image.x, `${kind} ${width}x${height}: text and image do not overlap`)
+  const originalTheme = nativeTheme.themeSource
+  win.webContents.debugger.attach('1.3')
+  try {
+    for (const theme of ['light', 'dark']) {
+      nativeTheme.themeSource = theme
+      for (const [width, height] of [[1632, 918], [1920, 1080], [2560, 1440], [3440, 1440], [3840, 2160], [681, 453], [720, 480], [680, 420], [700, 1000], [600, 620]]) {
+        // Emulation permits viewports larger than the attached display.
+        await win.webContents.debugger.sendCommand('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: false })
+        const geometry = await win.webContents.executeJavaScript(`(() => {
+          const portrait = document.querySelector('.rest-illustration-${theme === 'dark' ? 'night' : 'day'}')
+          const image = portrait.getBoundingClientRect()
+          const content = document.querySelector('.breaks').getBoundingClientRect()
+          return {
+            width: innerWidth, height: innerHeight, dark: matchMedia('(prefers-color-scheme: dark)').matches,
+            image: { left: image.left, right: image.right, width: image.width, height: image.height },
+            portraitRatio: portrait.naturalWidth / portrait.naturalHeight,
+            contentCenter: (content.left + content.right) / 2, contentRight: content.right,
+            visible: getComputedStyle(portrait).display !== 'none',
+            overflow: document.documentElement.scrollWidth > innerWidth
+          }
+        })()`)
+        const name = `${kind}-${theme}-${width}x${height}`
+        writeFileSync(join(evidence, `${name}.json`), JSON.stringify(geometry, null, 2))
+        verify(geometry.width === width && geometry.height === height && geometry.dark === (theme === 'dark'), `${name}: requested viewport and theme`)
+        verify(!geometry.overflow, `${name}: no horizontal overflow`)
+        const showPortrait = width > 680 && width / height > 1.5
+        verify(geometry.visible === showPortrait, `${name}: portrait visibility follows window proportions`)
+        if (showPortrait) {
+          verify(geometry.image.right === width && geometry.image.height === height, `${name}: full-height portrait is right anchored`)
+          verify(Math.abs(geometry.image.width / height - geometry.portraitRatio) < 0.001, `${name}: original aspect ratio`)
+          verify(geometry.contentRight <= geometry.image.left, `${name}: text and image do not overlap`)
+        }
+        const contentRight = showPortrait ? geometry.image.left : width
+        verify(Math.abs(geometry.contentCenter - contentRight / 2) < 1, `${name}: controls are centered in the available space`)
+        if (width === 1632 || width === 3440 || width === 700) {
+          const { data } = await win.webContents.debugger.sendCommand('Page.captureScreenshot', { captureBeyondViewport: true })
+          writeFileSync(join(evidence, `${name}.png`), Buffer.from(data, 'base64'))
+        }
+      }
     }
-    await capture(win, `${kind}-${width}x${height}`)
+  } finally {
+    await win.webContents.debugger.sendCommand('Emulation.clearDeviceMetricsOverride')
+    win.webContents.debugger.detach()
+    win.setSize(...original)
+    nativeTheme.themeSource = originalTheme
   }
-  win.webContents.disableDeviceEmulation()
-  win.setSize(...original)
 }

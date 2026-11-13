@@ -1,6 +1,6 @@
 {
   "name": "rest-spark",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "元气 / Rest Spark — a break time reminder based on Stretchly",
   "main": "app/main.js",
   "type": "module",

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.3] - 2026-11-13
+- Added matching light and dark illustrations for short and long break reminders.
+- Centered reminder controls beside the artwork on wide displays.
+- Made appearance previews scale proportionally and fill their cards, including the side-by-side Follow System preview.
+
 ## [0.2.1] - 2026-11-12
 - Added Gentle and Warm Chime, retained the original Tic Toc and Reverie audio, and matched playback loudness.
 - Migrated saved sound choices and prevented overlapping previews.

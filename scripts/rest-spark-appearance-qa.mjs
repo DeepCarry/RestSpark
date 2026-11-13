@@ -130,11 +130,14 @@ app.whenReady().then(async () => {
           file: image.currentSrc.split('/').at(-1),
           width: image.naturalWidth,
           height: image.naturalHeight,
+          previewWidth: image.clientWidth,
+          previewHeight: image.clientHeight,
           fit: getComputedStyle(image).objectFit,
-          visible: image.getBoundingClientRect().width > 0 && image.getBoundingClientRect().height > 0
+          split: Boolean(image.closest('.appearance-split'))
         }))`)
         verify(previews.map(image => image.file).join(',') === 'stretch.png,stretch-night.png,stretch.png,stretch-night.png', 'light, dark and Follow System cards show the expected image pair')
-        verify(previews.every(image => image.width === 1122 && image.height === 1402 && image.fit === 'contain' && image.visible), 'all appearance cards show the complete matched artwork')
+        verify(previews.every(image => image.width === 1122 && image.height === 1402 && image.fit === 'cover' && image.previewWidth > 0 && image.previewHeight > 0), 'all appearance cards fill their previews with proportional artwork')
+        verify(previews.filter(image => !image.split).every(image => Math.abs(image.previewHeight - image.previewWidth * image.height / image.width) < 2), 'single-theme previews follow the artwork ratio at each window width')
       }
       for (const mode of ['light', 'dark']) {
         if (checkSystem) await setSystem(mode === 'light')

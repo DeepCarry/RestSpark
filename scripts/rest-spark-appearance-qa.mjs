@@ -124,12 +124,25 @@ app.whenReady().then(async () => {
       }
 
       const display = screen.getDisplayMatching(prefs.getBounds())
+      const verifyAppearanceArtwork = async () => {
+        await showPage('theme')
+        const previews = await js(`Array.from(document.querySelectorAll('.appearance-preview img'), image => ({
+          file: image.currentSrc.split('/').at(-1),
+          width: image.naturalWidth,
+          height: image.naturalHeight,
+          fit: getComputedStyle(image).objectFit,
+          visible: image.getBoundingClientRect().width > 0 && image.getBoundingClientRect().height > 0
+        }))`)
+        verify(previews.map(image => image.file).join(',') === 'stretch.png,stretch-night.png,stretch.png,stretch-night.png', 'light, dark and Follow System cards show the expected image pair')
+        verify(previews.every(image => image.width === 1122 && image.height === 1402 && image.fit === 'contain' && image.visible), 'all appearance cards show the complete matched artwork')
+      }
       for (const mode of ['light', 'dark']) {
         if (checkSystem) await setSystem(mode === 'light')
         await choose(mode)
         await assertForcedMode(mode === 'dark')
         verify((await settingsState()).mode === mode, 'selection matches persisted ' + mode)
         prefs.setSize(860, 740)
+        await verifyAppearanceArtwork()
         for (const page of pages) {
           await showPage(page)
           await capture(prefs, `settings-${page}-${mode}`)
@@ -137,6 +150,9 @@ app.whenReady().then(async () => {
       }
 
       await showPage('theme')
+      prefs.webContents.sendInputEvent({ type: 'keyDown', keyCode: 'Tab' })
+      prefs.webContents.sendInputEvent({ type: 'keyUp', keyCode: 'Tab' })
+      await until('visible keyboard focus', () => js("Boolean(document.querySelector(':focus-visible'))"))
       await js("document.querySelector('#appearance-dark').focus()")
       prefs.webContents.sendInputEvent({ type: 'keyDown', keyCode: 'Right' })
       prefs.webContents.sendInputEvent({ type: 'keyUp', keyCode: 'Right' })
@@ -154,7 +170,7 @@ app.whenReady().then(async () => {
             verify(await js(`(() => { const page = document.querySelector('.${page}'); return page.scrollWidth <= page.clientWidth + 1 && document.documentElement.scrollWidth <= innerWidth })()`), `${language}/${width}/${zoom}/${page} has no horizontal overflow`)
           }
           if (language === 'en' && width === 620) {
-            await showPage('theme')
+            await verifyAppearanceArtwork()
             verify(await js("document.querySelector('[for=appearance-system]').textContent.trim() === 'Follow System'"), 'English appearance label is translated')
             await capture(prefs, 'settings-theme-english-narrow')
           }

@@ -2,7 +2,7 @@ html, body { min-height: 100%; margin: 0; }
 body.quiet-break {
   --rest-opacity: 1;
   --rest-break-padding: clamp(18px, 4vh, 48px);
-  --rest-portrait-width: calc(100vh * 442 / 765);
+  --rest-portrait-width: calc(100vh * 1122 / 1402);
   min-height: 100vh;
   box-sizing: border-box;
   padding: var(--rest-break-padding);
@@ -80,7 +80,7 @@ body.quiet-break {
   max-width: none;
   object-fit: contain;
   object-position: right bottom;
-  mask-image: linear-gradient(to right, transparent, #000 16%);
+  mask-image: linear-gradient(to right, transparent, #000 8%);
   pointer-events: none;
 }
 .break-clock { position: fixed; inset-inline-end: 20px; bottom: 12px; color: var(--rest-ink); font-size: 16px; }
@@ -88,9 +88,8 @@ body.break-health-mode { box-shadow: var(--break-health-shadow, none); transitio
 body.break-health-mode::after { content: ''; position: fixed; inset: 0; z-index: 2; pointer-events: none; box-shadow: var(--break-health-shadow, none); }
 .rest-illustration-night { display: none; }
 @media (prefers-color-scheme: dark) {
-  body.quiet-break { --rest-portrait-width: calc(100vh * 953 / 1650); }
   .rest-illustration-day { display: none; }
-  .rest-illustration-night { display: block; mask-image: linear-gradient(to right, transparent, #000 17%); }
+  .rest-illustration-night { display: block; }
 }
 /* Height-scaled portrait needs a landscape viewport to leave room for controls. */
 @media (max-width: 680px), (max-aspect-ratio: 3/2) {
